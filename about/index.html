@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script src="/js/src/click.js"></script>
 <html lang="zh">
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -83,14 +82,18 @@
     
 
     
-    
-    
 
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="is-3-column">
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -357,23 +360,23 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                <a class="level is-mobile" href="https://baidu.com" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">Hexo</span>
+                        <span class="level-item">Baidu</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">hexo.io</span>
+                        <span class="level-item tag">baidu.com</span>
                     </span>
                 </a>
             </li>
         
             <li>
-                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                <a class="level is-mobile" href="https://google.com" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">PPOffice</span>
+                        <span class="level-item">Google</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">github.com</span>
+                        <span class="level-item tag">google.com</span>
                     </span>
                 </a>
             </li>
@@ -624,7 +627,7 @@
                     </div>
                 </div>
             </section>
-            <footer class="footer">
+            <!-- <footer class="footer">
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
@@ -680,9 +683,23 @@
            <span id="busuanzi_container_site_uv" class="theme-info">
             |  本站访客数<span id="busuanzi_value_site_uv">span>人次
            span>
-</span></span></span></span></footer>
+</footer>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy;
+            2019
+                zhong yuehui<br>
+                    <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
+                    <!-- 注释掉Powered by，Theme by的显示。-->
+                    <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+        </div>
+    </div>
+</footer>
                 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 
@@ -774,8 +791,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
                     
-                
-                    
                         
 
                             <script src="/js/main.js" defer></script>
@@ -815,14 +830,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/insight.css">
                             
 
-
 </body>
 
 </html>
-<!-- 雪花特效 -->
-<script type="text/javascript">
-    var windowWidth = $(window).width();
-    if (windowWidth > 480) {
-        document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
-    }
-</script>
