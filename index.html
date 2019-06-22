@@ -160,136 +160,6 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/06/22/“webpack配置的一些总结”/">“webpack配置的一些总结”</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><ul>
-<li><p><code>npm  install webpack -g</code></p>
-<h2 id="生成package-json"><a href="#生成package-json" class="headerlink" title="生成package.json"></a>生成package.json</h2></li>
-<li><p><code>npm init -y</code></p>
-<h2 id="安装webpack-dev-server到本地"><a href="#安装webpack-dev-server到本地" class="headerlink" title="安装webpack-dev-server到本地"></a>安装webpack-dev-server到本地</h2></li>
-<li><p><code>npm install webpack-dev-server -D</code></p>
-</li>
-<li><p>仍然需要在本地安装webpack作为webpack-dev-server的依赖</p>
-</li>
-<li><p><code>npm install  webpack -D</code></p>
-<h2 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h2></li>
-<li><p>创建webpack.config.js文件</p>
-</li>
-<li><p>配置文件出入口</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//引入路径模块</span><br><span class="line">var path = require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span><br><span class="line"></span><br><span class="line">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//向外暴露出这个对象</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, &apos;./src/main.js&apos;) //入口文件，需要打包的文件</span><br><span class="line">        ,</span><br><span class="line">    output: &#123; //出口文件，需要打包到哪里去</span><br><span class="line">        path: path.join(__dirname, &apos;./dist/bundle.js&apos;) //输出路径</span><br><span class="line">            ,</span><br><span class="line">        filename: &apos;bundle.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    mode: &apos;development&apos;, //设置mode，在4.0新增</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置一些功能：在webpack.config.js中配置</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> devServer: &#123; //配置webpack-dev-server</span><br><span class="line">    open: true, //是否打开浏览器</span><br><span class="line">    contentBase: &apos;src&apos;, //指定托管的目录</span><br><span class="line">    hot: true, //是否启用热更新</span><br><span class="line">    port: 6000 //代理的端口</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在<code>package.json</code>中配置</p>
-</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;script&quot;:&#123;</span><br><span class="line">&quot;start:dev&quot;: &quot;webpack --open --port 3000 --contentBase src --hot&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>需要将打包好的文件从虚拟内存中传入过来<h2 id="安装html-webpack-plugin"><a href="#安装html-webpack-plugin" class="headerlink" title="安装html-webpack-plugin"></a>安装html-webpack-plugin</h2></li>
-<li><code>npm install html-webpack-plugin -D</code></li>
-<li>在<code>webpack.config.js</code>中配置这个插件</li>
-<li>作用：<ul>
-<li>在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</li>
-<li>如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</li>
-<li>注意：所有的第三方插件都在 <code>plugins:[]</code>中配置</li>
-<li>与entry、output同级<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">       new htmlWebpackPlugin(&#123;</span><br><span class="line">           template: path.join(__dirname, &apos;./src/index.html&apos;), //指定模板文件的目录</span><br><span class="line">           filename: &apos;index.html&apos; //设置生成的页面名称</span><br><span class="line"></span><br><span class="line">       &#125;)</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="配置css-loader、less-loader、sass-loader"><a href="#配置css-loader、less-loader、sass-loader" class="headerlink" title="配置css-loader、less-loader、sass-loader"></a>配置css-loader、less-loader、sass-loader</h3><ul>
-<li>在main.js中引入css文件</li>
-<li>import ‘./css/style.css’ <ul>
-<li>安装css-loader插件：<code>npm install  css-loader style-loader --save-dev</code></li>
-</ul>
-</li>
-<li>import ‘./css/style.less’ <ul>
-<li>安装css-loader插件：<code>npm install less-loader less --save-dev</code></li>
-</ul>
-</li>
-<li>import ‘./css/style.sass’ <ul>
-<li>安装css-loader插件：<code>npm install sass-loader node-sass --save-dev</code><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4></li>
-</ul>
-</li>
-<li>在webpack.config.js配置sass</li>
-<li><strong>注意</strong>：使用<code>npm</code>命令时安装<code>node-sass</code>可能会报错，无法打包，此时建议切换成<code>cnpm</code></li>
-<li>切换方法 cmd运行<code>nrm ls</code>查看,然后切换<code>nrm use cnpm</code>即可，但是前提应该先在全局中安装<code>nrm</code></li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    ...</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.scss$/,</span><br><span class="line">            use: [</span><br><span class="line">                &quot;style-loader&quot;, // creates style nodes from JS strings</span><br><span class="line">                &quot;css-loader&quot;, // translates CSS into CommonJS</span><br><span class="line">                &quot;sass-loader&quot; // compiles Sass to CSS, using Node Sass by default</span><br><span class="line">            ]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在webpack.config.js配置css</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.css$/i,</span><br><span class="line">        use: [&apos;style-loader&apos;, &apos;css-loader&apos;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在webpack.config.js配置less</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.less$/,</span><br><span class="line">        loader: &apos;less-loader&apos;, // compiles Less to CSS</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置好基本的webpack-config-js文件"><a href="#配置好基本的webpack-config-js文件" class="headerlink" title="配置好基本的webpack.config.js文件"></a>配置好基本的webpack.config.js文件</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//引入路径模块</span><br><span class="line">var path = require(&apos;path&apos;)</span><br><span class="line"></span><br><span class="line">//在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</span><br><span class="line">//如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</span><br><span class="line">const htmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;)</span><br><span class="line"></span><br><span class="line">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span><br><span class="line"></span><br><span class="line">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//向外暴露出这个对象</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, &apos;./src/main.js&apos;) //入口文件，需要打包的文件</span><br><span class="line">        ,</span><br><span class="line">    output: &#123; //出口文件，需要打包到哪里去</span><br><span class="line">        path: path.join(__dirname, &apos;./dist&apos;) //输出路径</span><br><span class="line">            ,</span><br><span class="line">        filename: &apos;bundle.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.css$/i, //配置css</span><br><span class="line">            use: [&apos;style-loader&apos;, &apos;css-loader&apos;],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: /\.less$/i, //配置less</span><br><span class="line">            use: [&apos;style-loader&apos;, &apos;css-loader&apos;, &apos;less-loader&apos;]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: /\.scss$/i, //配置sass</span><br><span class="line">            use: [&apos;style-loader&apos;, &apos;css-loader&apos;, &apos;sass-loader&apos;]</span><br><span class="line">        &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123; //配置webpack-dev-server</span><br><span class="line">        open: true, //是否打开浏览器</span><br><span class="line">        contentBase: &apos;src&apos;, //指定托管的目录</span><br><span class="line">        hot: true, //是否启用热更新</span><br><span class="line">        port: 2000 //代理的端口</span><br><span class="line">    &#125;,</span><br><span class="line">    mode: &apos;development&apos;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.join(__dirname, &apos;./src/index.html&apos;), //指定模板文件的目录</span><br><span class="line">            filename: &apos;index.html&apos; //设置生成的页面名称</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><ul>
-<li><p>在<code>webpack4.0</code>以后，webpack新增了<code>mode</code>属性 打包命令有所变化 <code>webpack 要打包的文件 -o 打包生成存放文件的路径</code></p>
-</li>
-<li><p>而且在<code>package.json</code>文件中，需要配置如下代码：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;dev&quot;: &quot;webpack --mode development&quot;,  // 开发环境</span><br><span class="line">    &quot;build&quot;: &quot;webpack --mode production&quot;,  // 生产环境</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在<code>webpack.config.js</code>中，同样需要配置如下代码：<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mode: &apos;development&apos; // 设置mode</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>如果需要下载指定版本，输入以下命令：</p>
-</li>
-<li><p><code>npm i -D webpack@3</code> // 3： webpack版本3最新</p>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1227 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
                 <a class="has-link-black-ter" href="/2019/06/22/webpack配置的一些总结/">“webpack配置的一些总结”</a>
             
         </h1>
@@ -438,7 +308,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        1
                     </p>
                 </div>
             </div>
@@ -561,7 +431,7 @@
                 <span class="level-item">Vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">1</span>
             </span>
         </a></li>
             </ul>
@@ -592,25 +462,6 @@
         
         <article class="media">
             
-            <a href="/2019/06/22/“webpack配置的一些总结”/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="“webpack配置的一些总结”">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/“webpack配置的一些总结”/" class="has-link-black-ter is-size-6">“webpack配置的一些总结”</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="“webpack配置的一些总结”">
@@ -646,7 +497,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -667,7 +518,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -696,25 +547,6 @@
         
         <article class="media">
             
-            <a href="/2019/06/22/“webpack配置的一些总结”/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="“webpack配置的一些总结”">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/“webpack配置的一些总结”/" class="has-link-black-ter is-size-6">“webpack配置的一些总结”</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="“webpack配置的一些总结”">
@@ -750,7 +582,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -771,7 +603,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
