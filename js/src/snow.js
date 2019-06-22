@@ -38,9 +38,6 @@ $(function() {
         /* 定义雪花最小尺寸 */
         maxSize: 50,
         /* 定义雪花最大尺寸 */
-        newOn: 300 /* 定义密集程度，数字越小越密集 */
+        newOn: 250 /* 定义密集程度，数字越小越密集 */
     });
 });
-
-作者： donlex
-链接： http: //www.imooc.com/article/272005
