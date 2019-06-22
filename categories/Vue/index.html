@@ -152,6 +152,88 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 611 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/22/webpack打包图片/">webpack打包图片</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="使用webpack打包图片"><a href="#使用webpack打包图片" class="headerlink" title="使用webpack打包图片"></a>使用webpack打包图片</h3><ul>
+<li><p>在平常中，我们在设置style中使用<code>background:url</code> 可以引入背景图片，在前面我们已经学会如何打包<code>css、less、scss</code>文件</p>
+</li>
+<li><p>安装<code>url-loader</code>和其依赖<code>file-loader</code></p>
+</li>
+<li><p><code>cnpm install url-loader file-loader -D</code></p>
+</li>
+<li><p>使用<code>file-loader</code>进行图片的打包</p>
+</li>
+<li><p>在webpack.config.js中配置，在与其他配置下添加如下即可</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            test: /\.jpg|png|gif|bmp|jpeg/, //配置图片</span><br><span class="line">            use: [&apos;file-loader&apos;]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以简写成如下：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            test: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: &apos;file-loader&apos;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要打包出来的图片不改变名字和格式，只需添加<code>options</code>即可</p>
+</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            test: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: &apos;file-loader&apos;</span><br><span class="line">            options: &#123; //[name]表示名字,[ext]表示格式，而name属性其实就是图片打包后的路径</span><br><span class="line">                 name: &apos;images/[name].[ext]&apos;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>除了使用file-loader对图片进行打包处理外，我们同样也可以使用url-loader代替，另外我们还可以对小于某个大小的图片进行base64格式的转化处理。</p>
+</li>
+<li><p>使用<code>url-loader</code>打包</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(png|jpg|gif|svg)$/,</span><br><span class="line">    loader: &apos;url-loader&apos;,</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: &apos;./images/[name].[ext]&apos;,</span><br><span class="line">        limit: 8192</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里limit属性的作用就是将小于8192B（8.192K）大小的图片转成base64格式，而大于这个大小的图片将会以file-loader的方式进行打包处理</p>
+</li>
+<li><p><strong>注意</strong>：如果不写limit属性，那么url-loader就会默认将所有图片转成base64</p>
+</li>
+<li><p>这样打包出来的图片会自动转换成<code>base64</code>,但是我们多数是将小图片转成base64，而大图片不进行转换</p>
+</li>
+<li><p>而对于有些图片在不同路径下，但是文件名字一样时，我们需要在<code>name:</code>属性中增加<code>hash</code>值：</p>
+<ul>
+<li>定义[hash:8]定义 8位hash值最多32位，这样图片就不会存在不同</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            test: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片</span><br><span class="line">            loader: &apos;url-loader&apos;, //在这里时，只有一个我们可以简化 loader，使用use则会报错</span><br><span class="line">            options: &#123;</span><br><span class="line">                limit: 2000, //limit 的值单位是 Byte ，如果图片小于limit的值，则转成base64格式的字符串，如果大于，则不转</span><br><span class="line">                name: &apos;[hash:8]-[name].[ext]&apos; //这是将文件名原样输出[name]指的是图片名，[ext]是图片格式，</span><br><span class="line">                    //[hash:8]表示生成8位hash值，否则在不同文件夹下同名图片会失效，用来区分</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time>
                 
                 <div class="level-item">
@@ -319,7 +401,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        2
                     </p>
                 </div>
             </div>
@@ -442,7 +524,7 @@
                 <span class="level-item">Vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li>
             </ul>
@@ -473,6 +555,25 @@
         
         <article class="media">
             
+            <a href="/2019/06/22/webpack打包图片/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="“webpack配置的一些总结”">
@@ -508,7 +609,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -529,7 +630,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -555,6 +656,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/06/22/webpack打包图片/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -593,7 +713,7 @@
                     <span class="level-item">六月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -614,7 +734,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
