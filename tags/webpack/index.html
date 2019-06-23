@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="/js/src/click.js"></script>
 <html lang="zh">
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -96,7 +97,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Just for fun" height="28">
+                <img src="/images/mylogo.png" alt="Just for fun" height="28">
             
             </a>
         </div>
@@ -120,7 +121,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ZhongYueHui">
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
                         
                         <i class="fab fa-github"></i>
                         
@@ -282,7 +283,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -306,7 +307,7 @@
                     
                     <p class="is-size-6 is-flex is-flex-center has-text-grey">
                         <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>jiangxi,china</span>
+                        <span>Jiangxi,China</span>
                     </p>
                     
                 </div>
@@ -421,34 +422,23 @@
                 </a>
             </li>
         
+            <li>
+                <a class="level is-mobile" href="https://bbs.csdn.net/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">bbs.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
         </ul>
         </div>
     </div>
 </div>
 
 
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
     
         
 <div class="card widget">
@@ -533,6 +523,28 @@
         </li>
         
         </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -641,6 +653,28 @@
     </div>
 </div>
     
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
         <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -673,26 +707,35 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/logo.svg" alt="Just for fun" height="28">
+                                <img src="/images/mylogo.png" alt="Just for fun" height="28">
                                 
                 </a>
                 <p class="is-size-7">
                     &copy;
                     2019
-                        zhong yuehui&nbsp; Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                        zhong yuehui&nbsp; Powered &nbsp; 💗 &nbsp; Just for fun
                             
                 </p>
             </div>
-            <div id="footer-info" class="inner" style="padding-right: 10%;">
-                &copy;
-                2019
-                    zhong yuehui<br>
-                        <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
-                        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-                        访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
-                        <!-- 注释掉Powered by，Theme by的显示。-->
-                        <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+            <div class="center" style="font-size: 12px;font-weight: 900">
+                <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                <div id="footer-info" class="inner">
+
+                    <div style="padding-left:12%">
+                        &copy;
+                        2019
+                            zhong yuehui
+
+                    </div>
+                    <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
+                    <!-- 注释掉Powered by，Theme by的显示。-->
+                    <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+                </div>
             </div>
+
+
             <div class="level-end">
                 
                     <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
@@ -715,7 +758,7 @@
                                 </p>
                                 
                                 <p class="control">
-                                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ZhongYueHui">
+                                    <a class="button is-white is-large" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
                                         
                                                     <i class="fab fa-github"></i>
                                                     
@@ -734,15 +777,36 @@
         }
         $('.image').attr('src', 'https://i.loli.net/2019/06/22/5d0e490322f4929976.png')
     </script>
-    <!-- <span id="busuanzi_container_site_pv" class="theme-info">
-            |  本站总访问量<span id="busuanzi_value_site_pv">span>次
-           span>
-           <span id="busuanzi_container_site_uv" class="theme-info">
-            |  本站访客数<span id="busuanzi_value_site_uv">span>人次
-           span> -->
-</footer>
 
-<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+</footer>
+<script>
+    var now = new Date();
+
+    function createtime() {
+        var grt = new Date("12/28/2018 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()", 250);
+</script>
                 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 
@@ -873,6 +937,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <link rel="stylesheet" href="/css/insight.css">
                             
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true}});</script></body>
 
 </html>
