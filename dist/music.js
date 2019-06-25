@@ -9,7 +9,6 @@ const ap = new APlayer({
     volume: 0.6,
     listFolded: false,
     listMaxHeight: 90,
-    lrcType: 3,
     audio: [{
             name: "够钟",
             artist: '周柏豪',
