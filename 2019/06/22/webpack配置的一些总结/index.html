@@ -11,20 +11,20 @@
 
 
     
-        <meta name="description" content="全局安装webpack">
+        <meta name="description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack配置的一些总结">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/06/22/webpack配置的一些总结/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="全局安装webpack">
+<meta property="og:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhongyuehui.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-23T07:45:21.590Z">
+<meta property="og:image" content="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg">
+<meta property="og:updated_time" content="2019-06-25T07:33:31.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack配置的一些总结">
-<meta name="twitter:description" content="全局安装webpack">
-<meta name="twitter:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta name="twitter:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。">
+<meta name="twitter:image" content="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg">
             
 
 
@@ -32,6 +32,8 @@
                 
 
                         
+                            <link rel="alternative" href="/atom.xml" title="webpack配置的一些总结" type="application/atom+xml">
+                            
 
                                 
                                     <link rel="icon" href="/images/favicon.ico">
@@ -140,6 +142,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -151,12 +157,54 @@
 </nav>
         
 
-            <section class="section">
-                <div class="container">
-                    <div class="columns">
-                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-                            <div class="card">
+
+            
+                <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                    
+
+                        
+
+                            <section class="section">
+                                <div class="container">
+                                    <div class="columns">
+                                        <!-- 将main_column_class() 改为 col() -->
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
     
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
+                </span>
+        </div>
+        
             <div class="card-content article ">
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -171,7 +219,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1228 个字)
+                    9 分钟 读完 (大约 1293 个字)
                 </span>
                                         
                                             
@@ -184,7 +232,13 @@
                                         
                         </h1>
                         <div class="content">
-                            <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><a id="more"></a>
+                            <blockquote>
+<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。</p>
+</blockquote>
+<a id="more"></a>
+<!-- toc -->
+<hr>
+<h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><hr>
 <ul>
 <li><p><code>npm  install webpack -g</code></p>
 <h2 id="生成package-json"><a href="#生成package-json" class="headerlink" title="生成package.json"></a>生成package.json</h2></li>
@@ -195,7 +249,7 @@
 <li><p>仍然需要在本地安装webpack作为webpack-dev-server的依赖</p>
 </li>
 <li><p><code>npm install  webpack -D</code></p>
-<h2 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h2></li>
+<h3 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h3></li>
 <li><p>创建webpack.config.js文件</p>
 </li>
 <li><p>配置文件出入口</p>
@@ -205,12 +259,14 @@
 <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">devServer</span>: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">    <span class="hljs-attribute">open</span>: true, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">    <span class="hljs-attribute">contentBase</span>: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">    <span class="hljs-attribute">hot</span>: true, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">    <span class="hljs-attribute">port</span>: <span class="hljs-number">6000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在<code>package.json</code>中配置</p>
+  <figure class="highlight brainfuck hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">"script":&#123;</span></span><br><span class="line"><span class="hljs-comment">"start:dev":</span> <span class="hljs-comment">"webpack</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">open</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">port</span> <span class="hljs-comment">3000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">contentBase</span> <span class="hljs-comment">src</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">hot"</span></span><br><span class="line"><span class="hljs-comment">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>需要将打包好的文件从虚拟内存中传入过来</p>
 </li>
 </ul>
-<figure class="highlight brainfuck hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">"script":&#123;</span></span><br><span class="line"><span class="hljs-comment">"start:dev":</span> <span class="hljs-comment">"webpack</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">open</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">port</span> <span class="hljs-comment">3000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">contentBase</span> <span class="hljs-comment">src</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">hot"</span></span><br><span class="line"><span class="hljs-comment">&#125;</span></span><br></pre></td></tr></table></figure>
-
+<hr>
+<h3 id="安装html-webpack-plugin"><a href="#安装html-webpack-plugin" class="headerlink" title="安装html-webpack-plugin"></a>安装html-webpack-plugin</h3><hr>
 <ul>
-<li>需要将打包好的文件从虚拟内存中传入过来<h2 id="安装html-webpack-plugin"><a href="#安装html-webpack-plugin" class="headerlink" title="安装html-webpack-plugin"></a>安装html-webpack-plugin</h2></li>
 <li><code>npm install html-webpack-plugin -D</code></li>
 <li>在<code>webpack.config.js</code>中配置这个插件</li>
 <li>作用：<ul>
@@ -223,7 +279,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="配置css-loader、less-loader、sass-loader"><a href="#配置css-loader、less-loader、sass-loader" class="headerlink" title="配置css-loader、less-loader、sass-loader"></a>配置css-loader、less-loader、sass-loader</h3><ul>
+<hr>
+<h3 id="配置css-loader、less-loader、sass-loader"><a href="#配置css-loader、less-loader、sass-loader" class="headerlink" title="配置css-loader、less-loader、sass-loader"></a>配置css-loader、less-loader、sass-loader</h3><hr>
+<ul>
 <li>在main.js中引入css文件</li>
 <li>import ‘./css/style.css’ <ul>
 <li>安装css-loader插件：<code>npm install  css-loader style-loader --save-dev</code></li>
@@ -234,28 +292,33 @@
 </ul>
 </li>
 <li>import ‘./css/style.sass’ <ul>
-<li>安装css-loader插件：<code>npm install sass-loader node-sass --save-dev</code><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4></li>
+<li>安装css-loader插件：<code>npm install sass-loader node-sass --save-dev</code></li>
 </ul>
 </li>
-<li>在webpack.config.js配置sass</li>
-<li><strong>注意</strong>：使用<code>npm</code>命令时安装<code>node-sass</code>可能会报错，无法打包，此时建议切换成<code>cnpm</code></li>
-<li>切换方法 cmd运行<code>nrm ls</code>查看,然后切换<code>nrm use cnpm</code>即可，但是前提应该先在全局中安装<code>nrm</code></li>
 </ul>
-<figure class="highlight openscad hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">module</span>.<span class="hljs-title">exports</span> =</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">module</span>: &#123;</span></span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.scss$/,</span><br><span class="line">            <span class="hljs-keyword">use</span>: [</span><br><span class="line">                <span class="hljs-string">"style-loader"</span>, <span class="hljs-comment">// creates style nodes from JS strings</span></span><br><span class="line">                <span class="hljs-string">"css-loader"</span>, <span class="hljs-comment">// translates CSS into CommonJS</span></span><br><span class="line">                <span class="hljs-string">"sass-loader"</span> <span class="hljs-comment">// compiles Sass to CSS, using Node Sass by default</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<hr>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><hr>
 <ul>
-<li>在webpack.config.js配置css</li>
-</ul>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.css$/i</span>,</span><br><span class="line">        use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li><p>在webpack.config.js配置sass</p>
+</li>
+<li><p><strong>注意</strong>：使用<code>npm</code>命令时安装<code>node-sass</code>可能会报错，无法打包，此时建议切换成<code>cnpm</code></p>
+</li>
+<li><p>切换方法 cmd运行<code>nrm ls</code>查看,然后切换<code>nrm use cnpm</code>即可，但是前提应该先在全局中安装<code>nrm</code></p>
+  <figure class="highlight openscad hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">module</span>.<span class="hljs-title">exports</span> =</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">module</span>: &#123;</span></span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.scss$/,</span><br><span class="line">            <span class="hljs-keyword">use</span>: [</span><br><span class="line">                <span class="hljs-string">"style-loader"</span>, <span class="hljs-comment">// creates style nodes from JS strings</span></span><br><span class="line">                <span class="hljs-string">"css-loader"</span>, <span class="hljs-comment">// translates CSS into CommonJS</span></span><br><span class="line">                <span class="hljs-string">"sass-loader"</span> <span class="hljs-comment">// compiles Sass to CSS, using Node Sass by default</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js配置css</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.css$/i</span>,</span><br><span class="line">        use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js配置less</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="hljs-string">'less-loader'</span>, <span class="hljs-comment">// compiles Less to CSS</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<hr>
+<h3 id="配置好基本的webpack-config-js文件"><a href="#配置好基本的webpack-config-js文件" class="headerlink" title="配置好基本的webpack.config.js文件"></a>配置好基本的webpack.config.js文件</h3><hr>
+<pre><code><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</span></span><br><span class="line"><span class="hljs-comment">//如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</span></span><br><span class="line"><span class="hljs-keyword">const</span> htmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.join(__dirname, <span class="hljs-string">'./dist'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">//配置css</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.less$/i</span>, <span class="hljs-comment">//配置less</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'less-loader'</span>]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.scss$/i</span>, <span class="hljs-comment">//配置sass</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'sass-loader'</span>]</span><br><span class="line">        &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">        open: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">        contentBase: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">        hot: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">        port: <span class="hljs-number">2000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="hljs-keyword">new</span> htmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">            filename: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><hr>
+<h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><hr>
 <ul>
-<li>在webpack.config.js配置less</li>
-</ul>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="hljs-string">'less-loader'</span>, <span class="hljs-comment">// compiles Less to CSS</span></span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置好基本的webpack-config-js文件"><a href="#配置好基本的webpack-config-js文件" class="headerlink" title="配置好基本的webpack.config.js文件"></a>配置好基本的webpack.config.js文件</h2><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</span></span><br><span class="line"><span class="hljs-comment">//如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</span></span><br><span class="line"><span class="hljs-keyword">const</span> htmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.join(__dirname, <span class="hljs-string">'./dist'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">//配置css</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.less$/i</span>, <span class="hljs-comment">//配置less</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'less-loader'</span>]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.scss$/i</span>, <span class="hljs-comment">//配置sass</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'sass-loader'</span>]</span><br><span class="line">        &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">        open: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">        contentBase: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">        hot: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">        port: <span class="hljs-number">2000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="hljs-keyword">new</span> htmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">            filename: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><ul>
 <li><p>在<code>webpack4.0</code>以后，webpack新增了<code>mode</code>属性 打包命令有所变化 <code>webpack 要打包的文件 -o 打包生成存放文件的路径</code></p>
 </li>
 <li><p>而且在<code>package.json</code>文件中，需要配置如下代码：</p>
@@ -337,7 +400,7 @@
         <i class="fab fa-weixin"></i>
     </span>
     <span>微信</span>
-    <div class="qrcode"><img src="https://s2.ax1x.com/2019/06/23/ZCKoHe.jpg" alt="微信"></div>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
 </a>
 
                             
@@ -367,16 +430,68 @@
                         
 
                             
+                                        </div>
+                                        
 
-                        </div>
+                        <!-- 粘贴的部分 -->
                         
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#全局安装webpack">
+        <span class="has-mr-6">1</span>
+        <span>全局安装webpack</span>
+        </a></li><li>
+        <a class="is-flex" href="#生成package-json">
+        <span class="has-mr-6">2</span>
+        <span>生成package.json</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装webpack-dev-server到本地">
+        <span class="has-mr-6">3</span>
+        <span>安装webpack-dev-server到本地</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#配置webpack-config-js文件">
+        <span class="has-mr-6">3.1</span>
+        <span>配置webpack.config.js文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装html-webpack-plugin">
+        <span class="has-mr-6">3.2</span>
+        <span>安装html-webpack-plugin</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置css-loader、less-loader、sass-loader">
+        <span class="has-mr-6">3.3</span>
+        <span>配置css-loader、less-loader、sass-loader</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置文件">
+        <span class="has-mr-6">3.4</span>
+        <span>配置文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置好基本的webpack-config-js文件">
+        <span class="has-mr-6">3.5</span>
+        <span>配置好基本的webpack.config.js文件</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#注意事项：">
+        <span class="has-mr-6">4</span>
+        <span>注意事项：</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
 
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
-    
-        
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -411,7 +526,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        4
                     </p>
                 </div>
             </div>
@@ -421,7 +536,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        2
                     </p>
                 </div>
             </div>
@@ -431,7 +546,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        3
                     </p>
                 </div>
             </div>
@@ -478,10 +593,197 @@
         
     </div>
 </div>
-    
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
         
-    
+        <article class="media">
+            
+            <a href="/2019/06/24/express中的中间件/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt="express中的中间件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-24T03:26:57.000Z">2019-06-24</time></div>
+                    <a href="/2019/06/24/express中的中间件/" class="has-link-black-ter is-size-6">express中的中间件</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
+        <article class="media">
+            
+            <a href="/2019/06/23/webpack中引入vue/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time></div>
+                    <a href="/2019/06/23/webpack中引入vue/" class="has-link-black-ter is-size-6">webpack中引入vue</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/22/webpack打包图片/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+</div>
+
+                                                                            
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/webpack/">
+                        <span class="tag">webpack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
 
 <div class="card widget">
     <div class="card-content">
@@ -492,34 +794,12 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://baidu.com" target="_blank">
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">Baidu</span>
+                        <span class="level-item">ranshan丶</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">baidu.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://google.com" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Google</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">google.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://bbs.csdn.net/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CSDN</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">bbs.csdn.net</span>
+                        <span class="level-item tag">q32757468.github.io</span>
                     </span>
                 </a>
             </li>
@@ -530,271 +810,19 @@
 </div>
 
 
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
-    </div>
-</div>
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
+                                            
+                                            
 
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack打包图片/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack配置的一些总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-        
-        </div>
-    
-</div>
-
-                            
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack打包图片/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack配置的一些总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
-    
-</div>
-
-
-                    </div>
-                </div>
-
-            </section>
-            <footer class="footer">
+                        <!-- 粘贴的部分 -->
+                        
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="footer">
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
@@ -900,7 +928,7 @@
     }
     setInterval("createtime()", 250);
 </script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 
         
@@ -998,8 +1026,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                     moment.locale("zh-CN");
                                 </script>
 
-                    
-                        <div class="searchbox ins-search">
+                                    
+                                        <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
             <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
@@ -1028,9 +1056,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="/js/insight.js" defer></script>
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
-                            
+                                            
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":60,"vOffset":-10},"mobile":{"show":false},"react":{"opacity":0.4},"log":false});</script></body>
 
 
 </html>

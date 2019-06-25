@@ -30,6 +30,8 @@
                 
 
                         
+                            <link rel="alternative" href="/atom.xml" title="Just for fun" type="application/atom+xml">
+                            
 
                                 
                                     <link rel="icon" href="/images/favicon.ico">
@@ -149,11 +151,47 @@
 </nav>
         
 
-            <section class="section">
-                <div class="container">
-                    <div class="columns">
-                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-                            <div class="card">
+
+            
+                <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                    
+
+                        
+
+                            <section class="section">
+                                <div class="container">
+                                    <div class="columns">
+                                        <!-- 将main_column_class() 改为 col() -->
+                                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                                            <div class="card">
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
@@ -167,6 +205,81 @@
 
     <div class="card">
     
+        <div class="card-image">
+            <a href="/2019/06/23/webpack中引入vue/" class="image is-7by1">
+                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 439 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/06/23/webpack中引入vue/">
+                                    webpack中引入vue
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用。</p>
+</blockquote>
+
+                                
+
+                        </div>
+                        
+                                
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/06/23/webpack中引入vue/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/06/22/webpack打包图片/" class="image is-7by1">
+                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
+                </a>
+        </div>
+        
             <div class="card-content article ">
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -181,7 +294,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 612 个字)
+                    5 分钟 读完 (大约 675 个字)
                 </span>
                                         
                                             
@@ -196,7 +309,9 @@
                                 
                         </h1>
                         <div class="content">
-                            <h3 id="使用webpack打包图片"><a href="#使用webpack打包图片" class="headerlink" title="使用webpack打包图片"></a>使用webpack打包图片</h3>
+                            <blockquote>
+<p>在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤</p>
+</blockquote>
 
                                 
 
@@ -228,6 +343,12 @@
 
     <div class="card">
     
+        <div class="card-image">
+            <a href="/2019/06/22/webpack配置的一些总结/" class="image is-7by1">
+                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
+                </a>
+        </div>
+        
             <div class="card-content article ">
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -242,7 +363,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1228 个字)
+                    9 分钟 读完 (大约 1293 个字)
                 </span>
                                         
                                             
@@ -257,7 +378,9 @@
                                 
                         </h1>
                         <div class="content">
-                            <h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2>
+                            <blockquote>
+<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。</p>
+</blockquote>
 
                                 
 
@@ -288,16 +411,18 @@
                             
 
 
-
-                        </div>
-                        
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+                                        </div>
+                                        
+    <!-- 修改 -->
     
         
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+                        
+                            
+                                
+                            
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -332,7 +457,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        4
                     </p>
                 </div>
             </div>
@@ -342,7 +467,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        2
                     </p>
                 </div>
             </div>
@@ -352,7 +477,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        3
                     </p>
                 </div>
             </div>
@@ -399,10 +524,197 @@
         
     </div>
 </div>
-    
+                                
+                            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
         
-    
+        <article class="media">
+            
+            <a href="/2019/06/24/express中的中间件/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt="express中的中间件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-24T03:26:57.000Z">2019-06-24</time></div>
+                    <a href="/2019/06/24/express中的中间件/" class="has-link-black-ter is-size-6">express中的中间件</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
+        <article class="media">
+            
+            <a href="/2019/06/23/webpack中引入vue/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time></div>
+                    <a href="/2019/06/23/webpack中引入vue/" class="has-link-black-ter is-size-6">webpack中引入vue</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/22/webpack打包图片/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
+                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+                                
+                                    
+                                        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                            
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                    
+                                                
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                                    
+                                                
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+</div>
+
+                                                    
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/webpack/">
+                        <span class="tag">webpack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                    
+                                                
 
 <div class="card widget">
     <div class="card-content">
@@ -413,34 +725,12 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://baidu.com" target="_blank">
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">Baidu</span>
+                        <span class="level-item">ranshan丶</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">baidu.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://google.com" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Google</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">google.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://bbs.csdn.net/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CSDN</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">bbs.csdn.net</span>
+                        <span class="level-item tag">q32757468.github.io</span>
                     </span>
                 </a>
             </li>
@@ -451,123 +741,108 @@
 </div>
 
 
+                                                    
+                                        </div>
+                                        
+                    </div>
+                    
+
+                        <!-- 粘贴的部分 -->
+                        
+                                            
+    <!-- 修改 -->
     
         
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+                        
+                            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                
+                            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                
+                            
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
 </div>
 
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack打包图片/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack配置的一些总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-        
-            <div class="card widget">
+                                
+                            <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
@@ -580,142 +855,45 @@
         </div>
     </div>
 </div>
-        
-        </div>
-    
-</div>
-
+                                
                             
 
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        
 <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack打包图片/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack打包图片">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="webpack配置的一些总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time></div>
-                    <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-    
-        <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            归档
+            链接
         </h3>
         <ul class="menu-list">
         
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
+            <li>
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ranshan丶</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">q32757468.github.io</span>
+                    </span>
+                </a>
+            </li>
         
         </ul>
         </div>
     </div>
 </div>
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
-    
-</div>
 
 
+                                
+                                    
                     </div>
-                </div>
+                    
 
-            </section>
-            <footer class="footer">
+                        <!-- 粘贴的部分 -->
+                        
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="footer">
     <div class="container">
         <div class="level">
             <div class="level-start has-text-centered-mobile">
@@ -821,7 +999,7 @@
     }
     setInterval("createtime()", 250);
 </script>
-                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
 
         
@@ -919,8 +1097,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                     moment.locale("zh-CN");
                                 </script>
 
-                    
-                        <div class="searchbox ins-search">
+                                    
+                                        <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
             <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
@@ -949,9 +1127,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="/js/insight.js" defer></script>
 <link rel="stylesheet" href="/css/search.css">
 <link rel="stylesheet" href="/css/insight.css">
-                            
+                                            
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":60,"vOffset":-10},"mobile":{"show":false},"react":{"opacity":0.4},"log":false});</script></body>
 
 
 </html>
