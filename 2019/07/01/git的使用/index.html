@@ -20,7 +20,7 @@
 <meta property="og:description" content="git的使用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/01/ZGibf1.png">
-<meta property="og:updated_time" content="2019-07-01T14:27:38.326Z">
+<meta property="og:updated_time" content="2019-07-01T14:37:22.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git的使用">
 <meta name="twitter:description" content="git的使用">
@@ -267,8 +267,12 @@
 </ul>
 <hr>
 <h2 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h2><hr>
-<p><strong>设置用户名</strong>:<code>git config --global user.name &#39;GitHub的用户名&#39;</code></p>
-<h2 id="设置用户名的邮箱：git-config-global-user-email-39-设置用户名的邮箱-39"><a href="#设置用户名的邮箱：git-config-global-user-email-39-设置用户名的邮箱-39" class="headerlink" title="设置用户名的邮箱：git config --global user.email &#39;设置用户名的邮箱&#39;"></a><strong>设置用户名的邮箱</strong>：<code>git config --global user.email &#39;设置用户名的邮箱&#39;</code></h2><h2 id="初始化新的git仓库"><a href="#初始化新的git仓库" class="headerlink" title="初始化新的git仓库"></a>初始化新的git仓库</h2><hr>
+<ul>
+<li><strong>设置用户名</strong>:<code>git config --global user.name &#39;GitHub的用户名&#39;</code></li>
+<li><strong>设置用户名的邮箱</strong>：<code>git config --global user.email &#39;设置用户名的邮箱&#39;</code></li>
+</ul>
+<hr>
+<h2 id="初始化新的git仓库"><a href="#初始化新的git仓库" class="headerlink" title="初始化新的git仓库"></a>初始化新的git仓库</h2><hr>
 <ul>
 <li>创建新的文件夹 也可以在命令行 <code>mkdir 文件夹名字</code>进行创建</li>
 <li>进入文件夹 ，命令行<code>cd 文件夹名</code></li>
@@ -593,104 +597,100 @@
         <span class="has-mr-6">4</span>
         <span>基本设置</span>
         </a></li><li>
-        <a class="is-flex" href="#设置用户名的邮箱：git-config-global-user-email-39-设置用户名的邮箱-39">
-        <span class="has-mr-6">5</span>
-        <span>设置用户名的邮箱：git config --global user.email &#39;设置用户名的邮箱&#39;</span>
-        </a></li><li>
         <a class="is-flex" href="#初始化新的git仓库">
-        <span class="has-mr-6">6</span>
+        <span class="has-mr-6">5</span>
         <span>初始化新的git仓库</span>
         </a></li><li>
         <a class="is-flex" href="#项目的管理">
-        <span class="has-mr-6">7</span>
+        <span class="has-mr-6">6</span>
         <span>项目的管理</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#上传文件项目-使用流程">
-        <span class="has-mr-6">7.1</span>
+        <span class="has-mr-6">6.1</span>
         <span>上传文件项目(使用流程)</span>
         </a></li><li>
         <a class="is-flex" href="#修改文件">
-        <span class="has-mr-6">7.2</span>
+        <span class="has-mr-6">6.2</span>
         <span>修改文件</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#撤销修改-例如撤回reademe-txt文件的修改">
-        <span class="has-mr-6">7.2.1</span>
+        <span class="has-mr-6">6.2.1</span>
         <span>撤销修改(例如撤回reademe.txt文件的修改)</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#删除文件">
-        <span class="has-mr-6">7.3</span>
+        <span class="has-mr-6">6.3</span>
         <span>删除文件</span>
         </a></li><li>
         <a class="is-flex" href="#回退版本">
-        <span class="has-mr-6">7.4</span>
+        <span class="has-mr-6">6.4</span>
         <span>回退版本</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#git远程仓库">
-        <span class="has-mr-6">8</span>
+        <span class="has-mr-6">7</span>
         <span>git远程仓库</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#添加远程仓库-如：test">
-        <span class="has-mr-6">8.1</span>
+        <span class="has-mr-6">7.1</span>
         <span>添加远程仓库(如：test)</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#准备工作">
-        <span class="has-mr-6">8.1.1</span>
+        <span class="has-mr-6">7.1.1</span>
         <span>准备工作</span>
         </a></li><li>
         <a class="is-flex" href="#远程添加文件到仓库中">
-        <span class="has-mr-6">8.1.2</span>
+        <span class="has-mr-6">7.1.2</span>
         <span>远程添加文件到仓库中</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#从远程克隆仓库">
-        <span class="has-mr-6">8.2</span>
+        <span class="has-mr-6">7.2</span>
         <span>从远程克隆仓库</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#分支管理">
-        <span class="has-mr-6">9</span>
+        <span class="has-mr-6">8</span>
         <span>分支管理</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#创建和合并分支">
-        <span class="has-mr-6">9.1</span>
+        <span class="has-mr-6">8.1</span>
         <span>创建和合并分支</span>
         </a></li><li>
         <a class="is-flex" href="#分支之间的冲突">
-        <span class="has-mr-6">9.2</span>
+        <span class="has-mr-6">8.2</span>
         <span>分支之间的冲突</span>
         </a></li><li>
         <a class="is-flex" href="#分支管理策略">
-        <span class="has-mr-6">9.3</span>
+        <span class="has-mr-6">8.3</span>
         <span>分支管理策略</span>
         </a></li><li>
         <a class="is-flex" href="#BUG分支">
-        <span class="has-mr-6">9.4</span>
+        <span class="has-mr-6">8.4</span>
         <span>BUG分支</span>
         </a></li><li>
         <a class="is-flex" href="#Feature分支">
-        <span class="has-mr-6">9.5</span>
+        <span class="has-mr-6">8.5</span>
         <span>Feature分支</span>
         </a></li><li>
         <a class="is-flex" href="#远程同步分支">
-        <span class="has-mr-6">9.6</span>
+        <span class="has-mr-6">8.6</span>
         <span>远程同步分支</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#推送分支">
-        <span class="has-mr-6">9.6.1</span>
+        <span class="has-mr-6">8.6.1</span>
         <span>推送分支</span>
         </a></li><li>
         <a class="is-flex" href="#抓取分支">
-        <span class="has-mr-6">9.6.2</span>
+        <span class="has-mr-6">8.6.2</span>
         <span>抓取分支</span>
         </a></li><li>
         <a class="is-flex" href="#rebase">
-        <span class="has-mr-6">9.6.3</span>
+        <span class="has-mr-6">8.6.3</span>
         <span>rebase</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#标签管理">
-        <span class="has-mr-6">9.7</span>
+        <span class="has-mr-6">8.7</span>
         <span>标签管理</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#操作书签">
-        <span class="has-mr-6">9.7.1</span>
+        <span class="has-mr-6">8.7.1</span>
         <span>操作书签</span>
         </a></li></ul></li></ul></li></ul>
         </div>
