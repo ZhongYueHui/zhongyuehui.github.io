@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理">
+        <meta name="description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理 &amp;lt;!-- more --&amp;gt; &amp;lt;!-- toc --&amp;gt;   中间件的原理     就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤   下面使用一个代码来帮助我们更好的">
 <meta name="keywords" content="Express">
 <meta property="og:type" content="article">
 <meta property="og:title" content="express中的中间件">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/06/24/express中的中间件/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理">
+<meta property="og:description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理 &amp;lt;!-- more --&amp;gt; &amp;lt;!-- toc --&amp;gt;   中间件的原理     就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤   下面使用一个代码来帮助我们更好的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/24/5d1044327363a92295.png">
 <meta property="og:updated_time" content="2019-06-25T07:34:44.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express中的中间件">
-<meta name="twitter:description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理">
+<meta name="twitter:description" content="在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理 &amp;lt;!-- more --&amp;gt; &amp;lt;!-- toc --&amp;gt;   中间件的原理     就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤   下面使用一个代码来帮助我们更好的">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/24/5d1044327363a92295.png">
             
 
@@ -238,20 +238,24 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理</p>
+<p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理
+&lt;!-- more --&gt;
+&lt;!-- toc --&gt;</p>
 </blockquote>
-<a id="more"></a>
-<!-- toc -->
 <hr>
-<h3 id="中间件的原理"><a href="#中间件的原理" class="headerlink" title="中间件的原理"></a>中间件的原理</h3><hr>
+<h3>中间件的原理</h3>
+<hr>
 <p><img src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt></p>
 <ul>
-<li><p>就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤</p>
+<li>
+<p>就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤</p>
 </li>
-<li><p>下面使用一个代码来帮助我们更好的理解中间件的概念</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//这个就是中间件，中间件就是一个函数，函数有三个参数</span></span><br><span class="line"><span class="hljs-comment">//request 请求数据</span></span><br><span class="line"><span class="hljs-comment">//respone  响应数据</span></span><br><span class="line"><span class="hljs-comment">// next  表示继续执行下一个中间件，如果没有使用这个方法，那么下面就算有符合匹配项，都不会被执行</span></span><br><span class="line"><span class="hljs-comment">//这个表示所有请求都会经过这里,但是请求到这里时会停留，如果想要继续执行需要调用next方法</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>)</span><br><span class="line">    next() <span class="hljs-comment">//需要继续执行</span></span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>)</span><br><span class="line">        next()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个表示所有的get请求并且路径为 / 的请求会经过这个中间件</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">        <span class="hljs-comment">//如果此时不使用next方法，那么下面的get函数不会 被执行</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>下面使用一个代码来帮助我们更好的理解中间件的概念</p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//这个就是中间件，中间件就是一个函数，函数有三个参数</span></span><br><span class="line"><span class="hljs-comment">//request 请求数据</span></span><br><span class="line"><span class="hljs-comment">//respone  响应数据</span></span><br><span class="line"><span class="hljs-comment">// next  表示继续执行下一个中间件，如果没有使用这个方法，那么下面就算有符合匹配项，都不会被执行</span></span><br><span class="line"><span class="hljs-comment">//这个表示所有请求都会经过这里,但是请求到这里时会停留，如果想要继续执行需要调用next方法</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>)</span><br><span class="line">    next() <span class="hljs-comment">//需要继续执行</span></span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>)</span><br><span class="line">        next()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个表示所有的get请求并且路径为 / 的请求会经过这个中间件</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">        <span class="hljs-comment">//如果此时不使用next方法，那么下面的get函数不会 被执行</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>所以，我们在使用中间件时，都应该遵循这些规则，这样可以帮助我们更好的编写程序</p>
+<li>
+<p>所以，我们在使用中间件时，都应该遵循这些规则，这样可以帮助我们更好的编写程序</p>
 </li>
 </ul>
 
@@ -377,7 +381,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#中间件的原理">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>中间件的原理</span>
         </a></li></ul>
