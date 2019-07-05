@@ -5,7 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    分类: Vue - Just for fun
+    分类: vue - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -14,7 +14,7 @@
         <meta name="description" content="Just for fun">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Just for fun">
-<meta property="og:url" content="https://zhongyuehui.github.io/categories/Vue/index.html">
+<meta property="og:url" content="https://zhongyuehui.github.io/categories/vue/index.html">
 <meta property="og:site_name" content="Just for fun">
 <meta property="og:description" content="Just for fun">
 <meta property="og:locale" content="zh-CN">
@@ -202,7 +202,7 @@
         <ul>
             <li><a href="/categories">分类</a></li>
             
-            <li class="is-active"><a href="#" aria-current="page">Vue</a></li>
+            <li class="is-active"><a href="#" aria-current="page">vue</a></li>
         </ul>
         </nav>
     </div>
@@ -211,8 +211,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/06/23/webpack中引入vue/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
+            <a href="/2019/07/05/Vuexs的使用/" class="image is-7by1">
+                <img class="thumbnail" src="https://vuex.vuejs.org/flow.png" alt="Vuexs的使用">
                 </a>
         </div>
         
@@ -220,17 +220,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-05T14:02:22.000Z">2019-07-05</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                                    <a class="has-link-grey -link" href="/categories/vue/">vue</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 439 个字)
+                    7 分钟 读完 (大约 1106 个字)
                 </span>
                                         
                                             
@@ -239,169 +239,71 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/06/23/webpack中引入vue/">
-                                    webpack中引入vue
+                                <a class="has-link-black-ter" href="/2019/07/05/Vuexs的使用/">
+                                    Vuexs的使用
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用。</p>
+<p>我们在进行一些复杂的父子组件之间的传值的时候，尤其是组件嵌套传值时尤其麻烦，读取值不方便，如果有异步操作，还需要对值监听，这样获取一些值得时候对我们开发人员不友好，所以诞生了Vuex
+&lt;!--more--&gt;</p>
 </blockquote>
+<h2>前言</h2>
+<blockquote>
+<p>Vuex是Vue配套的公共数据管理工具，他可以把一些共享的数据，保存到Vuex中，方便整个程序中的任何组件直接获取或者修改我们的公共数据</p>
+</blockquote>
+<h2>vuex的使用</h2>
+<ul>
+<li>
+<p>安装:<code>npm install vuex -S</code></p>
+</li>
+<li>
+<p>如果使用<code>&lt;script&gt;&lt;/script&gt;</code>标签引入的<code>vue</code>，那么自己会安装有<code>vuex</code></p>
+</li>
+<li>
+<p>安装插件：
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span></span><br><span class="line"><span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>配置:
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  <span class="hljs-keyword">state</span>: &#123;  //这个就是相当于 vue中的 data，用来存放数据的</span><br><span class="line">    count: <span class="hljs-number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;  //这个相当于 vue 中的 methods ，存放了些方法</span><br><span class="line">    increment (<span class="hljs-keyword">state</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">state</span>.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用:实现一个小案例，官方也是这个案例来说明的：</p>
+</li>
+<li>
+<p><code>main.js</code>
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">// 入口文件</span><br><span class="line">import Vue <span class="hljs-keyword">from</span> 'vue'</span><br><span class="line">// 配置vuex的步骤</span><br><span class="line">// <span class="hljs-number">1</span>. 运行 cnpm i vuex -S </span><br><span class="line">// <span class="hljs-number">2</span>. 导入包</span><br><span class="line">import Vuex <span class="hljs-keyword">from</span> 'vuex'</span><br><span class="line">// <span class="hljs-number">3</span>. 注册vuex到vue中</span><br><span class="line">Vue.use(Vuex)</span><br><span class="line">    // <span class="hljs-number">4</span>. new Vuex.Store() 实例，得到一个 数据仓储对象</span><br><span class="line">var store = new Vuex.Store(&#123;</span><br><span class="line">    <span class="hljs-keyword">state</span>: &#123;</span><br><span class="line">        // 大家可以把 <span class="hljs-keyword">state</span> 想象成 组件中的 data ,专门用来存储数据的</span><br><span class="line">        // 如果在 组件中，想要访问，store 中的数据，只能通过 this.<span class="hljs-variable">$store</span>.<span class="hljs-keyword">state</span>.*** 来访问</span><br><span class="line">        count: <span class="hljs-number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">mutations: &#123;</span><br><span class="line">    // 注意： 如果要操作 store 中的 <span class="hljs-keyword">state</span> 值，只能通过 调用 mutations 提供的方法，才能操作对应的数据，不推荐直接操作 <span class="hljs-keyword">state</span> 中的数据，因为 万一导致了数据的紊乱，不能快速定位到错误的原因，因为，每个组件都可能有操作数据的方法；</span><br><span class="line">    increment(<span class="hljs-keyword">state</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">state</span>.count++</span><br><span class="line">    &#125;,</span><br><span class="line">    // 注意： 如果组件想要调用 mutations 中的方法，只能使用 this.<span class="hljs-variable">$store</span>.commit('方法名')</span><br><span class="line">    // 这种 调用 mutations 方法的格式，和 this.<span class="hljs-variable">$emit</span>('父组件中方法名')</span><br><span class="line">    subtract(<span class="hljs-keyword">state</span>, obj) &#123;</span><br><span class="line">        // 注意： mutations 的 函数参数列表中，最多支持两个参数，其中，参数<span class="hljs-number">1</span>： 是 <span class="hljs-keyword">state</span> 状态； 参数<span class="hljs-number">2</span>： 通过 commit 提交过来的参数；</span><br><span class="line">        console.<span class="hljs-keyword">log</span>(obj)</span><br><span class="line">        <span class="hljs-keyword">state</span>.count -= (obj.c + obj.d)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">getters: &#123;</span><br><span class="line">    // 注意：这里的 getters， 只负责 对外提供数据，不负责 修改数据，如果想要修改 <span class="hljs-keyword">state</span> 中的数据，请 去找 mutations</span><br><span class="line">    optCount: function(<span class="hljs-keyword">state</span>) &#123;</span><br><span class="line">            return '当前最新的count值是：' + <span class="hljs-keyword">state</span>.count</span><br><span class="line">        &#125;</span><br><span class="line">        // 经过咱们回顾对比，发现 getters 中的方法， 和组件中的过滤器比较类似，因为 过滤器和 getters 都没有修改原数据， 都是把原数据做了一层包装，提供给了 调用者；</span><br><span class="line">        // 其次， getters 也和 computed 比较像， 只要 <span class="hljs-keyword">state</span> 中的数据发生变化了，那么，如果 getters 正好也引用了这个数据，那么 就会立即触发 getters 的重新求值；</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">import App <span class="hljs-keyword">from</span> './App.vue'</span><br><span class="line"></span><br><span class="line">const vm = new Vue(&#123;</span><br><span class="line">    el: '<span class="hljs-comment">#app',</span></span><br><span class="line">    render: h =&gt; h(App),</span><br><span class="line">    store // <span class="hljs-number">5</span>. 将 vuex 创建的 store 挂载到 VM 实例上， 只要挂载到了 vm 上，任何组件都能使用 store 来存取数据</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><code>counter.vue</code>文件内容
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"减少"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"remove"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"增加"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"add"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"$store.state.count"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span></span><br><span class="line"><span class="hljs-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="hljs-actionscript">    <span class="hljs-keyword">return</span> &#123;</span></span><br><span class="line"><span class="hljs-actionscript">      <span class="hljs-comment">// count: 0</span></span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    add() &#123;</span><br><span class="line"><span class="hljs-actionscript">      <span class="hljs-comment">// 不要这样使用，不符合 vuex 的设计理念，因为这样直接操作了state</span></span></span><br><span class="line"><span class="hljs-actionscript">      <span class="hljs-comment">// this.$store.state.count++;</span></span></span><br><span class="line"><span class="hljs-actionscript">      <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">"increment"</span>);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    remove() &#123;</span><br><span class="line"><span class="hljs-actionscript">      <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">"subtract"</span>, &#123; c: <span class="hljs-number">3</span>, d: <span class="hljs-number">1</span> &#125;);</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    fullname: &#123;</span><br><span class="line"><span class="hljs-javascript">      <span class="hljs-keyword">get</span>()&#123;&#125;,</span></span><br><span class="line"><span class="hljs-javascript">      <span class="hljs-keyword">set</span>()&#123;&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"scss"</span> <span class="hljs-attr">scoped</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><code>amount.vue</code>文件内容：
+<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- &lt;h3&gt;</span></span><span class="hljs-template-variable">&#123;&#123; $store.state.count &#125;&#125;</span><span class="hljs-xml"><span class="hljs-comment">&lt;/h3&gt; --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; $store.getters.optCount &#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    </span></span><br><span class="line"><span class="hljs-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"scss"</span> <span class="hljs-attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样，这两个兄弟节点，就可以通过<code>state</code>读写数据了，不需要进行组件之间的传值</p>
+</li>
+<li>
+<p>总结：</p>
+<ol>
+<li><code>state</code>中的数据，不能直接修改，如果想要修改，必须通过 <code>mutations</code>,不然的话就违背了<code>vuex</code>的设计初衷</li>
+<li>如果组件想要直接 从 state 上获取数据： 需要 <code>this.$store.state.***</code></li>
+<li>如果 组件，想要修改数据，必须使用 mutations 提供的方法，需要通过 <code>this.$store.commit('方法的名称'， 唯一的一个参数)</code></li>
+<li>如果 <code>store</code> 中 <code>state</code> 上的数据， 在对外提供的时候，需要做一层包装，那么 ，推荐使用 <code>getters</code>, 如果需要使用 <code>getters</code> ,则用 <code>this.$store.getters.***</code></li>
+</ol>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/23/webpack中引入vue/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/06/22/webpack打包图片/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 675 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/06/22/webpack打包图片/">
-                                    webpack打包图片
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/22/webpack打包图片/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/06/22/webpack配置的一些总结/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    9 分钟 读完 (大约 1292 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/06/22/webpack配置的一些总结/">
-                                    webpack配置的一些总结
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/22/webpack配置的一些总结/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -462,7 +364,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        8
                     </p>
                 </div>
             </div>
@@ -472,7 +374,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -482,7 +384,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        6
                     </p>
                 </div>
             </div>
@@ -536,6 +438,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/05/Vuexs的使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://vuex.vuejs.org/flow.png" alt="Vuexs的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-05T14:02:22.000Z">2019-07-05</time></div>
+                    <a href="/2019/07/05/Vuexs的使用/" class="has-link-black-ter is-size-6">Vuexs的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/vue/">vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -613,25 +534,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/06/23/webpack中引入vue/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time></div>
-                    <a href="/2019/06/23/webpack中引入vue/" class="has-link-black-ter is-size-6">webpack中引入vue</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -653,7 +555,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -707,6 +609,14 @@
                 <span class="level-item tag">3</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/">
+            <span class="level-start">
+                <span class="level-item">vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -726,7 +636,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
 </div>
 
@@ -763,6 +673,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/vs-code/">
                         <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -836,7 +753,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -890,6 +807,14 @@
                 <span class="level-item tag">3</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/">
+            <span class="level-start">
+                <span class="level-item">vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -909,7 +834,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
 </div>
 
@@ -946,6 +871,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/vs-code/">
                         <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
