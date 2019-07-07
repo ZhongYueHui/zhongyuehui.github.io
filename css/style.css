@@ -374,6 +374,7 @@ li
 .card-content h1 {
   color: #00a99d;
   font-size: 25px;
+  font-weight: 900;
 }
 .card-content p {
   line-height: 30px;
@@ -384,6 +385,7 @@ li
 .content h4,
 .content h5,
 .content h6 {
+  color: #00a99d;
   font-weight: 400;
 }
 .content h1 {
