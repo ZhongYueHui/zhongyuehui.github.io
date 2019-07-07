@@ -5,24 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    归档 - Just for fun
+    Node中的path路径模块 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="Just for fun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Just for fun">
-<meta property="og:url" content="https://zhongyuehui.github.io/archives/index.html">
+        <meta name="description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  Path模块 引入  const path = require(&amp;#39;path&amp;#39;) path的一些方法path.basename(): 只有一个参数时  有两个参数时，且参数的后缀名相同时  有两个参数时，且参数的后缀名不相同时  总结：  一个参数时直接输出带后缀名的文件名 两个参数">
+<meta name="keywords" content="nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node中的path路径模块">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/07/Node中的path路径模块/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Just for fun">
+<meta property="og:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  Path模块 引入  const path = require(&amp;#39;path&amp;#39;) path的一些方法path.basename(): 只有一个参数时  有两个参数时，且参数的后缀名相同时  有两个参数时，且参数的后缀名不相同时  总结：  一个参数时直接输出带后缀名的文件名 两个参数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta property="og:image" content="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=05925d2f728b4710ce2ffacafbf5a4c0/1b4c510fd9f9d72adf6ab513d42a2834349bbbb6.jpg">
+<meta property="og:updated_time" content="2019-07-07T06:18:51.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Just for fun">
-<meta name="twitter:description" content="Just for fun">
-<meta name="twitter:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta name="twitter:title" content="Node中的path路径模块">
+<meta name="twitter:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  Path模块 引入  const path = require(&amp;#39;path&amp;#39;) path的一些方法path.basename(): 只有一个参数时  有两个参数时，且参数的后缀名相同时  有两个参数时，且参数的后缀名不相同时  总结：  一个参数时直接输出带后缀名的文件名 两个参数">
+<meta name="twitter:image" content="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=05925d2f728b4710ce2ffacafbf5a4c0/1b4c510fd9f9d72adf6ab513d42a2834349bbbb6.jpg">
             
 
 
@@ -30,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="Just for fun" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="Node中的path路径模块" type="application/atom+xml">
                             
 
                                 
@@ -113,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                <img src="/images/mylogo.png" alt="Node中的path路径模块" height="28">
             
             </a>
         </div>
@@ -123,7 +125,7 @@
                 
                 <a class="navbar-item" href="/">首页</a>
                 
-                <a class="navbar-item is-active" href="/archives">归档</a>
+                <a class="navbar-item" href="/archives">归档</a>
                 
                 <a class="navbar-item" href="/categories">分类</a>
                 
@@ -144,6 +146,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="🔍搜索" href="javascript:;">
@@ -195,259 +201,240 @@
                                 <div class="container">
                                     <div class="columns">
                                         <!-- 将main_column_class() 改为 col() -->
-                                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=05925d2f728b4710ce2ffacafbf5a4c0/1b4c510fd9f9d72adf6ab513d42a2834349bbbb6.jpg" alt="Node中的path路径模块">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-07T05:36:24.000Z">2019-07-07</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 420 个字)
+                </span>
+                                        
                                             
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    Node中的path路径模块
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具</p>
+</blockquote>
+<h2 id="Path模块"><a href="#Path模块" class="headerlink" title="Path模块"></a>Path模块</h2><ul>
+<li><p>引入<br>  <code>const path = require(&#39;path&#39;)</code></p>
+<h3 id="path的一些方法"><a href="#path的一些方法" class="headerlink" title="path的一些方法"></a>path的一些方法</h3><h3 id="path-basename"><a href="#path-basename" class="headerlink" title="path.basename():"></a>path.basename():</h3></li>
+<li><p>只有一个参数时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYSYV.png" alt="path.basename"></p>
+</li>
+<li><p>有两个参数时，且参数的后缀名相同时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYCSU.png" alt="path.basename2"></p>
+</li>
+<li><p>有两个参数时，且参数的后缀名不相同时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYiy4.png" alt="path.basename3"></p>
+</li>
+<li><p><strong>总结</strong>：</p>
+<ul>
+<li>一个参数时直接输出带后缀名的文件名</li>
+<li>两个参数时第二个参数为第一个参数的后缀名时输出为不带后缀名的文件名</li>
+<li>两个参数时第二个参数不是第一个参数的后缀名时输出仍是带后缀名的文件名<h3 id="path-dirname"><a href="#path-dirname" class="headerlink" title="path.dirname()"></a>path.dirname()</h3><img src="https://s2.ax1x.com/2019/07/07/ZBJjwn.png" alt="path.dirname"></li>
+</ul>
+</li>
+<li><p>只输出目录</p>
+<h3 id="path-extname"><a href="#path-extname" class="headerlink" title="path.extname()"></a>path.extname()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYFOJ.png" alt="pathextname"></p>
+</li>
+<li><p>只输出后缀名</p>
+<h3 id="path-isAbsolute"><a href="#path-isAbsolute" class="headerlink" title="path.isAbsolute()"></a>path.isAbsolute()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYEwR.png" alt="path.isAbsolute"></p>
+</li>
+<li><p>判断是否为绝对路径，返回一个布尔值</p>
+</li>
+<li><p><strong>注意：</strong>文件路径前不能有空格 否则直接返回<code>flase</code></p>
+</li>
+<li><p>拓展：绝对路径的两种方式</p>
+<ul>
+<li>如：c:/a/b/c/index.js ，有磁盘符，相对于磁盘符的绝对路径</li>
+<li>如：/a/b/c/index.js ，没有磁盘符，相对于当前磁盘下的绝对路径<h3 id="path-parse"><a href="#path-parse" class="headerlink" title="path.parse()"></a>path.parse()</h3><img src="https://s2.ax1x.com/2019/07/07/ZBYnfK.png" alt="parse"></li>
+</ul>
+</li>
+<li><p>查看文件的详细信息</p>
+<h3 id="path-join"><a href="#path-join" class="headerlink" title="path.join()"></a>path.join()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYMlD.png" alt="path.join"></p>
+</li>
+<li><p>路径拼接 </p>
+<blockquote>
+<p>在Node中，许多时候我们都需要用到路径模块，对文件路径的判断做出相应的响应</p>
+</blockquote>
+</li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/07/07/Node中的path路径模块/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/nodejs/">nodejs</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://s2.ax1x.com/2019/06/23/ZPQlEF.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
         
-<div class="card widget">
+
+            
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/05/Vuex的使用/">
+                                            <span class="level-item">Vuex的使用</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <a href="/2019/07/07/Node中的path路径模块/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=05925d2f728b4710ce2ffacafbf5a4c0/1b4c510fd9f9d72adf6ab513d42a2834349bbbb6.jpg" alt="Node中的path路径模块">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-07T05:36:24.000Z">2019-07-07</time>
-                        <a href="/2019/07/07/Node中的path路径模块/" class="has-link-black-ter is-size-6">Node中的path路径模块</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/05/Vuex的使用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://vuex.vuejs.org/flow.png" alt="Vuex的使用">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-05T14:02:22.000Z">2019-07-05</time>
-                        <a href="/2019/07/05/Vuex的使用/" class="has-link-black-ter is-size-6">Vuex的使用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/02/code中Git工具的使用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg" alt="code中Git工具的使用">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-02T02:25:57.000Z">2019-07-02</time>
-                        <a href="/2019/07/02/code中Git工具的使用/" class="has-link-black-ter is-size-6">code中Git工具的使用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/开发工具/">开发工具</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/02/关联多个远程仓库/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg" alt="关联多个远程仓库">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-02T01:21:36.000Z">2019-07-02</time>
-                        <a href="/2019/07/02/关联多个远程仓库/" class="has-link-black-ter is-size-6">关联多个远程仓库</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/01/git的使用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/01/ZGibf1.png" alt="git的使用">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-01T13:47:23.000Z">2019-07-01</time>
-                        <a href="/2019/07/01/git的使用/" class="has-link-black-ter is-size-6">git的使用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/06/24/express中的中间件/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt="express中的中间件">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-24T03:26:57.000Z">2019-06-24</time>
-                        <a href="/2019/06/24/express中的中间件/" class="has-link-black-ter is-size-6">express中的中间件</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/06/23/webpack中引入vue/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time>
-                        <a href="/2019/06/23/webpack中引入vue/" class="has-link-black-ter is-size-6">webpack中引入vue</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/06/22/webpack打包图片/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time>
-                        <a href="/2019/06/22/webpack打包图片/" class="has-link-black-ter is-size-6">webpack打包图片</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/06/22/webpack配置的一些总结/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time>
-                        <a href="/2019/06/22/webpack配置的一些总结/" class="has-link-black-ter is-size-6">webpack配置的一些总结</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#Path模块">
+        <span class="has-mr-6">1</span>
+        <span>Path模块</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#path的一些方法">
+        <span class="has-mr-6">1.1</span>
+        <span>path的一些方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-basename">
+        <span class="has-mr-6">1.2</span>
+        <span>path.basename():</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-dirname">
+        <span class="has-mr-6">1.3</span>
+        <span>path.dirname()</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-extname">
+        <span class="has-mr-6">1.4</span>
+        <span>path.extname()</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-isAbsolute">
+        <span class="has-mr-6">1.5</span>
+        <span>path.isAbsolute()</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-parse">
+        <span class="has-mr-6">1.6</span>
+        <span>path.parse()</span>
+        </a></li><li>
+        <a class="is-flex" href="#path-join">
+        <span class="has-mr-6">1.7</span>
+        <span>path.join()</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
 
-    
-
-                                        </div>
-                                        
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
-                        
-                            
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -549,8 +536,8 @@
         
     </div>
 </div>
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -655,11 +642,11 @@
     </div>
 </div>
 
-                                
-                                    
-                                        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-                                            
-                                                <div class="card widget">
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -693,8 +680,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -739,8 +726,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -750,8 +737,8 @@
     </div>
 </div>
 
-                                                    
-                                                <div class="card widget">
+                                                                            
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
@@ -812,8 +799,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 
 <div class="card widget">
     <div class="card-content">
@@ -840,207 +827,12 @@
 </div>
 
 
-                                                    
-                                        </div>
-                                        
-                    </div>
-                    
-
-                        <!-- 粘贴的部分 -->
-                        
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
                                             
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-                        
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Git/">
-            <span class="level-start">
-                <span class="level-item">Git</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Nodejs/">
-            <span class="level-start">
-                <span class="level-item">Nodejs</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/开发工具/">
-            <span class="level-start">
-                <span class="level-item">开发工具</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            ✍标签云
-        </h3>
-        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
-    </div>
-</div>
-
-                                
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Express/">
-                        <span class="tag">Express</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
-                        <span class="tag">Vue</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/git/">
-                        <span class="tag">git</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/nodejs/">
-                        <span class="tag">nodejs</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vs-code/">
-                        <span class="tag">vs code</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vuex/">
-                        <span class="tag">vuex</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-                                
-                            
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            🔗友情链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">ranshan丶</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">q32757468.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-                                
-                                    
-                    </div>
-                    
+                                            
 
                         <!-- 粘贴的部分 -->
                         
@@ -1053,7 +845,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                                <img src="/images/mylogo.png" alt="Node中的path路径模块" height="28">
                                 
                 </a>
                 <p class="is-size-7">
