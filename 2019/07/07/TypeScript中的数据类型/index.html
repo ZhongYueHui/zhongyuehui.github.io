@@ -20,7 +20,7 @@
 <meta property="og:description" content="JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol。这里主要介绍前五种原始数据类型和一些其他的TypeScript的数据类型。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
-<meta property="og:updated_time" content="2019-07-07T14:09:05.209Z">
+<meta property="og:updated_time" content="2019-07-07T14:17:52.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScript中的数据类型">
 <meta name="twitter:description" content="JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol。这里主要介绍前五种原始数据类型和一些其他的TypeScript的数据类型。">
@@ -241,7 +241,7 @@
 <p>JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol。这里主要介绍前五种原始数据类型和一些其他的TypeScript的数据类型。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Typescript中的数据类型"><a href="#Typescript中的数据类型" class="headerlink" title="Typescript中的数据类型"></a>Typescript中的数据类型</h2><h3 id="布尔类型-boolean"><a href="#布尔类型-boolean" class="headerlink" title="布尔类型(boolean)"></a>布尔类型(boolean)</h3><pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--在ES5中--&gt;</span></span><br><span class="line">var flag= true</span><br><span class="line">    flag=123</span><br><span class="line">    console.log(flag) //123</span><br></pre></td></tr></table></figure>
+<h1 id="Typescript中的数据类型"><a href="#Typescript中的数据类型" class="headerlink" title="Typescript中的数据类型"></a>Typescript中的数据类型</h1><h2 id="布尔类型-boolean"><a href="#布尔类型-boolean" class="headerlink" title="布尔类型(boolean)"></a>布尔类型(boolean)</h2><pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--在ES5中--&gt;</span></span><br><span class="line">var flag= true</span><br><span class="line">    flag=123</span><br><span class="line">    console.log(flag) //123</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--在Typescript中--&gt;</span></span><br><span class="line">var flag= true</span><br><span class="line">    flag=123    //在这里时，编译器已经报错了</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!--正确的写法--&gt;</span></span><br><span class="line">var flag:boolean= true</span><br><span class="line">    flag=false</span><br><span class="line">    console.log(flag) //false</span><br></pre></td></tr></table></figure></code></pre><hr>
 <h2 id="数字类型-number-、"><a href="#数字类型-number-、" class="headerlink" title="数字类型(number)、"></a>数字类型(number)、</h2><pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--在ES5中--&gt;</span></span><br><span class="line">var num=123</span><br><span class="line">    num='aa'</span><br><span class="line">    console.log(num) //aa</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!--在typesctipt--&gt;</span></span><br><span class="line">var num:number=123</span><br><span class="line">    num='str'// 编译器报错</span><br><span class="line">    </span><br><span class="line"><span class="hljs-comment">&lt;!--正确的写法--&gt;</span></span><br><span class="line">var num:number = 123</span><br><span class="line">    num=456</span><br><span class="line">    console/log(num) //num</span><br></pre></td></tr></table></figure></code></pre><ul>
@@ -476,63 +476,63 @@
         <a class="is-flex" href="#布尔类型-boolean">
         <span class="has-mr-6">1.1</span>
         <span>布尔类型(boolean)</span>
-        </a></li></ul></li><li>
+        </a></li><li>
         <a class="is-flex" href="#数字类型-number-、">
-        <span class="has-mr-6">2</span>
+        <span class="has-mr-6">1.2</span>
         <span>数字类型(number)、</span>
         </a></li><li>
         <a class="is-flex" href="#字符串类型-string">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">1.3</span>
         <span>字符串类型(string)</span>
         </a></li><li>
         <a class="is-flex" href="#数组类型-array">
-        <span class="has-mr-6">4</span>
+        <span class="has-mr-6">1.4</span>
         <span>数组类型(array)</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#定义方式一">
-        <span class="has-mr-6">4.1</span>
+        <span class="has-mr-6">1.4.1</span>
         <span>定义方式一:</span>
         </a></li><li>
         <a class="is-flex" href="#定义方式二">
-        <span class="has-mr-6">4.2</span>
+        <span class="has-mr-6">1.4.2</span>
         <span>定义方式二:</span>
         </a></li><li>
         <a class="is-flex" href="#定义方式三">
-        <span class="has-mr-6">4.3</span>
+        <span class="has-mr-6">1.4.3</span>
         <span>定义方式三:</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#元组类型-tuple">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">1.5</span>
         <span>元组类型(tuple)</span>
         </a></li><li>
         <a class="is-flex" href="#枚举类型-enum">
-        <span class="has-mr-6">6</span>
+        <span class="has-mr-6">1.6</span>
         <span>枚举类型(enum)</span>
         </a></li><li>
         <a class="is-flex" href="#任意类型-any">
-        <span class="has-mr-6">7</span>
+        <span class="has-mr-6">1.7</span>
         <span>任意类型(any)</span>
         </a></li><li>
         <a class="is-flex" href="#null和undefined-其他数据类型的子类型">
-        <span class="has-mr-6">8</span>
+        <span class="has-mr-6">1.8</span>
         <span>null和undefined 其他数据类型的子类型</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#联合类型">
-        <span class="has-mr-6">8.1</span>
+        <span class="has-mr-6">1.8.1</span>
         <span>联合类型</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#viod-类型">
-        <span class="has-mr-6">9</span>
+        <span class="has-mr-6">1.9</span>
         <span>viod 类型</span>
         </a></li><li>
         <a class="is-flex" href="#never类型">
-        <span class="has-mr-6">10</span>
+        <span class="has-mr-6">1.10</span>
         <span>never类型</span>
         </a></li><li>
         <a class="is-flex" href="#总结的一些问题">
-        <span class="has-mr-6">11</span>
+        <span class="has-mr-6">1.11</span>
         <span>总结的一些问题:</span>
-        </a></li></ul>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
