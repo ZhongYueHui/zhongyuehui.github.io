@@ -200,8 +200,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/06/24/express中的中间件/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt="express中的中间件">
+            <a href="/2019/06/22/webpack配置的一些总结/" class="image is-7by1">
+                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg" alt="webpack配置的一些总结">
                 </a>
         </div>
         
@@ -209,85 +209,7 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-24T03:26:57.000Z">2019-06-24</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 412 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/06/24/express中的中间件/">
-                                    express中的中间件
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理
-&lt;!-- more --&gt;
-&lt;!-- toc --&gt;</p>
-</blockquote>
-<hr>
-<h3>中间件的原理</h3>
-<hr>
-<p><img src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt></p>
-<ul>
-<li>
-<p>就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤</p>
-</li>
-<li>
-<p>下面使用一个代码来帮助我们更好的理解中间件的概念</p>
-<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//这个就是中间件，中间件就是一个函数，函数有三个参数</span></span><br><span class="line"><span class="hljs-comment">//request 请求数据</span></span><br><span class="line"><span class="hljs-comment">//respone  响应数据</span></span><br><span class="line"><span class="hljs-comment">// next  表示继续执行下一个中间件，如果没有使用这个方法，那么下面就算有符合匹配项，都不会被执行</span></span><br><span class="line"><span class="hljs-comment">//这个表示所有请求都会经过这里,但是请求到这里时会停留，如果想要继续执行需要调用next方法</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>)</span><br><span class="line">    next() <span class="hljs-comment">//需要继续执行</span></span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>)</span><br><span class="line">        next()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个表示所有的get请求并且路径为 / 的请求会经过这个中间件</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">        <span class="hljs-comment">//如果此时不使用next方法，那么下面的get函数不会 被执行</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>所以，我们在使用中间件时，都应该遵循这些规则，这样可以帮助我们更好的编写程序</p>
-</li>
-</ul>
-
-
-                                
-
-                        </div>
-                        
-                                
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/06/23/webpack中引入vue/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time>
+                            <time class="level-item has-text-grey" datetime="2019-06-22T09:07:14.000Z">2019-06-22</time>
                             
                                 <div class="level-item">
                                     <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
@@ -297,7 +219,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 439 个字)
+                    9 分钟 读完 (大约 1292 个字)
                 </span>
                                         
                                             
@@ -306,176 +228,31 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/06/23/webpack中引入vue/">
-                                    webpack中引入vue
+                                <a class="has-link-black-ter" href="/2019/06/22/webpack配置的一些总结/">
+                                    webpack配置的一些总结
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用。
-&lt;!-- more --&gt;
-&lt;!--toc--&gt;</p>
+<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求。</p>
 </blockquote>
-<hr>
-<h3>两者区别</h3>
-<hr>
-<ol>
-<li>
-<p>在webpack中，我们需要将所有的包在<code>main.js</code>这个入口文件中导入，在在我们安装<code>vue(npm i vue -D)</code>到本地时，我们在<code>main.js</code>导入这个包
-<figure class="highlight capnproto hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>会爆出以下异常： <code>You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.</code></p>
-</li>
-<li>
-<p>以下的问题解释是：在webpack中使用 import Vue from &quot;vue&quot; 引入的 vue构造函数 功能是不完整的，它只提供了runtime-only 的方式，并没有提供 像网页中使用 script引入的那些功能</p>
-</li>
-</ol>
-<ul>
-<li>解决方式一：
-<ul>
-<li>使用：<code>import Vue from &quot;../node_modules/vue/dist/vue&quot;</code>这种引入方式</li>
-</ul>
-</li>
-<li>解决方式二：
-<ul>
-<li>
-<p>配置<code>webpack.config.js</code>文件，新增一个属性:<code>resolve</code>，在里面中还有一个属性:<code>alias</code>，配置如下
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">resolve</span>: &#123;</span><br><span class="line">    <span class="hljs-attribute">alias</span>: &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-string">'vue$'</span>: <span class="hljs-string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这样使用<code>import Vue from &quot;vue&quot;</code>引入也不会报错了</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3>说明</h3>
-<hr>
-<ul>
-<li>由于<code>webpack</code>是使用Node架构的，所以合法的Node语法都支持，当然，引入包的规则也是一致的</li>
-<li>如下：</li>
-<li>Nodejs中包的查找规则:
-<ol>
-<li>找项目根目录中是否有安装 node_modules 的文件夹</li>
-<li>在node_modules 中根据包名，找对应的 vue 文件夹</li>
-<li>在 vue中，找到一个叫packahe.json的配置文件</li>
-<li>在package.json 文件夹中，查找一个 main 属性，这个属性指定了这个包被加载时的入口文件</li>
-</ol>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/06/22/webpack打包图片/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg" alt="webpack打包图片">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-22T12:15:21.000Z">2019-06-22</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/06/22/webpack配置的一些总结/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 675 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/06/22/webpack打包图片/">
-                                    webpack打包图片
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤
-&lt;!-- more --&gt;</p>
-</blockquote>
-<hr>
-<h3>使用webpack打包图片</h3>
-<hr>
-<ul>
-<li>在平常中，我们在设置style中使用<code>background:url</code> 可以引入背景图片，在前面我们已经学会如何打包<code>css、less、scss</code>文件</li>
-<li>安装<code>url-loader</code>和其依赖<code>file-loader</code></li>
-<li><code>cnpm install url-loader file-loader -D</code></li>
-<li>使用<code>file-loader</code>进行图片的打包</li>
-<li>在webpack.config.js中配置，在与其他配置下添加如下即可</li>
-<li></li>
-</ul>
-<p><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.jpg|png|gif|bmp|jpeg/, //配置图片</span><br><span class="line">            use: [<span class="hljs-string">'file-loader'</span>]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>
-<p>可以简写成如下：
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: <span class="hljs-string">'file-loader'</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>如果想要打包出来的图片不改变名字和格式，只需添加<code>options</code>即可</p>
-<pre><code>  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片打包的格式</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'file-loader'</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123; <span class="hljs-comment">//[name]表示名字,[ext]表示格式，而name属性其实就是图片打包后的路径</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'images/[name].[ext]'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li>
-<p>除了使用file-loader对图片进行打包处理外，我们同样也可以使用url-loader代替，另外我们还可以对小于某个大小的图片进行base64格式的转化处理。</p>
-</li>
-<li>
-<p>使用<code>url-loader</code>打包
-<figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(<span class="hljs-name">png</span>|jpg|gif|svg)$/,</span><br><span class="line">    loader: 'url-loader',</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: './images/[name].[ext]',</span><br><span class="line">        limit: <span class="hljs-number">8192</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这里limit属性的作用就是将小于8192B（8.192K）大小的图片转成base64格式，而大于这个大小的图片将会以file-loader的方式进行打包处理</p>
-</li>
-<li>
-<p><strong>注意</strong>：如果不写limit属性，那么url-loader就会默认将所有图片转成base64</p>
-</li>
-<li>
-<p>这样打包出来的图片会自动转换成<code>base64</code>,但是我们多数是将小图片转成base64，而大图片不进行转换</p>
-</li>
-<li>
-<p>而对于有些图片在不同路径下，但是文件名字一样时，我们需要在<code>name:</code>属性中增加<code>hash</code>值：定义[hash:8]定义 8位hash值最多32位，这样图片就不会存在不同</p>
-<p><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'url-loader'</span>, <span class="hljs-comment">//在这里时，只有一个我们可以简化 loader，使用use则会报错</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123;</span><br><span class="line">                <span class="hljs-attribute">limit</span>: <span class="hljs-number">2000</span>, <span class="hljs-comment">//limit 的值单位是 Byte ，如果图片小于limit的值，则转成base64格式的字符串，如果大于，则不转</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'[hash:8]-[name].[ext]'</span> <span class="hljs-comment">//这是将文件名原样输出[name]指的是图片名，[ext]是图片格式，</span></span><br><span class="line">                    <span class="hljs-comment">//[hash:8]表示生成8位hash值，否则在不同文件夹下同名图片会失效，用来区分</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
-
-                                
-
-                        </div>
-                        
-                                
                                         
             </div>
 </div>
@@ -496,7 +273,7 @@
         <div class="pagination-previous">
             <a class="is-flex-grow has-text-black-ter" href="/">上一页</a>
         </div>
-        <div class="pagination-next">
+        <div class="pagination-next is-invisible is-hidden-mobile">
             <a class="is-flex-grow has-text-black-ter" href="/page/3/">下一页</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
@@ -504,8 +281,6 @@
             <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
             
             <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
             
         </ul>
     </nav>
@@ -557,7 +332,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        11
                     </p>
                 </div>
             </div>
@@ -567,7 +342,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -577,7 +352,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        8
                     </p>
                 </div>
             </div>
@@ -634,18 +409,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/02/code中Git工具的使用/" class="media-left">
+            <a href="/2019/07/08/TypeScript中的函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg" alt="code中Git工具的使用">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-02T02:25:57.000Z">2019-07-02</time></div>
-                    <a href="/2019/07/02/code中Git工具的使用/" class="has-link-black-ter is-size-6">code中Git工具的使用</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-08T02:40:48.000Z">2019-07-08</time></div>
+                    <a href="/2019/07/08/TypeScript中的函数/" class="has-link-black-ter is-size-6">TypeScript中的函数</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/开发工具/">开发工具</a>
+                        <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
                     </p>
                 </div>
             </div>
@@ -653,18 +428,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/02/关联多个远程仓库/" class="media-left">
+            <a href="/2019/07/07/TypeScript中的数据类型/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg" alt="关联多个远程仓库">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的数据类型">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-02T01:21:36.000Z">2019-07-02</time></div>
-                    <a href="/2019/07/02/关联多个远程仓库/" class="has-link-black-ter is-size-6">关联多个远程仓库</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-07T14:03:04.000Z">2019-07-07</time></div>
+                    <a href="/2019/07/07/TypeScript中的数据类型/" class="has-link-black-ter is-size-6">TypeScript中的数据类型</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                        <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
                     </p>
                 </div>
             </div>
@@ -672,35 +447,16 @@
         
         <article class="media">
             
-            <a href="/2019/07/01/git的使用/" class="media-left">
+            <a href="/2019/07/07/Node中的path路径模块/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/01/ZGibf1.png" alt="git的使用">
+                    <img class="thumbnail" src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=05925d2f728b4710ce2ffacafbf5a4c0/1b4c510fd9f9d72adf6ab513d42a2834349bbbb6.jpg" alt="Node中的path路径模块">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-01T13:47:23.000Z">2019-07-01</time></div>
-                    <a href="/2019/07/01/git的使用/" class="has-link-black-ter is-size-6">git的使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/06/24/express中的中间件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt="express中的中间件">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-24T03:26:57.000Z">2019-06-24</time></div>
-                    <a href="/2019/06/24/express中的中间件/" class="has-link-black-ter is-size-6">express中的中间件</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-07T05:36:24.000Z">2019-07-07</time></div>
+                    <a href="/2019/07/07/Node中的path路径模块/" class="has-link-black-ter is-size-6">Node中的path路径模块</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
@@ -710,18 +466,37 @@
         
         <article class="media">
             
-            <a href="/2019/06/23/webpack中引入vue/" class="media-left">
+            <a href="/2019/07/05/Vuex的使用/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
+                    <img class="thumbnail" src="https://vuex.vuejs.org/flow.png" alt="Vuex的使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time></div>
-                    <a href="/2019/06/23/webpack中引入vue/" class="has-link-black-ter is-size-6">webpack中引入vue</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-05T14:02:22.000Z">2019-07-05</time></div>
+                    <a href="/2019/07/05/Vuex的使用/" class="has-link-black-ter is-size-6">Vuex的使用</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/02/Vs code中Git工具的使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg" alt="Vs code中Git工具的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-02T02:25:57.000Z">2019-07-02</time></div>
+                    <a href="/2019/07/02/Vs code中Git工具的使用/" class="has-link-black-ter is-size-6">Vs code中Git工具的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/开发工具/">开发工具</a>
                     </p>
                 </div>
             </div>
@@ -748,7 +523,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -791,7 +566,15 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TypeScript/">
+            <span class="level-start">
+                <span class="level-item">TypeScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Vue/">
@@ -799,7 +582,7 @@
                 <span class="level-item">Vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
@@ -821,7 +604,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/TypeScript/" style="font-size: 20px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
 </div>
 
@@ -842,6 +625,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
@@ -856,8 +646,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/nodejs/">
+                        <span class="tag">nodejs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/vs-code/">
                         <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -931,7 +735,7 @@
                     <span class="level-item">七月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -974,7 +778,15 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TypeScript/">
+            <span class="level-start">
+                <span class="level-item">TypeScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Vue/">
@@ -982,7 +794,7 @@
                 <span class="level-item">Vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
@@ -1004,7 +816,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+        <a href="/tags/Express/" style="font-size: 10px;">Express</a> <a href="/tags/TypeScript/" style="font-size: 20px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
 </div>
 
@@ -1025,6 +837,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Vue/">
                         <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
@@ -1039,8 +858,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/nodejs/">
+                        <span class="tag">nodejs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/vs-code/">
                         <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
