@@ -5,26 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    Vs code中Git工具的使用 - Just for fun
+    TypeScript中的泛型 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="在一些开发工具中，集成了许多的功能，在我喜欢的vscode中，就集成了git的一些功能，非常方便我们使用">
-<meta name="keywords" content="vs code">
+        <meta name="description" content="泛型：软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性，组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。 &amp;lt;!-- more --&amp;gt;  前言  在像C#和java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件。  TypeScript中">
+<meta name="keywords" content="TypeScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vs code中Git工具的使用">
-<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/02/Vs code中Git工具的使用/index.html">
+<meta property="og:title" content="TypeScript中的泛型">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/09/TypeScript中的泛型/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在一些开发工具中，集成了许多的功能，在我喜欢的vscode中，就集成了git的一些功能，非常方便我们使用">
+<meta property="og:description" content="泛型：软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性，组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。 &amp;lt;!-- more --&amp;gt;  前言  在像C#和java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件。  TypeScript中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg">
-<meta property="og:updated_time" content="2019-07-07T13:38:45.218Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
+<meta property="og:updated_time" content="2019-07-09T10:59:28.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vs code中Git工具的使用">
-<meta name="twitter:description" content="在一些开发工具中，集成了许多的功能，在我喜欢的vscode中，就集成了git的一些功能，非常方便我们使用">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg">
+<meta name="twitter:title" content="TypeScript中的泛型">
+<meta name="twitter:description" content="泛型：软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性，组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。 &amp;lt;!-- more --&amp;gt;  前言  在像C#和java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件。  TypeScript中">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
             
 
 
@@ -32,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="Vs code中Git工具的使用" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="TypeScript中的泛型" type="application/atom+xml">
                             
 
                                 
@@ -115,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="Vs code中Git工具的使用" height="28">
+                <img src="/images/mylogo.png" alt="TypeScript中的泛型" height="28">
             
             </a>
         </div>
@@ -146,6 +146,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="🔍搜索" href="javascript:;">
@@ -202,7 +206,7 @@
     
         <div class="card-image">
             <span class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg" alt="Vs code中Git工具的使用">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的泛型">
                 </span>
         </div>
         
@@ -210,17 +214,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-02T02:25:57.000Z">2019-07-02</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-09T10:57:05.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/开发工具/">开发工具</a>
+                                    <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 455 个字)
+                    8 分钟 读完 (大约 1212 个字)
                 </span>
                                         
                                             
@@ -229,28 +233,99 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                    Vs code中Git工具的使用
+                                    TypeScript中的泛型
                                         
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在一些开发工具中，集成了许多的功能，在我喜欢的vscode中，就集成了git的一些功能，非常方便我们使用</p>
+<p>泛型：软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性，组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能。
+&lt;!-- more --&gt;</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="vscode中的Git工具"><a href="#vscode中的Git工具" class="headerlink" title="vscode中的Git工具"></a>vscode中的Git工具</h2><ul>
-<li>当我们在对一些推送到远程的项目进行修改时，我们在VS code中发现修改的内容在侧边会有标记<ul>
-<li><font color="red">红色</font>的箭头标识表示这里删除了一些东西</li>
-<li><font color="green">绿色</font>标识表示这里修改了一些东西</li>
-<li><font color="blue">蓝色</font>标识标识增加了一些东西</li>
-</ul>
+<h2>前言</h2>
+<blockquote>
+<p>在像C#和java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件。</p>
+</blockquote>
+<h2>TypeScript中的泛型</h2>
+<ul>
+<li>
+<p><strong>通俗理解:泛型就是解决类接口方法的复用性、以及对不特定数据类型的支持</strong></p>
 </li>
-<li>当然，我们要说的并不是只有这些，最主要的是我们修改的文件内容后需要推送到远程，再也不需要<code>git add &#39;&#39;、git commit -m &#39;&#39; ，git push</code>了，我们在侧边栏找到这个工具<br><img src="https://s2.ax1x.com/2019/07/02/ZGB7s1.png" alt="git工具"></li>
-<li>在这里工具会显示你修改了几个文件，而在更多这里显示你修改了哪些文件，鼠标指针放在修改的文件可以对文件进行一些操作，比如撤回修改</li>
-<li>我们继续往下看，在这里有一个 <code>message</code>这里需要添加的是你提交的描述，和<code>git commit -m &#39;&#39;</code> 这里的一致，添加消息后点击 <strong>√</strong>就可以保存到暂存区了</li>
-<li>如果需要推送到远程，点击推送即可<br><img src="https://s2.ax1x.com/2019/07/02/ZGDuyn.png" alt="推送到远程">、</li>
-<li><strong>注意：</strong>如果你关联了多个远程，那么直接点击推送可能会报错，因为它不知道你需要推送到哪一个，所以选择<code>推送到...</code>然后选择即可<br><img src="https://s2.ax1x.com/2019/07/02/ZGDwex.png" alt="选择仓库"></li>
-<li>这样我们在以后的开发中可以减少一点工作量</li>
+<li>
+<p>同时返回 string类型和number类型(但是代码冗余严重)
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData(<span class="hljs-keyword">value</span>: string): string &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData1(<span class="hljs-keyword">value</span>: <span class="hljs-keyword">number</span>): <span class="hljs-keyword">number</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData3(<span class="hljs-keyword">value</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">any</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">if</span> (typeof <span class="hljs-keyword">value</span> === <span class="hljs-string">"string"</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> `我是$&#123;<span class="hljs-keyword">value</span>&#125;`;</span><br><span class="line">  &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> `今年$&#123;<span class="hljs-keyword">value</span>&#125;`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData3(<span class="hljs-string">"张三"</span>)); //我是张三</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData3(<span class="hljs-number">12</span>)); //我今年<span class="hljs-number">12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用any也可以同时返回string和number类型，但是相当于放弃了类型检查
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData(<span class="hljs-keyword">value</span>:<span class="hljs-built_in">any</span>):<span class="hljs-built_in">any</span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span></span><br><span class="line">&#125;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData(<span class="hljs-number">12</span>)); //<span class="hljs-number">12</span></span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData(<span class="hljs-string">'张三'</span>));//张三</span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
+<h3>泛型</h3>
+<ul>
+<li>
+<p>一般我们定义泛型的时候，在函数名后面使用<code>&lt;任意字母&gt;</code>表示泛型，但是为了规范我们一般使用 <strong>T</strong>表示，函数定义了泛型后传入的参数也需要定义泛型，但是函数的返回值可以任意类型
+<figure class="highlight qml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">T</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData&lt;number&gt;(<span class="hljs-number">12</span>)); <span class="hljs-comment">//12</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">"张三"</span>)); <span class="hljs-comment">//张三</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：在传入参数的时候定义的类型必须和参数类型一致
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">any</span> </span>&#123; <span class="hljs-comment">//当函数的返回类型是any时，可以定义任意返回值</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-string">"zs"</span>)); <span class="hljs-comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>泛型类</h3>
+<ul>
+<li>
+<p>普通取最小值
+<figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Sort &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: number[] = [];</span><br><span class="line">  <span class="hljs-built_in">add</span>(num: number) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.list.push(num);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-built_in">min</span>(): number &#123;</span><br><span class="line">    let <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[<span class="hljs-number">0</span>];</span><br><span class="line">    <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-keyword">this</span>.list.length; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">min</span> &gt; <span class="hljs-keyword">this</span>.list[i]) &#123;</span><br><span class="line">        <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let m = <span class="hljs-keyword">new</span> Sort();</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">10</span>);</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>);</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">20</span>);</span><br><span class="line">console.<span class="hljs-built_in">log</span>(m.<span class="hljs-built_in">min</span>()); <span class="hljs-comment">//1</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样定义的类我们不能往数组里面添加字母，不能实现字母的排序，所以需要使用泛型
+<figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Sort&lt;T&gt; &#123;</span><br><span class="line">   <span class="hljs-keyword">public</span> list: T[] = [];</span><br><span class="line">   <span class="hljs-built_in">add</span>(value: T): <span class="hljs-keyword">void</span> &#123;</span><br><span class="line">     <span class="hljs-keyword">this</span>.list.push(value);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-built_in">min</span>(): T &#123;</span><br><span class="line">     let <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[<span class="hljs-number">0</span>];</span><br><span class="line">     <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-keyword">this</span>.list.length; i++) &#123;</span><br><span class="line">       <span class="hljs-keyword">if</span> (<span class="hljs-built_in">min</span> &gt; <span class="hljs-keyword">this</span>.list[i]) &#123;</span><br><span class="line">         <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[i];</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> let m = <span class="hljs-keyword">new</span> Sort&lt;number&gt;(); <span class="hljs-comment">//实例化 并且指定了T代表number</span></span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">20</span>);</span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>);</span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">10</span>);</span><br><span class="line"> console.<span class="hljs-built_in">log</span>(m.<span class="hljs-built_in">min</span>()); <span class="hljs-comment">// 1</span></span><br><span class="line"> let m2 = <span class="hljs-keyword">new</span> Sort&lt;string&gt;(); <span class="hljs-comment">// 实例化 并且指定了T代表string</span></span><br><span class="line"> m2.<span class="hljs-built_in">add</span>(<span class="hljs-string">"a"</span>);</span><br><span class="line"> m2.<span class="hljs-built_in">add</span>(<span class="hljs-string">"v"</span>);</span><br><span class="line"> console.<span class="hljs-built_in">log</span>(m2.<span class="hljs-built_in">min</span>());</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>泛型函数</h3>
+<ul>
+<li>
+<p>如果我们在定义一个函数接口时，无法根据传入的参数类型作为返回数据类型，不够灵活
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config &#123;</span><br><span class="line">  (name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> getData: Config = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> name + age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-string">"张三"</span>, <span class="hljs-number">12</span>)); <span class="hljs-comment">//张三 12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义泛型函数接口的时候，并不是我们在函数中规定了数据的类型，而是在调用的时候传入类型，那么这个泛型就是传入的数据类型</p>
+</li>
+<li>
+<p>第一种定义方法：
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config &#123;</span><br><span class="line">  &lt;T&gt;(<span class="hljs-keyword">value</span>: T): T;</span><br><span class="line">&#125;</span><br><span class="line">let getinfo: Config = <span class="hljs-function"><span class="hljs-keyword">function</span></span>&lt;T&gt;(<span class="hljs-keyword">value</span>: T): T &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getinfo&lt;<span class="hljs-keyword">number</span>&gt;(<span class="hljs-number">12</span>)); //<span class="hljs-number">12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>此时，在这里我们传入了<strong>number</strong>，那么<strong>T</strong>就是指的<strong>number</strong></p>
+</li>
+<li>
+<p>定义方式二：
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-comment">//定义泛型接口</span></span><br><span class="line">  (value: T): T;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">T</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> getData: Config&lt;<span class="hljs-built_in">number</span>&gt; = getinfo; <span class="hljs-comment">//给接口定义类型且getData使用这个接口</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-number">12</span>)); <span class="hljs-comment">//12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>把类作为参数类型的泛型类</h3>
+<ul>
+<li>
+<p>把类作为参数来约束数据传入的类型</p>
+</li>
+<li>
+<p>示例1：定义User类，对数据库进行映射
+<figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &#123;</span><br><span class="line">  username: <span class="hljs-keyword">string</span> | undefined;</span><br><span class="line">  password: <span class="hljs-keyword">string</span> | undefined;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> <span class="hljs-title">Mydb</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">add</span>(user: User): boolean &#123;</span><br><span class="line">    console.log(user);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> u = <span class="hljs-keyword">new</span> User();</span><br><span class="line">u.username = <span class="hljs-string">"张三"</span>;</span><br><span class="line">u.password = <span class="hljs-string">"123aaa"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> Mydb();</span><br><span class="line">db.<span class="hljs-keyword">add</span>(u); User&#123;username:<span class="hljs-string">'张三'</span>,password:<span class="hljs-string">'123aaa'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>示例2：
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> ArticleCate &#123;</span><br><span class="line">  title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">class</span> Mydb &#123;</span><br><span class="line">  add(info: ArticleCate): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> a = <span class="hljs-keyword">new</span> ArticleCate();</span><br><span class="line">a.title = <span class="hljs-string">"美味中国"</span>;</span><br><span class="line">a.desc = <span class="hljs-string">"江西美食"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> Mydb();</span><br><span class="line">db.add(a); <span class="hljs-comment">//ArticleCate &#123; title: '美味中国', desc: '江西美食' &#125;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们可以使用不同的类作为参数进行数据的约束</p>
+</li>
+<li>
+<p>示例3：&lt;font color=&quot;red&quot;&gt;<strong>泛型类</strong>&lt;/font&gt;
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> Mydb&lt;T&gt; &#123;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//经过数据的校验，就可以将info传入数据库了</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//更新数据，info表示更新数据的内容，id表示更新数据的id</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> ArticleCate &#123;</span><br><span class="line">  title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">params: &#123;</span></span><br><span class="line"><span class="hljs-params">    <span class="hljs-comment">//可以使用构造函数进行传参</span></span></span><br><span class="line"><span class="hljs-params">    title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.title = params.title;</span><br><span class="line">    <span class="hljs-keyword">this</span>.desc = params.desc;</span><br><span class="line">    <span class="hljs-keyword">this</span>.status = params.status;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> ArticleCate(&#123;</span><br><span class="line">  <span class="hljs-comment">//直接传入参数</span></span><br><span class="line">  title: <span class="hljs-string">"分类"</span>,</span><br><span class="line">  desc: <span class="hljs-string">"000"</span>,</span><br><span class="line">  status: <span class="hljs-number">200</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-keyword">var</span> db = <span class="hljs-keyword">new</span> Mydb&lt;ArticleCate&gt;();</span><br><span class="line">db.add(a); <span class="hljs-comment">//ArticleCate &#123; title: '分类', desc: '000', status: 200 &#125;</span></span><br><span class="line">db.updata(a, <span class="hljs-number">12</span>); <span class="hljs-comment">//ArticleCate &#123; title: '分类', desc: '000', status: 200 &#125;  12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<blockquote>
+<p>以上就是Typescript中的泛型的一些使用方法。</p>
+</blockquote>
 
 
                                 
@@ -270,7 +345,7 @@
         <div class="copyright-left">
             <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
             <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
-            https://zhongyuehui.github.io/2019/07/02/Vs code中Git工具的使用/index.html <br>
+            https://zhongyuehui.github.io/2019/07/09/TypeScript中的泛型/index.html <br>
         </div>
         <div style="clear:both;height:0px;"></div>
     </div>
@@ -282,7 +357,7 @@
                                 <div class="level-start">
                                     <div class="level-item">
                                         <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                        <a class="has-link-grey -link" href="/tags/vs-code/">vs code</a>
+                                        <a class="has-link-grey -link" href="/tags/TypeScript/">TypeScript</a>
                                     </div>
                                 </div>
                             </div>
@@ -330,17 +405,10 @@
                 <div class="card card-transparent">
                     <div class="level post-navigation is-flex-wrap is-mobile">
                         
-                            <div class="level-start">
-                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/05/Vuex的使用/">
-                                    <i class="level-item fas fa-chevron-left"></i>
-                                    <span class="level-item">Vuex的使用</span>
-                                </a>
-                            </div>
-                            
                                 
                                     <div class="level-end">
-                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/02/关联多个远程仓库/">
-                                            <span class="level-item">关联多个远程仓库</span>
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/09/ES6中的模块导入与导出/">
+                                            <span class="level-item">ES6中的模块导入与导出</span>
                                             <i class="level-item fas fa-chevron-right"></i>
                                         </a>
                                     </div>
@@ -367,6 +435,41 @@
                                             <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
                                                 
                                                     
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2</span>
+        <span>TypeScript中的泛型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2.1</span>
+        <span>泛型</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2.2</span>
+        <span>泛型类</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2.3</span>
+        <span>泛型函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2.4</span>
+        <span>把类作为参数类型的泛型类</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
                                                         
                                                     
 <div class="card widget">
@@ -809,7 +912,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="Vs code中Git工具的使用" height="28">
+                                <img src="/images/mylogo.png" alt="TypeScript中的泛型" height="28">
                                 
                 </a>
                 <p class="is-size-7">
