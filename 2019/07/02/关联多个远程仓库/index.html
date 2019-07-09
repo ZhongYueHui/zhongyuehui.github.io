@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云">
+        <meta name="description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云 &amp;lt;!--more--&amp;gt;  前言   在实际的开发过程中，团队协作开发项目是必不可少的，我们将项目托管到远程仓库上，就是为了解决多人合作开发和代码托管备份的作用，而有时候我们需要将一个项目托管到多个仓库中，现在我们就一起来学习一下如何操作   使用码云   要想使用码云现需要注册">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关联多个远程仓库">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/07/02/关联多个远程仓库/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云">
+<meta property="og:description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云 &amp;lt;!--more--&amp;gt;  前言   在实际的开发过程中，团队协作开发项目是必不可少的，我们将项目托管到远程仓库上，就是为了解决多人合作开发和代码托管备份的作用，而有时候我们需要将一个项目托管到多个仓库中，现在我们就一起来学习一下如何操作   使用码云   要想使用码云现需要注册">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg">
 <meta property="og:updated_time" content="2019-07-02T01:24:05.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联多个远程仓库">
-<meta name="twitter:description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云">
+<meta name="twitter:description" content="我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云 &amp;lt;!--more--&amp;gt;  前言   在实际的开发过程中，团队协作开发项目是必不可少的，我们将项目托管到远程仓库上，就是为了解决多人合作开发和代码托管备份的作用，而有时候我们需要将一个项目托管到多个仓库中，现在我们就一起来学习一下如何操作   使用码云   要想使用码云现需要注册">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg">
             
 
@@ -238,31 +238,38 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云</p>
+<p>我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云
+&lt;!--more--&gt;</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<h2>前言</h2>
+<hr>
 <ul>
 <li>在实际的开发过程中，团队协作开发项目是必不可少的，我们将项目托管到远程仓库上，就是为了解决多人合作开发和代码托管备份的作用，而有时候我们需要将一个项目托管到多个仓库中，现在我们就一起来学习一下如何操作</li>
 </ul>
 <hr>
-<h2 id="使用码云"><a href="#使用码云" class="headerlink" title="使用码云"></a>使用码云</h2><hr>
+<h2>使用码云</h2>
+<hr>
 <ul>
 <li>要想使用码云现需要注册</li>
-<li>注册成功后在个人中心，配置ssh，因为我们在github中，已经生成了ssh，所以我们直接拿公钥即可<br><img src="https://s2.ax1x.com/2019/07/02/ZGtnfI.png" alt="ssh公钥"></li>
-<li>然后在个人中心旁边有个 + 号 新建仓库即可<br><img src="https://s2.ax1x.com/2019/07/02/ZGtNhn.png" alt="仓库"><h2 id="关联github和码云"><a href="#关联github和码云" class="headerlink" title="关联github和码云"></a>关联github和码云</h2></li>
+<li>注册成功后在个人中心，配置ssh，因为我们在github中，已经生成了ssh，所以我们直接拿公钥即可
+<img src="https://s2.ax1x.com/2019/07/02/ZGtnfI.png" alt="ssh公钥"></li>
+<li>然后在个人中心旁边有个 + 号 新建仓库即可
+<img src="https://s2.ax1x.com/2019/07/02/ZGtNhn.png" alt="仓库"></li>
+</ul>
+<h2>关联github和码云</h2>
+<ul>
 <li>在git的使用我们已经详细的简述了如何托管到GitHub中，现在我们讲述一下托管到GitHub和码云中</li>
 <li><code>git remote rm origin</code>；先删除已经关联的<code>origin</code>远程仓库</li>
-<li>git remote add github <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:ZhongYueHui/vue-001.git</li>
+<li>git remote add github git@github.com:ZhongYueHui/vue-001.git</li>
 <li><strong>注意：</strong>，远程仓库名是<code>github</code>了不是<code>origin</code>了</li>
 <li>接着关联码云的仓库</li>
-<li>git remote add gitee <a href="mailto:git@gitee.com" target="_blank" rel="noopener">git@gitee.com</a>:zhongyuehui/vue-001.git</li>
+<li>git remote add gitee git@gitee.com:zhongyuehui/vue-001.git</li>
 <li><strong>注意：</strong>，远程仓库名是<code>gitee</code>了不是<code>origin</code>了</li>
-<li>现在我们使用<code>git remote -v</code>就可以查看到远程库的信息了  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gitee   git@gitee<span class="hljs-selector-class">.com</span>:zhongyuehui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (fetch)</span><br><span class="line">gitee   git@gitee<span class="hljs-selector-class">.com</span>:zhongyuehui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (push)</span><br><span class="line">github  git@github<span class="hljs-selector-class">.com</span>:ZhongYueHui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (fetch)</span><br><span class="line">github  git@github<span class="hljs-selector-class">.com</span>:ZhongYueHui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (push)</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>现在我们使用<code>git remote -v</code>就可以查看到远程库的信息了
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gitee   git@gitee<span class="hljs-selector-class">.com</span>:zhongyuehui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (fetch)</span><br><span class="line">gitee   git@gitee<span class="hljs-selector-class">.com</span>:zhongyuehui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (push)</span><br><span class="line">github  git@github<span class="hljs-selector-class">.com</span>:ZhongYueHui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (fetch)</span><br><span class="line">github  git@github<span class="hljs-selector-class">.com</span>:ZhongYueHui/vue-<span class="hljs-number">001</span><span class="hljs-selector-class">.git</span> (push)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="推送到GitHub和码云"><a href="#推送到GitHub和码云" class="headerlink" title="推送到GitHub和码云"></a>推送到GitHub和码云</h2><ul>
+<h2>推送到GitHub和码云</h2>
+<ul>
 <li>推送到GitHub：<code>git push github master</code></li>
 <li>推送到码云:<code>git push gitee master</code></li>
 <li>这样，我们的项目将就分别在git和码云中了</li>
@@ -390,19 +397,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#前言">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>前言</span>
         </a></li><li>
-        <a class="is-flex" href="#使用码云">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>使用码云</span>
         </a></li><li>
-        <a class="is-flex" href="#关联github和码云">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
         <span>关联github和码云</span>
         </a></li><li>
-        <a class="is-flex" href="#推送到GitHub和码云">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">4</span>
         <span>推送到GitHub和码云</span>
         </a></li></ul>

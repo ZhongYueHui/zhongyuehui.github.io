@@ -246,24 +246,80 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具</p>
+<p>在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具
+&lt;!-- more --&gt;</p>
 </blockquote>
+<h2>Path模块</h2>
+<ul>
+<li>引入
+<code>const path = require('path')</code></li>
+</ul>
+<h3>path的一些方法</h3>
+<h3>path.basename():</h3>
+<ul>
+<li>
+<p>只有一个参数时
+<img src="https://s2.ax1x.com/2019/07/07/ZBYSYV.png" alt="path.basename"></p>
+</li>
+<li>
+<p>有两个参数时，且参数的后缀名相同时
+<img src="https://s2.ax1x.com/2019/07/07/ZBYCSU.png" alt="path.basename2"></p>
+</li>
+<li>
+<p>有两个参数时，且参数的后缀名不相同时
+<img src="https://s2.ax1x.com/2019/07/07/ZBYiy4.png" alt="path.basename3"></p>
+</li>
+<li>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>一个参数时直接输出带后缀名的文件名</li>
+<li>两个参数时第二个参数为第一个参数的后缀名时输出为不带后缀名的文件名</li>
+<li>两个参数时第二个参数不是第一个参数的后缀名时输出仍是带后缀名的文件名</li>
+</ul>
+</li>
+</ul>
+<h3>path.dirname()</h3>
+<p><img src="https://s2.ax1x.com/2019/07/07/ZBJjwn.png" alt="path.dirname"></p>
+<ul>
+<li>只输出目录</li>
+</ul>
+<h3>path.extname()</h3>
+<p><img src="https://s2.ax1x.com/2019/07/07/ZBYFOJ.png" alt="pathextname"></p>
+<ul>
+<li>只输出后缀名</li>
+</ul>
+<h3>path.isAbsolute()</h3>
+<p><img src="https://s2.ax1x.com/2019/07/07/ZBYEwR.png" alt="path.isAbsolute"></p>
+<ul>
+<li>判断是否为绝对路径，返回一个布尔值</li>
+<li>**注意：**文件路径前不能有空格 否则直接返回<code>flase</code></li>
+<li>拓展：绝对路径的两种方式
+<ul>
+<li>如：c:/a/b/c/index.js ，有磁盘符，相对于磁盘符的绝对路径</li>
+<li>如：/a/b/c/index.js ，没有磁盘符，相对于当前磁盘下的绝对路径</li>
+</ul>
+</li>
+</ul>
+<h3>path.parse()</h3>
+<p><img src="https://s2.ax1x.com/2019/07/07/ZBYnfK.png" alt="parse"></p>
+<ul>
+<li>查看文件的详细信息</li>
+</ul>
+<h3>path.join()</h3>
+<p><img src="https://s2.ax1x.com/2019/07/07/ZBYMlD.png" alt="path.join"></p>
+<ul>
+<li>路径拼接</li>
+</ul>
+<blockquote>
+<p>在Node中，许多时候我们都需要用到路径模块，对文件路径的判断做出相应的响应</p>
+</blockquote>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/07/Node中的path路径模块/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -315,24 +371,33 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理</p>
+<p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理
+&lt;!-- more --&gt;
+&lt;!-- toc --&gt;</p>
 </blockquote>
+<hr>
+<h3>中间件的原理</h3>
+<hr>
+<p><img src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt></p>
+<ul>
+<li>
+<p>就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤</p>
+</li>
+<li>
+<p>下面使用一个代码来帮助我们更好的理解中间件的概念</p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//这个就是中间件，中间件就是一个函数，函数有三个参数</span></span><br><span class="line"><span class="hljs-comment">//request 请求数据</span></span><br><span class="line"><span class="hljs-comment">//respone  响应数据</span></span><br><span class="line"><span class="hljs-comment">// next  表示继续执行下一个中间件，如果没有使用这个方法，那么下面就算有符合匹配项，都不会被执行</span></span><br><span class="line"><span class="hljs-comment">//这个表示所有请求都会经过这里,但是请求到这里时会停留，如果想要继续执行需要调用next方法</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>)</span><br><span class="line">    next() <span class="hljs-comment">//需要继续执行</span></span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, respone, next</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>)</span><br><span class="line">        next()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个表示所有的get请求并且路径为 / 的请求会经过这个中间件</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">        <span class="hljs-comment">//如果此时不使用next方法，那么下面的get函数不会 被执行</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'Hello World!'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>所以，我们在使用中间件时，都应该遵循这些规则，这样可以帮助我们更好的编写程序</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/24/express中的中间件/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
