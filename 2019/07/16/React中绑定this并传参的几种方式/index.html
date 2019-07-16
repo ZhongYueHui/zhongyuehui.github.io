@@ -5,26 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    TypeScript中的装饰器 - Just for fun
+    React中绑定this并传参的几种方式 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="装饰器是过去几年中JavaScript最大成就之一，已是ES7的标准特性之一">
-<meta name="keywords" content="TypeScript">
+        <meta name="description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
+<meta name="keywords" content="React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TypeScript中的装饰器">
-<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/09/TypeScript中的装饰器/index.html">
+<meta property="og:title" content="React中绑定this并传参的几种方式">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/16/React中绑定this并传参的几种方式/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="装饰器是过去几年中JavaScript最大成就之一，已是ES7的标准特性之一">
+<meta property="og:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
-<meta property="og:updated_time" content="2019-07-09T15:38:46.238Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
+<meta property="og:updated_time" content="2019-07-16T03:03:28.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TypeScript中的装饰器">
-<meta name="twitter:description" content="装饰器是过去几年中JavaScript最大成就之一，已是ES7的标准特性之一">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
+<meta name="twitter:title" content="React中绑定this并传参的几种方式">
+<meta name="twitter:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
 
@@ -32,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="TypeScript中的装饰器" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="React中绑定this并传参的几种方式" type="application/atom+xml">
                             
 
                                 
@@ -115,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="TypeScript中的装饰器" height="28">
+                <img src="/images/mylogo.png" alt="React中绑定this并传参的几种方式" height="28">
             
             </a>
         </div>
@@ -206,7 +206,7 @@
     
         <div class="card-image">
             <span class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的装饰器">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg" alt="React中绑定this并传参的几种方式">
                 </span>
         </div>
         
@@ -214,17 +214,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-09T15:34:31.000Z">2019-07-09</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-16T02:58:17.000Z">2019-07-16</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
+                                    <a class="has-link-grey -link" href="/categories/React/">React</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1283 个字)
+                    5 分钟 读完 (大约 822 个字)
                 </span>
                                         
                                             
@@ -233,92 +233,37 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                    TypeScript中的装饰器
+                                    React中绑定this并传参的几种方式
                                         
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>装饰器是过去几年中JavaScript最大成就之一，已是ES7的标准特性之一</p>
+<p>在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="TypeScript中的装饰器"><a href="#TypeScript中的装饰器" class="headerlink" title="TypeScript中的装饰器"></a>TypeScript中的装饰器</h2><ul>
-<li>装饰器：装饰器是一种特殊类型的声明，它能够被附加到类声明，方法，属性或参数上，可以修改类的行为</li>
-<li><strong>常见的装饰器</strong><ul>
-<li>类装饰器</li>
-<li>属性装饰器</li>
-<li>方法装饰器</li>
-<li>参数装饰器</li>
-</ul>
-</li>
-<li><strong>装饰器的写法</strong><ul>
-<li>普通装饰器（不可传参）</li>
-<li>工厂装饰器（可传参）<h3 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h3></li>
-</ul>
-</li>
-<li>类装饰器在类声明之前被声明(紧靠类声明)。类装饰器应用于构造函数，可以用来监视，修改或替换类定义。传入一个参数<h4 id="定义一个普通的装饰器-类装饰器"><a href="#定义一个普通的装饰器-类装饰器" class="headerlink" title="定义一个普通的装饰器(类装饰器)"></a>定义一个普通的装饰器(类装饰器)</h4></li>
-<li>   <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>) </span>&#123; <span class="hljs-comment">//普通模式是Http</span></span><br><span class="line">  params.prototype.data = <span class="hljs-string">"hello"</span>;</span><br><span class="line">  params.prototype.run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"我是run"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span> <span class="hljs-comment">//这里不能使用 ; 号</span></span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> http: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(http.data); <span class="hljs-comment">//hello</span></span><br><span class="line">http.run(); <span class="hljs-comment">//我是run</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="定义一个工厂装饰器"><a href="#定义一个工厂装饰器" class="headerlink" title="定义一个工厂装饰器"></a>定义一个工厂装饰器</h4><ul>
-<li>  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123; <span class="hljs-comment">//工厂装饰器params是传递的参数</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(targe); <span class="hljs-comment">//[Function Http] 这个表示Http</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//hh 传递的参数</span></span><br><span class="line">    targe.prototype.api = params;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span>(<span class="hljs-string">"hh"</span>)</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> http: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(http.api); <span class="hljs-comment">//hh</span></span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function getData(params: any) &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">params</span> </span>&#123;<span class="hljs-comment">//这里的params相当于是Http 继承它</span></span><br><span class="line">    api: any = <span class="hljs-string">"我是修改后的api"</span>;</span><br><span class="line">    getdata() &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.api = <span class="hljs-keyword">this</span>.api + <span class="hljs-string">"--"</span>;</span><br><span class="line">      console.log(<span class="hljs-keyword">this</span>.api);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Http</span> </span>&#123;</span><br><span class="line">  public api: string | undefined;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.api = <span class="hljs-string">"我是api"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    console.log(<span class="hljs-keyword">this</span>.api);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> <span class="hljs-type">Http</span>();</span><br><span class="line">h.getdata(); <span class="hljs-comment">//我是修改后的api</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h3><ul>
-<li>属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数：<ul>
-<li>一是：对于静态成员来说是类的构造函数，对于示例成员是类的原型对象</li>
-<li>二是：成员的名字<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 类装饰器</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logClass</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//params 是传递的参数</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//target是 Htpp</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">// xxx</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(target); <span class="hljs-comment">//[Function: Http]</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//属性装饰器</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUrl</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">any</span> </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span>, attr: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(target); <span class="hljs-comment">//http&#123;&#125; 第一个参数就是成员(在这里指的是url)实例的原型对象</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(attr); <span class="hljs-comment">//url   第二个参数打印出来的就是装饰属性的名称</span></span><br><span class="line">    target[attr] = params; <span class="hljs-comment">//因为attr是变量所以不能通过 . 的方式访问，而target是实例的原型对象，这里就相当于在实例的原型对象上添加了attr属性并且赋值</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@logClass</span>(<span class="hljs-string">"xxx"</span>)</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-meta">@logUrl</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">  <span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.url);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(h.url); <span class="hljs-comment">//www.baidu.com</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="方法装饰器"><a href="#方法装饰器" class="headerlink" title="方法装饰器"></a>方法装饰器</h3><ul>
-<li><p>方法装饰器：他会被应用到方法的属性描述符上，可以用来监视，修改或者替换方法定义</p>
-</li>
-<li><p>方法装饰会在运行时传入三个参数</p>
-<ul>
-<li>1.对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
-<li>2.成员的名称</li>
-<li>3.成员的属性描述</li>
-</ul>
-</li>
-<li><p>方法装饰器一：(查看一些属性)</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, desc: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//   console.log(targe); // Http &#123; getdata: [Function] &#125;</span></span><br><span class="line">    <span class="hljs-comment">// console.log(methodName); // getdata</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(desc); <span class="hljs-comment">//&#123; value: [Function], writable: true,enumerable: true,configurable: true&#125;</span></span><br><span class="line">    targe.api = <span class="hljs-string">"www.baidu.com"</span>;</span><br><span class="line">    targe.run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"hello"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  <span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.url);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(h.api); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line">h.run(); <span class="hljs-comment">//hello</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法装饰器二：(修改方法)</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, desc: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(desc.value); <span class="hljs-comment">//这个就是方法的函数</span></span><br><span class="line">    <span class="hljs-keyword">var</span> funDesc = desc.value; <span class="hljs-comment">//保存一下原来的方法</span></span><br><span class="line">    desc.value = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) </span>&#123;<span class="hljs-comment">//修改方法</span></span><br><span class="line">    args = args.map(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(value); <span class="hljs-comment">//将传递的参数全部变成String类型</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(args);</span><br><span class="line">    funDesc.apply(<span class="hljs-keyword">this</span>, args); <span class="hljs-comment">//这样可以将保存到的getdata指向这个新的函数，然后传递已经处理好的数据 args</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line"><span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line"><span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">getdata(...args: <span class="hljs-built_in">any</span>[]) &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(args); <span class="hljs-comment">//[ 'ads', '123' ]</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">//hello</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(<span class="hljs-string">"ads"</span>, <span class="hljs-number">123</span>); <span class="hljs-comment">// [ 'ads', '123' ]</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="方法参数装饰器"><a href="#方法参数装饰器" class="headerlink" title="方法参数装饰器"></a>方法参数装饰器</h3><ul>
-<li><p>参数装饰器表达式会在运行时当作函数被调用，可与使用参数装饰器为类的原型增加一些元素数据，传入三个参数</p>
-<ul>
-<li>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
-<li>方法的名字</li>
-<li>参数在函数参数列表中的索引</li>
-</ul>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, paramsIndex: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//装饰器传入的值 xxx</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(targe); <span class="hljs-comment">// Http &#123; getdata: [Function] &#125; 类的原型对象</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(methodName); <span class="hljs-comment">//getdata  方法名称</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(paramsIndex); <span class="hljs-comment">// 0 //参数索引</span></span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line"><span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">getdata(<span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"xxx"</span>) params: <span class="hljs-built_in">any</span>) &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//123</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(<span class="hljs-number">123</span>);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="装饰器的执行顺序"><a href="#装饰器的执行顺序" class="headerlink" title="装饰器的执行顺序"></a>装饰器的执行顺序</h3><ul>
-<li>执行顺序：<ul>
-<li>1.属性装饰器</li>
-<li>2.方法装饰器</li>
-<li>3.方法参数装饰器</li>
-<li>4.类装饰器</li>
-</ul>
-</li>
-<li><strong>注意</strong>：如果有多个同种装饰器，是从后往前执行<ul>
-<li>如：有两个参数装饰器限制性后面的参数装饰器，如果有两个属性装饰器，限制性后面定义的属性装饰器<blockquote>
-<p>以上就是关于TypeScript中的装饰器相关的知识。</p>
+<h2 id="React中绑定this并传参的几种方式"><a href="#React中绑定this并传参的几种方式" class="headerlink" title="React中绑定this并传参的几种方式"></a>React中绑定this并传参的几种方式</h2><blockquote>
+<p>在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。</p>
 </blockquote>
+<h3 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h3><ul>
+<li><p>在事件函数处理中，直接使用bind绑定this并传参</p>
+  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// bindThis.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>)&#125;&gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">  <span class="hljs-comment">//这个时候因为this指向问题，所以会报错undefined，所以需要修改this的指向</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>bind</strong>的作用：为前面的函数，修改函数中的this指向，让函数内部的this，指向bind参数列表中的第一个参数</p>
+</li>
+<li><p><strong>bind和call/apply之间的区别</strong>:call/apply修改完this的指向后会立即调用前面的函数，bind方法的返回值是改变了this指向的原函数的拷贝，但是不会对原函数的this进行改变</p>
+</li>
+<li><p><strong>注意：</strong>bind中的第一个参数，是用来修改this指向的，第一个参数后面所有的参数，都会当作将来调用前面函数时的参数</p>
+<h3 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h3></li>
+<li><p>在constructor中改变函数this</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-comment">/*因为函数执行必然会执行constructor函数，所以我们在这对函数的this进行修改</span></span><br><span class="line"><span class="hljs-comment">    注意：bind方法并不会修改原函数，而是返回一个修改后的原函数拷贝，就是返回一个修改了this的函数，所以我们需要接收一下</span></span><br><span class="line"><span class="hljs-comment">    注意：这个时候我们使用原函数进行接收，这样就覆盖了没有修改this的函数</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.changeMes = <span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定This传参的方式&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &#123;/</span>* 因为在上面我们已经修改过<span class="hljs-keyword">this</span>的指向了，所以在这里并不需要进行修改 *<span class="hljs-regexp">/&#125;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;button onClick=&#123;this.changeMes&#125;&gt;绑定This传参&lt;/</span>button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
+<h3 id="第三种方式"><a href="#第三种方式" class="headerlink" title="第三种方式"></a>第三种方式</h3><ul>
+<li><p>在调用时使用箭头函数</p>
+  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 因为此时的this就是我们的实例，这个时候去调用函数，那么被调用函数中this就是指向这个调用者，就是实例对象 */</span>&#125;</span><br><span class="line">        &lt;button</span><br><span class="line">          onClick=&#123;() =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.changeMes(<span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>但是需要注意的是； <code>&lt;button onClick={() =&gt; {this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}}&gt;绑定This传参&lt;/button&gt;</code>中我们不能省略<code>()=&gt;</code>写成<code>&lt;button onClick={this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}&gt;绑定This传参&lt;/button&gt;</code>，这样的话React在解析的时候发现这个是一个函数调用，那么就会立即进行调用，如果使用的是箭头函数，它会解析成你点击的时候再来触发这个函数，这样才是我们想要的结果</p>
 </li>
 </ul>
 
@@ -340,7 +285,7 @@
         <div class="copyright-left">
             <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
             <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
-            https://zhongyuehui.github.io/2019/07/09/TypeScript中的装饰器/index.html <br>
+            https://zhongyuehui.github.io/2019/07/16/React中绑定this并传参的几种方式/index.html <br>
         </div>
         <div style="clear:both;height:0px;"></div>
     </div>
@@ -352,7 +297,7 @@
                                 <div class="level-start">
                                     <div class="level-item">
                                         <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                        <a class="has-link-grey -link" href="/tags/TypeScript/">TypeScript</a>
+                                        <a class="has-link-grey -link" href="/tags/React/">React</a>
                                     </div>
                                 </div>
                             </div>
@@ -400,17 +345,10 @@
                 <div class="card card-transparent">
                     <div class="level post-navigation is-flex-wrap is-mobile">
                         
-                            <div class="level-start">
-                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/16/React中绑定this并传参的几种方式/">
-                                    <i class="level-item fas fa-chevron-left"></i>
-                                    <span class="level-item">React中绑定this并传参的几种方式</span>
-                                </a>
-                            </div>
-                            
                                 
                                     <div class="level-end">
-                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/09/TypeScript中的模块以及命名空间/">
-                                            <span class="level-item">TypeScript中的模块以及命名空间</span>
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/09/TypeScript中的装饰器/">
+                                            <span class="level-item">TypeScript中的装饰器</span>
                                             <i class="level-item fas fa-chevron-right"></i>
                                         </a>
                                     </div>
@@ -444,37 +382,21 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#TypeScript中的装饰器">
+        <a class="is-flex" href="#React中绑定this并传参的几种方式">
         <span class="has-mr-6">1</span>
-        <span>TypeScript中的装饰器</span>
+        <span>React中绑定this并传参的几种方式</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#类装饰器">
+        <a class="is-flex" href="#第一种方式">
         <span class="has-mr-6">1.1</span>
-        <span>类装饰器</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#定义一个普通的装饰器-类装饰器">
-        <span class="has-mr-6">1.1.1</span>
-        <span>定义一个普通的装饰器(类装饰器)</span>
+        <span>第一种方式</span>
         </a></li><li>
-        <a class="is-flex" href="#定义一个工厂装饰器">
-        <span class="has-mr-6">1.1.2</span>
-        <span>定义一个工厂装饰器</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#属性装饰器">
+        <a class="is-flex" href="#第二种方式">
         <span class="has-mr-6">1.2</span>
-        <span>属性装饰器</span>
+        <span>第二种方式</span>
         </a></li><li>
-        <a class="is-flex" href="#方法装饰器">
+        <a class="is-flex" href="#第三种方式">
         <span class="has-mr-6">1.3</span>
-        <span>方法装饰器</span>
-        </a></li><li>
-        <a class="is-flex" href="#方法参数装饰器">
-        <span class="has-mr-6">1.4</span>
-        <span>方法参数装饰器</span>
-        </a></li><li>
-        <a class="is-flex" href="#装饰器的执行顺序">
-        <span class="has-mr-6">1.5</span>
-        <span>装饰器的执行顺序</span>
+        <span>第三种方式</span>
         </a></li></ul></li></ul>
         </div>
     </div>
@@ -937,7 +859,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="TypeScript中的装饰器" height="28">
+                                <img src="/images/mylogo.png" alt="React中绑定this并传参的几种方式" height="28">
                                 
                 </a>
                 <p class="is-size-7">
