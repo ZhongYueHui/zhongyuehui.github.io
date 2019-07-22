@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhongyuehui.github.io/"/>
-  <updated>2019-07-22T03:06:01.887Z</updated>
+  <updated>2019-07-22T03:09:52.336Z</updated>
   <id>https://zhongyuehui.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://zhongyuehui.github.io/2019/07/22/%E5%88%9D%E5%A7%8BAngular/"/>
     <id>https://zhongyuehui.github.io/2019/07/22/初始Angular/</id>
     <published>2019-07-22T03:01:27.000Z</published>
-    <updated>2019-07-22T03:06:01.887Z</updated>
+    <updated>2019-07-22T03:09:52.336Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势</p></blockquote><a id="more"></a><h2 id="初识Angular"><a href="#初识Angular" class="headerlink" title="初识Angular"></a>初识Angular</h2><blockquote><p>Angular是一款来自谷歌的开源web框架，诞生于2009年，是一款优秀的JS框架，由Misko Hevery等人创建，后被Google收购</p><ul><li>根据项目统计angular是现在网上使用量最大的框架</li></ul></blockquote><h3 id="Angular适用的场景"><a href="#Angular适用的场景" class="headerlink" title="Angular适用的场景"></a>Angular适用的场景</h3><ul><li>Angular基于Typescript和React、Vue相比，更适合中大型企业级项目<h3 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h3></li><li>需要安装Nodejs，这个是框架开发必备的环境了，就不多说了-&gt;<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs官网</a></li><li>由于国内网络问题，尽量使用<code>cnpm</code>淘宝镜像</li><li>安装Angular脚手架<code>cnpm i -g @angular/cli</code></li><li>查看是否安装成功<code>ng v</code></li><li>创建angular项目:例如创建以一个名为my-app的项目：<code>ng new my-app</code>,你也可以使用<code>ng new my-app --skip-install</code>跳过npm安装</li><li>安装完之后会问你是否需要路由，可以按需选择，然后选择预处理器<code>LESS</code>和<code>SCSS</code>，也可以不选，直接选择<code>CSS</code>,选择后回车</li><li>这个时候如果使用<code>ng new my-app</code>会自动安装依赖，我们直接Ctrl+C停止，因为npm安装容易被墙安装失败，我们使用<code>cnpm i</code>即可安装，当然，如果你的电脑安装了<code>yarn</code>也可以直接使用<code>yarn</code>命令进行安装，如果使用<code>ng new my-app --skip-install</code>，则直接使用<code>cnpm i</code></li><li>安装完毕之后<code>cd my-app</code>使用<code>ng serve --open</code>即可打开这个项目</li><li>使用cnpm安装：<br><img src="https://s2.ax1x.com/2019/07/22/eCcReJ.jpg" alt="cnpm"></li><li>使用yarn安装:<br><img src="https://s2.ax1x.com/2019/07/22/eCcNLQ.jpg" alt="yarn"></li><li>启动项目<br><img src="https://s2.ax1x.com/2019/07/22/eCctsg.jpg" alt="启动"><br><img src="https://s2.ax1x.com/2019/07/22/eCcSr4.jpg" alt="启动完成"></li><li><strong>注意</strong>：IE版本较低的浏览器不支持，如果默认是IE浏览器可以修改默认浏览器或者黏贴网址到其他浏览器打开<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4></li><li>有时候我们经常因为依赖包安装出错导致项目不能运行，这个时候需要删除<code>node_modules</code>，如果直接删除因为目录层级太深，需要好久，在这里我们只需要使用如下步骤即可超快删除</li><li>安装<code>cnpm install rimraf -g</code></li><li>使用：cd到你要删除的文件夹运行<code>rimraf 你要删除的文件或者文件夹</code></li><li>当然这个包功能还是很强大的,可以去官网查看其他用途 -&gt; <a href="https://www.npmjs.com/package/rimraf" target="_blank" rel="noopener">rimraf</a><h3 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h3></li><li>在src下的app创建一个文件夹名为components的news组件<code>ng g componet components/news</code>，如果不指定文件夹，就会创建到app根目录下</li><li>使用命令行创建它自动会关联组件，使用的时候只需要在根组件放置对应的标签即可，标签名在组件种的<code>组件名.component.ts</code>中的<code>selector</code>属性值，内容就是<code>组件名.component.html</code>中的内容</li><li>找到app根目录下的<code>app.component.html</code>，以标签形式放置<code>selector</code>的属性值即可展示对应组件的内容</li></ul>]]></content>
     
