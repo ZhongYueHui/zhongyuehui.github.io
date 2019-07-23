@@ -5,26 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    TypeScript中的函数 - Just for fun
+    初识Angular - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="函数在 Javascript 中是一等一的公民">
-<meta name="keywords" content="TypeScript">
+        <meta name="description" content="Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势">
+<meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TypeScript中的函数">
-<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/08/TypeScript中的函数/index.html">
+<meta property="og:title" content="初识Angular">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/22/初识Angular/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="函数在 Javascript 中是一等一的公民">
+<meta property="og:description" content="Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
-<meta property="og:updated_time" content="2019-07-09T11:16:01.461Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
+<meta property="og:updated_time" content="2019-07-23T14:24:39.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TypeScript中的函数">
-<meta name="twitter:description" content="函数在 Javascript 中是一等一的公民">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
+<meta name="twitter:title" content="初识Angular">
+<meta name="twitter:description" content="Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
 
@@ -32,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="TypeScript中的函数" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="初识Angular" type="application/atom+xml">
                             
 
                                 
@@ -115,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="TypeScript中的函数" height="28">
+                <img src="/images/mylogo.png" alt="初识Angular" height="28">
             
             </a>
         </div>
@@ -206,7 +206,7 @@
     
         <div class="card-image">
             <span class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的函数">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="初识Angular">
                 </span>
         </div>
         
@@ -214,17 +214,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-08T02:40:48.000Z">2019-07-08</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-22T03:01:27.000Z">2019-07-22</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
+                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1341 个字)
+                    5 分钟 读完 (大约 812 个字)
                 </span>
                                         
                                             
@@ -233,113 +233,41 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                    TypeScript中的函数
+                                    初识Angular
                                         
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>函数在 Javascript 中是一等一的公民</p>
+<p>Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势</p>
 </blockquote>
 <a id="more"></a>
-
-<h1 id="Typescript-中的函数"><a href="#Typescript-中的函数" class="headerlink" title="Typescript 中的函数"></a>Typescript 中的函数</h1><h2 id="TypeScript-中定义函数"><a href="#TypeScript-中定义函数" class="headerlink" title="TypeScript 中定义函数"></a>TypeScript 中定义函数</h2><h3 id="ES5-中定义函数的方式"><a href="#ES5-中定义函数的方式" class="headerlink" title="ES5 中定义函数的方式"></a>ES5 中定义函数的方式</h3><ul>
-<li><figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-comment">&lt;!--函数声明--&gt;</span></span></span><br><span class="line"><span class="hljs-xml">function getinfo() </span><span class="hljs-template-variable">&#123;</span></span><br><span class="line"><span class="hljs-template-variable">return 'hello-world'</span></span><br><span class="line"><span class="hljs-template-variable">&#125;</span><span class="hljs-xml"></span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-comment">&lt;!--匿名函数--&gt;</span></span></span><br><span class="line"><span class="hljs-xml">var getinfo = function () </span><span class="hljs-template-variable">&#123;</span></span><br><span class="line"><span class="hljs-template-variable">return 'hello-world'</span></span><br><span class="line"><span class="hljs-template-variable">&#125;</span><span class="hljs-xml"></span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h3 id="ts-中的定义函数的方式"><a href="#ts-中的定义函数的方式" class="headerlink" title="ts 中的定义函数的方式"></a>ts 中的定义函数的方式</h3><ul>
-<li><p>使用函数声明的方式，只定义函数的返回值类型</p>
-<figure class="highlight lua hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span><span class="hljs-params">()</span></span>:<span class="hljs-built_in">string</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'This is getinfo'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">getinfo</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注意：这样定义函数时，返回值的数据类型必须是 string,否则会报错</p>
-</li>
-<li><p>函数表达式的方式定义函数(匿名函数)</p>
-<figure class="highlight lua hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var <span class="hljs-built_in">getinfo</span>=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>:<span class="hljs-built_in">string</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'This is getinfo'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">getinfo</span>()</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h3 id="ts-中传递参数"><a href="#ts-中传递参数" class="headerlink" title="ts 中传递参数"></a>ts 中传递参数</h3><ul>
-<li><p>使用函数声明定义函数，需要定义参数的类型和函数的返回值类型，且形参和实参类型与数据一一对应</p>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age:<span class="hljs-built_in">number</span></span>):<span class="hljs-title">string</span> </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> value = getinfo(<span class="hljs-string">'张三'</span>,<span class="hljs-number">12</span>)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(value);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用函数表达式(匿名函数)定义函数，传递参数，规则与使用函声明定义函数一样</p>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> getinfo= <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age:<span class="hljs-built_in">number</span></span>):<span class="hljs-title">string</span> </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> value = getinfo(<span class="hljs-string">'张三'</span>,<span class="hljs-number">40</span>)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(value);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h3 id="定义没有返回值的方法"><a href="#定义没有返回值的方法" class="headerlink" title="定义没有返回值的方法"></a>定义没有返回值的方法</h3><ul>
-<li><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age:<span class="hljs-built_in">number</span></span>):<span class="hljs-title">void</span> </span>&#123;</span><br><span class="line">   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line">getinfo(<span class="hljs-string">'张三'</span>,<span class="hljs-number">30</span>)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h3 id="定义可选参数"><a href="#定义可选参数" class="headerlink" title="定义可选参数"></a>定义可选参数</h3><ul>
-<li><p>在 ES5 中，我们如果定义普通的形参时，形参个数和实参个数可以不一致，但是在 ts 中，不允许这样做</p>
-<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span><span class="hljs-params">(<span class="hljs-keyword">name</span>:<span class="hljs-keyword">string</span>,age:number)</span>:</span>void <span class="hljs-comment">&#123;</span></span><br><span class="line"><span class="hljs-comment">console.log(`$&#123;name&#125;</span>----年龄保密);</span><br><span class="line">&#125;  <span class="hljs-comment">//这里提示报错了，没有将模板字符串写完</span></span><br><span class="line">getinfo(<span class="hljs-string">'张三'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所以我们可以看到，如果写了形参，没有传递实参，就会编译错误,但是有时候我们并不传递，但是可以先定义预留位置</p>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age?:<span class="hljs-built_in">number</span></span>):<span class="hljs-title">void</span> </span>&#123;</span><br><span class="line">   age? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span>): <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>---年龄保密`</span>)</span><br><span class="line">&#125;</span><br><span class="line">getinfo(<span class="hljs-string">'张三'</span>,<span class="hljs-number">12</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在形参名后面加上 <code>?</code> 表示对实参进行判断，如果有就使用，没有就不使用</p>
-</li>
-</ul>
-<h3 id="定义默认参数"><a href="#定义默认参数" class="headerlink" title="定义默认参数"></a>定义默认参数</h3><ul>
-<li><p>定义默认参数我们也可以不传递定义了默认值的参数</p>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age:<span class="hljs-built_in">number</span>=12</span>):<span class="hljs-title">void</span> </span>&#123;</span><br><span class="line">age? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span>): <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>---年龄保密`</span>)</span><br><span class="line">&#125;</span><br><span class="line">getinfo(<span class="hljs-string">'张三'</span>)  <span class="hljs-comment">//输出 张三 12</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:<span class="hljs-built_in">string</span>,age:<span class="hljs-built_in">number</span>=12</span>):<span class="hljs-title">void</span> </span>&#123;</span><br><span class="line">age? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>----<span class="hljs-subst">$&#123;age&#125;</span>`</span>): <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>---年龄保密`</span>)</span><br><span class="line">&#125;</span><br><span class="line">getinfo(<span class="hljs-string">'张三'</span>,<span class="hljs-number">45</span>) <span class="hljs-comment">//输出 张三 45</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>总结：</p>
+<h2 id="初识Angular"><a href="#初识Angular" class="headerlink" title="初识Angular"></a>初识Angular</h2><blockquote>
+<p>Angular是一款来自谷歌的开源web框架，诞生于2009年，是一款优秀的JS框架，由Misko Hevery等人创建，后被Google收购</p>
 <ul>
-<li>如果我们在形参中定义了默认的值的时候，你调用函数时可以不传递这个设有默认值的参数，他会使用默认值输出</li>
-<li>如果我们在形参中定义了默认的值的时候，你调用函数时传递这个设有默认值的参数，他会使用你传递的值作为输出</li>
+<li>根据项目统计angular是现在网上使用量最大的框架</li>
 </ul>
-</li>
-</ul>
-<hr>
-<h3 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h3><ul>
-<li><p>当我们想要计算多个参数的值时，如下定义每一个参数会显得非常麻烦，所以我们需要换一种方式来解决这个累赘的定义</p>
-<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> <span class="hljs-built_in">sum</span>(a:<span class="hljs-keyword">number</span>,b:<span class="hljs-keyword">number</span>,c:<span class="hljs-keyword">number</span>,d:<span class="hljs-keyword">number</span>):<span class="hljs-keyword">number</span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> a+b+c+d</span><br><span class="line">&#125;</span><br><span class="line">var sun  = <span class="hljs-built_in">sum</span>(<span class="hljs-number">6</span>,<span class="hljs-number">10</span>,<span class="hljs-number">12</span>,<span class="hljs-number">14</span>)</span><br><span class="line">console.<span class="hljs-built_in">log</span>(sun);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 ES6 中的三点运算符</p>
-<figure class="highlight actionscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span><span class="hljs-params">(a:number,b:number,<span class="hljs-rest_arg">...result</span>:number[])</span>:number</span>&#123;</span><br><span class="line"><span class="hljs-keyword">var</span> sum =a+b</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">        sum+=result[i]</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> add = sum(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)</span><br><span class="line">console.log(add);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这样就不会有太多的重复代码</p>
-</li>
-</ul>
-<hr>
-<h3 id="ts-函数重载"><a href="#ts-函数重载" class="headerlink" title="ts 函数重载"></a>ts 函数重载</h3><ul>
-<li><p>拓展：</p>
-<ul>
-<li>java 中方法的重载：重载指的是两个或者两个以上同名函数，但是它们的参数不一样，这时候会出现重载的情况</li>
-<li>typescript 中的重载：通过为同一个函数提供多个函数类型定义来实现多种功能的目的</li>
-<li>ts 中为了兼容 ES5 以及 ES6，重载的写法与 Java 有所区别</li>
-</ul>
-<figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-comment">&lt;!--在ES5中，如果出现了同名的方法，下面的会替换掉上面的--&gt;</span></span></span><br><span class="line"><span class="hljs-xml">function a() </span><span class="hljs-template-variable">&#123;</span></span><br><span class="line"><span class="hljs-template-variable">console.log('a')</span></span><br><span class="line"><span class="hljs-template-variable">&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">function a() </span><span class="hljs-template-variable">&#123;</span></span><br><span class="line"><span class="hljs-template-variable">    console.log('b')</span></span><br><span class="line"><span class="hljs-template-variable">&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">a()  //输出 b</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例 1：</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">age:number</span>):<span class="hljs-title">number</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:string</span>):<span class="hljs-title">string</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">str:any</span>):<span class="hljs-title">any</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> str ===<span class="hljs-string">'string'</span>)&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">`我是:<span class="hljs-subst">$&#123;str&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">`我今年 <span class="hljs-subst">$&#123;str&#125;</span>岁`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getinfo(<span class="hljs-string">'张三'</span>)) <span class="hljs-comment">//我是张三</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">age:number</span>):<span class="hljs-title">number</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name:string</span>):<span class="hljs-title">string</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">str:any</span>):<span class="hljs-title">any</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> str ===<span class="hljs-string">'string'</span>)&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">`我是:<span class="hljs-subst">$&#123;str&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">`我今年 <span class="hljs-subst">$&#123;str&#125;</span>岁`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getinfo(<span class="hljs-number">18</span>)) <span class="hljs-comment">//我今年18岁</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例 1 中，前面两个函数才是作为运行的方法，最后这个函数是判断调用哪个函数，判断的依据就是你传入的参数的数据类型和哪个方法中的形参的数据类型一致，那么他就调用哪个，如果传入的实参数据类型没有定义则报错</p>
-</li>
-<li><p>示例 2:</p>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age?: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">any</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">if</span> (age) &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">`我叫<span class="hljs-subst">$&#123;name&#125;</span>，我今年：<span class="hljs-subst">$&#123;age&#125;</span>岁`</span>;</span><br><span class="line">  &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">`我叫:<span class="hljs-subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getinfo(<span class="hljs-string">"张三"</span>)) <span class="hljs-comment">//张三</span></span><br><span class="line"><span class="hljs-comment">// getinfo(12) //报错，因为name是string ，只能在第二个参数传入number型数据</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(getinfo(<span class="hljs-string">"张三"</span>, <span class="hljs-number">12</span>)); <span class="hljs-comment">//我叫张三，我今年12岁</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例 2 中，我们定义了一个可选参数，当我们只有一个参数时他就调用第一个方法，如果有两个参数时，调用第二个方法</p>
-</li>
-</ul>
-<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><ul>
-<li>在 ES6 中，箭头函数的 this 指向的是上下文,但是在 ts 编译中采用的是严格模式，严格模式中禁止函数中的 this 指向 window<br><code>setTimeout(() =&gt; { console.log(&quot;run&quot;); }, 3000)</code><blockquote>
-<p>以上就是我在学习中总结的一些关于函数的相关知识。</p>
 </blockquote>
-</li>
+<h3 id="Angular适用的场景"><a href="#Angular适用的场景" class="headerlink" title="Angular适用的场景"></a>Angular适用的场景</h3><ul>
+<li>Angular基于Typescript和React、Vue相比，更适合中大型企业级项目<h3 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h3></li>
+<li>需要安装Nodejs，这个是框架开发必备的环境了，就不多说了-&gt;<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs官网</a></li>
+<li>由于国内网络问题，尽量使用<code>cnpm</code>淘宝镜像</li>
+<li>安装Angular脚手架<code>cnpm i -g @angular/cli</code></li>
+<li>查看是否安装成功<code>ng v</code></li>
+<li>创建angular项目:例如创建以一个名为my-app的项目：<code>ng new my-app</code>,你也可以使用<code>ng new my-app --skip-install</code>跳过npm安装</li>
+<li>安装完之后会问你是否需要路由，可以按需选择，然后选择预处理器<code>LESS</code>和<code>SCSS</code>，也可以不选，直接选择<code>CSS</code>,选择后回车</li>
+<li>这个时候如果使用<code>ng new my-app</code>会自动安装依赖，我们直接Ctrl+C停止，因为npm安装容易被墙安装失败，我们使用<code>cnpm i</code>即可安装，当然，如果你的电脑安装了<code>yarn</code>也可以直接使用<code>yarn</code>命令进行安装，如果使用<code>ng new my-app --skip-install</code>，则直接使用<code>cnpm i</code></li>
+<li>安装完毕之后<code>cd my-app</code>使用<code>ng serve --open</code>即可打开这个项目</li>
+<li>使用cnpm安装：<br><img src="https://s2.ax1x.com/2019/07/22/eCcReJ.jpg" alt="cnpm"></li>
+<li>使用yarn安装:<br><img src="https://s2.ax1x.com/2019/07/22/eCcNLQ.jpg" alt="yarn"></li>
+<li>启动项目<br><img src="https://s2.ax1x.com/2019/07/22/eCctsg.jpg" alt="启动"><br><img src="https://s2.ax1x.com/2019/07/22/eCcSr4.jpg" alt="启动完成"></li>
+<li><strong>注意</strong>：IE版本较低的浏览器不支持，如果默认是IE浏览器可以修改默认浏览器或者黏贴网址到其他浏览器打开<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4></li>
+<li>有时候我们经常因为依赖包安装出错导致项目不能运行，这个时候需要删除<code>node_modules</code>，如果直接删除因为目录层级太深，需要好久，在这里我们只需要使用如下步骤即可超快删除</li>
+<li>安装<code>cnpm install rimraf -g</code></li>
+<li>使用：cd到你要删除的文件夹运行<code>rimraf 你要删除的文件或者文件夹</code></li>
+<li>当然这个包功能还是很强大的,可以去官网查看其他用途 -&gt; <a href="https://www.npmjs.com/package/rimraf" target="_blank" rel="noopener">rimraf</a><h3 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h3></li>
+<li>在src下的app创建一个文件夹名为components的news组件<code>ng g componet components/news</code>，如果不指定文件夹，就会创建到app根目录下</li>
+<li>使用命令行创建它自动会关联组件，使用的时候只需要在根组件放置对应的标签即可，标签名在组件种的<code>组件名.component.ts</code>中的<code>selector</code>属性值，内容就是<code>组件名.component.html</code>中的内容</li>
+<li>找到app根目录下的<code>app.component.html</code>，以标签形式放置<code>selector</code>的属性值即可展示对应组件的内容</li>
 </ul>
 
 
@@ -360,7 +288,7 @@
         <div class="copyright-left">
             <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
             <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
-            https://zhongyuehui.github.io/2019/07/08/TypeScript中的函数/index.html <br>
+            https://zhongyuehui.github.io/2019/07/22/初识Angular/index.html <br>
         </div>
         <div style="clear:both;height:0px;"></div>
     </div>
@@ -372,7 +300,7 @@
                                 <div class="level-start">
                                     <div class="level-item">
                                         <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                        <a class="has-link-grey -link" href="/tags/TypeScript/">TypeScript</a>
+                                        <a class="has-link-grey -link" href="/tags/Angular/">Angular</a>
                                     </div>
                                 </div>
                             </div>
@@ -421,16 +349,16 @@
                     <div class="level post-navigation is-flex-wrap is-mobile">
                         
                             <div class="level-start">
-                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/08/TypeScript中的类/">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/23/Angular的服务以及数据的持久化存储/">
                                     <i class="level-item fas fa-chevron-left"></i>
-                                    <span class="level-item">TypeScript中的类</span>
+                                    <span class="level-item">Angular的服务以及数据的持久化存储</span>
                                 </a>
                             </div>
                             
                                 
                                     <div class="level-end">
-                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/07/TypeScript中的数据类型/">
-                                            <span class="level-item">TypeScript中的数据类型</span>
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/16/React中绑定this并传参的几种方式/">
+                                            <span class="level-item">React中绑定this并传参的几种方式</span>
                                             <i class="level-item fas fa-chevron-right"></i>
                                         </a>
                                     </div>
@@ -464,50 +392,26 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Typescript-中的函数">
+        <a class="is-flex" href="#初识Angular">
         <span class="has-mr-6">1</span>
-        <span>Typescript 中的函数</span>
+        <span>初识Angular</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#TypeScript-中定义函数">
+        <a class="is-flex" href="#Angular适用的场景">
         <span class="has-mr-6">1.1</span>
-        <span>TypeScript 中定义函数</span>
+        <span>Angular适用的场景</span>
+        </a></li><li>
+        <a class="is-flex" href="#环境搭建步骤">
+        <span class="has-mr-6">1.2</span>
+        <span>环境搭建步骤</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#ES5-中定义函数的方式">
-        <span class="has-mr-6">1.1.1</span>
-        <span>ES5 中定义函数的方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#ts-中的定义函数的方式">
-        <span class="has-mr-6">1.1.2</span>
-        <span>ts 中的定义函数的方式</span>
-        </a></li><li>
-        <a class="is-flex" href="#ts-中传递参数">
-        <span class="has-mr-6">1.1.3</span>
-        <span>ts 中传递参数</span>
-        </a></li><li>
-        <a class="is-flex" href="#定义没有返回值的方法">
-        <span class="has-mr-6">1.1.4</span>
-        <span>定义没有返回值的方法</span>
-        </a></li><li>
-        <a class="is-flex" href="#定义可选参数">
-        <span class="has-mr-6">1.1.5</span>
-        <span>定义可选参数</span>
-        </a></li><li>
-        <a class="is-flex" href="#定义默认参数">
-        <span class="has-mr-6">1.1.6</span>
-        <span>定义默认参数</span>
-        </a></li><li>
-        <a class="is-flex" href="#剩余参数">
-        <span class="has-mr-6">1.1.7</span>
-        <span>剩余参数</span>
-        </a></li><li>
-        <a class="is-flex" href="#ts-函数重载">
-        <span class="has-mr-6">1.1.8</span>
-        <span>ts 函数重载</span>
-        </a></li><li>
-        <a class="is-flex" href="#箭头函数">
-        <span class="has-mr-6">1.1.9</span>
-        <span>箭头函数</span>
-        </a></li></ul></li></ul></li></ul>
+        <a class="is-flex" href="#补充：">
+        <span class="has-mr-6">1.2.1</span>
+        <span>补充：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建组件">
+        <span class="has-mr-6">1.3</span>
+        <span>创建组件</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
@@ -984,7 +888,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="TypeScript中的函数" height="28">
+                                <img src="/images/mylogo.png" alt="初识Angular" height="28">
                                 
                 </a>
                 <p class="is-size-7">

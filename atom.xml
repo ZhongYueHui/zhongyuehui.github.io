@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhongyuehui.github.io/"/>
-  <updated>2019-07-23T14:05:38.289Z</updated>
+  <updated>2019-07-23T14:27:32.263Z</updated>
   <id>https://zhongyuehui.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ES6的fetch的使用</title>
+    <link href="https://zhongyuehui.github.io/2019/07/23/ES6%E7%9A%84fetch%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://zhongyuehui.github.io/2019/07/23/ES6的fetch的使用/</id>
+    <published>2019-07-23T14:22:19.000Z</published>
+    <updated>2019-07-23T14:27:32.263Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。</p></blockquote><p>&lt;!-- more --&gt;</p><h2>fetch 的使用</h2><ul><li>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</li><li>fetch API 是基于 promise 封装的 API</li></ul><h3>使用</h3><ul><li><p>fetch 的使用:<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p></li><li><p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p></li><li><p>但是我们可以调用 response.json()得到一个新的 promise<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p></li><li><p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;lt;!-- more --&amp;gt;&lt;/p&gt;
+&lt;h2&gt;fetch 的使用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li
+      
+    
+    </summary>
+    
+      <category term="ES6" scheme="https://zhongyuehui.github.io/categories/ES6/"/>
+    
+    
+      <category term="ES6" scheme="https://zhongyuehui.github.io/tags/ES6/"/>
+    
+  </entry>
   
   <entry>
     <title>Angular的服务以及数据的持久化存储</title>
@@ -41,11 +72,11 @@
   </entry>
   
   <entry>
-    <title>初始Angular</title>
-    <link href="https://zhongyuehui.github.io/2019/07/22/%E5%88%9D%E5%A7%8BAngular/"/>
-    <id>https://zhongyuehui.github.io/2019/07/22/初始Angular/</id>
+    <title>初识Angular</title>
+    <link href="https://zhongyuehui.github.io/2019/07/22/%E5%88%9D%E8%AF%86Angular/"/>
+    <id>https://zhongyuehui.github.io/2019/07/22/初识Angular/</id>
     <published>2019-07-22T03:01:27.000Z</published>
-    <updated>2019-07-22T03:09:52.336Z</updated>
+    <updated>2019-07-23T14:24:39.153Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势</p></blockquote><a id="more"></a><h2 id="初识Angular"><a href="#初识Angular" class="headerlink" title="初识Angular"></a>初识Angular</h2><blockquote><p>Angular是一款来自谷歌的开源web框架，诞生于2009年，是一款优秀的JS框架，由Misko Hevery等人创建，后被Google收购</p><ul><li>根据项目统计angular是现在网上使用量最大的框架</li></ul></blockquote><h3 id="Angular适用的场景"><a href="#Angular适用的场景" class="headerlink" title="Angular适用的场景"></a>Angular适用的场景</h3><ul><li>Angular基于Typescript和React、Vue相比，更适合中大型企业级项目<h3 id="环境搭建步骤"><a href="#环境搭建步骤" class="headerlink" title="环境搭建步骤"></a>环境搭建步骤</h3></li><li>需要安装Nodejs，这个是框架开发必备的环境了，就不多说了-&gt;<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs官网</a></li><li>由于国内网络问题，尽量使用<code>cnpm</code>淘宝镜像</li><li>安装Angular脚手架<code>cnpm i -g @angular/cli</code></li><li>查看是否安装成功<code>ng v</code></li><li>创建angular项目:例如创建以一个名为my-app的项目：<code>ng new my-app</code>,你也可以使用<code>ng new my-app --skip-install</code>跳过npm安装</li><li>安装完之后会问你是否需要路由，可以按需选择，然后选择预处理器<code>LESS</code>和<code>SCSS</code>，也可以不选，直接选择<code>CSS</code>,选择后回车</li><li>这个时候如果使用<code>ng new my-app</code>会自动安装依赖，我们直接Ctrl+C停止，因为npm安装容易被墙安装失败，我们使用<code>cnpm i</code>即可安装，当然，如果你的电脑安装了<code>yarn</code>也可以直接使用<code>yarn</code>命令进行安装，如果使用<code>ng new my-app --skip-install</code>，则直接使用<code>cnpm i</code></li><li>安装完毕之后<code>cd my-app</code>使用<code>ng serve --open</code>即可打开这个项目</li><li>使用cnpm安装：<br><img src="https://s2.ax1x.com/2019/07/22/eCcReJ.jpg" alt="cnpm"></li><li>使用yarn安装:<br><img src="https://s2.ax1x.com/2019/07/22/eCcNLQ.jpg" alt="yarn"></li><li>启动项目<br><img src="https://s2.ax1x.com/2019/07/22/eCctsg.jpg" alt="启动"><br><img src="https://s2.ax1x.com/2019/07/22/eCcSr4.jpg" alt="启动完成"></li><li><strong>注意</strong>：IE版本较低的浏览器不支持，如果默认是IE浏览器可以修改默认浏览器或者黏贴网址到其他浏览器打开<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4></li><li>有时候我们经常因为依赖包安装出错导致项目不能运行，这个时候需要删除<code>node_modules</code>，如果直接删除因为目录层级太深，需要好久，在这里我们只需要使用如下步骤即可超快删除</li><li>安装<code>cnpm install rimraf -g</code></li><li>使用：cd到你要删除的文件夹运行<code>rimraf 你要删除的文件或者文件夹</code></li><li>当然这个包功能还是很强大的,可以去官网查看其他用途 -&gt; <a href="https://www.npmjs.com/package/rimraf" target="_blank" rel="noopener">rimraf</a><h3 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h3></li><li>在src下的app创建一个文件夹名为components的news组件<code>ng g componet components/news</code>，如果不指定文件夹，就会创建到app根目录下</li><li>使用命令行创建它自动会关联组件，使用的时候只需要在根组件放置对应的标签即可，标签名在组件种的<code>组件名.component.ts</code>中的<code>selector</code>属性值，内容就是<code>组件名.component.html</code>中的内容</li><li>找到app根目录下的<code>app.component.html</code>，以标签形式放置<code>selector</code>的属性值即可展示对应组件的内容</li></ul>]]></content>
     
@@ -470,30 +501,6 @@
     
     
       <category term="Vue" scheme="https://zhongyuehui.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>webpack打包图片</title>
-    <link href="https://zhongyuehui.github.io/2019/06/22/webpack%E6%89%93%E5%8C%85%E5%9B%BE%E7%89%87/"/>
-    <id>https://zhongyuehui.github.io/2019/06/22/webpack打包图片/</id>
-    <published>2019-06-22T12:15:21.000Z</published>
-    <updated>2019-07-09T11:20:00.118Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤</p></blockquote><a id="more"></a> <hr><h3 id="使用webpack打包图片"><a href="#使用webpack打包图片" class="headerlink" title="使用webpack打包图片"></a>使用webpack打包图片</h3><hr><ul><li><p>在平常中，我们在设置style中使用<code>background:url</code> 可以引入背景图片，在前面我们已经学会如何打包<code>css、less、scss</code>文件</p></li><li><p>安装<code>url-loader</code>和其依赖<code>file-loader</code></p></li><li><p><code>cnpm install url-loader file-loader -D</code></p></li><li><p>使用<code>file-loader</code>进行图片的打包</p></li><li><p>在webpack.config.js中配置，在与其他配置下添加如下即可</p></li><li>  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.jpg|png|gif|bmp|jpeg/, //配置图片</span><br><span class="line">            use: [<span class="hljs-string">'file-loader'</span>]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li><li><p>可以简写成如下：</p>  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: <span class="hljs-string">'file-loader'</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li><li><p>如果想要打包出来的图片不改变名字和格式，只需添加<code>options</code>即可</p><pre><code><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片打包的格式</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'file-loader'</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123; <span class="hljs-comment">//[name]表示名字,[ext]表示格式，而name属性其实就是图片打包后的路径</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'images/[name].[ext]'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></code></pre></li><li><p>除了使用file-loader对图片进行打包处理外，我们同样也可以使用url-loader代替，另外我们还可以对小于某个大小的图片进行base64格式的转化处理。</p></li><li><p>使用<code>url-loader</code>打包</p><figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(<span class="hljs-name">png</span>|jpg|gif|svg)$/,</span><br><span class="line">    loader: 'url-loader',</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: './images/[name].[ext]',</span><br><span class="line">        limit: <span class="hljs-number">8192</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>这里limit属性的作用就是将小于8192B（8.192K）大小的图片转成base64格式，而大于这个大小的图片将会以file-loader的方式进行打包处理</p></li><li><p><strong>注意</strong>：如果不写limit属性，那么url-loader就会默认将所有图片转成base64</p></li><li><p>这样打包出来的图片会自动转换成<code>base64</code>,但是我们多数是将小图片转成base64，而大图片不进行转换</p></li><li><p>而对于有些图片在不同路径下，但是文件名字一样时，我们需要在<code>name:</code>属性中增加<code>hash</code>值：定义[hash:8]定义 8位hash值最多32位，这样图片就不会存在不同</p>  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'url-loader'</span>, <span class="hljs-comment">//在这里时，只有一个我们可以简化 loader，使用use则会报错</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123;</span><br><span class="line">                <span class="hljs-attribute">limit</span>: <span class="hljs-number">2000</span>, <span class="hljs-comment">//limit 的值单位是 Byte ，如果图片小于limit的值，则转成base64格式的字符串，如果大于，则不转</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'[hash:8]-[name].[ext]'</span> <span class="hljs-comment">//这是将文件名原样输出[name]指的是图片名，[ext]是图片格式，</span></span><br><span class="line">                    <span class="hljs-comment">//[hash:8]表示生成8位hash值，否则在不同文件夹下同名图片会失效，用来区分</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Vue" scheme="https://zhongyuehui.github.io/categories/Vue/"/>
-    
-    
-      <category term="webpack" scheme="https://zhongyuehui.github.io/tags/webpack/"/>
     
   </entry>
   
