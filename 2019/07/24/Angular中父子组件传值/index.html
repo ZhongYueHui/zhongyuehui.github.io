@@ -5,26 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    TypeScript对类型、接口、类、泛型的综合运用 - Just for fun
+    Angular中父子组件传值 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="定义一个操作数据库的类">
-<meta name="keywords" content="TypeScript">
+        <meta name="description" content="之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值">
+<meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TypeScript对类型、接口、类、泛型的综合运用">
-<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/index.html">
+<meta property="og:title" content="Angular中父子组件传值">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/07/24/Angular中父子组件传值/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="定义一个操作数据库的类">
+<meta property="og:description" content="之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
-<meta property="og:updated_time" content="2019-07-12T02:48:11.896Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
+<meta property="og:updated_time" content="2019-07-24T14:34:21.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TypeScript对类型、接口、类、泛型的综合运用">
-<meta name="twitter:description" content="定义一个操作数据库的类">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg">
+<meta name="twitter:title" content="Angular中父子组件传值">
+<meta name="twitter:description" content="之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
 
@@ -32,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="TypeScript对类型、接口、类、泛型的综合运用" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="Angular中父子组件传值" type="application/atom+xml">
                             
 
                                 
@@ -115,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="TypeScript对类型、接口、类、泛型的综合运用" height="28">
+                <img src="/images/mylogo.png" alt="Angular中父子组件传值" height="28">
             
             </a>
         </div>
@@ -206,7 +206,7 @@
     
         <div class="card-image">
             <span class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript对类型、接口、类、泛型的综合运用">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="Angular中父子组件传值">
                 </span>
         </div>
         
@@ -214,17 +214,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-09T11:01:11.000Z">2019-07-09</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-24T14:28:21.000Z">2019-07-24</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
+                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 607 个字)
+                    11 分钟 读完 (大约 1711 个字)
                 </span>
                                         
                                             
@@ -233,19 +233,124 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                    TypeScript对类型、接口、类、泛型的综合运用
+                                    Angular中父子组件传值
                                         
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>定义一个操作数据库的类</p>
+<p>之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Typescript对类型、接口、类、泛型的综合使用"><a href="#Typescript对类型、接口、类、泛型的综合使用" class="headerlink" title="Typescript对类型、接口、类、泛型的综合使用"></a>Typescript对类型、接口、类、泛型的综合使用</h2><ul>
-<li><p>综合使用</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//定义一个操作mysql数据库的类</span></span><br><span class="line"><span class="hljs-comment">//注意：如果需要实现泛型接口时，那么这个实现泛型接口的类也需要是一个泛型类</span></span><br><span class="line"><span class="hljs-keyword">class</span> Mysqldb&lt;T&gt; <span class="hljs-keyword">implements</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-comment">// console.log("这里可以建立和数据库的连接");</span></span><br><span class="line">  &#125;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//添加数据，这里可以进行对数据库的增加操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//根据id更新数据，对数据库进行更新操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//根据id删除数据，对数据库进行删除操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[] &#123; <span class="hljs-comment">//根据id 得到数据，对数据库进行查找操作</span></span><br><span class="line">   <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">let</span> lits:<span class="hljs-built_in">any</span>[]=[]</span><br><span class="line">    <span class="hljs-keyword">return</span> lits</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//定义操作mssql数据库的类</span></span><br><span class="line"><span class="hljs-keyword">class</span> MssqlDB&lt;T&gt; <span class="hljs-keyword">implements</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-comment">// console.log("这里可以建立和数据库的连接");</span></span><br><span class="line">  &#125;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123; </span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info, id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[] &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">let</span> lits:<span class="hljs-built_in">any</span>[]=[]</span><br><span class="line">    <span class="hljs-keyword">return</span> lits</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//定义一个User数据表做数据库的映射</span></span><br><span class="line"><span class="hljs-keyword">class</span> User &#123;</span><br><span class="line">  username: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  password: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">params: &#123;</span></span><br><span class="line"><span class="hljs-params">    <span class="hljs-comment">//使用构造函数传值</span></span></span><br><span class="line"><span class="hljs-params">    username: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    password: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.password = params.password;</span><br><span class="line">    <span class="hljs-keyword">this</span>.username = params.username;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//往数据表添加数据</span></span><br><span class="line"><span class="hljs-keyword">let</span> u = <span class="hljs-keyword">new</span> User(&#123;</span><br><span class="line">  username: <span class="hljs-string">"张三"</span>,</span><br><span class="line">  password: <span class="hljs-string">"123aaa"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//操作mysql</span></span><br><span class="line"><span class="hljs-comment">// let mysql = new Mysqldb(); //如果此时没有使用定义的user作为限制，add()中参数可以是任意值，没有做类型的校验</span></span><br><span class="line"><span class="hljs-comment">// mysql.add('aaa');</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> mysql = <span class="hljs-keyword">new</span> Mysqldb&lt;User&gt;(); <span class="hljs-comment">//此时使用User类作为限制类型，那么在实例化后的add中我们只能传入User类</span></span><br><span class="line">mysql.add(u); <span class="hljs-comment">//User &#123; password: '123aaa', username: '张三' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> m = <span class="hljs-keyword">new</span> User(&#123;</span><br><span class="line">  username: <span class="hljs-string">"李四"</span>,</span><br><span class="line">  password: <span class="hljs-string">"lisi"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-comment">// 操作mssql</span></span><br><span class="line"><span class="hljs-keyword">let</span> mssql = <span class="hljs-keyword">new</span> MssqlDB&lt;User&gt;();</span><br><span class="line">mssql.add(m); <span class="hljs-comment">// User &#123; password: 'lisi', username: '李四' &#125;</span></span><br><span class="line">mssql.updata(m, <span class="hljs-number">12</span>); <span class="hljs-comment">//User &#123; password: 'lisi', username: '李四' &#125; 12</span></span><br></pre></td></tr></table></figure>
+<h1 id="Angular中父子组件之间的传值"><a href="#Angular中父子组件之间的传值" class="headerlink" title="Angular中父子组件之间的传值"></a>Angular中父子组件之间的传值</h1><h2 id="父子组件之间的传值"><a href="#父子组件之间的传值" class="headerlink" title="父子组件之间的传值"></a>父子组件之间的传值</h2><h3 id="父组件给子组件传值"><a href="#父组件给子组件传值" class="headerlink" title="父组件给子组件传值"></a>父组件给子组件传值</h3><ul>
+<li><p>父组件一般是挂载到app渲染的组件，子组件一般是被父组件使用的组件</p>
 </li>
-<li><p>这样我们定义一个数据库的，只需要调用对应的数据库进行数据操作，而且对不同的数据库都是兼容的。当然，这些代码还可以封装到模块里面去，每个数据库的类封装一个模块。这样我们调用的时候只需要引入模块即可进行增删改查的相关操作了。</p>
+<li><p>我们创建两个组件分别为父组件<strong>home</strong>和子组件<strong>header</strong>,将home组件挂载到app根组件中后，我们在home组件中想使用header组件为我们的home组件设置页面的header部分，但是内容是通过home传递过去的，代码如下</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> title: <span class="hljs-built_in">string</span> = <span class="hljs-string">'首页'</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  ngOnInit() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父组件的业务逻辑里面只需要在逻辑中定义一个要传递的数据即可</p>
+</li>
+<li><p>使用[<strong>要传递的属性名</strong>]=”<strong>要传递的属性值</strong>“,就可以将父组件的<code>title</code>传递给header组件</p>
+  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//home.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-header</span> [<span class="hljs-attr">title</span>]=<span class="hljs-string">"title"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是home组件<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这个时候，header组件需要接收一下home组件传过来的值。引入<code>{Input}</code>组件，定义<code>@input()装饰器</code>装饰器后面跟上传递过来的属性名就接收完成了，这个时候，我们就可以在<code>header.html</code>中直接使用了</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-header'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./header.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./header.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeaderComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-meta">@Input</span>() title: <span class="hljs-built_in">string</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight gauss hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.html</span></span><br><span class="line">&lt;<span class="hljs-built_in">header</span>&gt;&#123;&#123; <span class="hljs-built_in">title</span> &#125;&#125;&lt;/<span class="hljs-built_in">header</span>&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="父组件给子组件传递方法"><a href="#父组件给子组件传递方法" class="headerlink" title="父组件给子组件传递方法"></a>父组件给子组件传递方法</h4><ul>
+<li><p>其实传值和传递方法是一样的，我们在home父组件组件中定义一个<code>run</code>方法</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    console.log(<span class="hljs-string">'这是home组件的run方法'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将方法传递过去</p>
+  <figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [title]=<span class="hljs-string">"title"</span> [message]=<span class="hljs-string">"message"</span> [<span class="hljs-keyword">run</span>]=<span class="hljs-string">"run"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：传递方法的时候也不需要加<code>()</code>，否则会执行，只需要传递方法名就可以了</p>
+</li>
+<li><p>在header子组件中接收该方法，并创建一个点击事件调用该方法</p>
+  <figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"UseRun()"</span>&gt; 执行父组件的<span class="hljs-keyword">run</span>方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.ts</span></span><br><span class="line"><span class="hljs-meta">@Input()</span> run: any</span><br><span class="line"> </span><br><span class="line">UseRun() &#123;</span><br><span class="line"><span class="hljs-keyword">this</span>.run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><p>我们在执行的时候需要使用<code>()</code>表示执行这个方法，因为他传递过来的就是一个函数，这个时候我们点击这个button就可以执行home组件传递过来的方法了。</p>
+<h4 id="将整个父组件传递给子组件"><a href="#将整个父组件传递给子组件" class="headerlink" title="将整个父组件传递给子组件"></a>将整个父组件传递给子组件</h4></li>
+<li><p>如果需要传递的数据太多了，每一个我们都传递过去，一个是太繁琐了，对开发人员不友好，于是有了将整个父组件传递给子组件的功能</p>
+</li>
+<li><p>其实传递父组件给子组件和普通传值都是一样的，只需要传递一个<code>this</code>即可</p>
+  <figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [home]=<span class="hljs-string">"this"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样就把父组件整个对象传递过去了</p>
+</li>
+<li><p>接收也是和以前一样的</p>
+  <figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line">  @Input() home: any</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123; &#125;</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">getParMes</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    console.log(this.home.message)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">UseRun</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    this.home.postSonRun()</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用这中方式就避免了繁琐的传值。</p>
+<h3 id="父组件获取子组件的值-Viewchild"><a href="#父组件获取子组件的值-Viewchild" class="headerlink" title="父组件获取子组件的值(@Viewchild)"></a>父组件获取子组件的值(@Viewchild)</h3></li>
+<li><p>在DOM操作中，其实就已经说到了使用@Viewchild获取到子组件的整个DOM实例</p>
+</li>
+<li><p>我们创建一个news组件作为父组件，一个footer组件作为子组件</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>在这里我使用<code>ng compoent components/footer</code>时无法创建新组件了，我感到很不解，刚才还好好的，现在提示要带一些选项</p>
+</li>
+<li><p>经过查阅资料，使用<code>ng generate component components/footer</code>就解决了</p>
+</li>
+<li><p>子组件的定义属性和方法</p>
+  <figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"><span class="hljs-keyword">public</span> mes: <span class="hljs-keyword">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line"><span class="hljs-built_in">run</span>() &#123;</span><br><span class="line">console.log(<span class="hljs-string">'我是footer组件的run方法'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义标识</p>
+  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//news.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-footer</span> #<span class="hljs-attr">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-footer</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 定义footer，就像id一样作为标识 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>这是news组件<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"getSon()"</span>&gt;</span>获取子组件的数据和方法<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用子组件的方法和属性</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, ViewChild &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;  <span class="hljs-comment">//引入Viewchild</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'footer'</span>, &#123; <span class="hljs-keyword">static</span>: <span class="hljs-literal">false</span> &#125;) footer: <span class="hljs-built_in">any</span>  <span class="hljs-comment">//定义属性装饰器</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  getSon() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.footer.mes);  <span class="hljs-comment">//打印子组件的mes</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.footer.run()  <span class="hljs-comment">//调用父组件的run方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="子组件通过-Output触发父组件的方法并传值"><a href="#子组件通过-Output触发父组件的方法并传值" class="headerlink" title="子组件通过@Output触发父组件的方法并传值"></a>子组件通过@Output触发父组件的方法并传值</h3><ul>
+<li><p>子组件引入Output组件和EvenEmitter事件驱动</p>
+  <figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子组件实例化 EventEmitter</p>
+  <figure class="highlight aspectj hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们在footer子组件中定义一个button注册一个点击事件，向父组件发送数据</p>
+  <figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"postFa()"</span>&gt;给父组件传递方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后定义一下这个事件函数并传值</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-footer'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./footer.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./footer.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooterComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> mes: <span class="hljs-built_in">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line">  <span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  postFa() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.getFa.emit(<span class="hljs-keyword">this</span>.mes) <span class="hljs-comment">// 这个getFa就是实例化对象，所以我们接下来在父组件中需要使用它进行接收值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里表示传递了子组件中的<code>mes</code>属性给父组件</p>
+</li>
+<li><p>父组件接收子组件的值</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news.html</span></span><br><span class="line">&lt;app-<span class="hljs-selector-tag">footer</span> <span class="hljs-selector-id">#footer</span> (getFa)=<span class="hljs-string">"run($event)"</span>&gt;&lt;/app-footer&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在上面，<code>()</code>内表示的是子组件传递的那个实例化对象，并且需要使用父组件的run方法，而这个<code>$event</code>参数就是子组件传递的那个参数<code>this.mes</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>父组件接收子组件传递的值</p>
+  <figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-comment">//news.ts</span></span><br><span class="line"> <span class="hljs-keyword">run</span>(<span class="hljs-keyword">mes</span>) &#123;</span><br><span class="line"> console.log(<span class="hljs-string">'我是父组件的run'</span>)</span><br><span class="line"> console.log(<span class="hljs-keyword">mes</span>)  <span class="hljs-comment">//我是footer组件的message</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其实使用@output调用父组件的方法就是创建一个实例化对象，通过这个实例化对象传递参数，然后在子组件中通过 <code>(实例化对象)=&quot;需要调用的父组件方法名(子组件需要传递的参数)&quot;</code>，然后使用父组件的这个方法逻辑处理这个参数就完成了需求。</p>
+<h3 id="非父子组件之间的传值"><a href="#非父子组件之间的传值" class="headerlink" title="非父子组件之间的传值"></a>非父子组件之间的传值</h3></li>
+<li><p>使用localStorage来实现非父子组件之间的通讯</p>
+</li>
+<li><p>使用Angular提供的服务功能实现</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3></li>
+<li><p>使用<code>@Input()</code>–<code>[属性名]=&quot;要传递的值或方法&quot;</code>-可以通过属性传递的方式给子组件传值，可以传递方法、属性、甚至是整个父组件对象,只需要使用<code>@Input() 属性名:数据类型</code>就可以使用传递过来的值</p>
+</li>
+<li><p>使用<code>@VIewchild</code>–<code>#标识</code>-可以让父组件使用子组件的属性和方法，只需使用 <code>@Viewchild(&#39;标识名&#39;,{static:false}) 标识名:数据类型</code>,就可以使用(注意：第二个标识名相当于传递过来的标识名的赋值，可以任意起名字，以供后面使用)</p>
+</li>
+<li><p>使用<code>@Output</code>–<code>[驱动事件实例化对象]=&quot;要使用父组件的方法名(要传递给方法的参数)&quot;</code>可以使用父组件的方法并且传递参数</p>
+<blockquote>
+<p>以上就是Angular中的组件传值的一些知识了。</p>
+</blockquote>
 </li>
 </ul>
 
@@ -267,7 +372,7 @@
         <div class="copyright-left">
             <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
             <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
-            https://zhongyuehui.github.io/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/index.html <br>
+            https://zhongyuehui.github.io/2019/07/24/Angular中父子组件传值/index.html <br>
         </div>
         <div style="clear:both;height:0px;"></div>
     </div>
@@ -279,7 +384,7 @@
                                 <div class="level-start">
                                     <div class="level-item">
                                         <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                        <a class="has-link-grey -link" href="/tags/TypeScript/">TypeScript</a>
+                                        <a class="has-link-grey -link" href="/tags/Angular/">Angular</a>
                                     </div>
                                 </div>
                             </div>
@@ -328,16 +433,16 @@
                     <div class="level post-navigation is-flex-wrap is-mobile">
                         
                             <div class="level-start">
-                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/09/TypeScript中的模块以及命名空间/">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/24/Angular中的生命周期函数/">
                                     <i class="level-item fas fa-chevron-left"></i>
-                                    <span class="level-item">TypeScript中的模块以及命名空间</span>
+                                    <span class="level-item">Angular中的生命周期函数</span>
                                 </a>
                             </div>
                             
                                 
                                     <div class="level-end">
-                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/09/TypeScript中的泛型/">
-                                            <span class="level-item">TypeScript中的泛型</span>
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/23/ES6的fetch的使用/">
+                                            <span class="level-item">ES6的fetch的使用</span>
                                             <i class="level-item fas fa-chevron-right"></i>
                                         </a>
                                     </div>
@@ -371,10 +476,34 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Typescript对类型、接口、类、泛型的综合使用">
+        <a class="is-flex" href="#Angular中父子组件之间的传值">
         <span class="has-mr-6">1</span>
-        <span>Typescript对类型、接口、类、泛型的综合使用</span>
-        </a></li></ul>
+        <span>Angular中父子组件之间的传值</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#父子组件之间的传值">
+        <span class="has-mr-6">1.1</span>
+        <span>父子组件之间的传值</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#父组件给子组件传值">
+        <span class="has-mr-6">1.1.1</span>
+        <span>父组件给子组件传值</span>
+        </a></li><li>
+        <a class="is-flex" href="#父组件获取子组件的值-Viewchild">
+        <span class="has-mr-6">1.1.2</span>
+        <span>父组件获取子组件的值(@Viewchild)</span>
+        </a></li><li>
+        <a class="is-flex" href="#子组件通过-Output触发父组件的方法并传值">
+        <span class="has-mr-6">1.1.3</span>
+        <span>子组件通过@Output触发父组件的方法并传值</span>
+        </a></li><li>
+        <a class="is-flex" href="#非父子组件之间的传值">
+        <span class="has-mr-6">1.1.4</span>
+        <span>非父子组件之间的传值</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结：">
+        <span class="has-mr-6">1.1.5</span>
+        <span>总结：</span>
+        </a></li></ul></li></ul></li></ul>
         </div>
     </div>
 </div>
@@ -851,7 +980,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="TypeScript对类型、接口、类、泛型的综合运用" height="28">
+                                <img src="/images/mylogo.png" alt="Angular中父子组件传值" height="28">
                                 
                 </a>
                 <p class="is-size-7">
