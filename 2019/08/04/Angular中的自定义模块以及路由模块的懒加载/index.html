@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。">
+        <meta name="description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。  &amp;lt;!-- more --&amp;gt; Angular中的自定义模块以及路由模块的懒加载 为什么使用懒加载   如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载   创建一个自定义根模块modules 1ng g mo">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular中的自定义模块以及路由模块的懒加载">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Angular中的自定义模块以及路由模块的懒加载/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。">
+<meta property="og:description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。  &amp;lt;!-- more --&amp;gt; Angular中的自定义模块以及路由模块的懒加载 为什么使用懒加载   如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载   创建一个自定义根模块modules 1ng g mo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
 <meta property="og:updated_time" content="2019-08-04T08:53:11.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular中的自定义模块以及路由模块的懒加载">
-<meta name="twitter:description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。">
+<meta name="twitter:description" content="在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。  &amp;lt;!-- more --&amp;gt; Angular中的自定义模块以及路由模块的懒加载 为什么使用懒加载   如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载   创建一个自定义根模块modules 1ng g mo">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
@@ -240,51 +240,73 @@
                             <blockquote>
 <p>在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Angular中的自定义模块以及路由模块的懒加载"><a href="#Angular中的自定义模块以及路由模块的懒加载" class="headerlink" title="Angular中的自定义模块以及路由模块的懒加载"></a>Angular中的自定义模块以及路由模块的懒加载</h2><h3 id="为什么使用懒加载"><a href="#为什么使用懒加载" class="headerlink" title="为什么使用懒加载"></a>为什么使用懒加载</h3><ul>
-<li><p>如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的自定义模块以及路由模块的懒加载</h2>
+<h3>为什么使用懒加载</h3>
+<ul>
+<li>
+<p>如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载</p>
 </li>
-<li><p>创建一个自定义根模块<code>modules</code></p>
-  <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>创建一个自定义根模块<code>modules</code>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>在根模块下创建子模块并创建组件</p>
-  <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span>/user  --routing  <span class="hljs-comment">//创建模块的路由</span></span><br><span class="line">ng g component <span class="hljs-keyword">module</span>/user  <span class="hljs-comment">//创建模块的组件</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>在根模块下创建子模块并创建组件
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span>/user  --routing  <span class="hljs-comment">//创建模块的路由</span></span><br><span class="line">ng g component <span class="hljs-keyword">module</span>/user  <span class="hljs-comment">//创建模块的组件</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>再按照以上方式分别创建article、product模块的路由和组件</p>
-<h3 id="使用路由实现模块的懒加载"><a href="#使用路由实现模块的懒加载" class="headerlink" title="使用路由实现模块的懒加载"></a>使用路由实现模块的懒加载</h3></li>
-<li><p>在刚才创建的三个模块中，分别在自己的模块下面的<code>routing-module.ts</code>中引入以下,<code>path</code>为空表示你加载<code>user</code>模块的时候显示这个组件，，当然你想在<code>user</code>或其他模块中引入其他组件，你只需要添加以下路由规则就可以了</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//article模块</span></span><br><span class="line"><span class="hljs-comment">//在自己模块的路由中将自己的根组件加载进来</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ArticleComponent &#125; from <span class="hljs-string">'./article.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ArticleComponent</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//product模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//user模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UserComponent &#125; from <span class="hljs-string">'./user.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> UserComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<li>
+<p>再按照以上方式分别创建article、product模块的路由和组件</p>
 </li>
-<li><p>然后在<code>app.routing.module.ts</code>中配置懒加载路由,注意。此时并没有引入模块，而是直接加载，通过匹配到指定的路由，然后再加载该模块，实现懒加载</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'user'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/user/user.module#UserModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'product'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/product/product.module#ProductModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'article'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/article/article.module#ArticleModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'user'</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forRoot(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure>
+</ul>
+<h3>使用路由实现模块的懒加载</h3>
+<ul>
+<li>
+<p>在刚才创建的三个模块中，分别在自己的模块下面的<code>routing-module.ts</code>中引入以下,<code>path</code>为空表示你加载<code>user</code>模块的时候显示这个组件，，当然你想在<code>user</code>或其他模块中引入其他组件，你只需要添加以下路由规则就可以了
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//article模块</span></span><br><span class="line"><span class="hljs-comment">//在自己模块的路由中将自己的根组件加载进来</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ArticleComponent &#125; from <span class="hljs-string">'./article.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ArticleComponent</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//product模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//user模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UserComponent &#125; from <span class="hljs-string">'./user.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> UserComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>配置好后在<code>app.component.html</code>中定义路由链接</p>
-  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/user' ]"</span>&gt;</span>用户模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/article' ]"</span>&gt;</span>文章模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/product' ]"</span>&gt;</span>商品模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>然后在<code>app.routing.module.ts</code>中配置懒加载路由,注意。此时并没有引入模块，而是直接加载，通过匹配到指定的路由，然后再加载该模块，实现懒加载
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'user'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/user/user.module#UserModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'product'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/product/product.module#ProductModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'article'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/article/article.module#ArticleModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'user'</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forRoot(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就实现了路由的懒加载了，原理就是当你点击路由的链接时，他会在路由规则中寻找匹配的路由，匹配成功后就会去加载对应的路由模块，提升性能和加载速度</p>
-<h3 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h3></li>
-<li><p>在一般情况下，我们把功能一样或者类别一样的组件放在一个自定义的模块中，那么一个模块就有许多的子组件，我们来看一下自定义模块怎么配置子组件</p>
+<li>
+<p>配置好后在<code>app.component.html</code>中定义路由链接
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/user' ]"</span>&gt;</span>用户模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/article' ]"</span>&gt;</span>文章模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/product' ]"</span>&gt;</span>商品模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>以<code>product</code>模块为例，我们创建一下<code>cars</code>、<code>lists</code>组件</p>
+<li>
+<p>这样就实现了路由的懒加载了，原理就是当你点击路由的链接时，他会在路由规则中寻找匹配的路由，匹配成功后就会去加载对应的路由模块，提升性能和加载速度</p>
 </li>
-<li><p><code>ng g component modules/product/cars</code></p>
+</ul>
+<h3>组件嵌套</h3>
+<ul>
+<li>
+<p>在一般情况下，我们把功能一样或者类别一样的组件放在一个自定义的模块中，那么一个模块就有许多的子组件，我们来看一下自定义模块怎么配置子组件</p>
 </li>
-<li><p><code>ng g component modules/product/lists</code></p>
+<li>
+<p>以<code>product</code>模块为例，我们创建一下<code>cars</code>、<code>lists</code>组件</p>
 </li>
-<li><p>创建成功后在<code>product.routing.module.ts</code>引入并配置</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;,</span><br><span class="line">  <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p><code>ng g component modules/product/cars</code></p>
 </li>
-<li><p>配置完成后，我们就可以通过<code>/product/cars</code>或者<code>/product/lists</code>来访问这些子组件了，但是这样相当于和一开始引入的<code>ProductComponent</code>根组件形成了兄弟关系，他们只能有一个被挂载到<code>app</code>根组件中，他们并不能共存，如果需要共存，那么我们需要这样配置它</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent,</span><br><span class="line"><span class="hljs-symbol">    children:</span> [ <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p><code>ng g component modules/product/lists</code></p>
 </li>
-<li><p>这样配置还需要在根组件中的<code>product.component.html</code>引入路由容器来显示子组件</p>
-  <figure class="highlight apache hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">&lt;router-outlet&gt;</span><span class="hljs-section">&lt;/router-outlet&gt;</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>创建成功后在<code>product.routing.module.ts</code>引入并配置
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;,</span><br><span class="line">  <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就形成了父子组件的嵌套了</p>
+<li>
+<p>配置完成后，我们就可以通过<code>/product/cars</code>或者<code>/product/lists</code>来访问这些子组件了，但是这样相当于和一开始引入的<code>ProductComponent</code>根组件形成了兄弟关系，他们只能有一个被挂载到<code>app</code>根组件中，他们并不能共存，如果需要共存，那么我们需要这样配置它
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent,</span><br><span class="line"><span class="hljs-symbol">    children:</span> [ <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样配置还需要在根组件中的<code>product.component.html</code>引入路由容器来显示子组件
+<figure class="highlight apache hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">&lt;router-outlet&gt;</span><span class="hljs-section">&lt;/router-outlet&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就形成了父子组件的嵌套了</p>
 </li>
 </ul>
 
@@ -410,19 +432,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Angular中的自定义模块以及路由模块的懒加载">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Angular中的自定义模块以及路由模块的懒加载</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#为什么使用懒加载">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>为什么使用懒加载</span>
         </a></li><li>
-        <a class="is-flex" href="#使用路由实现模块的懒加载">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>使用路由实现模块的懒加载</span>
         </a></li><li>
-        <a class="is-flex" href="#组件嵌套">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>组件嵌套</span>
         </a></li></ul></li></ul>
@@ -722,14 +744,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Ionic/">
-            <span class="level-start">
-                <span class="level-item">Ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/MongoDB/">
             <span class="level-start">
                 <span class="level-item">MongoDB</span>
@@ -786,6 +800,14 @@
                 <span class="level-item tag">5</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -805,7 +827,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 11.43px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
     </div>
 </div>
 
@@ -836,13 +858,6 @@
                     <a class="tags has-addons" href="/tags/Express/">
                         <span class="tag">Express</span>
                         <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ionic/">
-                        <span class="tag">Ionic</span>
-                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -898,6 +913,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>

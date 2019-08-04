@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。">
+        <meta name="description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6的fetch的使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/07/23/ES6的fetch的使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。">
+<meta property="og:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
 <meta property="og:updated_time" content="2019-07-23T14:39:22.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6的fetch的使用">
-<meta name="twitter:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。">
+<meta name="twitter:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
             
 
@@ -240,21 +240,27 @@
                             <blockquote>
 <p>在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="fetch-的使用"><a href="#fetch-的使用" class="headerlink" title="fetch 的使用"></a>fetch 的使用</h2><ul>
+<p>&lt;!-- more --&gt;</p>
+<h2>fetch 的使用</h2>
+<ul>
 <li>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</li>
 <li>fetch API 是基于 promise 封装的 API</li>
 </ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li><p>fetch 的使用:</p>
-<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3>使用</h3>
+<ul>
+<li>
+<p>fetch 的使用:
+<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
+<li>
+<p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
 </li>
-<li><p>但是我们可以调用 response.json()得到一个新的 promise</p>
-<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li>
+<p>但是我们可以调用 response.json()得到一个新的 promise
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
+<li>
+<p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
 </li>
 </ul>
 
@@ -380,11 +386,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#fetch-的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>fetch 的使用</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>使用</span>
         </a></li></ul></li></ul>
@@ -684,14 +690,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Ionic/">
-            <span class="level-start">
-                <span class="level-item">Ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/MongoDB/">
             <span class="level-start">
                 <span class="level-item">MongoDB</span>
@@ -748,6 +746,14 @@
                 <span class="level-item tag">5</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -767,7 +773,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 11.43px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
     </div>
 </div>
 
@@ -798,13 +804,6 @@
                     <a class="tags has-addons" href="/tags/Express/">
                         <span class="tag">Express</span>
                         <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ionic/">
-                        <span class="tag">Ionic</span>
-                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -860,6 +859,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>

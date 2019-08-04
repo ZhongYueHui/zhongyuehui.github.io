@@ -248,22 +248,82 @@
                             <blockquote>
 <p>在很多公司中，模块的路由是经常使用的，因为可以提升性能，增加用户体验。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的自定义模块以及路由模块的懒加载</h2>
+<h3>为什么使用懒加载</h3>
+<ul>
+<li>
+<p>如果我们有上百个组件，在app把上百个组件都加载进来，那么响应速度会很慢，不利于用户的体验，但是在Angular中，为我们提供了解决办法，就是路由的懒加载</p>
+</li>
+<li>
+<p>创建一个自定义根模块<code>modules</code>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在根模块下创建子模块并创建组件
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span>/user  --routing  <span class="hljs-comment">//创建模块的路由</span></span><br><span class="line">ng g component <span class="hljs-keyword">module</span>/user  <span class="hljs-comment">//创建模块的组件</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>再按照以上方式分别创建article、product模块的路由和组件</p>
+</li>
+</ul>
+<h3>使用路由实现模块的懒加载</h3>
+<ul>
+<li>
+<p>在刚才创建的三个模块中，分别在自己的模块下面的<code>routing-module.ts</code>中引入以下,<code>path</code>为空表示你加载<code>user</code>模块的时候显示这个组件，，当然你想在<code>user</code>或其他模块中引入其他组件，你只需要添加以下路由规则就可以了
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//article模块</span></span><br><span class="line"><span class="hljs-comment">//在自己模块的路由中将自己的根组件加载进来</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ArticleComponent &#125; from <span class="hljs-string">'./article.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ArticleComponent</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//product模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//user模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UserComponent &#125; from <span class="hljs-string">'./user.component'</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> UserComponent &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>然后在<code>app.routing.module.ts</code>中配置懒加载路由,注意。此时并没有引入模块，而是直接加载，通过匹配到指定的路由，然后再加载该模块，实现懒加载
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'user'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/user/user.module#UserModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'product'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/product/product.module#ProductModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'article'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./modules/article/article.module#ArticleModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'user'</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forRoot(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>配置好后在<code>app.component.html</code>中定义路由链接
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/user' ]"</span>&gt;</span>用户模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/article' ]"</span>&gt;</span>文章模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/product' ]"</span>&gt;</span>商品模块<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就实现了路由的懒加载了，原理就是当你点击路由的链接时，他会在路由规则中寻找匹配的路由，匹配成功后就会去加载对应的路由模块，提升性能和加载速度</p>
+</li>
+</ul>
+<h3>组件嵌套</h3>
+<ul>
+<li>
+<p>在一般情况下，我们把功能一样或者类别一样的组件放在一个自定义的模块中，那么一个模块就有许多的子组件，我们来看一下自定义模块怎么配置子组件</p>
+</li>
+<li>
+<p>以<code>product</code>模块为例，我们创建一下<code>cars</code>、<code>lists</code>组件</p>
+</li>
+<li>
+<p><code>ng g component modules/product/cars</code></p>
+</li>
+<li>
+<p><code>ng g component modules/product/lists</code></p>
+</li>
+<li>
+<p>创建成功后在<code>product.routing.module.ts</code>引入并配置
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent &#125;,</span><br><span class="line">  <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>配置完成后，我们就可以通过<code>/product/cars</code>或者<code>/product/lists</code>来访问这些子组件了，但是这样相当于和一开始引入的<code>ProductComponent</code>根组件形成了兄弟关系，他们只能有一个被挂载到<code>app</code>根组件中，他们并不能共存，如果需要共存，那么我们需要这样配置它
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ProductComponent &#125; from <span class="hljs-string">'./product.component'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CarsComponent &#125; from <span class="hljs-string">'./cars/cars.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./lists/lists.component'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">component:</span> ProductComponent,</span><br><span class="line"><span class="hljs-symbol">    children:</span> [ <span class="hljs-comment">//配置子组件的路由</span></span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'cars'</span>, <span class="hljs-string">component:</span> CarsComponent &#125;,</span><br><span class="line">      &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forChild(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样配置还需要在根组件中的<code>product.component.html</code>引入路由容器来显示子组件
+<figure class="highlight apache hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">&lt;router-outlet&gt;</span><span class="hljs-section">&lt;/router-outlet&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就形成了父子组件的嵌套了</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中的自定义模块以及路由模块的懒加载/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -317,22 +377,69 @@
                             <blockquote>
 <p>Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的内置模块以及自定义模块</h2>
+<h3>内置模块</h3>
+<p><img src="https://s2.ax1x.com/2019/07/26/embnL6.jpg" alt="内置模块"></p>
+<ul>
+<li>模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入<code>forms</code>表单模块，需要发送数据请求就需要引入<code>http</code>模块</li>
+</ul>
+<h3>自定义模块</h3>
+<ul>
+<li>
+<p>使用<code>ng g module 模块名</code>创建模块</p>
+</li>
+<li>
+<p>创建模块后，在自定义的模块中创建组件的话，那么这个模块会自动引入这些创建的组件，如果你创建的组件名和路径与模块名一样，那么就会认为是创建这个模块的根组件</p>
+</li>
+<li>
+<p>在app根组件中，是不能直接使用自定义模块中的组件的，如果需要使用，需要在自定义模块的<code>module.ts</code>文件中，使用<code>exports</code>暴露要被其他模块是使用的组件
+<figure class="highlight accesslog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exports:<span class="hljs-string">[要暴露的组件名]</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样才能在其他模块中使用该组件，但是需要注意的是，使用之前先要在<code>app.module.ts</code>中引入自定义的模块，然后在<code>imports</code>中挂载这个模块，然后才能使用自定义的组件</p>
+</li>
+<li>
+<p>自定义下的模块下的组件之间可以相互访问，但是不同模块之间需要使用别的模块的组件必须要暴露出去，不然使用不了</p>
+</li>
+</ul>
+<h3>具体定义步骤</h3>
+<ul>
+<li>如果实际开发中建议将自定义的模块放在一个单独的<code>modules</code>文件夹中，但是这里我们就不做这个操作了</li>
+</ul>
+<ol>
+<li>
+<p>先创建模块
+<figure class="highlight crystal hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">use</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>创建模块根组件
+<figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在模块下创建一个组件
+<figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span>/userinfo</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在<code>use.module.ts</code>将<code>userinfo</code>组件暴露出去
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">@NgModule</span>(&#123;</span><br><span class="line">  <span class="hljs-attribute">declarations</span>: [UseComponent, UserinfoComponent],</span><br><span class="line">  <span class="hljs-attribute">imports</span>: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-attribute">exports</span>: [UseComponent] <span class="hljs-comment">//暴露组件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<p>5.在根组件<code>app.module.ts</code>中引入<code>use</code>模块并注入
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; BrowserModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppRoutingModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app-routing.module'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入自定义模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UseModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./use/use.module'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    UseModule  <span class="hljs-comment">//注入模块</span></span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>6.在根模块的根组件<code>app.component.html</code>中使用自定义模块的组件</p>
+<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-use</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-use</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li>这样就完成了自定义的模块的组件在其他模块中使用</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中的内置模块以及自定义模块/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -386,22 +493,35 @@
                             <blockquote>
 <p>Angular中的父子路由嵌套和Vue的相似，你如果学习了Vue的路由嵌套那么你也会Angular的路由嵌套。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中父子路由嵌套</h2>
+<h3>嵌套路由</h3>
+<ul>
+<li>
+<p>配置子路由
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.routing.html</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; from <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; HomeComponent &#125; from <span class="hljs-string">'./components/home/home.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; WelcomComponent &#125; from <span class="hljs-string">'./components/home/welcom/welcom.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; SettingComponent &#125; from <span class="hljs-string">'./components/home/setting/setting.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ShoppingComponent &#125; from <span class="hljs-string">'./components/shopping/shopping.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; PcateComponent &#125; from <span class="hljs-string">'./components/shopping/pcate/pcate.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListsComponent &#125; from <span class="hljs-string">'./components/shopping/lists/lists.component'</span>;</span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'home'</span>, <span class="hljs-string">component:</span> HomeComponent,</span><br><span class="line"><span class="hljs-symbol">  children:</span> [</span><br><span class="line">    &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'setting'</span>, <span class="hljs-string">component:</span> SettingComponent &#125;,</span><br><span class="line">    &#123;</span><br><span class="line"><span class="hljs-symbol">      path:</span> <span class="hljs-string">'welcome'</span>, <span class="hljs-string">component:</span> WelcomComponent</span><br><span class="line">    &#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">      path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'welcome'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'shopping'</span>, <span class="hljs-string">component:</span> ShoppingComponent,</span><br><span class="line"><span class="hljs-symbol">  children:</span> [&#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">'pcate'</span>, <span class="hljs-string">component:</span> PcateComponent,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">'lists'</span>, <span class="hljs-string">component:</span> ListsComponent</span><br><span class="line">  &#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">    path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'pcate'</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'home'</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@NgModule</span>(&#123;</span><br><span class="line"><span class="hljs-symbol">  imports:</span> [RouterModule.forRoot(routes)],</span><br><span class="line"><span class="hljs-symbol">  exports:</span> [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> &#123;</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在父组件中显示子路由，先在根组件中，设置各个父组件的路由
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.html</span></span><br><span class="line">&lt;header <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"header"</span>&gt;</span><br><span class="line">  &lt;a [routerLink]=<span class="hljs-string">"[ '/home' ]"</span> routerLinkActive=<span class="hljs-string">"active"</span>&gt;首页&lt;<span class="hljs-regexp">/a&gt;</span></span><br><span class="line"><span class="hljs-regexp">  &lt;a [routerLink]="[ '/shopping' ]" routerLinkActive="active"&gt;商城&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="hljs-regexp">/header&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;router-outlet&gt;&lt;/</span>router-outlet&gt;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//shopping.html</span></span><br><span class="line">&lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"container"</span>&gt;</span><br><span class="line">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"left"</span>&gt;</span><br><span class="line">    &lt;a [routerLink]=<span class="hljs-string">"[ '/shopping/pcate' ]"</span> routerLinkActive=<span class="hljs-string">"active"</span>&gt;商品分类&lt;<span class="hljs-regexp">/a&gt;</span></span><br><span class="line"><span class="hljs-regexp">    &lt;a [routerLink]="[ '/shopping/lists' ]" routerLinkActive="active"&gt;商品列表&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">&lt;div class="right"&gt;</span></span><br><span class="line"><span class="hljs-regexp">    &lt;router-outlet&gt;&lt;/</span>router-outlet&gt; <span class="hljs-comment">//选中路由展示区域</span></span><br><span class="line">&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;/</span>section&gt;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"container"</span>&gt;</span><br><span class="line">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"left"</span>&gt;</span><br><span class="line">    &lt;a [routerLink]=<span class="hljs-string">"[ '/home/welcome' ]"</span> routerLinkActive=<span class="hljs-string">"active"</span>&gt;欢迎&lt;<span class="hljs-regexp">/a&gt;</span></span><br><span class="line"><span class="hljs-regexp">    &lt;a [routerLink]="[ '/home/setting' ]" routerLinkActive="active"&gt;设置&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;div class="right"&gt;</span></span><br><span class="line"><span class="hljs-regexp">    &lt;router-outlet&gt;&lt;/</span>router-outlet&gt;</span><br><span class="line">&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">&lt;/</span>section&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在style.scss中设置全局样式
+<figure class="highlight scss hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* You can add global styles to this file, and also import other style files */</span></span><br><span class="line">* &#123;</span><br><span class="line">  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="line">  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;</span><br><span class="line">  <span class="hljs-attribute">display</span>: flex;</span><br><span class="line">  <span class="hljs-selector-class">.left</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;</span><br><span class="line">    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="line">    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid;</span><br><span class="line">    <span class="hljs-selector-tag">a</span> &#123;</span><br><span class="line">      <span class="hljs-attribute">display</span>: block;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-selector-class">.right</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.active</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就是实现了简单路由的嵌套与跳转</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中父子路由嵌套/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -455,22 +575,74 @@
                             <blockquote>
 <p>Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中路由传值</h2>
+<h3>get传值</h3>
+<ul>
+<li>
+<p>Angular中get传值，只需要在路由加入一项参数即可</p>
+</li>
+<li>
+<p>我们定义一个数组，里面放10条数据,然后循环这个数组
+<figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo"</span> [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">&#123;id:i&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;</span><span class="hljs-xml">&#125; ---</span><span class="hljs-template-variable">&#123;&#123; item&#125;</span><span class="hljs-xml">&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们将下标作为id传入，然后在组件中获取到传入的id，当然也可以在对象中传递多个参数
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条数据</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就获取到了这个传递的参数</p>
+</li>
+</ul>
+<h3>动态路由传值</h3>
+<ul>
+<li>
+<p>配置动态路由
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.routing.module.ts</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="hljs-attribute">path</span>: <span class="hljs-string">'newsinfo/:id'</span>, <span class="hljs-attribute">component</span>: NewsInfoComponent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>传值路由参数,两种方式，任选一种
+<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">// <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo/</span></span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/newsinfo', i ]"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>获取传递的值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.get传值获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">    <span class="hljs-comment">//动态路由获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.params.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>js跳转路由</h3>
+<h4>动态路由的js跳转</h4>
+<ul>
+<li>
+<p>引入：
+<figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> &#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>初始化
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> router: Router)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">goNews</span><span class="hljs-params">()</span><span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">// this.router.navigate(['/news', hero.id]);//如果是动态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">this.router.navigate(['/news']);  //静态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>get传值js跳转</h4>
+<ul>
+<li>
+<p>引入
+<figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> ,NavigationExtras&#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义一个goNewsInfo方法进行跳转并传参
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">goNewsContent()&#123;</span><br><span class="line">let <span class="hljs-string">navigationExtras:</span> NavigationExtras = &#123;</span><br><span class="line"><span class="hljs-string">queryParams:</span> &#123; <span class="hljs-string">'session_id'</span>: <span class="hljs-string">'123'</span> &#125;,</span><br><span class="line"><span class="hljs-string">fragment:</span> <span class="hljs-string">'anchor'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-keyword">this</span>.router.navigate([<span class="hljs-string">'/news'</span>],navigationExtras);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>获取get传值
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> route: ActivatedRoute)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">     console.log(this.route.queryParams);</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中路由传值/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -524,22 +696,40 @@
                             <blockquote>
 <p>在Angular中，路由与Vue非常相似。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的路由</h2>
+<h3>配置路由</h3>
+<ul>
+<li>
+<p>在<code>app-routing.module.ts</code>中引入需要配置路由的组件和配置路由
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入需要配置的组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NewsComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/news/news.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; HomeComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/home/home.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FooterComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/footer/footer.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> routes: Routes = [&#123;</span><br><span class="line">  path: <span class="hljs-string">'home'</span>, <span class="hljs-attr">component</span>: HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'news'</span>, <span class="hljs-attr">component</span>: NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'footer'</span>, <span class="hljs-attr">component</span>: FooterComponent</span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>点击路由跳转到对应的组件
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//app.html</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/home' ]"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  // <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/home"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> //这样也是可以的</span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/news' ]"</span>&gt;</span>新闻资讯<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/footer' ]"</span>&gt;</span>尾部<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这个时候已经实现了点击显示对应的组件了，但是我们会发现一进入页面默认是没有组件显示的，这样的话并不好，需要重定向路由</p>
+</li>
+<li>
+<p>Angular中使用<code>'**'</code>来表示没有匹配到路由后，使用<code>redirectTo</code>重定向，比如我们一打开页面要进入首页
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'home'</span>, <span class="hljs-string">component:</span> HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'news'</span>, <span class="hljs-string">component:</span> NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'footer'</span>, <span class="hljs-string">component:</span> FooterComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'home'</span></span><br><span class="line">&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就实现了重定向的功能</p>
+</li>
+</ul>
+<h4>选中路由高亮</h4>
+<ul>
+<li>我们希望路由选中时有高亮，在Angular中其实已经给我们提供了这个功能，和Vue非常相似，只需要在路由中加入<code>routerLinkActive=&quot;active&quot;</code>就可以了，我们可以自己设置<code>active</code>这个类的样式，达到自己想要的选中效果</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中的路由/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -593,22 +783,105 @@
                             <blockquote>
 <p>不论你使用什么技术，数据请求都是必不可少的，因为我们需要保持数据的同步和交互.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的数据请求</h2>
+<h3>使用angular自带的<code>HttpClient</code>请求数据</h3>
+<ul>
+<li>
+<p>要使用<code>HttpClient</code>，需要在<code>app.module.ts</code>中引入如下模块
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入HttpClientModule</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; HttpClientModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注入模块:
+<figure class="highlight dts hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-symbol">  imports:</span> [</span><br><span class="line">  BrowserModule,</span><br><span class="line">  HttpClientModule  <span class="hljs-comment">//注入HttpClientModule</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在需要使用http请求的组件中引入<code>HttpClient</code>
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入HttpClient模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; <span class="hljs-built_in">HttpClient</span> &#125; from <span class="hljs-string">'@angular/common/http'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在<code>constructor</code>初始化
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">public</span> http: HttpClient)</span> <span class="hljs-comment">&#123; &#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就可以同<code>http.get()</code>发送请求了</p>
+</li>
+</ul>
+<h3>发送get请求</h3>
+<ul>
+<li>
+<p>比如定义一个button按钮获取数据
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news.html</span></span><br><span class="line"></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">'getData()'</span>&gt;发送请求&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义事件函数
+<figure class="highlight roboconf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getData() &#123;</span><br><span class="line"><span class="hljs-attribute">let api = "http</span>://a<span class="hljs-variable">.itying</span><span class="hljs-variable">.com</span>/api/productlist"</span><br><span class="line">this<span class="hljs-variable">.http</span><span class="hljs-variable">.get</span>(api)</span><br><span class="line">  <span class="hljs-variable">.subscribe</span>(response =&gt; &#123;</span><br><span class="line">    console<span class="hljs-variable">.log</span>(response);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就完成了get请求并成功拿到数据</p>
+</li>
+</ul>
+<h3>发送post请求</h3>
+<ul>
+<li>
+<p>发送post请求除了需要引入以上的模块之外，还需要引入请求头<code>HttpHeaders</code>模块
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"postData()"</span>&gt;发送post请求&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">import</span> &#123; HttpClient, HttpHeaders &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span></span><br><span class="line">  </span><br><span class="line">  postData() &#123;</span><br><span class="line">  <span class="hljs-keyword">const</span> httpOptions = &#123;</span><br><span class="line">    headers: <span class="hljs-keyword">new</span> HttpHeaders(&#123; <span class="hljs-string">'Content- Type'</span>: <span class="hljs-string">" application /json"</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">this</span>.http.post(<span class="hljs-string">'url'</span>, &#123; <span class="hljs-attr">username</span>: <span class="hljs-string">'kebo'</span> &#125;)  <span class="hljs-comment">//这样就可以发送post请求了</span></span><br><span class="line">    .subscribe(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(response);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在这里如果没有接口的话我们可以使用nodejs自己制作一个简单的接口，当然使用PHP、java、python都可以
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express'</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> app = express();</span><br><span class="line"><span class="hljs-keyword">var</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'body-parser'</span>);</span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser.json());</span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser.urlencoded(&#123; extended: <span class="hljs-keyword">false</span> &#125;));</span><br><span class="line"><span class="hljs-comment">/*express允许跨域*/</span></span><br><span class="line">app.all(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res, next)</span> </span>&#123;</span><br><span class="line">    res.header(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>);</span><br><span class="line">    res.header(<span class="hljs-string">"Access-Control-Allow-Headers"</span>, <span class="hljs-string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);</span><br><span class="line">    res.header(<span class="hljs-string">"Access-Control-Allow-Methods"</span>, <span class="hljs-string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">    res.header(<span class="hljs-string">"X-Powered-By"</span>, <span class="hljs-string">' 3.2.1'</span>)</span><br><span class="line">    <span class="hljs-keyword">if</span> (req.method == <span class="hljs-string">"OPTIONS"</span>) res.send(<span class="hljs-number">200</span>);</span><br><span class="line">    <span class="hljs-keyword">else</span> next();</span><br><span class="line">&#125;);</span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res)</span> </span>&#123;</span><br><span class="line">    res.send(<span class="hljs-string">'首页'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">app.post(<span class="hljs-string">'/dologin'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res)</span> </span>&#123;</span><br><span class="line">    console.log(req.body);</span><br><span class="line">    res.json(&#123; <span class="hljs-string">"msg"</span>: <span class="hljs-string">'post成功'</span> &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//console.log(req.body);</span></span><br><span class="line">    res.jsonp(&#123; <span class="hljs-string">"msg"</span>: <span class="hljs-string">'这是新闻数据'</span> &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="hljs-number">3000</span>, <span class="hljs-string">'127.0.0.1'</span>);</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><code>package.json</code>依赖
+<figure class="highlight json hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    &#123;</span><br><span class="line">  <span class="hljs-attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="hljs-attr">"ejs"</span>: <span class="hljs-string">"^2.5.6"</span>,</span><br><span class="line">    <span class="hljs-attr">"express"</span>: <span class="hljs-string">"^4.15.3"</span>,</span><br><span class="line">    <span class="hljs-attr">"socket.io"</span>: <span class="hljs-string">"^2.0.3"</span>,</span><br><span class="line">    <span class="hljs-attr">"body-parser"</span>: <span class="hljs-string">"~1.17.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用只需要创建一个app.js黏贴上面的代码，创建一个<code>package.json</code>复制以上依赖然后 <code>cnpm i</code>即可，运行时找到你这个文件的目录 <code>node app.js</code>即可运行</p>
+</li>
+</ul>
+<h3>发送Jsonp请求</h3>
+<ul>
+<li>
+<p>发送Jsonp请求需要在<code>app.module.ts</code>引入<code>HttpClientJsonpModule</code>
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; HttpClientModule,HttpClientJsonpModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注入<code>HttpClientJsonpModule</code>
+<figure class="highlight dts hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-symbol"> imports:</span> [</span><br><span class="line"> BrowserModule,</span><br><span class="line"> HttpClientModule, <span class="hljs-comment">//注入HttpClientModule</span></span><br><span class="line"> HttpClientJsonpModule <span class="hljs-comment">//注入HttpClientJsonpModule</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义一个button发送jsonp请求
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  jsonp() &#123;</span><br><span class="line">  <span class="hljs-keyword">let</span> api = <span class="hljs-string">"http://a.itying.com/api/productlist"</span></span><br><span class="line">  <span class="hljs-keyword">this</span>.http.jsonp(api, <span class="hljs-string">'callback'</span>)</span><br><span class="line">    .subscribe(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(response))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>使用axios发送数据</h3>
+<ul>
+<li>
+<p>在Vue、React中，我们经常使用axios来发送数据请求，在Angular中也可以使用</p>
+</li>
+<li>
+<p>安装:<code>cnpm i axios -S</code></p>
+</li>
+<li>
+<p>引入：
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用方式很简单，和以前的一样
+<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.<span class="hljs-keyword">get</span>(<span class="hljs-comment">'url')</span></span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<blockquote>
+<p>以上就是一些Angular中的数据请求的一些相关知识了。</p>
+</blockquote>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中的数据请求/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -662,22 +935,124 @@
                             <blockquote>
 <p>这篇文章主要给大家介绍了关于JS异步执行结果获取的3种解决方式，文中通过示例代码介绍的非常详细，对大家的学习或者工作具有一定的参考学习价值.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的Rxjs</h2>
+<h3>前言</h3>
+<ul>
+<li>JS异步执行机制具有非常重要的地位，尤其体现在回调函数和事件等方面。</li>
+</ul>
+<h3>JS异步执行结果获取的3种解决方式</h3>
+<ul>
+<li>前面两种大家应该非常熟悉了，一个是使用传递一个函数的参数作为结果的返回值进行取值，另外一个是Promise，当然还有那些async,但是这些都是基于Promise封装的</li>
+</ul>
+<h3>回调函数</h3>
+<ul>
+<li>这种方式在ES6的Promise还没有出来时是主要的解决方式
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">callback</span>) </span>&#123;</span><br><span class="line">setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</span><br><span class="line">    callback(<span class="hljs-string">'222'</span>)</span><br><span class="line">&#125;, <span class="hljs-number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>Promise</h3>
+<ul>
+<li>它是ES6里加入的新对象，专门用来解决回调地域的问题，但是ES7经过封装产生了async，更加完美的解决了回调地狱的问题，使用同步的编程方式解决异步
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"> setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"> <span class="hljs-comment">//这里可以写一些业务逻辑</span></span><br><span class="line">  resolve(<span class="hljs-string">'1'</span>); <span class="hljs-comment">// 通过 resolve 参数把成功的结果返回</span></span><br><span class="line">  <span class="hljs-comment">// reject('error'); // 通过 reject 参数把错误信息返回</span></span><br><span class="line"> &#125;, <span class="hljs-number">2000</span>);</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 调用</span></span><br><span class="line">foo()</span><br><span class="line"> .then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result))</span><br><span class="line"> .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(error));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>Promise取值使用的是 .then() 函数，异常处理用的是 .catch() 函数,但是我们也可以传递两个参数，因为它默认第一个参数是成功的回调，第二个参数是失败的回调
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// resolve(1); // 通过 resolve 参数把成功的结果返回</span></span><br><span class="line">        reject(<span class="hljs-string">'error'</span>); <span class="hljs-comment">// 通过 reject 参数把错误信息返回</span></span><br><span class="line">    &#125;, <span class="hljs-number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 调用</span></span><br><span class="line">foo()</span><br><span class="line">.then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result), error =&gt; <span class="hljs-built_in">console</span>.log(error))</span><br><span class="line"><span class="hljs-comment">// .catch(error =&gt; console.log(error));</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>Rxjs</h3>
+<ul>
+<li>
+<p>今天的话题主要是Rxjs，因为在Angular中使用的就是这个这个东西，超级厉害</p>
+</li>
+<li>
+<p>首先，需要引入在自己的项目中，如果是浏览器环境可以自己下载js文件，但是Angular中已经集成了，直接可以引入使用</p>
+</li>
+<li>
+<p>因为一般我们使用它发送ajax请求数据，可能会经常使用，所以我们把他定义到服务中，我这里使用request服务
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//request.service.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123;Observable&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">getObservablese() &#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">observable</span> =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> username = <span class="hljs-string">'kebo'</span></span><br><span class="line">    observable.next(username)<span class="hljs-comment">//返回成功的数据</span></span><br><span class="line">   <span class="hljs-comment">// observable.error('error')//返回失败的数据</span></span><br><span class="line">  &#125;, <span class="hljs-number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>那么既既然是在服务中定义的方法，我们需要使用就要在组件中引入服务，我以创建的home组件为例子
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RequestService &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../../services/request.service'</span>  <span class="hljs-comment">//引入服务</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> resquest: RequestService</span>) &#123; &#125;  <span class="hljs-comment">//实例化服务</span></span><br><span class="line"></span><br><span class="line">ngOnInit() &#123;</span><br><span class="line"><span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">.subscribe(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;  <span class="hljs-comment">//使用subscribe来获取返回的数据，相当于promise的.then</span></span><br><span class="line"> <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果获取失败的话你只传入一个参数那么这个data就是失败的数据，只不过他是一种相当于规范性报错，在浏览器是红色的显示,但是不能在函数中定义了成功和失败两种状态，但是只定义一个参数接收，那么就会报错</p>
+</li>
+<li>
+<p>如果你传入两个参数，如下代码，那么就会对应显示结果，第一个参数表示成功的，第二个参数表示失败的，而且错误的结果不会飘红
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RequestService &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../../services/request.service'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> resquest: RequestService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">      .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">      &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>通过上面的代码说明，我们感觉这个和promise基本上一样，为什么还要使用Rxjs呢，因为RXjs比Promise厉害的多</p>
+</li>
+</ul>
+<hr>
+<h4>Rxjs取消操作(取消订阅)</h4>
+<ul>
+<li>
+<p>promise创建之后，动作是无法撤回的，但是使用Rxjs却不一样，它在中途可以撤回</p>
+</li>
+<li>
+<p>我们在service中改变一下定时器的时间
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-comment">//request.service.ts</span></span><br><span class="line">  getObservablese() &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">observable</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-keyword">let</span> username = <span class="hljs-string">'kebo'</span></span><br><span class="line">      observable.next(username)<span class="hljs-comment">//返回成功的数据</span></span><br><span class="line">      <span class="hljs-comment">//observable.error('data faile')</span></span><br><span class="line">    &#125;, <span class="hljs-number">3000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>调用
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RequestService &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../../services/request.service'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> resquest: RequestService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> un = <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">      .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">      &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">      &#125;)</span><br><span class="line">    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</span><br><span class="line">      un.unsubscribe()  <span class="hljs-comment">//取消订阅</span></span><br><span class="line">    &#125;, <span class="hljs-number">1000</span>)  <span class="hljs-comment">//这个时间要少于service中的时间</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：调用的时候必须定义一个变量接收一下，然后设置一个定时器，表示1秒后取消订阅，取消操作，但是这个时间一定要小于service发送的时间，不然数据已经获取到了，就无法取消了</p>
+</li>
+</ul>
+<h4>Rxjs执行多次</h4>
+<ul>
+<li>
+<p>我们使用延时器setTimeout时，表示多少秒后执行这个延时器，且只执行一次，但是如果我们改成定时器，就会执行多次</p>
+</li>
+<li>
+<p>在Promise中，是不支持执行多次的，但是在Rxjs中却是可以的
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//service.ts</span></span><br><span class="line">getObservablese() &#123;</span><br><span class="line"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">observable</span> =&gt;</span> &#123;</span><br><span class="line">  setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;  <span class="hljs-comment">//将延时器改成定时器</span></span><br><span class="line">    count++</span><br><span class="line">    <span class="hljs-keyword">let</span> username = <span class="hljs-string">'kebo'</span></span><br><span class="line">    observable.next(<span class="hljs-string">`<span class="hljs-subst">$&#123;username&#125;</span>+<span class="hljs-subst">$&#123;count&#125;</span>`</span>)<span class="hljs-comment">//返回成功的数据</span></span><br><span class="line">    <span class="hljs-comment">// observable.error('data faile')</span></span><br><span class="line">  &#125;, <span class="hljs-number">2000</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-comment">//home.html</span></span><br><span class="line"> ngOnInit() &#123;</span><br><span class="line"> <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">   .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">   &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">     <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就完成了不断的执行了</p>
+</li>
+</ul>
+<h4>Rxjs使用工具方法对返回的数据进行处理</h4>
+<ul>
+<li>
+<p>注意：angular6以后这些 类似于创建之类的用的API都是从rxjs引入的，类似于map 之类的操作都是从rxjs/operators引入的</p>
+</li>
+<li>
+<p>比如使用filter对返回的<code>count</code>取偶数
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> getObservablese() &#123;</span><br><span class="line"> <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;</span><br><span class="line"> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Observable&lt;<span class="hljs-built_in">any</span>&gt;(<span class="hljs-function"><span class="hljs-params">observable</span> =&gt;</span> &#123;</span><br><span class="line">   setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;  <span class="hljs-comment">//将延时器改成定时器</span></span><br><span class="line">     count++</span><br><span class="line">     observable.next(count)<span class="hljs-comment">//返回成功的数据</span></span><br><span class="line">     <span class="hljs-comment">// observable.error('data faile')</span></span><br><span class="line">   &#125;, <span class="hljs-number">2000</span>)</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-comment">//home.ts</span></span><br><span class="line">  <span class="hljs-keyword">import</span> &#123; filter,map &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/operators'</span></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">    .pipe(</span><br><span class="line">      filter(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">          <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    )</span><br><span class="line">    .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">    &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用map函数对数据进行综合处理
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">import</span> &#123; map, filter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/operators'</span></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">    .pipe(</span><br><span class="line">      map(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> value * value  </span><br><span class="line">      &#125;)</span><br><span class="line">    )</span><br><span class="line">    .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">    &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>当然，清楚<code>pipe</code>都知道它是管道的意思，我个人感觉和过滤器差不多，都是对数据进行处理的，那么管道可以有多个，这个也可以有多个，比如我们先把偶数过滤出来，然后让偶数*偶数
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; map, filter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/operators'</span></span><br><span class="line"></span><br><span class="line">ngOnInit() &#123;</span><br><span class="line"><span class="hljs-keyword">let</span> result = <span class="hljs-keyword">this</span>.resquest.getObservablese()</span><br><span class="line">  .pipe(</span><br><span class="line">    filter(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-keyword">if</span> (value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    map(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> value * value</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">  .subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(data);</span><br><span class="line">  &#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就完成了这个多个过滤</p>
+</li>
+</ul>
+<h3>参考文章</h3>
+<ul>
+<li>&lt;font size=&quot;5&quot;&gt;<a href="https://www.imooc.com/article/details/id/33353" target="_blank" rel="noopener">angular6的RXjs新特性</a>&lt;/font&gt;</li>
+<li>&lt;font size=&quot;5&quot;&gt;<a href="https://www.jianshu.com/p/99c2799d3b46" target="_blank" rel="noopener">走心干货-angular6新特性简述</a>&lt;/font&gt;</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Angular中的Rxjs/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -731,22 +1106,130 @@
                             <blockquote>
 <p>生命周期函数通俗的讲就是组件创建、组件更新、组件销毁的时候会触发一系列的方法，也叫生命周期钩子方法。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular 中的生命周期函数</h2>
+<ul>
+<li>当 Angular 使用构造函数新建一个组件或指令后，就会按下面的顺序在特定时刻调用这些生命周期钩子方法。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">用途及时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>constructor</td>
+<td style="text-align:center">构造函数中除了使用简单的值对局部变量进行初始化之外，什么都不应该做。 （非生命周期函数）</td>
+</tr>
+<tr>
+<td>ngOnChanges()</td>
+<td style="text-align:center">当 Angular（重新）设置数据绑定输入属性时响应。 该方法接受当前和上一属性值的 SimpleChanges 对象。当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit() 之前。</td>
+</tr>
+<tr>
+<td><strong>&lt;font color=&quot;red&quot;&gt;ngOnInit()&lt;/font&gt;</strong></td>
+<td style="text-align:center">在 Angular 第一次显示数据绑定和设置指令/组件的输入属性之后，初始化指令/组件。在第一轮 ngOnChanges() 完成之后调用，只调用一次。使用 ngOnInit() 有两个原因：&lt;br&gt;1、在构造函数之后马上执行复杂的初始化逻辑&lt;br&gt;2、在 Angular 设置完输入属性之后，对该组件进行准备.</td>
+</tr>
+<tr>
+<td>ngDoCheck()</td>
+<td style="text-align:center">检测，并在发生 Angular 无法或不愿意自己检测的变化时作出反应。在每个 Angular 变更检测周期中调用，ngOnChanges() 和 ngOnInit() 之后。</td>
+</tr>
+<tr>
+<td>ngAfterContentInit()</td>
+<td style="text-align:center">当把内容投影进组件之后调用。第一次 ngDoCheck() 之后调用，只调用一次。</td>
+</tr>
+<tr>
+<td>ngAfterContentChecked()</td>
+<td style="text-align:center">每次完成被投影组件内容的变更检测之后调用。ngAfterContentInit() 和每次 ngDoCheck() 之后调用。</td>
+</tr>
+<tr>
+<td><strong>&lt;font color=&quot;red&quot;&gt;ngAfterViewInit()&lt;/font&gt;</strong></td>
+<td style="text-align:center">初始化完组件视图及其子视图之后调用,第一次 ngAfterContentChecked() 之后调用，只调用一次。</td>
+</tr>
+<tr>
+<td>ngAfterViewChecked()</td>
+<td style="text-align:center">每次做完组件视图和子视图的变更检测之后调用。ngAfterViewInit()和每次 ngAfterContentChecked() 之后调用。</td>
+</tr>
+<tr>
+<td><strong>&lt;font color=&quot;red&quot;&gt;ngOnDestroy()&lt;/font&gt;</strong></td>
+<td style="text-align:center">当 Angular 每次销毁指令/组件之前调用并清扫。在这儿反订阅可观察对象和分离事件处理器，以防内存泄漏。在 Angular 销毁指令/组件之前调用。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li></li>
+</ul>
+<h3>接口</h3>
+<ul>
+<li>
+<p>在生命周期函数中，可以去实现接口，也可以不实现，如果实现了那么就必须按照接口的规范,每个接口都有一个对应的唯一的钩子方法</p>
+</li>
+<li>
+<p>默认为 ngOnInit 启用了接口</p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-name'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./name.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./name.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NameComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit(): <span class="hljs-built_in">void</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>删除接口</p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-keyword">import</span> &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-name'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./name.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./name.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NameComponent &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit(): <span class="hljs-built_in">void</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>增加接口</p>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-keyword">import</span> &#123; Component, OnInit,ngOnChanges &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-name'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./name.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./name.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NameComponent <span class="hljs-keyword">implements</span> OnInit,ngOnChanges &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit(): <span class="hljs-built_in">void</span> &#123; &#125;</span><br><span class="line">  ngOnChanges()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>生命周期函数</h3>
+<pre><code><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> mes: <span class="hljs-built_in">string</span> = <span class="hljs-string">'生命周期函数的过程'</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'00构造函数执行了，--除了使用简单的值对局部变量进行初始化之外，什么都不应该做'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngOnChanges() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'001-ngOnChanges执行了，当绑定的输入属性发生变化时调用(父子组件传值的时候会触发)'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'002ngOnInit执行了,一般在这里发送请求数据'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngDoCheck() &#123;</span><br><span class="line">    <span class="hljs-comment">//写一些自定义的操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'03ngDocheck执行了--检测，并在发生angular无法或不愿意自己检测的变化做出反应'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngAfterContentInit() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'004ngAfterContentInit方法执行了，当把内容投影进组件之后调用'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  ngAfterContentChecked(): <span class="hljs-built_in">void</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'05ngAfterContentChecked执行了--每次完成被投影组件内容的变更检测之后调用'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngAfterViewInit(): <span class="hljs-built_in">void</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'06ngAfterViewInit执行了，初始化完成组件以及子视图之后调用（DOM操作放在这里）'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngAfterViewChecked(): <span class="hljs-built_in">void</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'07ngAfterViewChecked执行了-每次做完组件视图的变更检测之后调用'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ngOnDestroy(): <span class="hljs-built_in">void</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'08ngOnDestroy执行了'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li>
+<p>如果什么都不做那么它执行的顺序是这样的
+<img src="https://s2.ax1x.com/2019/07/24/eVWCIf.md.jpg" alt="生命周期函数"></p>
+</li>
+<li>
+<p>如果我们将自己身上的 mes 属性渲染到页面上
+<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//home.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; mes &#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>那么生命周期函数执行顺序是这样的
+<img src="https://s2.ax1x.com/2019/07/24/eVWii8.md.jpg" alt="增加mes生命周期函数"></p>
+</li>
+<li>
+<p>如果我们定义一个函数来改变<code>mes</code>的值，它是这样的</p>
+<p><figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"changeMes()"</span>&gt;改变<span class="hljs-keyword">mes</span>&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//hoem.ts</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">changeMes</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">console.log(<span class="hljs-string">'--------------------'</span>)</span><br><span class="line">this<span class="hljs-selector-class">.mes</span> = <span class="hljs-string">'改变了mes'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s2.ax1x.com/2019/07/24/eVRzqI.md.jpg" alt="改变mes生命周期函数"></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>如果我们在 app 根组件中为 home 组件定义一个 flag，再定义按钮控制 flag，这样就可以达到卸载挂载组件的效果</p>
+<p><figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.html</span></span><br><span class="line">&lt;app-<span class="hljs-built_in">home</span> *ngIf=<span class="hljs-string">"flage"</span>&gt;&lt;/app-<span class="hljs-built_in">home</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;button (<span class="hljs-built_in">click</span>)=<span class="hljs-string">"removeCom()"</span>&gt;卸载组件&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.ts</span></span><br><span class="line">public flage: boolean = true</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">removeCom</span><span class="hljs-params">()</span></span> &#123;</span><br><span class="line">this<span class="hljs-selector-class">.flage</span> = !this.flage</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s2.ax1x.com/2019/07/24/eVW9dP.md.jpg" alt="卸载组件"></p>
+<p><img src="https://s2.ax1x.com/2019/07/24/eVWpZt.md.jpg" alt="挂载组件"></p>
+</li>
+</ul>
+<h3>总结</h3>
+<ul>
+<li>如果我们创建一个父组件向子组件传值的话，那么它就会执行第一个生命周期函数</li>
+<li>如果我们修改了视图上的数据，那么所有<code>Checked()</code>(3、5、7)函数都会执行</li>
+<li>如果是请求数据，我们可以在<code>ngOnInit(){}</code>中进行</li>
+<li>如果是 DOM 操作，我们可以在<code>ngAfterViewInit()</code>中进行</li>
+<li>如果是卸载组件，那么就会执行最后一个生命周期函数<code>ngOnDestroy</code>
+<blockquote>
+<p>以上就是一些关于 Angular 中的生命周期函数的一些知识。</p>
+</blockquote>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/24/Angular中的生命周期函数/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -800,22 +1283,154 @@
                             <blockquote>
 <p>之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h1>Angular中父子组件之间的传值</h1>
+<h2>父子组件之间的传值</h2>
+<h3>父组件给子组件传值</h3>
+<ul>
+<li>
+<p>父组件一般是挂载到app渲染的组件，子组件一般是被父组件使用的组件</p>
+</li>
+<li>
+<p>我们创建两个组件分别为父组件<strong>home</strong>和子组件<strong>header</strong>,将home组件挂载到app根组件中后，我们在home组件中想使用header组件为我们的home组件设置页面的header部分，但是内容是通过home传递过去的，代码如下
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> title: <span class="hljs-built_in">string</span> = <span class="hljs-string">'首页'</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  ngOnInit() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>父组件的业务逻辑里面只需要在逻辑中定义一个要传递的数据即可</p>
+</li>
+<li>
+<p>使用[<strong>要传递的属性名</strong>]=&quot;<strong>要传递的属性值</strong>&quot;,就可以将父组件的<code>title</code>传递给header组件
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//home.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-header</span> [<span class="hljs-attr">title</span>]=<span class="hljs-string">"title"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是home组件<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这个时候，header组件需要接收一下home组件传过来的值。引入<code>{Input}</code>组件，定义<code>@input()装饰器</code>装饰器后面跟上传递过来的属性名就接收完成了，这个时候，我们就可以在<code>header.html</code>中直接使用了
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-header'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./header.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./header.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeaderComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-meta">@Input</span>() title: <span class="hljs-built_in">string</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight gauss hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.html</span></span><br><span class="line">&lt;<span class="hljs-built_in">header</span>&gt;&#123;&#123; <span class="hljs-built_in">title</span> &#125;&#125;&lt;/<span class="hljs-built_in">header</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>父组件给子组件传递方法</h4>
+<ul>
+<li>
+<p>其实传值和传递方法是一样的，我们在home父组件组件中定义一个<code>run</code>方法
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    console.log(<span class="hljs-string">'这是home组件的run方法'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>将方法传递过去
+<figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [title]=<span class="hljs-string">"title"</span> [message]=<span class="hljs-string">"message"</span> [<span class="hljs-keyword">run</span>]=<span class="hljs-string">"run"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：传递方法的时候也不需要加<code>()</code>，否则会执行，只需要传递方法名就可以了</p>
+</li>
+<li>
+<p>在header子组件中接收该方法，并创建一个点击事件调用该方法
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"UseRun()"</span>&gt; 执行父组件的<span class="hljs-keyword">run</span>方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<pre><code><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.ts</span></span><br><span class="line"><span class="hljs-meta">@Input()</span> run: any</span><br><span class="line"> </span><br><span class="line">UseRun() &#123;</span><br><span class="line"><span class="hljs-keyword">this</span>.run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li>我们在执行的时候需要使用<code>()</code>表示执行这个方法，因为他传递过来的就是一个函数，这个时候我们点击这个button就可以执行home组件传递过来的方法了。</li>
+</ul>
+<h4>将整个父组件传递给子组件</h4>
+<ul>
+<li>
+<p>如果需要传递的数据太多了，每一个我们都传递过去，一个是太繁琐了，对开发人员不友好，于是有了将整个父组件传递给子组件的功能</p>
+</li>
+<li>
+<p>其实传递父组件给子组件和普通传值都是一样的，只需要传递一个<code>this</code>即可
+<figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [home]=<span class="hljs-string">"this"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就把父组件整个对象传递过去了</p>
+</li>
+<li>
+<p>接收也是和以前一样的
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line">  @Input() home: any</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123; &#125;</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">getParMes</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    console.log(this.home.message)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">UseRun</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    this.home.postSonRun()</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用这中方式就避免了繁琐的传值。</p>
+</li>
+</ul>
+<h3>父组件获取子组件的值(@Viewchild)</h3>
+<ul>
+<li>在DOM操作中，其实就已经说到了使用@Viewchild获取到子组件的整个DOM实例</li>
+<li>我们创建一个news组件作为父组件，一个footer组件作为子组件</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>子组件的定义属性和方法
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"><span class="hljs-keyword">public</span> mes: <span class="hljs-keyword">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line"><span class="hljs-built_in">run</span>() &#123;</span><br><span class="line">console.log(<span class="hljs-string">'我是footer组件的run方法'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义标识
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//news.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-footer</span> #<span class="hljs-attr">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-footer</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 定义footer，就像id一样作为标识 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>这是news组件<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"getSon()"</span>&gt;</span>获取子组件的数据和方法<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>调用子组件的方法和属性
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, ViewChild &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;  <span class="hljs-comment">//引入Viewchild</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'footer'</span>, &#123; <span class="hljs-keyword">static</span>: <span class="hljs-literal">false</span> &#125;) footer: <span class="hljs-built_in">any</span>  <span class="hljs-comment">//定义属性装饰器</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  getSon() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.footer.mes);  <span class="hljs-comment">//打印子组件的mes</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.footer.run()  <span class="hljs-comment">//调用父组件的run方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>子组件通过@Output触发父组件的方法并传值</h3>
+<ul>
+<li>
+<p>子组件引入Output组件和EvenEmitter事件驱动
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>子组件实例化 EventEmitter
+<figure class="highlight aspectj hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们在footer子组件中定义一个button注册一个点击事件，向父组件发送数据
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"postFa()"</span>&gt;给父组件传递方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>然后定义一下这个事件函数并传值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-footer'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./footer.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./footer.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooterComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> mes: <span class="hljs-built_in">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line">  <span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  postFa() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.getFa.emit(<span class="hljs-keyword">this</span>.mes) <span class="hljs-comment">// 这个getFa就是实例化对象，所以我们接下来在父组件中需要使用它进行接收值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这里表示传递了子组件中的<code>mes</code>属性给父组件</p>
+</li>
+<li>
+<p>父组件接收子组件的值
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news.html</span></span><br><span class="line">&lt;app-<span class="hljs-selector-tag">footer</span> <span class="hljs-selector-id">#footer</span> (getFa)=<span class="hljs-string">"run($event)"</span>&gt;&lt;/app-footer&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在上面，<code>()</code>内表示的是子组件传递的那个实例化对象，并且需要使用父组件的run方法，而这个<code>$event</code>参数就是子组件传递的那个参数<code>this.mes</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>父组件接收子组件传递的值
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-comment">//news.ts</span></span><br><span class="line"> <span class="hljs-keyword">run</span>(<span class="hljs-keyword">mes</span>) &#123;</span><br><span class="line"> console.log(<span class="hljs-string">'我是父组件的run'</span>)</span><br><span class="line"> console.log(<span class="hljs-keyword">mes</span>)  <span class="hljs-comment">//我是footer组件的message</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>其实使用@output调用父组件的方法就是创建一个实例化对象，通过这个实例化对象传递参数，然后在子组件中通过 <code>(实例化对象)=&quot;需要调用的父组件方法名(子组件需要传递的参数)&quot;</code>，然后使用父组件的这个方法逻辑处理这个参数就完成了需求。</p>
+</li>
+</ul>
+<h3>非父子组件之间的传值</h3>
+<ul>
+<li>使用localStorage来实现非父子组件之间的通讯</li>
+<li>使用Angular提供的服务功能实现</li>
+</ul>
+<h3>总结：</h3>
+<ul>
+<li>使用<code>@Input()</code>--<code>[属性名]=&quot;要传递的值或方法&quot;</code>-可以通过属性传递的方式给子组件传值，可以传递方法、属性、甚至是整个父组件对象,只需要使用<code>@Input() 属性名:数据类型</code>就可以使用传递过来的值</li>
+<li>使用<code>@VIewchild</code>--<code>#标识</code>-可以让父组件使用子组件的属性和方法，只需使用 <code>@Viewchild('标识名',{static:false}) 标识名:数据类型</code>,就可以使用(注意：第二个标识名相当于传递过来的标识名的赋值，可以任意起名字，以供后面使用)</li>
+<li>使用<code>@Output</code>--<code>[驱动事件实例化对象]=&quot;要使用父组件的方法名(要传递给方法的参数)&quot;</code>可以使用父组件的方法并且传递参数</li>
+</ul>
+<blockquote>
+<p>以上就是Angular中的组件传值的一些知识了。</p>
+</blockquote>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/24/Angular中父子组件传值/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -869,22 +1484,59 @@
                             <blockquote>
 <p>为什么使用服务?在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular 服务以及数据的持久化存储</h2>
+<ul>
+<li>使用 Angular 的服务可以在应用中使用。</li>
+</ul>
+<h3>创建服务</h3>
+<ul>
+<li>使用命令行创建服务:<code>ng g service services/storag</code></li>
+<li>这个命令表示创建一个 services 文件夹，里面创建 storag 服务</li>
+</ul>
+<h3>引入服务</h3>
+<ul>
+<li>在<code>app.module.ts</code>中引入创建的服务，并且声明
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123;StorageService&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./services/storage.service'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//声明</span></span><br><span class="line"> providers: [StoragService],</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>使用</h3>
+<ul>
+<li>
+<p>引入服务
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123;StorageService&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../../services/storage.service'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>初始化服务:
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">public</span> storage: StoragService)</span> <span class="hljs-comment">&#123;//初始化服务</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">this.storage.getData() //使用服务</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：服务需要在 services 下的 storage.service.ts 中自己创建，由于我创建了如下方法，才能在使用的服务的时候调用该方法
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">getData</span>() &#123;</span><br><span class="line"><span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'😄'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们一般使用 storage 做本地数据的持久化存储的功能可以封装一下几个方法
+<figure class="highlight q hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">set</span>(<span class="hljs-built_in">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-built_in">value</span>: <span class="hljs-built_in">any</span>) &#123;  <span class="hljs-comment">//定义存储的方法</span></span><br><span class="line">   localStorage.setItem(<span class="hljs-built_in">key</span>, <span class="hljs-built_in">value</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="hljs-built_in">get</span>(<span class="hljs-built_in">key</span>:<span class="hljs-built_in">string</span>) &#123; <span class="hljs-comment">//定义获取数据的方法</span></span><br><span class="line">   return JSON.<span class="hljs-built_in">parse</span>(localStorage.getItem(<span class="hljs-built_in">key</span>))</span><br><span class="line"> &#125;</span><br><span class="line"> remove(<span class="hljs-built_in">key</span>:<span class="hljs-built_in">string</span>) &#123;  <span class="hljs-comment">//定义删除数据的方法</span></span><br><span class="line">   localStorage.removeItem(<span class="hljs-built_in">key</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>调用的时候在任何组件中初始化完毕后直接可以使用<code>this.storage.方法名</code>来使用服务中的方法</p>
+</li>
+<li>
+<p>注意：因为 Angular 使用的是 Typescript 语法，所以我们尽量定义数据类型，以免引起不必要的错误。</p>
+</li>
+<li>
+<p>在 Angular 中，组件与组件之间可以相互传值，不能相互调用，组件可以调用服务，但是服务不能调用组件，但是服务与服务之间是可以相互调用的。</p>
+<blockquote>
+<p>以上就是一些关于 Angular 数据持久化存储的一些相关使用。</p>
+</blockquote>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/23/Angular的服务以及数据的持久化存储/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -1220,14 +1872,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Ionic/">
-            <span class="level-start">
-                <span class="level-item">Ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/MongoDB/">
             <span class="level-start">
                 <span class="level-item">MongoDB</span>
@@ -1284,6 +1928,14 @@
                 <span class="level-item tag">5</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -1303,7 +1955,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 11.43px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
     </div>
 </div>
 
@@ -1334,13 +1986,6 @@
                     <a class="tags has-addons" href="/tags/Express/">
                         <span class="tag">Express</span>
                         <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ionic/">
-                        <span class="tag">Ionic</span>
-                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1396,6 +2041,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -1548,14 +2200,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Ionic/">
-            <span class="level-start">
-                <span class="level-item">Ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/MongoDB/">
             <span class="level-start">
                 <span class="level-item">MongoDB</span>
@@ -1612,6 +2256,14 @@
                 <span class="level-item tag">5</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -1631,7 +2283,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 11.43px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
     </div>
 </div>
 
@@ -1662,13 +2314,6 @@
                     <a class="tags has-addons" href="/tags/Express/">
                         <span class="tag">Express</span>
                         <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ionic/">
-                        <span class="tag">Ionic</span>
-                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1724,6 +2369,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>

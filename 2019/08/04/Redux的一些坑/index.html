@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。">
+        <meta name="description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。  &amp;lt;!-- more --&amp;gt; Redux的一些坑   reducer.js中不是修改state，对state的数据进步操作，而是返回数据，然后store会监听这个数据的变化做出变化   reducer必须是纯函数  如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输">
 <meta name="keywords" content="Redux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux的一些坑">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Redux的一些坑/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。">
+<meta property="og:description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。  &amp;lt;!-- more --&amp;gt; Redux的一些坑   reducer.js中不是修改state，对state的数据进步操作，而是返回数据，然后store会监听这个数据的变化做出变化   reducer必须是纯函数  如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:51:26.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux的一些坑">
-<meta name="twitter:description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。">
+<meta name="twitter:description" content="Redux的一些坑，可以帮助我们避免开发中的一些问题。  &amp;lt;!-- more --&amp;gt; Redux的一些坑   reducer.js中不是修改state，对state的数据进步操作，而是返回数据，然后store会监听这个数据的变化做出变化   reducer必须是纯函数  如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输">
 <meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
             
 
@@ -240,20 +240,25 @@
                             <blockquote>
 <p>Redux的一些坑，可以帮助我们避免开发中的一些问题。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Redux的一些坑"><a href="#Redux的一些坑" class="headerlink" title="Redux的一些坑"></a>Redux的一些坑</h2><ol>
-<li><p>reducer.js中不是修改state，对state的数据进步操作，而是返回数据，然后store会监听这个数据的变化做出变化</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Redux的一些坑</h2>
+<ol>
+<li>
+<p>reducer.js中不是修改state，对state的数据进步操作，而是返回数据，然后store会监听这个数据的变化做出变化</p>
 </li>
-<li><p>reducer必须是纯函数</p>
+<li>
+<p>reducer必须是纯函数</p>
 <ul>
-<li>如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">function</span> <span class="hljs-title">priceAfterTax</span>(productPrice) &#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-type">(productPrice</span> * <span class="hljs-number">0.20</span>) + productPrice;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>如果函数的调用参数相同，则永远返回相同的结果。它不依赖于程序执行期间函数外部任何状态或数据的变化，必须只依赖于其输入参数。
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">function</span> <span class="hljs-title">priceAfterTax</span>(productPrice) &#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-type">(productPrice</span> * <span class="hljs-number">0.20</span>) + productPrice;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <ul>
-<li><p>这种不管外界怎么变化，时间怎么变化，运行多少次，结果都不会发生变化，这就是纯函数</p>
-<figure class="highlight actionscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> tax = <span class="hljs-number">20</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateTax</span><span class="hljs-params">(productPrice)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (productPrice * (tax/<span class="hljs-number">100</span>)) + productPrice;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>这种不管外界怎么变化，时间怎么变化，运行多少次，结果都不会发生变化，这就是纯函数
+<figure class="highlight actionscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> tax = <span class="hljs-number">20</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateTax</span><span class="hljs-params">(productPrice)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (productPrice * (tax/<span class="hljs-number">100</span>)) + productPrice;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这种数据计算结果依赖于外界数据的tax，这种函数就是不纯的</p>
+<li>
+<p>这种数据计算结果依赖于外界数据的tax，这种函数就是不纯的</p>
 </li>
 </ul>
 </li>
@@ -381,7 +386,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Redux的一些坑">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Redux的一些坑</span>
         </a></li></ul>
@@ -681,14 +686,6 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Ionic/">
-            <span class="level-start">
-                <span class="level-item">Ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/MongoDB/">
             <span class="level-start">
                 <span class="level-item">MongoDB</span>
@@ -745,6 +742,14 @@
                 <span class="level-item tag">5</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/开发工具/">
             <span class="level-start">
                 <span class="level-item">开发工具</span>
@@ -764,7 +769,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 11.43px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
     </div>
 </div>
 
@@ -795,13 +800,6 @@
                     <a class="tags has-addons" href="/tags/Express/">
                         <span class="tag">Express</span>
                         <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Ionic/">
-                        <span class="tag">Ionic</span>
-                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -857,6 +855,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/git/">
                         <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
