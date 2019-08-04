@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求 &amp;lt;!-- more --&amp;gt;   全局安装webpack   npm install webpack -g  生成package.json  npm init -y  安装webpack-dev-server到本地  npm insta">
+        <meta name="description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack配置的一些总结">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/06/22/webpack配置的一些总结/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求 &amp;lt;!-- more --&amp;gt;   全局安装webpack   npm install webpack -g  生成package.json  npm init -y  安装webpack-dev-server到本地  npm insta">
+<meta property="og:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg">
 <meta property="og:updated_time" content="2019-07-09T11:17:13.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack配置的一些总结">
-<meta name="twitter:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求 &amp;lt;!-- more --&amp;gt;   全局安装webpack   npm install webpack -g  生成package.json  npm init -y  安装webpack-dev-server到本地  npm insta">
+<meta name="twitter:description" content="在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/24/5d10510f5e77875006.jpg">
             
 
@@ -238,125 +238,105 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求
-&lt;!-- more --&gt;</p>
+<p>在配置webpack打包项目时，有些必要的插件安装与配置，才能保证项目完整的被打包，这里总结了一些基础的webpack配置，可以满足基础的打包运行要求</p>
 </blockquote>
+<a id="more"></a>
 <hr>
-<h2>全局安装webpack</h2>
-<hr>
+<h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><hr>
 <ul>
-<li><code>npm install webpack -g</code></li>
-</ul>
-<h2>生成package.json</h2>
-<ul>
-<li><code>npm init -y</code></li>
-</ul>
-<h2>安装webpack-dev-server到本地</h2>
-<ul>
-<li><code>npm install webpack-dev-server -D</code></li>
-<li>仍然需要在本地安装webpack作为webpack-dev-server的依赖</li>
-<li><code>npm install webpack -D</code></li>
-</ul>
-<h3>配置webpack.config.js文件</h3>
-<ul>
-<li>
-<p>创建webpack.config.js文件</p>
+<li><p><code>npm  install webpack -g</code></p>
+<h2 id="生成package-json"><a href="#生成package-json" class="headerlink" title="生成package.json"></a>生成package.json</h2></li>
+<li><p><code>npm init -y</code></p>
+<h2 id="安装webpack-dev-server到本地"><a href="#安装webpack-dev-server到本地" class="headerlink" title="安装webpack-dev-server到本地"></a>安装webpack-dev-server到本地</h2></li>
+<li><p><code>npm install webpack-dev-server -D</code></p>
 </li>
-<li>
-<p>配置文件出入口
-<figure class="highlight lasso hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-built_in">var</span> path = <span class="hljs-keyword">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'./dist/bundle.js'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>, <span class="hljs-comment">//设置mode，在4.0新增</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<li><p>仍然需要在本地安装webpack作为webpack-dev-server的依赖</p>
 </li>
-<li>
-<p>配置一些功能：在webpack.config.js中配置
-<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">devServer</span>: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">    <span class="hljs-attribute">open</span>: true, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">    <span class="hljs-attribute">contentBase</span>: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">    <span class="hljs-attribute">hot</span>: true, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">    <span class="hljs-attribute">port</span>: <span class="hljs-number">6000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<li><p><code>npm install  webpack -D</code></p>
+<h3 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h3></li>
+<li><p>创建webpack.config.js文件</p>
 </li>
-<li>
-<p>在<code>package.json</code>中配置</p>
-<p><figure class="highlight brainfuck hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">"script":&#123;</span></span><br><span class="line"><span class="hljs-comment">"start:dev":</span> <span class="hljs-comment">"webpack</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">open</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">port</span> <span class="hljs-comment">3000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">contentBase</span> <span class="hljs-comment">src</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">hot"</span></span><br><span class="line"><span class="hljs-comment">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<li><p>配置文件出入口</p>
+<figure class="highlight lasso hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-built_in">var</span> path = <span class="hljs-keyword">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'./dist/bundle.js'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>, <span class="hljs-comment">//设置mode，在4.0新增</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>需要将打包好的文件从虚拟内存中传入过来</p>
+<li><p>配置一些功能：在webpack.config.js中配置</p>
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-attribute">devServer</span>: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">    <span class="hljs-attribute">open</span>: true, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">    <span class="hljs-attribute">contentBase</span>: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">    <span class="hljs-attribute">hot</span>: true, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">    <span class="hljs-attribute">port</span>: <span class="hljs-number">6000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>package.json</code>中配置</p>
+  <figure class="highlight brainfuck hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">"script":&#123;</span></span><br><span class="line"><span class="hljs-comment">"start:dev":</span> <span class="hljs-comment">"webpack</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">open</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">port</span> <span class="hljs-comment">3000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">contentBase</span> <span class="hljs-comment">src</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">hot"</span></span><br><span class="line"><span class="hljs-comment">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>需要将打包好的文件从虚拟内存中传入过来</p>
 </li>
 </ul>
 <hr>
-<h3>安装html-webpack-plugin</h3>
-<hr>
+<h3 id="安装html-webpack-plugin"><a href="#安装html-webpack-plugin" class="headerlink" title="安装html-webpack-plugin"></a>安装html-webpack-plugin</h3><hr>
 <ul>
 <li><code>npm install html-webpack-plugin -D</code></li>
 <li>在<code>webpack.config.js</code>中配置这个插件</li>
-<li>作用：
-<ul>
+<li>作用：<ul>
 <li>在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</li>
 <li>如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</li>
 <li>注意：所有的第三方插件都在 <code>plugins:[]</code>中配置</li>
-<li>与entry、output同级
-<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attribute">plugins</span>: [</span><br><span class="line">       new htmlWebpackPlugin(&#123;</span><br><span class="line">           <span class="hljs-attribute">template</span>: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">           <span class="hljs-attribute">filename</span>: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">       &#125;)</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure></li>
+<li>与entry、output同级<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attribute">plugins</span>: [</span><br><span class="line">       new htmlWebpackPlugin(&#123;</span><br><span class="line">           <span class="hljs-attribute">template</span>: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">           <span class="hljs-attribute">filename</span>: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">       &#125;)</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3>配置css-loader、less-loader、sass-loader</h3>
-<hr>
+<h3 id="配置css-loader、less-loader、sass-loader"><a href="#配置css-loader、less-loader、sass-loader" class="headerlink" title="配置css-loader、less-loader、sass-loader"></a>配置css-loader、less-loader、sass-loader</h3><hr>
 <ul>
 <li>在main.js中引入css文件</li>
-<li>import './css/style.css'
-<ul>
-<li>安装css-loader插件：<code>npm install css-loader style-loader --save-dev</code></li>
+<li>import ‘./css/style.css’ <ul>
+<li>安装css-loader插件：<code>npm install  css-loader style-loader --save-dev</code></li>
 </ul>
 </li>
-<li>import './css/style.less'
-<ul>
+<li>import ‘./css/style.less’ <ul>
 <li>安装css-loader插件：<code>npm install less-loader less --save-dev</code></li>
 </ul>
 </li>
-<li>import './css/style.sass'
-<ul>
+<li>import ‘./css/style.sass’ <ul>
 <li>安装css-loader插件：<code>npm install sass-loader node-sass --save-dev</code></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3>配置文件</h3>
-<hr>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><hr>
 <ul>
-<li>
-<p>在webpack.config.js配置sass</p>
+<li><p>在webpack.config.js配置sass</p>
 </li>
-<li>
-<p><strong>注意</strong>：使用<code>npm</code>命令时安装<code>node-sass</code>可能会报错，无法打包，此时建议切换成<code>cnpm</code></p>
+<li><p><strong>注意</strong>：使用<code>npm</code>命令时安装<code>node-sass</code>可能会报错，无法打包，此时建议切换成<code>cnpm</code></p>
 </li>
-<li>
-<p>切换方法 cmd运行<code>nrm ls</code>查看,然后切换<code>nrm use cnpm</code>即可，但是前提应该先在全局中安装<code>nrm</code></p>
-<p><figure class="highlight openscad hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">module</span>.<span class="hljs-title">exports</span> =</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">module</span>: &#123;</span></span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.scss$/,</span><br><span class="line">            <span class="hljs-keyword">use</span>: [</span><br><span class="line">                <span class="hljs-string">"style-loader"</span>, <span class="hljs-comment">// creates style nodes from JS strings</span></span><br><span class="line">                <span class="hljs-string">"css-loader"</span>, <span class="hljs-comment">// translates CSS into CommonJS</span></span><br><span class="line">                <span class="hljs-string">"sass-loader"</span> <span class="hljs-comment">// compiles Sass to CSS, using Node Sass by default</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<li><p>切换方法 cmd运行<code>nrm ls</code>查看,然后切换<code>nrm use cnpm</code>即可，但是前提应该先在全局中安装<code>nrm</code></p>
+  <figure class="highlight openscad hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">module</span>.<span class="hljs-title">exports</span> =</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">module</span>: &#123;</span></span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: /\.scss$/,</span><br><span class="line">            <span class="hljs-keyword">use</span>: [</span><br><span class="line">                <span class="hljs-string">"style-loader"</span>, <span class="hljs-comment">// creates style nodes from JS strings</span></span><br><span class="line">                <span class="hljs-string">"css-loader"</span>, <span class="hljs-comment">// translates CSS into CommonJS</span></span><br><span class="line">                <span class="hljs-string">"sass-loader"</span> <span class="hljs-comment">// compiles Sass to CSS, using Node Sass by default</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>在webpack.config.js配置css</p>
-<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.css$/i</span>,</span><br><span class="line">        use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<li><p>在webpack.config.js配置css</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.css$/i</span>,</span><br><span class="line">        use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>在webpack.config.js配置less</p>
-<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="hljs-string">'less-loader'</span>, <span class="hljs-comment">// compiles Less to CSS</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<li><p>在webpack.config.js配置less</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line"><span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="hljs-regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="hljs-string">'less-loader'</span>, <span class="hljs-comment">// compiles Less to CSS</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <hr>
-<h3>配置好基本的webpack.config.js文件</h3>
-<hr>
-<pre><code><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</span></span><br><span class="line"><span class="hljs-comment">//如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</span></span><br><span class="line"><span class="hljs-keyword">const</span> htmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.join(__dirname, <span class="hljs-string">'./dist'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">//配置css</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.less$/i</span>, <span class="hljs-comment">//配置less</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'less-loader'</span>]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.scss$/i</span>, <span class="hljs-comment">//配置sass</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'sass-loader'</span>]</span><br><span class="line">        &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">        open: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">        contentBase: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">        hot: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">        port: <span class="hljs-number">2000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="hljs-keyword">new</span> htmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">            filename: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-<hr>
-<h2>注意事项：</h2>
-<hr>
+<h3 id="配置好基本的webpack-config-js文件"><a href="#配置好基本的webpack-config-js文件" class="headerlink" title="配置好基本的webpack.config.js文件"></a>配置好基本的webpack.config.js文件</h3><hr>
+<pre><code><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//由于webpack是由Nodejs构建的，所以任何的Nodejs语法都支持</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入路径模块</span></span><br><span class="line"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//在内存中，根据只当的模板页面，生成一份内存中的首页，同时把打包好的bundle.js注入到页面底部</span></span><br><span class="line"><span class="hljs-comment">//如果需要配置插件，需要在导出的对象中挂载一个 plugins:[]</span></span><br><span class="line"><span class="hljs-keyword">const</span> htmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'html-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//当以命令形式运行webpack或者webpack-dev-server的时候，工具会发现，我们没用提供要打包的文件入口和出口命令</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//此时，就会检查项目根目录中的配置文件 webpack.config.js 并读取这个文件，就拿到了导出的这个配置对象，然后根据对象进行打包</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//向外暴露出这个对象</span></span><br><span class="line"><span class="hljs-built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, <span class="hljs-string">'./src/main.js'</span>) <span class="hljs-comment">//入口文件，需要打包的文件</span></span><br><span class="line">        ,</span><br><span class="line">    output: &#123; <span class="hljs-comment">//出口文件，需要打包到哪里去</span></span><br><span class="line">        path: path.join(__dirname, <span class="hljs-string">'./dist'</span>) <span class="hljs-comment">//输出路径</span></span><br><span class="line">            ,</span><br><span class="line">        filename: <span class="hljs-string">'bundle.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="hljs-keyword">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.css$/i</span>, <span class="hljs-comment">//配置css</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.less$/i</span>, <span class="hljs-comment">//配置less</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'less-loader'</span>]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            test: <span class="hljs-regexp">/\.scss$/i</span>, <span class="hljs-comment">//配置sass</span></span><br><span class="line">            use: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>, <span class="hljs-string">'sass-loader'</span>]</span><br><span class="line">        &#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123; <span class="hljs-comment">//配置webpack-dev-server</span></span><br><span class="line">        open: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否打开浏览器</span></span><br><span class="line">        contentBase: <span class="hljs-string">'src'</span>, <span class="hljs-comment">//指定托管的目录</span></span><br><span class="line">        hot: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否启用热更新</span></span><br><span class="line">        port: <span class="hljs-number">2000</span> <span class="hljs-comment">//代理的端口</span></span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="hljs-string">'development'</span>,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="hljs-keyword">new</span> htmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.join(__dirname, <span class="hljs-string">'./src/index.html'</span>), <span class="hljs-comment">//指定模板文件的目录</span></span><br><span class="line">            filename: <span class="hljs-string">'index.html'</span> <span class="hljs-comment">//设置生成的页面名称</span></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><hr>
+<h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><hr>
 <ul>
-<li>在<code>webpack4.0</code>以后，webpack新增了<code>mode</code>属性 打包命令有所变化 <code>webpack 要打包的文件 -o 打包生成存放文件的路径</code></li>
-<li>而且在<code>package.json</code>文件中，需要配置如下代码：</li>
+<li><p>在<code>webpack4.0</code>以后，webpack新增了<code>mode</code>属性 打包命令有所变化 <code>webpack 要打包的文件 -o 打包生成存放文件的路径</code></p>
+</li>
+<li><p>而且在<code>package.json</code>文件中，需要配置如下代码：</p>
+<figure class="highlight 1c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">"scripts"</span>: &#123;</span><br><span class="line">   <span class="hljs-string">"dev"</span>: <span class="hljs-string">"webpack --mode development"</span>,  <span class="hljs-comment">// 开发环境</span></span><br><span class="line">    <span class="hljs-string">"build"</span>: <span class="hljs-string">"webpack --mode production"</span>,  <span class="hljs-comment">// 生产环境</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<code>webpack.config.js</code>中，同样需要配置如下代码：<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">mode:</span> <span class="hljs-string">'development'</span> <span class="hljs-comment">// 设置mode</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><figure class="highlight 1c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">"scripts"</span>: &#123;</span><br><span class="line">   <span class="hljs-string">"dev"</span>: <span class="hljs-string">"webpack --mode development"</span>,  <span class="hljs-comment">// 开发环境</span></span><br><span class="line">    <span class="hljs-string">"build"</span>: <span class="hljs-string">"webpack --mode production"</span>,  <span class="hljs-comment">// 生产环境</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure></p>
-<pre><code>- 在`webpack.config.js`中，同样需要配置如下代码：
-</code></pre>
-<p><figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">mode:</span> <span class="hljs-string">'development'</span> <span class="hljs-comment">// 设置mode</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>如果需要下载指定版本，输入以下命令：</li>
-<li><code>npm i -D webpack@3</code> // 3： webpack版本3最新</li>
+</li>
+<li><p>如果需要下载指定版本，输入以下命令：</p>
+</li>
+<li><p><code>npm i -D webpack@3</code> // 3： webpack版本3最新</p>
+</li>
 </ul>
 
 
@@ -474,39 +454,39 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#全局安装webpack">
         <span class="has-mr-6">1</span>
         <span>全局安装webpack</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#生成package-json">
         <span class="has-mr-6">2</span>
         <span>生成package.json</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#安装webpack-dev-server到本地">
         <span class="has-mr-6">3</span>
         <span>安装webpack-dev-server到本地</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#配置webpack-config-js文件">
         <span class="has-mr-6">3.1</span>
         <span>配置webpack.config.js文件</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#安装html-webpack-plugin">
         <span class="has-mr-6">3.2</span>
         <span>安装html-webpack-plugin</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#配置css-loader、less-loader、sass-loader">
         <span class="has-mr-6">3.3</span>
         <span>配置css-loader、less-loader、sass-loader</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#配置文件">
         <span class="has-mr-6">3.4</span>
         <span>配置文件</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#配置好基本的webpack-config-js文件">
         <span class="has-mr-6">3.5</span>
         <span>配置好基本的webpack.config.js文件</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#注意事项：">
         <span class="has-mr-6">4</span>
         <span>注意事项：</span>
         </a></li></ul>

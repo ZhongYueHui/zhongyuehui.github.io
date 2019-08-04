@@ -248,36 +248,22 @@
                             <blockquote>
 <p>在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>fetch 的使用</h2>
-<ul>
-<li>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</li>
-<li>fetch API 是基于 promise 封装的 API</li>
-</ul>
-<h3>使用</h3>
-<ul>
-<li>
-<p>fetch 的使用:
-<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
-</li>
-<li>
-<p>但是我们可以调用 response.json()得到一个新的 promise
-<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/07/23/ES6的fetch的使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -331,69 +317,22 @@
                             <blockquote>
 <p>在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。ES6 的模块化分为导出（export） @与导入（import）两个模块</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>导入与导出模块</h2>
-<ul>
-<li>在 Nodejs 中，提供了<code>module.exports</code>和<code>exports</code>向暴露(导出)成员接口，使用<code>require('')</code>使用导入的对象</li>
-</ul>
-<h3>ES6 中的导入</h3>
-<ul>
-<li>在 ES6 中，也规定了<code>导入</code>和<code>导出</code>模块</li>
-<li>ES6 中导入模块使用 <code>import 模块名称 from '模块标识符'</code>的方式导入 或 <code>import '标识路径'</code></li>
-</ul>
-<h3>ES6 中的导出</h3>
-<ul>
-<li>在 ES6 中，使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员</li>
-</ul>
-<h3>两者导出的区别</h3>
-<ul>
-<li>使用<strong>export default:</strong> 来暴露成员时，在全局中，只允许定义一个<strong>export default</strong></li>
-<li>使用<strong>export</strong>来暴露成员时，可以定义多个<strong>export</strong></li>
-</ul>
-<h3>两者导入的区别</h3>
-<ul>
-<li>
-<p>在<code>import 模块名称 from '模块标识符'</code> 导入模块时，我们需要注意以下模块中是否同时使用了使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员，如果只使用了<code>export default</code> 那么我们只需要自定义一个模块名称来接收数据即可
-<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> &#123; <span class="hljs-comment">//导出</span></span><br><span class="line"> name: <span class="hljs-string">'张三'</span>,</span><br><span class="line"> age: <span class="hljs-number">16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test <span class="hljs-keyword">from</span> <span class="hljs-string">'test'</span> <span class="hljs-comment">//引入</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>如果使用了<strong>export</strong>来暴露成员时，不管有没有使用<strong>export default</strong> 暴露成员，我们导出模块定义的成员名字和导入模块引入的名字<strong>必须</strong>一致，否则会出错</p>
-</li>
-<li>
-<p>如果仅使用 export 暴露，我们只需要将成员名使用 <strong>{ }</strong> 包括起来即可，且不能省略**{ }**
-<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> a = <span class="hljs-string">'text中的export'</span> <span class="hljs-comment">//导出</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; a &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./test'</span> <span class="hljs-comment">//引入 ，不能省略 &#123; &#125;</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>如果我们同时使用了两种暴露方式或使用 export 定义了多个成员，只要按需导出即可
-<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> &#123;</span><br><span class="line">name: <span class="hljs-string">'张三'</span>,</span><br><span class="line">age: <span class="hljs-number">16</span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> test = <span class="hljs-string">'text中的export'</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> test2 = <span class="hljs-string">'text2中的export'</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test,&#123; test&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./text'</span> <span class="hljs-comment">//虽然定义了test2，但是我们可以根据需要不导出，导出在&#123;&#125;中加入即可</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3>export 导出时修改名称</h3>
-<ul>
-<li>
-<p>我们发现使用<strong>export default</strong> 暴露时没有导入名称的规定，但是使用<strong>export</strong>暴露必须使用定义时的名字，其实我们可以使用 <strong>as</strong> 进行修改
-<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test,&#123; test <span class="hljs-keyword">as</span> a,test2 <span class="hljs-keyword">as</span> b&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./text'</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>&lt;font color=&quot;red&quot;&gt;<strong>注意:</strong>&lt;/font&gt;</p>
-<ul>
-<li>ES6 的模块自动开启严格模式，不管你有没有在模块头部加上 <code>use strict</code>。</li>
-<li>模块中可以导入和导出各种类型的变量，如函数，对象，字符串，数字，布尔值，类等</li>
-<li>每个模块都有自己的上下文，每一个模块内声明的变量都是局部变量，不会污染全局作用域</li>
-<li>每一个模块只加载一次（是单例的）， 若再去加载同目录下同文件，直接从内存中读取</li>
-</ul>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/07/09/ES6中的模块导入与导出/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
