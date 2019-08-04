@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>
+    Ionic新增一个tabs和定义公共模块 - Just for fun
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    
+        <meta name="description" content="因为单页面应用在移动端应用的比较广泛，所以tbas选项是必不可少的，我们可以查看如何增加。">
+<meta name="keywords" content="Ionic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ionic新增一个tabs和定义公共模块">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Ionic新增一个tabs和定义公共模块/index.html">
+<meta property="og:site_name" content="Just for fun">
+<meta property="og:description" content="因为单页面应用在移动端应用的比较广泛，所以tbas选项是必不可少的，我们可以查看如何增加。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=2033384204,1146787582&fm=85&s=B8207C32EF326D9048DF37D60200D0BE">
+<meta property="og:updated_time" content="2019-08-04T08:51:02.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ionic新增一个tabs和定义公共模块">
+<meta name="twitter:description" content="因为单页面应用在移动端应用的比较广泛，所以tbas选项是必不可少的，我们可以查看如何增加。">
+<meta name="twitter:image" content="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=2033384204,1146787582&fm=85&s=B8207C32EF326D9048DF37D60200D0BE">
+            
+
+
+
+                
+
+                        
+                            <link rel="alternative" href="/atom.xml" title="Ionic新增一个tabs和定义公共模块" type="application/atom+xml">
+                            
+
+                                
+                                    <link rel="icon" href="/images/favicon.ico">
+                                    
+
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+                                            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+                                                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+                                                        
+                                                            
+                                                                
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+                                                                    
+                                                                
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+                                                                    
+                                                                
+    
+
+                                                                    
+                                                                        
+
+                                                                            <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="is-3-column">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+
+
+    <!-- <link rel="stylesheet" href="/dist/APlayer.min.css">
+    <div id="aplayer" style="margin-left: 20px!important;margin-bottom: 20px!important;"></div>
+    <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+    <script type="text/javascript" src="/dist/music.js"></script> -->
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/mylogo.png" alt="Ionic新增一个tabs和定义公共模块" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="🔍搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+        
+
+
+            
+                <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                    
+
+                        
+
+                            <section class="section">
+                                <div class="container">
+                                    <div class="columns">
+                                        <!-- 将main_column_class() 改为 col() -->
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=2033384204,1146787582&amp;fm=85&amp;s=B8207C32EF326D9048DF37D60200D0BE" alt="Ionic新增一个tabs和定义公共模块">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-04T08:49:13.000Z">2019-08-04</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Ionic/">Ionic</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    10 分钟 读完 (大约 1510 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    Ionic新增一个tabs和定义公共模块
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>因为单页面应用在移动端应用的比较广泛，所以tbas选项是必不可少的，我们可以查看如何增加。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="新增一个tabs"><a href="#新增一个tabs" class="headerlink" title="新增一个tabs"></a>新增一个tabs</h2><ul>
+<li>在ionic中，默认tabs是有三个tab1-3组成，如果我们们需要添加一个的话，那么我们就需要添加一个页面模块，还需要配置一下新增的路由<h3 id="添加模块"><a href="#添加模块" class="headerlink" title="添加模块"></a>添加模块</h3></li>
+</ul>
+<ol>
+<li><p><code>ionic g page tab4</code></p>
+</li>
+<li><p>删除<code>app.routing.module.ts</code>文件中的<code>tab4</code>路由配置，因为我们不需要配置到这里，而是配置到<code>tabs.routing.module.ts</code>中，然后追加到<code>tab3</code>后面</p>
+ <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//删除app.routing.module.ts中,tab4路由配置</span></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./tabs/tabs.module#TabsPageModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'button'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./button/button.module#ButtonPageModule'</span> &#125;,</span><br><span class="line">  <span class="hljs-comment">//删除这个</span></span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'tab4'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./tab4/tab4.module#Tab4PageModule'</span> &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在tabs.routing.module.ts追加tab4</p>
+ <figure class="highlight xl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from '@angular/core';</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RouterModule, Routes &#125; from '@angular/router';</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; TabsPage &#125; from './tabs.<span class="hljs-built_in">page</span>';</span><br><span class="line"></span><br><span class="line">const routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="hljs-built_in">path</span>: <span class="hljs-string">'tabs'</span>,</span><br><span class="line">    component: TabsPage,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab1'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab1/tab1.module#Tab1PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab2'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab2/tab2.module#Tab2PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab3'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab3/tab3.module#Tab3PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;, &#123;<span class="hljs-comment">//追加tab4</span></span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab4'</span>,</span><br><span class="line"></span><br><span class="line">        children: [</span><br><span class="line">          &#123; <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>, loadChildren: <span class="hljs-string">'../tab4/tab4.module#Tab4PageModule'</span> &#125;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">        redirectTo: <span class="hljs-string">'/tabs/tab1'</span>,</span><br><span class="line">        pathMatch: <span class="hljs-string">'full'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">    redirectTo: <span class="hljs-string">'/tabs/tab1'</span>,</span><br><span class="line">    pathMatch: <span class="hljs-string">'full'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    RouterModule.forChild(routes)</span><br><span class="line">  ],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export class TabsPageRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>然后在tabs根组件下的<code>tabs.page.html</code>引入tab4就完成了  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--增加tab4 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-tab-button</span> <span class="hljs-attr">tab</span>=<span class="hljs-string">"tab4"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-icon</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"settings"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ion-icon</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-label</span>&gt;</span>Tab Four<span class="hljs-tag">&lt;/<span class="hljs-name">ion-label</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-tab-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="新增tab总结："><a href="#新增tab总结：" class="headerlink" title="新增tab总结："></a>新增tab总结：</h4><ul>
+<li>创建的<code>tab4</code>其实就是一个模块，我们可以在模块创建子组件实现功能，因为ionic一开始就是为Angular量身定制的，所以兼容成程度和适应性比较强，跟为Vue量身定制的Mui、React量身定制的ant design一样，还有Element UI组件库都是很好的UI组件<h3 id="定义公共模块"><a href="#定义公共模块" class="headerlink" title="定义公共模块"></a>定义公共模块</h3></li>
+<li>在ionic中，页面都是由模块组成的，当然，模块下也可以定义组件，但是我们如果由这样的需求，在多个模块中有一样的功能，如果在Angular中是可以实现多个模块共用一个组件的，但是在ionic中，无法在多个模块中使用一个组件，这时候就需要把组件封装成模块，让模块引入模块</li>
+</ul>
+<ol>
+<li><p>创建公共的模块以及组件，这里以轮播图组件为例</p>
+ <figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//创建模块</span></span><br><span class="line">ionic g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span>/slide</span><br><span class="line"><span class="hljs-comment">//创建模块的组件</span></span><br><span class="line">ionic g component <span class="hljs-keyword">module</span>/slide</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建好模块和组件后，就需要在<code>slide.module.ts</code>中声明和暴露这个模块</p>
+ <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; SlideComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./slide.component'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [SlideComponent],  <span class="hljs-comment">//声明这个模块</span></span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  exports: [SlideComponent] <span class="hljs-comment">//暴露这个模块</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SlideModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>slide模块被导出后，那么我们在需要这个模块的模块中引入就行了。例如在<code>tab1</code>中引入这个模块</p>
+ <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FormsModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Tab1Page &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./tab1.page'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; SlideModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../module/slide/slide.module'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    IonicModule,</span><br><span class="line">    CommonModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    SlideModule,<span class="hljs-comment">//声明挂载这个模块</span></span><br><span class="line">    RouterModule.forChild([&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">component</span>: Tab1Page &#125;])</span><br><span class="line">  ],</span><br><span class="line">  declarations: [Tab1Page]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tab1PageModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>引入和挂载这个组件后，我们就可以在<code>tab1.component.html</code>中使用<code>&lt;app-slide&gt;&lt;/app-slide&gt;</code>这个标签来引用这个组件了，当然，如果需要在其他的模块中使用这个模块，重复上面的引入步骤就可以了<h4 id="引入公共模块的子组件"><a href="#引入公共模块的子组件" class="headerlink" title="引入公共模块的子组件"></a>引入公共模块的子组件</h4></li>
+<li>如果我们在使用公共模块时，还需要使用公共模块下的子组件，那么我们再将子组件暴露出去即可</li>
+<li>以<code>list</code>模块为例子，建立一个<code>listInfo</code>的子组件，并在<code>tab4</code>中使用该子组件</li>
+</ul>
+<ol>
+<li><p>创建list模块:<code>ng g module module/list</code></p>
+</li>
+<li><p>创建list根组件:<code>ng g component module/list</code></p>
+</li>
+<li><p>创建listInfo组件：<code>ng g component module/list/listInfo</code>，这里需要注意的是，使用驼峰命名会装换成成<code>-小写</code>的格式</p>
+</li>
+<li><p>在<code>list.module.ts</code>中将根组件和子组件导入并暴露，当然你可以根据自己的需要暴露相关的组件</p>
+ <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//导入根组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list.component'</span></span><br><span class="line"><span class="hljs-comment">//导入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListInfoComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list-info/list-info.component'</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;<span class="hljs-comment">//声明组件</span></span><br><span class="line">  declarations: [ListInfoComponent, ListComponent],</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],<span class="hljs-comment">//暴露组件</span></span><br><span class="line">  exports: [ListInfoComponent, ListComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>tab4</code>模块中使用这个<code>list</code>模块</p>
+ <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//tab4.module.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FormsModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Tab4Page &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./tab4.page'</span>;</span><br><span class="line"><span class="hljs-comment">//引入list模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../module/list/list.module'</span></span><br><span class="line"><span class="hljs-keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="hljs-string">''</span>,</span><br><span class="line">    component: Tab4Page</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    IonicModule,</span><br><span class="line">    ListModule, <span class="hljs-comment">//挂载list模块</span></span><br><span class="line">    RouterModule.forChild(routes)</span><br><span class="line">  ],</span><br><span class="line">  declarations: [Tab4Page]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tab4PageModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>tab4</code>中使用<code>list</code>组件和<code>listInfo</code>子组件</p>
+ <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//tab4.page.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ion-title</span>&gt;</span>tab4<span class="hljs-tag">&lt;/<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="hljs-comment">&lt;!-- 使用list模块的根组件 --&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">app-list</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-list</span>&gt;</span></span><br><span class="line">  <span class="hljs-comment">&lt;!-- 使用list模块的子组件 --&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">app-list-info</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-list-info</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-content</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="定义公共模块总结："><a href="#定义公共模块总结：" class="headerlink" title="定义公共模块总结："></a>定义公共模块总结：</h4><ul>
+<li><p>如果需要定义一个公共模块，只需要将该模块需要暴露的组件声明一下再暴露出去，然后在需要引入该模块的组件的模块引入这个模块，然后挂载一下这个模块，就可以在自己的模块中使用这个组件了，当然，如果这个模块有子组件，那么要使用这个子组件，只需要暴露这个子组件就行了</p>
+<h3 id="自定义公共模块中使用ionic"><a href="#自定义公共模块中使用ionic" class="headerlink" title="自定义公共模块中使用ionic"></a>自定义公共模块中使用ionic</h3></li>
+<li><p>在自定义的模块中，我们是无法直接使用ionic的组件的，因为我们自定义组件中并没有引入ionic的依赖，如果需要使用，那么需要在自定义模块中的<code>module.ts</code>中引入和挂载一下</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入ionic依赖</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//导入根组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list.component'</span></span><br><span class="line"><span class="hljs-comment">//导入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListInfoComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list-info/list-info.component'</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;<span class="hljs-comment">//声明组件</span></span><br><span class="line">  declarations: [ListInfoComponent, ListComponent],</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule,</span><br><span class="line">    <span class="hljs-comment">//挂载ionic依赖</span></span><br><span class="line">    IonicModule</span><br><span class="line">  ],<span class="hljs-comment">//暴露组件</span></span><br><span class="line">  exports: [ListInfoComponent, ListComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样的话那么该模块下所有的组件都可以使用ionic提供的组件了</p>
+</li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/08/04/Ionic新增一个tabs和定义公共模块/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/Ionic/">Ionic</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/07/15/5d2bd45a3679321657.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
+        
+
+            
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                            <div class="level-start">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/04/React创建最基本的组件/">
+                                    <i class="level-item fas fa-chevron-left"></i>
+                                    <span class="level-item">React创建最基本的组件</span>
+                                </a>
+                            </div>
+                            
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/04/Ionic的安装运行/">
+                                            <span class="level-item">Ionic的安装运行</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#新增一个tabs">
+        <span class="has-mr-6">1</span>
+        <span>新增一个tabs</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#添加模块">
+        <span class="has-mr-6">1.1</span>
+        <span>添加模块</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#新增tab总结：">
+        <span class="has-mr-6">1.1.1</span>
+        <span>新增tab总结：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#定义公共模块">
+        <span class="has-mr-6">1.2</span>
+        <span>定义公共模块</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#引入公共模块的子组件">
+        <span class="has-mr-6">1.2.1</span>
+        <span>引入公共模块的子组件</span>
+        </a></li><li>
+        <a class="is-flex" href="#定义公共模块总结：">
+        <span class="has-mr-6">1.2.2</span>
+        <span>定义公共模块总结：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#自定义公共模块中使用ionic">
+        <span class="has-mr-6">1.3</span>
+        <span>自定义公共模块中使用ionic</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://www.gravatar.com/avatar/1666d251da3684c11ad6a23e18491cd7?s=128" alt="Just for fun">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Just for fun
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        何必固执的追逐光明，可以尝试让自己也发光
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Jiangxi,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        64
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ZhongYueHui" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ZhongYueHui">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            📕最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:31:02.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="has-link-black-ter is-size-6">Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/express中的中间件/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express中的中间件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:30:57.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/express中的中间件/" class="has-link-black-ter is-size-6">Express中的中间件</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Express框架的安装和基本使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express框架的安装和基本使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:24:42.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Express框架的安装和基本使用/" class="has-link-black-ter is-size-6">Express框架的安装和基本使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs的ejs模板引擎的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:21:43.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="has-link-black-ter is-size-6">Nodejs的ejs模板引擎的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">41</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">20</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Angular/">
+            <span class="level-start">
+                <span class="level-item">Angular</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ES6/">
+            <span class="level-start">
+                <span class="level-item">ES6</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Ionic/">
+            <span class="level-start">
+                <span class="level-item">Ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/MongoDB/">
+            <span class="level-start">
+                <span class="level-item">MongoDB</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React/">
+            <span class="level-start">
+                <span class="level-item">React</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React-native/">
+            <span class="level-start">
+                <span class="level-item">React-native</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Redux/">
+            <span class="level-start">
+                <span class="level-item">Redux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TypeScript/">
+            <span class="level-start">
+                <span class="level-item">TypeScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/开发工具/">
+            <span class="level-start">
+                <span class="level-item">开发工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            ✍标签云
+        </h3>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 10px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+    </div>
+</div>
+
+                                                                            
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ionic/">
+                        <span class="tag">Ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MongoDB/">
+                        <span class="tag">MongoDB</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Nodejs/">
+                        <span class="tag">Nodejs</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React-native/">
+                        <span class="tag">React-native</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Redux/">
+                        <span class="tag">Redux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vs-code/">
+                        <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/webpack/">
+                        <span class="tag">webpack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            🔗友情链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ranshan丶</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">q32757468.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
+                                            
+                                            
+
+                        <!-- 粘贴的部分 -->
+                        
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                                <img src="/images/mylogo.png" alt="Ionic新增一个tabs和定义公共模块" height="28">
+                                
+                </a>
+                <p class="is-size-7">
+                    &copy;
+                    2019
+                        zhong yuehui&nbsp; Powered &nbsp; 💗 &nbsp; Just for fun
+                            
+                </p>
+            </div>
+            <div class="center" style="font-size: 12px;font-weight: 900">
+                <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                <div id="footer-info" class="inner" style="padding-left: 10%">
+
+                    <div style="padding-left: 5%">
+                        &copy;
+                        2019
+                            zhong yuehui
+
+                    </div>
+                    <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
+                    <!-- 注释掉Powered by，Theme by的显示。-->
+                    <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+                </div>
+            </div>
+
+
+            <div class="level-end">
+                
+                    <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                        
+                            
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                        
+                                                    <i class="fab fa-creative-commons"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                        
+                                                    <i class="fab fa-creative-commons-by"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                                        
+                                                    <i class="fab fa-github"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 0) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+        $('.image').attr('src', 'https://i.loli.net/2019/06/22/5d0e490322f4929976.png')
+    </script>
+
+</footer>
+<script>
+    var now = new Date();
+
+    function createtime() {
+        var grt = new Date("6/20/2019 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()", 250);
+</script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+
+        
+            
+                
+    
+    <script src="/js/animation.js"></script>
+    
+
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+                    
+                
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+                    
+                
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+                    
+                
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+                    
+                
+
+                    
+                
+                    
+                
+
+                    
+                
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+                    
+                        
+
+                            <script src="/js/main.js" defer></script>
+                                <script>
+                                    moment.locale("zh-CN");
+                                </script>
+
+                                    
+                                        <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                                            
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":60,"vOffset":-30},"mobile":{"show":true},"react":{"opacity":0.8},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+
+
+</html>

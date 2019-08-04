@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>
+    React-native的学习 - Just for fun
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    
+        <meta name="description" content="React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。  &amp;lt;!-- more --&amp;gt; React-native开发app  配置好Android环境之后，只需要使用react-native init 项目名称 cd 项目名称 react-native run-android即可运行 推荐使用模拟器开">
+<meta name="keywords" content="React-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-native的学习">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React-native的学习/index.html">
+<meta property="og:site_name" content="Just for fun">
+<meta property="og:description" content="React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。  &amp;lt;!-- more --&amp;gt; React-native开发app  配置好Android环境之后，只需要使用react-native init 项目名称 cd 项目名称 react-native run-android即可运行 推荐使用模拟器开">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564921657116&di=bd94e562b46ebc53120e620c51480123&imgtype=0&src=http%3A%2F%2Fimg.phperz.com%2Fdata%2Fimg%2F20160110%2F1452434534_7583.png">
+<meta property="og:updated_time" content="2019-08-04T10:52:09.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-native的学习">
+<meta name="twitter:description" content="React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。  &amp;lt;!-- more --&amp;gt; React-native开发app  配置好Android环境之后，只需要使用react-native init 项目名称 cd 项目名称 react-native run-android即可运行 推荐使用模拟器开">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564921657116&di=bd94e562b46ebc53120e620c51480123&imgtype=0&src=http%3A%2F%2Fimg.phperz.com%2Fdata%2Fimg%2F20160110%2F1452434534_7583.png">
+            
+
+
+
+                
+
+                        
+                            <link rel="alternative" href="/atom.xml" title="React-native的学习" type="application/atom+xml">
+                            
+
+                                
+                                    <link rel="icon" href="/images/favicon.ico">
+                                    
+
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+                                            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+                                                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+                                                        
+                                                            
+                                                                
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+                                                                    
+                                                                
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+                                                                    
+                                                                
+    
+
+                                                                    
+                                                                        
+
+                                                                            <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="is-3-column">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+
+
+    <!-- <link rel="stylesheet" href="/dist/APlayer.min.css">
+    <div id="aplayer" style="margin-left: 20px!important;margin-bottom: 20px!important;"></div>
+    <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+    <script type="text/javascript" src="/dist/music.js"></script> -->
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/mylogo.png" alt="React-native的学习" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="🔍搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+        
+
+
+            
+                <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                    
+
+                        
+
+                            <section class="section">
+                                <div class="container">
+                                    <div class="columns">
+                                        <!-- 将main_column_class() 改为 col() -->
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564921657116&amp;di=bd94e562b46ebc53120e620c51480123&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.phperz.com%2Fdata%2Fimg%2F20160110%2F1452434534_7583.png" alt="React-native的学习">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-04T09:26:43.000Z">2019-08-04</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/React-native/">React-native</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 569 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    React-native的学习
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-native开发app</h2>
+<ul>
+<li>配置好Android环境之后，只需要使用<code>react-native init 项目名称</code></li>
+<li>cd <code>项目名称</code></li>
+<li><code>react-native run-android</code>即可运行</li>
+<li>推荐使用模拟器开发，较为方便</li>
+</ul>
+<h3>react-native项目的一些说明</h3>
+<ul>
+<li>在项目的<code>index.js</code>中，从react-native导入的<code>AppRegistery</code>，它的作用就是注册首页的</li>
+<li>使用AppRegistery注册项目时，第一个参数是你要做的项目app名称，第二个参数是表示把哪个页面注册为项目的首页</li>
+</ul>
+<h3>创建自己的首页</h3>
+<ul>
+<li>在react-native中， 不能使用<code>.jsx</code>文件，只能使用<code>.js</code></li>
+<li>在react-native中,组件的语法与<code>react</code>相似，在组件中也必须要有<code>render</code>函数，但是需要注意的是，RN中，不能使用网页的标签(div,p,img...)，取而代之的是RN的View组件来实现布局</li>
+</ul>
+<h4>布局的一些说明</h4>
+<ul>
+<li>
+<p>使用组件时必须先引入，再使用</p>
+</li>
+<li>
+<p>必须使用<code>View</code>作为布局容器</p>
+</li>
+<li>
+<p>文本内容必须使用<code>Text</code>标签包裹</p>
+</li>
+<li>
+<p><strong>Platform</strong>:提供平台检测功能</p>
+</li>
+<li>
+<p><strong>StyleSheet</strong>：样式相关的组件，专门用来创建样式的</p>
+</li>
+<li>
+<p><strong>Text</strong>：文本节点，所有的文本必须放在里面</p>
+</li>
+<li>
+<p><strong>View</strong>：用来布局的，相当于div</p>
+</li>
+<li>
+<p><strong>TextInput</strong>：文本框组件</p>
+</li>
+<li>
+<p><strong>Image</strong>:图片组件</p>
+</li>
+<li>
+<p><strong>Button</strong>：按钮组件</p>
+</li>
+<li>
+<p><strong>ActivityIndicator</strong>：加载中的loading图</p>
+</li>
+<li>
+<p><strong>ScrollView</strong>：超出内容后显示滚动条</p>
+</li>
+</ul>
+<h4>View</h4>
+<ul>
+<li>必须将元素放在View中，才能显示</li>
+</ul>
+<h4>Text</h4>
+<ul>
+<li>存放文本内容的阿</li>
+</ul>
+<h4>Image</h4>
+<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用Image引入图片，引入本地图片:`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;requrie(</span>'<span class="hljs-attr">.</span>/<span class="hljs-attr">1.jpg</span>')&#125; /&gt;</span>`</span><br><span class="line">引入网络图片`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;&#123;uri:</span>'<span class="hljs-attr">http:</span>//<span class="hljs-attr">xxx.xxx.xxx</span>'&#125;&#125; <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;width:200,height:150&#125;&#125;</span> /&gt;</span>`需要设置宽高，否则不显示</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4>Button</h4>
+<ul>
+<li>使用BUtton必须要一个<code>title</code>属性，作为按钮显示的名字</li>
+</ul>
+<h4>ActivityIndicator</h4>
+<ul>
+<li>属性：animating(是否要显示加载动画：true or false)、color(颜色)、size('large,small'):安卓可以使用数字、hidesWhenStopped(ios)</li>
+</ul>
+<h4>ScrollView</h4>
+<ul>
+<li>在RN中，内容超出界面不会自动出现滚动条，需要使用<code>ScrollView</code>将元素包裹起来，才会出现滚动条.</li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/08/04/React-native的学习/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/React-native/">React-native</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/07/15/5d2bd45a3679321657.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
+        
+
+            
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                            <div class="level-start">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/04/使用Vue脚手架搭建项目/">
+                                    <i class="level-item fas fa-chevron-left"></i>
+                                    <span class="level-item">使用Vue脚手架搭建项目</span>
+                                </a>
+                            </div>
+                            
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/04/React的react-transition-group动画库/">
+                                            <span class="level-item">React的react-transition-group动画库</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1</span>
+        <span>React-native开发app</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.1</span>
+        <span>react-native项目的一些说明</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2</span>
+        <span>创建自己的首页</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.1</span>
+        <span>布局的一些说明</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.2</span>
+        <span>View</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.3</span>
+        <span>Text</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.4</span>
+        <span>Image</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.5</span>
+        <span>Button</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.6</span>
+        <span>ActivityIndicator</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1.2.7</span>
+        <span>ScrollView</span>
+        </a></li></ul></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://www.gravatar.com/avatar/1666d251da3684c11ad6a23e18491cd7?s=128" alt="Just for fun">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Just for fun
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        何必固执的追逐光明，可以尝试让自己也发光
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Jiangxi,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        64
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ZhongYueHui" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ZhongYueHui">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            📕最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:31:02.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="has-link-black-ter is-size-6">Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/express中的中间件/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express中的中间件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:30:57.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/express中的中间件/" class="has-link-black-ter is-size-6">Express中的中间件</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Express框架的安装和基本使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express框架的安装和基本使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:24:42.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Express框架的安装和基本使用/" class="has-link-black-ter is-size-6">Express框架的安装和基本使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs的ejs模板引擎的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:21:43.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="has-link-black-ter is-size-6">Nodejs的ejs模板引擎的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">41</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">20</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Angular/">
+            <span class="level-start">
+                <span class="level-item">Angular</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ES6/">
+            <span class="level-start">
+                <span class="level-item">ES6</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Ionic/">
+            <span class="level-start">
+                <span class="level-item">Ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/MongoDB/">
+            <span class="level-start">
+                <span class="level-item">MongoDB</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React/">
+            <span class="level-start">
+                <span class="level-item">React</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React-native/">
+            <span class="level-start">
+                <span class="level-item">React-native</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Redux/">
+            <span class="level-start">
+                <span class="level-item">Redux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TypeScript/">
+            <span class="level-start">
+                <span class="level-item">TypeScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/开发工具/">
+            <span class="level-start">
+                <span class="level-item">开发工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            ✍标签云
+        </h3>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 10px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+    </div>
+</div>
+
+                                                                            
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ionic/">
+                        <span class="tag">Ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MongoDB/">
+                        <span class="tag">MongoDB</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Nodejs/">
+                        <span class="tag">Nodejs</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React-native/">
+                        <span class="tag">React-native</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Redux/">
+                        <span class="tag">Redux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vs-code/">
+                        <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/webpack/">
+                        <span class="tag">webpack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            🔗友情链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ranshan丶</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">q32757468.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
+                                            
+                                            
+
+                        <!-- 粘贴的部分 -->
+                        
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                                <img src="/images/mylogo.png" alt="React-native的学习" height="28">
+                                
+                </a>
+                <p class="is-size-7">
+                    &copy;
+                    2019
+                        zhong yuehui&nbsp; Powered &nbsp; 💗 &nbsp; Just for fun
+                            
+                </p>
+            </div>
+            <div class="center" style="font-size: 12px;font-weight: 900">
+                <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                <div id="footer-info" class="inner" style="padding-left: 10%">
+
+                    <div style="padding-left: 5%">
+                        &copy;
+                        2019
+                            zhong yuehui
+
+                    </div>
+                    <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
+                    <!-- 注释掉Powered by，Theme by的显示。-->
+                    <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+                </div>
+            </div>
+
+
+            <div class="level-end">
+                
+                    <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                        
+                            
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                        
+                                                    <i class="fab fa-creative-commons"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                        
+                                                    <i class="fab fa-creative-commons-by"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                                        
+                                                    <i class="fab fa-github"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 0) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+        $('.image').attr('src', 'https://i.loli.net/2019/06/22/5d0e490322f4929976.png')
+    </script>
+
+</footer>
+<script>
+    var now = new Date();
+
+    function createtime() {
+        var grt = new Date("6/20/2019 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()", 250);
+</script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+
+        
+            
+                
+    
+    <script src="/js/animation.js"></script>
+    
+
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+                    
+                
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+                    
+                
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+                    
+                
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+                    
+                
+
+                    
+                
+                    
+                
+
+                    
+                
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+                    
+                        
+
+                            <script src="/js/main.js" defer></script>
+                                <script>
+                                    moment.locale("zh-CN");
+                                </script>
+
+                                    
+                                        <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                                            
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":60,"vOffset":-30},"mobile":{"show":true},"react":{"opacity":0.8},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+
+
+</html>

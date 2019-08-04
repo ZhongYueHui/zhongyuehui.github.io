@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>
+    MongoDB索引 - Just for fun
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    
+        <meta name="description" content="使用索引可以帮助我们更快速的查找到数据，我们现在插入200W条数据到数据库，进行性能的测试。">
+<meta name="keywords" content="MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB索引">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/MongoDB索引/index.html">
+<meta property="og:site_name" content="Just for fun">
+<meta property="og:description" content="使用索引可以帮助我们更快速的查找到数据，我们现在插入200W条数据到数据库，进行性能的测试。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
+<meta property="og:updated_time" content="2019-08-04T10:16:02.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB索引">
+<meta name="twitter:description" content="使用索引可以帮助我们更快速的查找到数据，我们现在插入200W条数据到数据库，进行性能的测试。">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
+            
+
+
+
+                
+
+                        
+                            <link rel="alternative" href="/atom.xml" title="MongoDB索引" type="application/atom+xml">
+                            
+
+                                
+                                    <link rel="icon" href="/images/favicon.ico">
+                                    
+
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+                                            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+                                                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+                                                        
+                                                            
+                                                                
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+                                                                    
+                                                                
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+                                                                    
+                                                                
+
+                                                                    
+                                                                
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+                                                                    
+                                                                
+    
+
+                                                                    
+                                                                        
+
+                                                                            <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="is-3-column">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+
+
+    <!-- <link rel="stylesheet" href="/dist/APlayer.min.css">
+    <div id="aplayer" style="margin-left: 20px!important;margin-bottom: 20px!important;"></div>
+    <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+    <script type="text/javascript" src="/dist/music.js"></script> -->
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/mylogo.png" alt="MongoDB索引" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="🔍搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+        
+
+
+            
+                <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                    
+
+                        
+
+                            <section class="section">
+                                <div class="container">
+                                    <div class="columns">
+                                        <!-- 将main_column_class() 改为 col() -->
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564923415638&amp;di=003cfd10dcc5d0ddf998eaaacfd6ced9&amp;imgtype=0&amp;src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png" alt="MongoDB索引">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-04T10:14:41.000Z">2019-08-04</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/MongoDB/">MongoDB</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1591 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    MongoDB索引
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>使用索引可以帮助我们更快速的查找到数据，我们现在插入200W条数据到数据库，进行性能的测试。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="MongoDB索引"><a href="#MongoDB索引" class="headerlink" title="MongoDB索引"></a>MongoDB索引</h2><h3 id="插入200w条数据"><a href="#插入200w条数据" class="headerlink" title="插入200w条数据"></a>插入200w条数据</h3><ul>
+<li><p>我们先插入两百万条数据到数据库中</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">//生成随机数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomNumber</span>(<span class="hljs-params">min, max</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> range = max - min</span><br><span class="line">    <span class="hljs-keyword">let</span> rand = <span class="hljs-built_in">Math</span>.random()</span><br><span class="line">    <span class="hljs-keyword">let</span> number = (min + <span class="hljs-built_in">Math</span>.round(rand * range))</span><br><span class="line">    <span class="hljs-keyword">return</span> number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// //生成随机用户名</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomName</span>(<span class="hljs-params">min, max</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//将每个字符串切割成数组</span></span><br><span class="line">    <span class="hljs-keyword">let</span> userNameString = <span class="hljs-string">"0123456789azqwsxedcrfvtgbyhnujmikolp"</span>.split(<span class="hljs-string">''</span>)</span><br><span class="line">    <span class="hljs-keyword">let</span> outName = <span class="hljs-string">''</span></span><br><span class="line">    <span class="hljs-comment">//定义名字的长度，随机生成区间的长度,每次循环从userNameString取一个数组出来拼接到outName</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; getRandomNumber(min, max); i++) &#123;</span><br><span class="line">        <span class="hljs-comment">//生成名字，从userNameString数组种，随机从0到userNameString数组的长度中抽取</span></span><br><span class="line">        outName = outName + userNameString[getRandomNumber(<span class="hljs-number">0</span>, userNameString.length)]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> outName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//随机生成200w条数据插入到数据库中</span></span><br><span class="line"><span class="hljs-keyword">var</span> stratTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> DataArray = []</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2000000</span>; i++) &#123;</span><br><span class="line">    DataArray.push(&#123;</span><br><span class="line">        username: getRandomName(<span class="hljs-number">6</span>, <span class="hljs-number">15</span>),</span><br><span class="line">        regeditemTime: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),</span><br><span class="line">        randNumber: getRandomNumber(<span class="hljs-number">100000</span>, <span class="hljs-number">999999</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line">db.random.drop() <span class="hljs-comment">//先删除数据库，防止数据出错</span></span><br><span class="line">db.random.insert(DataArray)  <span class="hljs-comment">//插入数据</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> useTime = endTime - stratTime</span><br><span class="line">print(useTime + <span class="hljs-string">"ms"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>耗时两分多钟，插入完毕后，我们可以使用<code>db.random.stats()</code>查看数据的条数是否正确，其实在中途我有查看大概的插入时间实际上都在是js在做数组插入工作，少数时间插入到数据库中，这跟我们使用批量插入是离不开的</p>
+<h3 id="查询数据并遍历"><a href="#查询数据并遍历" class="headerlink" title="查询数据并遍历"></a>查询数据并遍历</h3></li>
+<li><p>设计查询程序</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"usermae"</span>: <span class="hljs-string">"7xo6cg"</span> &#125;)  <span class="hljs-comment">//使用db.random.find().skip(50000)查询到的一个名字</span></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询结束，耗时"'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>)  <span class="hljs-comment">//稳定在0.9s</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询结果</p>
+  <figure class="highlight puppet hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; load(<span class="hljs-string">'./demo05.js'</span>)</span><br><span class="line">connecting to: mongodb://127.0.0.1:27017/User</span><br><span class="line">Implicit session: <span class="hljs-keyword">session</span> &#123; <span class="hljs-string">"id"</span> : UUID(<span class="hljs-string">"66dab01f-697b-4529-a2d5-106eecf3dbca"</span>) &#125;</span><br><span class="line"><span class="hljs-keyword">MongoDB</span> <span class="hljs-keyword">server</span> <span class="hljs-keyword">version</span>: 4.0.10</span><br><span class="line">查询结束，耗时<span class="hljs-string">"0.928s</span></span><br><span class="line"><span class="hljs-string">true</span></span><br><span class="line"><span class="hljs-string">&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><ul>
+<li><p>使用<code>db.数据表名.ensureIndex({&quot;username&quot;:1})</code>来建立索引，1表示true，就是建立索引的意思</p>
+</li>
+<li><p>查看索引：<code>db.数据表名.getIndexes()</code>来查看索引，结果是一个数组，里面有一个对象代表有几个索引，一般地我们不会使用<code>_id</code>因为这个是系统随机生成的不好查找</p>
+</li>
+<li><p>建立索引后查找:</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"ux5suyundefinednn"</span> &#125;)  <span class="hljs-comment">//使用db.random.find().skip(50000)查询到的一个名字</span></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询结束，耗时"'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>)  <span class="hljs-comment">//第一次在0.01s之间，以后有查询缓存稳定在0.005s左右</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询结果:</p>
+  <figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-string">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-string">"5d43aefc04d831b959b4175c"</span>),</span><br><span class="line">    <span class="hljs-string">"username"</span> : "<span class="hljs-type">ux5suyundefinednn</span><span class="hljs-string">",</span></span><br><span class="line"><span class="hljs-string">    "</span>regeditemTime<span class="hljs-string">" : ISODate("</span><span class="hljs-number">2019</span>-<span class="hljs-number">08</span>-<span class="hljs-number">02</span>T03:<span class="hljs-number">31</span>:<span class="hljs-number">00.788</span>Z<span class="hljs-string">"),</span></span><br><span class="line"><span class="hljs-string">    "</span>randNumber<span class="hljs-string">" : 806500</span></span><br><span class="line"><span class="hljs-string">&#125;</span></span><br><span class="line"><span class="hljs-string">查询结束，耗时"</span><span class="hljs-number">0.006</span>s</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="使用索引的注意事项"><a href="#使用索引的注意事项" class="headerlink" title="使用索引的注意事项"></a>使用索引的注意事项</h4><ul>
+<li><p>数据不超万条时，不需要使用索引。性能的提升并不明显，而大大增加了内存和硬盘的消耗。</p>
+</li>
+<li><p>查询数据超过表数据量30%时，不要使用索引字段查询。实际证明会比不使用索引更慢，因为它大量检索了索引表和我们原表。</p>
+</li>
+<li><p>数字索引，要比字符串索引快的多，在百万级甚至千万级数据量面前，使用数字索引是个明确的选择。</p>
+</li>
+<li><p>把你经常查询的数据做成一个内嵌数据（对象型的数据），然后集体进行索引。</p>
+<h3 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h3></li>
+<li><p>两条以上的索引称为符合索引</p>
+</li>
+<li><p>复合索引查询</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"ux5suyundefinednn"</span>, <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">806500</span> &#125;)</span><br><span class="line"></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询成功,耗时'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>) <span class="hljs-comment">//第一次耗时0.02s左右,后面查询都为0.01s左右</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默认复合查找的索引顺序其实不是以我们写的索引顺序为准，而是以设置索引的顺序，就是<code>db.数据表.getIndexes()</code>查询到的顺序为准的，但是由于数字所以速度比字符串索引要快，我们有时候需要改变其索引的顺序，就需要使用<code>hint</code>关键字进行优先指定索引查找</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"elhm4th"</span>, <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">364231</span> &#125;).hint(&#123; <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line"></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询成功,耗时'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>) <span class="hljs-comment">//第一次耗时0.006s左右,后面查询都为0.01s左右</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询结果：</p>
+  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; load(<span class="hljs-string">'./demo06.js'</span>)</span><br><span class="line">connecting <span class="hljs-string">to:</span> <span class="hljs-string">mongodb:</span><span class="hljs-comment">//127.0.0.1:27017/User</span></span><br><span class="line">Implicit <span class="hljs-string">session:</span> session &#123; <span class="hljs-string">"id"</span> : UUID(<span class="hljs-string">"07312a2c-b849-4862-a53d-6dd796b5cfaf"</span>) &#125;</span><br><span class="line">MongoDB server <span class="hljs-string">version:</span> <span class="hljs-number">4.0</span><span class="hljs-number">.10</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d43af0f04d831b959c2964b"</span>),</span><br><span class="line">        <span class="hljs-string">"username"</span> : <span class="hljs-string">"elhm4th"</span>,</span><br><span class="line">        <span class="hljs-string">"regeditemTime"</span> : ISODate(<span class="hljs-string">"2019-08-02T03:31:40.391Z"</span>),</span><br><span class="line">        <span class="hljs-string">"randNumber"</span> : <span class="hljs-number">364231</span></span><br><span class="line">&#125;</span><br><span class="line">查询成功,耗时<span class="hljs-number">0.005</span>s</span><br><span class="line"><span class="hljs-literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在这里其实看不出来有太明显的效果，因为200W条数据太少了</p>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3></li>
+<li><p>有时候我们建立索引错了，需要删除，使用<code>db.数据表.dropIndex(&quot;&quot;)</code>这里的内容填的是索引的名字,使用<code>db.数据表.getIndexes()</code>查询你要删除的索引名字<code>name</code>属性的值，不是<code>key</code>属性的值</p>
+<h3 id="建立全文索引"><a href="#建立全文索引" class="headerlink" title="建立全文索引"></a>建立全文索引</h3></li>
+<li><p>在一些很大的数据中，比如一篇长文，这个时候我们如果想查找文章内容的某一部分，这个时候就需要使用全文索引来帮助我们查找</p>
+</li>
+<li><p>使用<code>db.数据表.ensureIndex({需要建立全文索引的属性:&quot;text&quot;})</code>这里需要跟上<code>text</code>表示建立全文索引，而不是<strong>1或true</strong>表示建立索引</p>
+</li>
+<li><p><strong>全文索引查找</strong>:</p>
+<ol>
+<li>$text:表示要在全文索引中查东西。</li>
+<li>$search:后边跟查找的内容。<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="查找多个词"><a href="#查找多个词" class="headerlink" title="查找多个词:"></a>查找多个词:</h4><ul>
+<li><p>全文索引是支持多个次查找的，比如我们希望查找数据中有programmer，family，diary，drink的数据（这是或的关系），所以两条数据都会出现。</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer family diary drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们这时候希望不查找出来有drink这个单词的记录，我们可以使用“-”减号来取消,就相当于查找的记录要前面的，不要带<code>-</code>的</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbd <span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer family diary -drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h4><ul>
+<li>全文搜索中是支持转义符的，比如我们想搜索的是两个词（love PlayGame和drink），这时候需要使用\斜杠来转意。  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"\"love PlayGame\" drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/08/04/MongoDB索引/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/MongoDB/">MongoDB</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/07/15/5d2bd45a3679321657.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
+        
+
+            
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                            <div class="level-start">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/04/MongoDB用户的创建删除和管理/">
+                                    <i class="level-item fas fa-chevron-left"></i>
+                                    <span class="level-item">MongoDB用户的创建删除和管理</span>
+                                </a>
+                            </div>
+                            
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/04/MongoDB数据库与数据表数据的增加、删除和修改/">
+                                            <span class="level-item">MongoDB数据库与数据表数据的增加、删除和修改</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#MongoDB索引">
+        <span class="has-mr-6">1</span>
+        <span>MongoDB索引</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#插入200w条数据">
+        <span class="has-mr-6">1.1</span>
+        <span>插入200w条数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询数据并遍历">
+        <span class="has-mr-6">1.2</span>
+        <span>查询数据并遍历</span>
+        </a></li><li>
+        <a class="is-flex" href="#建立索引">
+        <span class="has-mr-6">1.3</span>
+        <span>建立索引</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#使用索引的注意事项">
+        <span class="has-mr-6">1.3.1</span>
+        <span>使用索引的注意事项</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#复合索引">
+        <span class="has-mr-6">1.4</span>
+        <span>复合索引</span>
+        </a></li><li>
+        <a class="is-flex" href="#删除索引">
+        <span class="has-mr-6">1.5</span>
+        <span>删除索引</span>
+        </a></li><li>
+        <a class="is-flex" href="#建立全文索引">
+        <span class="has-mr-6">1.6</span>
+        <span>建立全文索引</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#查找多个词">
+        <span class="has-mr-6">1.6.1</span>
+        <span>查找多个词:</span>
+        </a></li><li>
+        <a class="is-flex" href="#转义符">
+        <span class="has-mr-6">1.6.2</span>
+        <span>转义符</span>
+        </a></li></ul></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://www.gravatar.com/avatar/1666d251da3684c11ad6a23e18491cd7?s=128" alt="Just for fun">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Just for fun
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        何必固执的追逐光明，可以尝试让自己也发光
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Jiangxi,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        64
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ZhongYueHui" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ZhongYueHui">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+                                                        
+                                                    
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            📕最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:31:02.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/" class="has-link-black-ter is-size-6">Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/express中的中间件/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express中的中间件">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:30:57.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/express中的中间件/" class="has-link-black-ter is-size-6">Express中的中间件</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Express框架的安装和基本使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Express框架的安装和基本使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:24:42.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Express框架的安装和基本使用/" class="has-link-black-ter is-size-6">Express框架的安装和基本使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs的ejs模板引擎的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:21:43.000Z">2019-08-04</time></div>
+                    <a href="/2019/08/04/Nodejs的ejs模板引擎的使用/" class="has-link-black-ter is-size-6">Nodejs的ejs模板引擎的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">41</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">20</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Angular/">
+            <span class="level-start">
+                <span class="level-item">Angular</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ES6/">
+            <span class="level-start">
+                <span class="level-item">ES6</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Ionic/">
+            <span class="level-start">
+                <span class="level-item">Ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/MongoDB/">
+            <span class="level-start">
+                <span class="level-item">MongoDB</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Nodejs/">
+            <span class="level-start">
+                <span class="level-item">Nodejs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React/">
+            <span class="level-start">
+                <span class="level-item">React</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/React-native/">
+            <span class="level-start">
+                <span class="level-item">React-native</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Redux/">
+            <span class="level-start">
+                <span class="level-item">Redux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TypeScript/">
+            <span class="level-start">
+                <span class="level-item">TypeScript</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ionic/">
+            <span class="level-start">
+                <span class="level-item">ionic</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/开发工具/">
+            <span class="level-start">
+                <span class="level-item">开发工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            ✍标签云
+        </h3>
+        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/Ionic/" style="font-size: 10px;">Ionic</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+    </div>
+</div>
+
+                                                                            
+                                                                        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ES6/">
+                        <span class="tag">ES6</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Express/">
+                        <span class="tag">Express</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ionic/">
+                        <span class="tag">Ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MongoDB/">
+                        <span class="tag">MongoDB</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Nodejs/">
+                        <span class="tag">Nodejs</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React-native/">
+                        <span class="tag">React-native</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Redux/">
+                        <span class="tag">Redux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ionic/">
+                        <span class="tag">ionic</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vs-code/">
+                        <span class="tag">vs code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/vuex/">
+                        <span class="tag">vuex</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/webpack/">
+                        <span class="tag">webpack</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                                            
+                                                                        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            🔗友情链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ranshan丶</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">q32757468.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
+                                            
+                                            
+
+                        <!-- 粘贴的部分 -->
+                        
+                                    </div>
+                                </div>
+                            </section>
+                            <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                                <img src="/images/mylogo.png" alt="MongoDB索引" height="28">
+                                
+                </a>
+                <p class="is-size-7">
+                    &copy;
+                    2019
+                        zhong yuehui&nbsp; Powered &nbsp; 💗 &nbsp; Just for fun
+                            
+                </p>
+            </div>
+            <div class="center" style="font-size: 12px;font-weight: 900">
+                <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+                <div id="footer-info" class="inner" style="padding-left: 10%">
+
+                    <div style="padding-left: 5%">
+                        &copy;
+                        2019
+                            zhong yuehui
+
+                    </div>
+                    <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    访问量<span id="busuanzi_value_site_pv"></span>次 <i class="fa fa-user-md"></i> 访客数<span id="busuanzi_value_site_uv"></span>人
+                    <!-- 注释掉Powered by，Theme by的显示。-->
+                    <!-- Powered by <a href="http://blog.kimzing.com/" target="_blank">Kim</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a> -->
+                </div>
+            </div>
+
+
+            <div class="level-end">
+                
+                    <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                        
+                            
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                        
+                                                    <i class="fab fa-creative-commons"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                        
+                                                    <i class="fab fa-creative-commons-by"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                                <p class="control">
+                                    <a class="button is-white is-large" target="_blank" title="GitHub" href="https://github.com/ZhongYueHui">
+                                        
+                                                    <i class="fab fa-github"></i>
+                                                    
+                                    </a>
+                                </p>
+                                
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 0) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+        $('.image').attr('src', 'https://i.loli.net/2019/06/22/5d0e490322f4929976.png')
+    </script>
+
+</footer>
+<script>
+    var now = new Date();
+
+    function createtime() {
+        var grt = new Date("6/20/2019 12:49:00"); //此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()", 250);
+</script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+
+        
+            
+                
+    
+    <script src="/js/animation.js"></script>
+    
+
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+                    
+                
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+                    
+                
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+                    
+                
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+                    
+                
+
+                    
+                
+                    
+                
+
+                    
+                
+                    
+                
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+                    
+                        
+
+                            <script src="/js/main.js" defer></script>
+                                <script>
+                                    moment.locale("zh-CN");
+                                </script>
+
+                                    
+                                        <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                                            
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200,"hOffset":60,"vOffset":-30},"mobile":{"show":true},"react":{"opacity":0.8},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+
+
+</html>
