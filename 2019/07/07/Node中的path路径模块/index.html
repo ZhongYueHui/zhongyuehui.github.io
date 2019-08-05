@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  &amp;lt;!-- more --&amp;gt; Path模块  引入 const path = require(&apos;path&apos;)  path的一些方法 path.basename():   只有一个参数时    有两个参数时，且参数的后缀名相同时    有两个参数时，且参数的后缀名不相同时    总结：">
+        <meta name="description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具">
 <meta name="keywords" content="Nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node中的path路径模块">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/07/07/Node中的path路径模块/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  &amp;lt;!-- more --&amp;gt; Path模块  引入 const path = require(&apos;path&apos;)  path的一些方法 path.basename():   只有一个参数时    有两个参数时，且参数的后缀名相同时    有两个参数时，且参数的后缀名不相同时    总结：">
+<meta property="og:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564924233932&di=1e3688ff380771ad9fd7eb32545cf574&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg">
 <meta property="og:updated_time" content="2019-08-04T10:22:45.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node中的path路径模块">
-<meta name="twitter:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具  &amp;lt;!-- more --&amp;gt; Path模块  引入 const path = require(&apos;path&apos;)  path的一些方法 path.basename():   只有一个参数时    有两个参数时，且参数的后缀名相同时    有两个参数时，且参数的后缀名不相同时    总结：">
+<meta name="twitter:description" content="在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564924233932&di=1e3688ff380771ad9fd7eb32545cf574&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg">
             
 
@@ -240,71 +240,48 @@
                             <blockquote>
 <p>在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Path模块</h2>
-<ul>
-<li>引入
-<code>const path = require('path')</code></li>
-</ul>
-<h3>path的一些方法</h3>
-<h3>path.basename():</h3>
-<ul>
-<li>
-<p>只有一个参数时
-<img src="https://s2.ax1x.com/2019/07/07/ZBYSYV.png" alt="path.basename"></p>
+<a id="more"></a>
+<h2 id="Path模块"><a href="#Path模块" class="headerlink" title="Path模块"></a>Path模块</h2><ul>
+<li><p>引入<br>  <code>const path = require(&#39;path&#39;)</code></p>
+<h3 id="path的一些方法"><a href="#path的一些方法" class="headerlink" title="path的一些方法"></a>path的一些方法</h3><h3 id="path-basename"><a href="#path-basename" class="headerlink" title="path.basename():"></a>path.basename():</h3></li>
+<li><p>只有一个参数时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYSYV.png" alt="path.basename"></p>
 </li>
-<li>
-<p>有两个参数时，且参数的后缀名相同时
-<img src="https://s2.ax1x.com/2019/07/07/ZBYCSU.png" alt="path.basename2"></p>
+<li><p>有两个参数时，且参数的后缀名相同时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYCSU.png" alt="path.basename2"></p>
 </li>
-<li>
-<p>有两个参数时，且参数的后缀名不相同时
-<img src="https://s2.ax1x.com/2019/07/07/ZBYiy4.png" alt="path.basename3"></p>
+<li><p>有两个参数时，且参数的后缀名不相同时<br><img src="https://s2.ax1x.com/2019/07/07/ZBYiy4.png" alt="path.basename3"></p>
 </li>
-<li>
-<p><strong>总结</strong>：</p>
+<li><p><strong>总结</strong>：</p>
 <ul>
 <li>一个参数时直接输出带后缀名的文件名</li>
 <li>两个参数时第二个参数为第一个参数的后缀名时输出为不带后缀名的文件名</li>
-<li>两个参数时第二个参数不是第一个参数的后缀名时输出仍是带后缀名的文件名</li>
+<li>两个参数时第二个参数不是第一个参数的后缀名时输出仍是带后缀名的文件名<h3 id="path-dirname"><a href="#path-dirname" class="headerlink" title="path.dirname()"></a>path.dirname()</h3><img src="https://s2.ax1x.com/2019/07/07/ZBJjwn.png" alt="path.dirname"></li>
 </ul>
 </li>
-</ul>
-<h3>path.dirname()</h3>
-<p><img src="https://s2.ax1x.com/2019/07/07/ZBJjwn.png" alt="path.dirname"></p>
-<ul>
-<li>只输出目录</li>
-</ul>
-<h3>path.extname()</h3>
-<p><img src="https://s2.ax1x.com/2019/07/07/ZBYFOJ.png" alt="pathextname"></p>
-<ul>
-<li>只输出后缀名</li>
-</ul>
-<h3>path.isAbsolute()</h3>
-<p><img src="https://s2.ax1x.com/2019/07/07/ZBYEwR.png" alt="path.isAbsolute"></p>
-<ul>
-<li>判断是否为绝对路径，返回一个布尔值</li>
-<li>**注意：**文件路径前不能有空格 否则直接返回<code>flase</code></li>
-<li>拓展：绝对路径的两种方式
+<li><p>只输出目录</p>
+<h3 id="path-extname"><a href="#path-extname" class="headerlink" title="path.extname()"></a>path.extname()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYFOJ.png" alt="pathextname"></p>
+</li>
+<li><p>只输出后缀名</p>
+<h3 id="path-isAbsolute"><a href="#path-isAbsolute" class="headerlink" title="path.isAbsolute()"></a>path.isAbsolute()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYEwR.png" alt="path.isAbsolute"></p>
+</li>
+<li><p>判断是否为绝对路径，返回一个布尔值</p>
+</li>
+<li><p><strong>注意：</strong>文件路径前不能有空格 否则直接返回<code>flase</code></p>
+</li>
+<li><p>拓展：绝对路径的两种方式</p>
 <ul>
 <li>如：c:/a/b/c/index.js ，有磁盘符，相对于磁盘符的绝对路径</li>
-<li>如：/a/b/c/index.js ，没有磁盘符，相对于当前磁盘下的绝对路径</li>
+<li>如：/a/b/c/index.js ，没有磁盘符，相对于当前磁盘下的绝对路径<h3 id="path-parse"><a href="#path-parse" class="headerlink" title="path.parse()"></a>path.parse()</h3><img src="https://s2.ax1x.com/2019/07/07/ZBYnfK.png" alt="parse"></li>
 </ul>
 </li>
-</ul>
-<h3>path.parse()</h3>
-<p><img src="https://s2.ax1x.com/2019/07/07/ZBYnfK.png" alt="parse"></p>
-<ul>
-<li>查看文件的详细信息</li>
-</ul>
-<h3>path.join()</h3>
-<p><img src="https://s2.ax1x.com/2019/07/07/ZBYMlD.png" alt="path.join"></p>
-<ul>
-<li>路径拼接</li>
-</ul>
+<li><p>查看文件的详细信息</p>
+<h3 id="path-join"><a href="#path-join" class="headerlink" title="path.join()"></a>path.join()</h3><p><img src="https://s2.ax1x.com/2019/07/07/ZBYMlD.png" alt="path.join"></p>
+</li>
+<li><p>路径拼接 </p>
 <blockquote>
 <p>在Node中，许多时候我们都需要用到路径模块，对文件路径的判断做出相应的响应</p>
 </blockquote>
+</li>
+</ul>
 
 
                                 
@@ -428,35 +405,35 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#Path模块">
         <span class="has-mr-6">1</span>
         <span>Path模块</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path的一些方法">
         <span class="has-mr-6">1.1</span>
         <span>path的一些方法</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-basename">
         <span class="has-mr-6">1.2</span>
         <span>path.basename():</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-dirname">
         <span class="has-mr-6">1.3</span>
         <span>path.dirname()</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-extname">
         <span class="has-mr-6">1.4</span>
         <span>path.extname()</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-isAbsolute">
         <span class="has-mr-6">1.5</span>
         <span>path.isAbsolute()</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-parse">
         <span class="has-mr-6">1.6</span>
         <span>path.parse()</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#path-join">
         <span class="has-mr-6">1.7</span>
         <span>path.join()</span>
         </a></li></ul></li></ul>
