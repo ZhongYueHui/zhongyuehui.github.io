@@ -20,7 +20,7 @@
 <meta property="og:description" content="在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。ES6 的模块化分为导出（export） @与导入（import）两个模块">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
-<meta property="og:updated_time" content="2019-07-23T14:30:04.124Z">
+<meta property="og:updated_time" content="2019-08-05T09:44:49.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6中的模块导入与导出">
 <meta name="twitter:description" content="在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。ES6 的模块化分为导出（export） @与导入（import）两个模块">
@@ -241,22 +241,19 @@
 <p>在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。ES6 的模块化分为导出（export） @与导入（import）两个模块</p>
 </blockquote>
 <a id="more"></a>
-
 <h2 id="导入与导出模块"><a href="#导入与导出模块" class="headerlink" title="导入与导出模块"></a>导入与导出模块</h2><ul>
-<li>在 Nodejs 中，提供了<code>module.exports</code>和<code>exports</code>向暴露(导出)成员接口，使用<code>require(&#39;&#39;)</code>使用导入的对象</li>
-</ul>
-<h3 id="ES6-中的导入"><a href="#ES6-中的导入" class="headerlink" title="ES6 中的导入"></a>ES6 中的导入</h3><ul>
-<li>在 ES6 中，也规定了<code>导入</code>和<code>导出</code>模块</li>
-<li>ES6 中导入模块使用 <code>import 模块名称 from &#39;模块标识符&#39;</code>的方式导入 或 <code>import &#39;标识路径&#39;</code></li>
-</ul>
-<h3 id="ES6-中的导出"><a href="#ES6-中的导出" class="headerlink" title="ES6 中的导出"></a>ES6 中的导出</h3><ul>
-<li>在 ES6 中，使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员</li>
-</ul>
-<h3 id="两者导出的区别"><a href="#两者导出的区别" class="headerlink" title="两者导出的区别"></a>两者导出的区别</h3><ul>
-<li>使用<strong>export default:</strong> 来暴露成员时，在全局中，只允许定义一个<strong>export default</strong></li>
-<li>使用<strong>export</strong>来暴露成员时，可以定义多个<strong>export</strong></li>
-</ul>
-<h3 id="两者导入的区别"><a href="#两者导入的区别" class="headerlink" title="两者导入的区别"></a>两者导入的区别</h3><ul>
+<li><p>在 Nodejs 中，提供了<code>module.exports</code>和<code>exports</code>向暴露(导出)成员接口，使用<code>require(&#39;&#39;)</code>使用导入的对象</p>
+<h3 id="ES6-中的导入"><a href="#ES6-中的导入" class="headerlink" title="ES6 中的导入"></a>ES6 中的导入</h3></li>
+<li><p>在 ES6 中，也规定了<code>导入</code>和<code>导出</code>模块</p>
+</li>
+<li><p>ES6 中导入模块使用 <code>import 模块名称 from &#39;模块标识符&#39;</code>的方式导入 或 <code>import &#39;标识路径&#39;</code></p>
+<h3 id="ES6-中的导出"><a href="#ES6-中的导出" class="headerlink" title="ES6 中的导出"></a>ES6 中的导出</h3></li>
+<li><p>在 ES6 中，使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员</p>
+<h3 id="两者导出的区别"><a href="#两者导出的区别" class="headerlink" title="两者导出的区别"></a>两者导出的区别</h3></li>
+<li><p>使用<strong>export default:</strong> 来暴露成员时，在全局中，只允许定义一个<strong>export default</strong></p>
+</li>
+<li><p>使用<strong>export</strong>来暴露成员时，可以定义多个<strong>export</strong></p>
+<h3 id="两者导入的区别"><a href="#两者导入的区别" class="headerlink" title="两者导入的区别"></a>两者导入的区别</h3></li>
 <li><p>在<code>import 模块名称 from &#39;模块标识符&#39;</code> 导入模块时，我们需要注意以下模块中是否同时使用了使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员，如果只使用了<code>export default</code> 那么我们只需要自定义一个模块名称来接收数据即可</p>
 <figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> &#123; <span class="hljs-comment">//导出</span></span><br><span class="line"> name: <span class="hljs-string">'张三'</span>,</span><br><span class="line"> age: <span class="hljs-number">16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
