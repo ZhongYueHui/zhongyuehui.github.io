@@ -211,75 +211,6 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/23/Angular的服务以及数据的持久化存储/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="Angular的服务以及数据的持久化存储">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-23T13:58:39.000Z">2019-07-23</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 486 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/23/Angular的服务以及数据的持久化存储/">
-                                    Angular的服务以及数据的持久化存储
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>为什么使用服务?在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/23/Angular的服务以及数据的持久化存储/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
             <a href="/2019/07/22/初识Angular/" class="image is-7by1">
                 <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="初识Angular">
                 </a>
@@ -317,22 +248,57 @@
                             <blockquote>
 <p>Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>初识Angular</h2>
+<blockquote>
+<p>Angular是一款来自谷歌的开源web框架，诞生于2009年，是一款优秀的JS框架，由Misko Hevery等人创建，后被Google收购</p>
+</blockquote>
+<ul>
+<li>根据项目统计angular是现在网上使用量最大的框架</li>
+</ul>
+<h3>Angular适用的场景</h3>
+<ul>
+<li>Angular基于Typescript和React、Vue相比，更适合中大型企业级项目</li>
+</ul>
+<h3>环境搭建步骤</h3>
+<ul>
+<li>需要安装Nodejs，这个是框架开发必备的环境了，就不多说了-&gt;<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs官网</a></li>
+<li>由于国内网络问题，尽量使用<code>cnpm</code>淘宝镜像</li>
+<li>安装Angular脚手架<code>cnpm i -g @angular/cli</code></li>
+<li>查看是否安装成功<code>ng v</code></li>
+<li>创建angular项目:例如创建以一个名为my-app的项目：<code>ng new my-app</code>,你也可以使用<code>ng new my-app --skip-install</code>跳过npm安装</li>
+<li>安装完之后会问你是否需要路由，可以按需选择，然后选择预处理器<code>LESS</code>和<code>SCSS</code>，也可以不选，直接选择<code>CSS</code>,选择后回车</li>
+<li>这个时候如果使用<code>ng new my-app</code>会自动安装依赖，我们直接Ctrl+C停止，因为npm安装容易被墙安装失败，我们使用<code>cnpm i</code>即可安装，当然，如果你的电脑安装了<code>yarn</code>也可以直接使用<code>yarn</code>命令进行安装，如果使用<code>ng new my-app --skip-install</code>，则直接使用<code>cnpm i</code></li>
+<li>安装完毕之后<code>cd my-app</code>使用<code>ng serve --open</code>即可打开这个项目</li>
+<li>使用cnpm安装：
+<img src="https://s2.ax1x.com/2019/07/22/eCcReJ.jpg" alt="cnpm"></li>
+<li>使用yarn安装:
+<img src="https://s2.ax1x.com/2019/07/22/eCcNLQ.jpg" alt="yarn"></li>
+<li>启动项目
+<img src="https://s2.ax1x.com/2019/07/22/eCctsg.jpg" alt="启动">
+<img src="https://s2.ax1x.com/2019/07/22/eCcSr4.jpg" alt="启动完成"></li>
+<li><strong>注意</strong>：IE版本较低的浏览器不支持，如果默认是IE浏览器可以修改默认浏览器或者黏贴网址到其他浏览器打开</li>
+</ul>
+<h4>补充：</h4>
+<ul>
+<li>有时候我们经常因为依赖包安装出错导致项目不能运行，这个时候需要删除<code>node_modules</code>，如果直接删除因为目录层级太深，需要好久，在这里我们只需要使用如下步骤即可超快删除</li>
+<li>安装<code>cnpm install rimraf -g</code></li>
+<li>使用：cd到你要删除的文件夹运行<code>rimraf 你要删除的文件或者文件夹</code></li>
+<li>当然这个包功能还是很强大的,可以去官网查看其他用途 -&gt; <a href="https://www.npmjs.com/package/rimraf" target="_blank" rel="noopener">rimraf</a></li>
+</ul>
+<h3>创建组件</h3>
+<ul>
+<li>在src下的app创建一个文件夹名为components的news组件<code>ng g componet components/news</code>，如果不指定文件夹，就会创建到app根目录下</li>
+<li>使用命令行创建它自动会关联组件，使用的时候只需要在根组件放置对应的标签即可，标签名在组件种的<code>组件名.component.ts</code>中的<code>selector</code>属性值，内容就是<code>组件名.component.html</code>中的内容</li>
+<li>找到app根目录下的<code>app.component.html</code>，以标签形式放置<code>selector</code>的属性值即可展示对应组件的内容</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/22/初识Angular/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -519,7 +485,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -649,7 +615,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -681,7 +647,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -751,7 +717,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -767,7 +733,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -795,7 +761,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -977,7 +943,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1009,7 +975,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1079,7 +1045,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1095,7 +1061,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1123,7 +1089,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

@@ -248,22 +248,26 @@
                             <blockquote>
 <p>Provider和connect可以帮助我们更方便的获取数据。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-redux的Provider和connect</h2>
+<h3>提供器Provider的使用</h3>
+<ul>
+<li>使用Provider可以让在&lt;Provider&gt;&lt;/Provider&gt;标签内的所有组件和元素都可以访问store</li>
+<li>很简单，我们在项目的index.js中使用Provider
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> TodoList <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/TodoList.jsx'</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Provider &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'./store/index'</span></span><br><span class="line"><span class="hljs-keyword">const</span> App = (</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        <span class="hljs-comment">// Provider包裹的元素都可以使用store</span></span><br><span class="line">        &lt;TodoList&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">TodoList</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="hljs-regexp">/Provider&gt;</span></span><br><span class="line"><span class="hljs-regexp">)</span></span><br><span class="line"><span class="hljs-regexp">ReactDOM.render(App, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>连接器connect的使用</h3>
+<ul>
+<li>使用connect映射store中的对应数据,这时候不需要在使用state来获取store的数据，它会变成props属性，我们直接根据映射关系就可以拿到值
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.props.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp">const StateToProps = state =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">  return &#123;</span></span><br><span class="line"><span class="hljs-regexp">    inputValue: state.inputValue /</span><span class="hljs-regexp">/这里其实就是一个映射关系</span></span><br><span class="line"><span class="hljs-regexp">  &#125;;</span></span><br><span class="line"><span class="hljs-regexp">&#125;;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default connect(</span></span><br><span class="line"><span class="hljs-regexp">  StateToProps,</span></span><br><span class="line"><span class="hljs-regexp">  null</span></span><br><span class="line"><span class="hljs-regexp">)(TodoList);</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React-redux的Provider和connect/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -317,22 +321,35 @@
                             <blockquote>
 <p>React-Redux这是一个React生态中常用组件，它可以简化Redux流程</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-redux的使用</h2>
+<ul>
+<li>
+<p>安装：<code>yarn add react-redux</code></p>
+</li>
+<li>
+<p>初始化store，src/store/index.js
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123;createStore&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(reducer)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>src/store/reducer.js
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const defalueState = &#123;</span><br><span class="line">inputValue: 'Mr zhong',</span><br><span class="line">list: []</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = defalueState, action) =&gt; &#123;</span><br><span class="line">    return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>初始化完毕后在需要使用的组件中引用store
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default TodoList;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>初始化完毕！</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React-redux的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -386,22 +403,22 @@
                             <blockquote>
 <p>使用React脚手架可以快速生成项目结构和基本组件。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React脚手架创建项目</h2>
+<ul>
+<li>在之前我们创建项目都是用<code>npm init -y</code>来初始化项目的，但是这样项目结构不清晰，所以在Vue中，也使用了脚手架，而React、Angular也有脚手架</li>
+<li>安装:<code>cnpm install -g create-react-app</code>脚手架</li>
+<li>创建项目：<code>create-react-app react-demo</code></li>
+<li>运行项目: <code>cd react-demo</code>,然后<code>yarn start</code></li>
+<li>打包项目:<code>npm run build</code>，打包之后<strong>build文件夹</strong>就有你需要发布的包了，<code>启动node http-server服务即可运行打包后的项目</code></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React脚手架创建项目/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -455,22 +472,36 @@
                             <blockquote>
 <p>react-transition-group动画库可以帮助我们很好的完成组件的动画，功能非常强大。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React的react-transition-group动画库</h2>
+<ol>
+<li>安装：<code>cnpm install react-transition-group --save</code>因为这是生产环境也需要用到的，也可以使用<code>-S</code>代替<code>--save</code>，使用yarn安装：<code>yarn add react-transition-group</code></li>
+<li>这个动画库是由 <code>CSSTransition,Transition,TransitionGroup</code>三个组成的</li>
+<li>使用
+<ul>
+<li>组件中引入CSSTransition模块：<code>import { CSSTransition } from 'react-transition-group'</code></li>
+<li>将CSSTransition标签包裹在需要实现动画效果的元素外，然后进行相关属性的配置：
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment">//jsx</span></span><br><span class="line"><span class="hljs-keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props);</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">                &lt;CSSTransition</span><br><span class="line">                      <span class="hljs-keyword">in</span>=&#123;<span class="hljs-keyword">this</span>.state.isShow&#125; <span class="hljs-comment">// 如果this.state.isShow从false变为true，则动画入场，反之out出场</span></span><br><span class="line">                      timeout=&#123;<span class="hljs-number">1000</span>&#125; <span class="hljs-comment">//动画执行1秒</span></span><br><span class="line">                      classNames=<span class="hljs-string">'css-style'</span> <span class="hljs-comment">//自定义的class名</span></span><br><span class="line">                      unMountOnExit <span class="hljs-comment">//可选，当动画出场后在页面上移除包裹的dom节点，删除DOM元素且不占位置</span></span><br><span class="line">                      onEntered=&#123;(el) =&gt; &#123;</span><br><span class="line">                            el.style.color=<span class="hljs-string">'blue'</span>   <span class="hljs-comment">//可选，动画入场之后的回调，el指被包裹的dom，让div内的字体颜色等于蓝色</span></span><br><span class="line">                      &#125;&#125;</span><br><span class="line">                      onExited=&#123;() =&gt; &#123;</span><br><span class="line">                            xxxxx   <span class="hljs-comment">//同理，动画出场之后的回调，也可以在这里来个setState啥的操作</span></span><br><span class="line">                      &#125;&#125;</span><br><span class="line">                      </span><br><span class="line">                &gt;</span><br><span class="line">                    &lt;div&gt;hello&lt;/div&gt;</span><br><span class="line">                &lt;/CSSTransition&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.handleToggole&#125;&gt;toggle&lt;/button&gt;</span><br><span class="line">            &lt;/Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        handleToggole: ()=&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">                isShow: !<span class="hljs-keyword">this</span>.state.isShow</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>一旦动画入场，插件将会自动的在包裹住的标签上添加很多css样式，默认class名是fade，所以我们需要给CSSTransition标签加上classNames='css-style'，然后去css文件进行配置：
+<figure class="highlight awk hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-regexp">//</span>enter是入场前的刹那（点击按钮），appear指页面第一次加载前的一刹那（自动）</span><br><span class="line">.css-style-enter, .css-style-appear &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>enter-active指入场后到入场结束的过程，appear-active则是页面第一次加载自动执行</span><br><span class="line">.css-style-enter-active, .css-style-appear-active &#123; </span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">    transition: opacity <span class="hljs-number">1</span>s ease-<span class="hljs-keyword">in</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>入场动画执行完毕后，保持状态</span><br><span class="line">.css-style-enter-done &#123;</span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>同理，出场前的一刹那，以下就不详细解释了，一样的道理</span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span> &#123;</span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span>-active &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">    transition: opacity <span class="hljs-number">1</span>s ease-<span class="hljs-keyword">in</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span>-done &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果页面上一组dom都需要添加动画效果时我们需要在最外面再加一个TransitionGroup
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">import</span> React, &#123; Component, Fragment &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CSSTransition, TransitionGroup &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-transition-group'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-string">'./style.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props);</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            list: []</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">this</span>.handleAddItem = <span class="hljs-keyword">this</span>.handleAddItem.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">                &lt;TransitionGroup&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="hljs-keyword">this</span>.state.list.map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="hljs-keyword">return</span> (</span><br><span class="line">                            &lt;CSSTransition</span><br><span class="line">                                timeout=&#123;<span class="hljs-number">1000</span>&#125;</span><br><span class="line">                                classNames=<span class="hljs-string">'fade'</span></span><br><span class="line">                                unmountOnExit</span><br><span class="line">                                onEntered=&#123;(el) =&gt; &#123;el.style.color=<span class="hljs-string">'blue'</span>&#125;&#125;</span><br><span class="line">                                appear=&#123;<span class="hljs-literal">true</span>&#125;</span><br><span class="line">                                key=&#123;index&#125;</span><br><span class="line">                            &gt;</span><br><span class="line">                                &lt;div&gt;&#123;item&#125;&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                            &lt;/</span>CSSTransition&gt;</span><br><span class="line">                        )</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">                &lt;<span class="hljs-regexp">/TransitionGroup&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.handleAddItem&#125;&gt;toggle&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/Fragment&gt;</span></span><br><span class="line"><span class="hljs-regexp">        )</span></span><br><span class="line"><span class="hljs-regexp">        &#125;</span></span><br><span class="line"><span class="hljs-regexp">    </span></span><br><span class="line"><span class="hljs-regexp">        handleAddItem() &#123;</span></span><br><span class="line"><span class="hljs-regexp">            this.setState((prevState) =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">                return &#123;</span></span><br><span class="line"><span class="hljs-regexp">                    list: [...prevState.list, 'item']</span></span><br><span class="line"><span class="hljs-regexp">                &#125;</span></span><br><span class="line"><span class="hljs-regexp">            &#125;)</span></span><br><span class="line"><span class="hljs-regexp">        &#125;</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">    export default App;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React的react-transition-group动画库/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -524,22 +555,29 @@
                             <blockquote>
 <p>我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React的动画</h2>
+<h3>使用css来完成动画效果</h3>
+<ul>
+<li>在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CssStudy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props)</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div className=&#123;<span class="hljs-keyword">this</span>.state.isShow ? <span class="hljs-string">'show'</span> : <span class="hljs-string">'hide'</span>&#125;&gt;今天的天气真不错&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.toggle&#125;&gt;你好&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">        );</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">    toggle = () =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="hljs-regexp">            isShow: !this.state.isShow</span></span><br><span class="line"><span class="hljs-regexp">        &#125;)</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default CssStudy;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>css样式
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: aqua;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>使用关键帧制作动画</h3>
+<ul>
+<li>在css3中，动画还加入了关键帧，可以让我们更好的制作动画的效果
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">  <span class="hljs-comment">/* animation（两个必要参数，其他都是可选参数）</span></span><br><span class="line"><span class="hljs-comment">    参数一：表示需要引入的关键帧动画名称</span></span><br><span class="line"><span class="hljs-comment">    参数二：动画时间</span></span><br><span class="line"><span class="hljs-comment">    参数三：动画的效果</span></span><br><span class="line"><span class="hljs-comment">    参数四：动画完成后结束位置在100%还是0%，如果不加则默认是0%</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line">  <span class="hljs-attribute">animation</span>: hide-style <span class="hljs-number">2s</span> ease-in forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="hljs-keyword">keyframes</span> hide-style &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: green;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: red;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React的动画/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -593,22 +631,39 @@
                             <blockquote>
 <p>React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.</p>
 </blockquote>
+<p>&lt;!--more --&gt;</p>
+<h2>Context的使用</h2>
+<ul>
+<li>
+<p>在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> color=&#123;<span class="hljs-keyword">this</span>.state.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> color=&#123;<span class="hljs-keyword">this</span>.props.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.props.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是，这样的话子组件本来是不需要做这个工作的，但是却让他担任了桥梁的角色，这个是不合理的</p>
+</li>
+<li>
+<p>所以，我们可以使用Context来解决这个问题，实现属性值的共享</p>
+</li>
+<li>
+<p>使用context实现数据的共享
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">ReactTypes</span> from <span class="hljs-string">"prop-types"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//在父组件中，定义一个function，这个function有个固定的名称，叫做getChildContext，内部必须返回一个对象，这个对象就是需要共享给所有子孙组件的数据</span></span><br><span class="line">  getChildContext() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">      color: <span class="hljs-keyword">this</span>.state.color</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//这里对父组件要传递的数据做类型规定，需要定义一个静态的(static) childContextTypes 这个是固定的方法</span></span><br><span class="line">  static childContextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//上来之后先做属性校验，校验一下父组件传递的参数类型</span></span><br><span class="line">  static contextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string <span class="hljs-comment">//这里如果子组件想使用 通过context共享的数据，使用之前必须做类型校验</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.context.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>快速识记这几个方法</p>
+<ul>
+<li>记住这串单词<code>getChildContextTypes</code></li>
+<li>前三(<code>getChildContext()</code>)、后三(<code>static childContextTypes={}</code>)、后俩(<code>static contextTypes={}</code>)</li>
+<li>一个方法，两个静态类型</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React中Context的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -662,22 +717,63 @@
                             <blockquote>
 <p>生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>componentWillMount函数</h2>
+<ul>
+<li>在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中</li>
+<li>虚拟DOM也还没有开始创建</li>
+<li>此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素</li>
+<li>但是可以获取到props和state的值，也可以调用函数</li>
+<li>这个函数等同于Vue中的<code>created</code>生命周期函数</li>
+</ul>
+<h2>render函数</h2>
+<ul>
+<li>当执行到这个生命周期函数时，即将开始渲染内存中的虚拟DOM了，但是页面上尚未真正显示DOM元素</li>
+<li>在render函数中，在return之前，虚拟DOM还没有开始创建，页面上也是空的，拿不到任何的元素</li>
+<li>当render函数中的return执行完毕后，虚拟DOM创建好了，但是还没有真正的挂载到页面中</li>
+</ul>
+<h2>componentDidMount函数</h2>
+<ul>
+<li>当组件挂载到页面上之后，会进入这个生命周期函数，只要进入这个生命周期函数了，说明页面上已经有可见DOM元素了</li>
+<li>在这个函数中，可以放心的操作页面上你需要操作的DOM元素了</li>
+<li>如果我们需要操作DOM元素。最早只能在这个生命周期函数中进行</li>
+<li>componentDidMounti相当于vue中的mounted函数</li>
+</ul>
+<h3>组件生命周期函数执行顺序</h3>
+<ul>
+<li>组件生命周期的执行顺序：</li>
+</ul>
+<ul>
+<li><strong>Mounting</strong>：
+<ul>
+<li>constructor()</li>
+<li>componentWillMount()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+</li>
+<li><strong>Updating</strong>：
+<ul>
+<li>componentWillReceiveProps(nextProps)</li>
+<li>shouldComponentUpdate(nextProps, nextState)</li>
+<li>componentWillUpdate(nextProps, nextState)</li>
+<li>render()</li>
+<li>componentDidUpdate(prevProps, prevState)</li>
+</ul>
+</li>
+<li><strong>Unmounting</strong>：
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React生命周期函数/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -731,22 +827,58 @@
                             <blockquote>
 <p>定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>计数器</h2>
+<ul>
+<li>
+<p>在下列的计数器组件中，我们给他传递了一个值
+<figure class="highlight gradle hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//main.js</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./comments/count.jsx'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;<span class="hljs-keyword">Count</span> defalutNumber=&#123;<span class="hljs-number">1</span>&#125; <span class="hljs-regexp">/&gt;, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//count.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">s  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defalutNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>使用static defaultProps定义默认值</h3>
+<ul>
+<li>
+<p>但是这样当用户没有传值时，没有默认值，在封装一个组件的时候，肯定有数据是必须的，哪怕用户没有传递参数，这时候组件内部尽量给自己提供一个默认值</p>
+</li>
+<li>
+<p>使用<code>static defaultProps</code>来进行默认值的操作
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样的话就设置好了，当你没有传入数据时，那么就会使用默认值</p>
+</li>
+</ul>
+<h3>使用propType数据的类型校验</h3>
+<ul>
+<li>
+<p>当用户在传入一些不合法数据时，组件对其验证后不进行处理，提示用户类型错误</p>
+</li>
+<li>
+<p>注意：在react中 <code>15.x</code>版本后，propTypes被单独的抽离出来了，需要安装才能使用</p>
+</li>
+<li>
+<p>安装: <code>cnpm i prop-type -D</code>即可</p>
+</li>
+<li>
+<p>然后在组件中引入就可以使用了
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactTypes <span class="hljs-keyword">from</span> <span class="hljs-string">"prop-types"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="hljs-keyword">static</span> propTypes = &#123;</span><br><span class="line">    defaultNumber: ReactTypes.number</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=</span></span><span class="hljs-xquery">&#123;<span class="hljs-number">1</span>&#125;</span><span class="hljs-xml"><span class="hljs-tag"> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=<span class="hljs-string">"哈啊哈"</span> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">,<span class="hljs-built_in"> document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>当我们进行了类型校验为number时，你传递字符串虽然会给你显示出来，但是会进行报错<code>Failed prop type: Invalid prop</code>defaultNumber <strong><code>of type</code>string<code>supplied to</code>Count<code>, expected</code>number<code>.in Count</code></strong></p>
+</li>
+<li>
+<p>修改后就没有问题了</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React定义数据默认值和数据类型校验/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -800,22 +932,44 @@
                             <blockquote>
 <p>Vue、React、angular都是基于组件化开发的，要想熟练使用，我们必须了解它们的生命周期，现在我们来学习一下React的组件生命周期。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>组件的生命周期</h2>
+<h3>组件的概念</h3>
+<ul>
+<li>在组件创建、到加载到页面上运行、以及组件被销毁的过程中，总是伴随着各种各样的事件，这些在组件特定时期，触发的事件，统称为组件的生命周期</li>
+</ul>
+<h4>组件生命周期</h4>
+<ul>
+<li><strong>创建阶段</strong>:组件创建阶段的生命周期函数，有一个显著的特征：创建阶段的生命周期函数，在组件的一辈子中，只执行一次
+<ul>
+<li>&lt;font color=&quot;red&quot;&gt;componentWillMount&lt;/font&gt;:组件将要被挂载，此时还没有开始渲染虚拟DOM</li>
+<li>&lt;font color=&quot;red&quot;&gt;render&lt;/font&gt;:第一次开始渲染真正的虚拟DOM，当render执行完，内存中就有完整的虚拟DOM了</li>
+<li>&lt;font color=&quot;red&quot;&gt;componentDidMount:&lt;/font&gt;组件完成了挂载，此时，组件已经显示到页面上了，当这个方法执行完，组件都进入运行阶段</li>
+</ul>
+</li>
+<li><strong>组件运行阶段</strong>: 组件的运行阶段的生命周期函数，也有一个显著的特点，根据组件中的state和props的改变，有选择性的触发0次或者N次
+<ul>
+<li>&lt;font color=&quot;red&quot;&gt;componentWillReceiveProps：&lt;/font&gt;组件将要接收到新属性，此时只要这个方法被触发，就证明父组件为当前子组件传递了新的属性值</li>
+<li>&lt;font color=&quot;red&quot;&gt;ShouldComponentWillUpdate&lt;/font&gt;：组件是否需要被更新，此时组件尚未被更新，但是state和props是最新的</li>
+<li>&lt;font color=&quot;red&quot;&gt;componentWillUpdate：&lt;/font&gt;组件将要被更新，此时尚未开始更新，内存中的虚拟DOM树还是旧的</li>
+<li>&lt;font color=&quot;red&quot;&gt;render：&lt;/font&gt;此时，根据新的state和props重新渲染在内存中渲染一颗新的虚拟DOM树，当render调用完毕后，内存中的旧DOM树已经被新DOM树替换了，但是页面还是旧的</li>
+<li>&lt;font color=&quot;red&quot;&gt;componentDidUpdate&lt;/font&gt;：此时，页面被重新渲染，state和虚拟DOM的页面已经保持完全一致了</li>
+</ul>
+</li>
+<li><strong>组件的销毁阶段</strong>:组件的销毁阶段的生命周期函数，也有一个显著的特点，一辈子只执行一次</li>
+</ul>
+<h3>vue和react的生命周期图</h3>
+<h4>vue</h4>
+<p><img src="https://s2.ax1x.com/2019/07/15/ZoCEz8.png" alt="vue"></p>
+<h4>react</h4>
+<p><img src="https://s2.ax1x.com/2019/07/15/ZoCkJP.png" alt="react"></p>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React组件的生命周期/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -869,22 +1023,31 @@
                             <blockquote>
 <p>React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>组件的状态</h2>
+<h3>使用function和class创建组件的区别</h3>
+<ol>
+<li>使用以上两种创建组件的方式，有本质的区别</li>
+<li>使用function构造函数创建的组件，内部没有state私有数据，只有一个props来接收外界传递的数据</li>
+<li>使用calss关键字创建的组件，内部除了有this.props这个只读的属性外，还有一个专门用于存放私有数据的this.state属性，这个state是可读可写的</li>
+<li>基于以上的区别：我们可以为这两种创建组件的方式下定义了:使用了function创建的组件，叫做无状态组件，使用class创建的组件，叫做有状态组件</li>
+</ol>
+<h3>有状态组件和无状态组件最本质的区别</h3>
+<ol>
+<li>有无状态就是有无state属性，同时。calss创建的组件，有自己的生命周期函数，但是function创建的组件，没有自己的生命周期函数</li>
+</ol>
+<h3>适用场景</h3>
+<ol>
+<li>如果一个组件需要存放自己的私有数据，或者在组件中的不同阶段执行不同的功能。此时，适合使用class创建的有状态组件</li>
+<li>如果一个组件，只需要根据外界传递过来的props，渲染固定的页面结构，此时，适合使用function创建出来的无状态组件，由于无状态组件没有生命周期，所以运行速度相对快一些</li>
+</ol>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React组件的状态/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -1071,7 +1234,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -1201,7 +1364,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1233,7 +1396,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1303,7 +1466,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1319,7 +1482,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1347,7 +1510,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1529,7 +1692,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1561,7 +1724,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1631,7 +1794,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1647,7 +1810,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1675,7 +1838,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

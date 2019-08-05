@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤">
+        <meta name="description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤  &amp;lt;!-- more --&amp;gt;  使用webpack打包图片    在平常中，我们在设置style中使用background:url 可以引入背景图片，在前面我们已经学会如何打包css、less、scss文件   安装url-loader和其依赖f">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack打包图片">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/06/22/webpack打包图片/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤">
+<meta property="og:description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤  &amp;lt;!-- more --&amp;gt;  使用webpack打包图片    在平常中，我们在设置style中使用background:url 可以引入背景图片，在前面我们已经学会如何打包css、less、scss文件   安装url-loader和其依赖f">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg">
 <meta property="og:updated_time" content="2019-07-09T11:20:00.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack打包图片">
-<meta name="twitter:description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤">
+<meta name="twitter:description" content="在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤  &amp;lt;!-- more --&amp;gt;  使用webpack打包图片    在平常中，我们在设置style中使用background:url 可以引入背景图片，在前面我们已经学会如何打包css、less、scss文件   安装url-loader和其依赖f">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/24/5d105077ef26c98317.jpg">
             
 
@@ -240,41 +240,58 @@
                             <blockquote>
 <p>在webpack中，我们使用其打包一些项目的时候，经常会遇到图片，但是如果直接打包图片则会抛出异常，以下是打包图片的一些详细配置文件和步骤</p>
 </blockquote>
-<a id="more"></a> 
-
+<p>&lt;!-- more --&gt;</p>
 <hr>
-<h3 id="使用webpack打包图片"><a href="#使用webpack打包图片" class="headerlink" title="使用webpack打包图片"></a>使用webpack打包图片</h3><hr>
+<h3>使用webpack打包图片</h3>
+<hr>
 <ul>
-<li><p>在平常中，我们在设置style中使用<code>background:url</code> 可以引入背景图片，在前面我们已经学会如何打包<code>css、less、scss</code>文件</p>
+<li>
+<p>在平常中，我们在设置style中使用<code>background:url</code> 可以引入背景图片，在前面我们已经学会如何打包<code>css、less、scss</code>文件</p>
 </li>
-<li><p>安装<code>url-loader</code>和其依赖<code>file-loader</code></p>
+<li>
+<p>安装<code>url-loader</code>和其依赖<code>file-loader</code></p>
 </li>
-<li><p><code>cnpm install url-loader file-loader -D</code></p>
+<li>
+<p><code>cnpm install url-loader file-loader -D</code></p>
 </li>
-<li><p>使用<code>file-loader</code>进行图片的打包</p>
+<li>
+<p>使用<code>file-loader</code>进行图片的打包</p>
 </li>
-<li><p>在webpack.config.js中配置，在与其他配置下添加如下即可</p>
+<li>
+<p>在webpack.config.js中配置，在与其他配置下添加如下即可</p>
 </li>
-<li>  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.jpg|png|gif|bmp|jpeg/, //配置图片</span><br><span class="line">            use: [<span class="hljs-string">'file-loader'</span>]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.jpg|png|gif|bmp|jpeg/, //配置图片</span><br><span class="line">            use: [<span class="hljs-string">'file-loader'</span>]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>可以简写成如下：</p>
-  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: <span class="hljs-string">'file-loader'</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>可以简写成如下：
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, //配置图片打包的格式</span><br><span class="line">            loader: <span class="hljs-string">'file-loader'</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>如果想要打包出来的图片不改变名字和格式，只需添加<code>options</code>即可</p>
-<pre><code><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片打包的格式</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'file-loader'</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123; <span class="hljs-comment">//[name]表示名字,[ext]表示格式，而name属性其实就是图片打包后的路径</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'images/[name].[ext]'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></code></pre></li>
-<li><p>除了使用file-loader对图片进行打包处理外，我们同样也可以使用url-loader代替，另外我们还可以对小于某个大小的图片进行base64格式的转化处理。</p>
+<li>
+<p>如果想要打包出来的图片不改变名字和格式，只需添加<code>options</code>即可</p>
+<pre><code>  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片打包的格式</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'file-loader'</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123; <span class="hljs-comment">//[name]表示名字,[ext]表示格式，而name属性其实就是图片打包后的路径</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'images/[name].[ext]'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
 </li>
-<li><p>使用<code>url-loader</code>打包</p>
-<figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(<span class="hljs-name">png</span>|jpg|gif|svg)$/,</span><br><span class="line">    loader: 'url-loader',</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: './images/[name].[ext]',</span><br><span class="line">        limit: <span class="hljs-number">8192</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>除了使用file-loader对图片进行打包处理外，我们同样也可以使用url-loader代替，另外我们还可以对小于某个大小的图片进行base64格式的转化处理。</p>
 </li>
-<li><p>这里limit属性的作用就是将小于8192B（8.192K）大小的图片转成base64格式，而大于这个大小的图片将会以file-loader的方式进行打包处理</p>
+<li>
+<p>使用<code>url-loader</code>打包
+<figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(<span class="hljs-name">png</span>|jpg|gif|svg)$/,</span><br><span class="line">    loader: 'url-loader',</span><br><span class="line">    options: &#123;</span><br><span class="line">        name: './images/[name].[ext]',</span><br><span class="line">        limit: <span class="hljs-number">8192</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p><strong>注意</strong>：如果不写limit属性，那么url-loader就会默认将所有图片转成base64</p>
+<li>
+<p>这里limit属性的作用就是将小于8192B（8.192K）大小的图片转成base64格式，而大于这个大小的图片将会以file-loader的方式进行打包处理</p>
 </li>
-<li><p>这样打包出来的图片会自动转换成<code>base64</code>,但是我们多数是将小图片转成base64，而大图片不进行转换</p>
+<li>
+<p><strong>注意</strong>：如果不写limit属性，那么url-loader就会默认将所有图片转成base64</p>
 </li>
-<li><p>而对于有些图片在不同路径下，但是文件名字一样时，我们需要在<code>name:</code>属性中增加<code>hash</code>值：定义[hash:8]定义 8位hash值最多32位，这样图片就不会存在不同</p>
-  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'url-loader'</span>, <span class="hljs-comment">//在这里时，只有一个我们可以简化 loader，使用use则会报错</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123;</span><br><span class="line">                <span class="hljs-attribute">limit</span>: <span class="hljs-number">2000</span>, <span class="hljs-comment">//limit 的值单位是 Byte ，如果图片小于limit的值，则转成base64格式的字符串，如果大于，则不转</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'[hash:8]-[name].[ext]'</span> <span class="hljs-comment">//这是将文件名原样输出[name]指的是图片名，[ext]是图片格式，</span></span><br><span class="line">                    <span class="hljs-comment">//[hash:8]表示生成8位hash值，否则在不同文件夹下同名图片会失效，用来区分</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>这样打包出来的图片会自动转换成<code>base64</code>,但是我们多数是将小图片转成base64，而大图片不进行转换</p>
+</li>
+<li>
+<p>而对于有些图片在不同路径下，但是文件名字一样时，我们需要在<code>name:</code>属性中增加<code>hash</code>值：定义[hash:8]定义 8位hash值最多32位，这样图片就不会存在不同</p>
+<p><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">            <span class="hljs-attribute">test</span>: /\.(jpg|png|gif|bmp|jpeg)/, <span class="hljs-comment">//配置图片</span></span><br><span class="line">            <span class="hljs-attribute">loader</span>: <span class="hljs-string">'url-loader'</span>, <span class="hljs-comment">//在这里时，只有一个我们可以简化 loader，使用use则会报错</span></span><br><span class="line">            <span class="hljs-attribute">options</span>: &#123;</span><br><span class="line">                <span class="hljs-attribute">limit</span>: <span class="hljs-number">2000</span>, <span class="hljs-comment">//limit 的值单位是 Byte ，如果图片小于limit的值，则转成base64格式的字符串，如果大于，则不转</span></span><br><span class="line">                <span class="hljs-attribute">name</span>: <span class="hljs-string">'[hash:8]-[name].[ext]'</span> <span class="hljs-comment">//这是将文件名原样输出[name]指的是图片名，[ext]是图片格式，</span></span><br><span class="line">                    <span class="hljs-comment">//[hash:8]表示生成8位hash值，否则在不同文件夹下同名图片会失效，用来区分</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -399,7 +416,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#使用webpack打包图片">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>使用webpack打包图片</span>
         </a></li></ul>
@@ -550,7 +567,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -680,7 +697,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -712,7 +729,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -782,7 +799,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -798,7 +815,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -826,7 +843,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

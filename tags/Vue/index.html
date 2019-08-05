@@ -247,22 +247,38 @@
                             <blockquote>
 <p>使用vue-cli搭建项目，可以快速生成项目和项目结构。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h1><a href="%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6">vue-cli</a></h1>
+<ul>
+<li>安装<code>Nodejs</code>环境，这个是必须要的，使用了<code>npm</code> 就标识需要使用 <code>Nodejs</code></li>
+<li>如果需要使用<code>vue-cli 3.x</code>,那么需要卸载1.x,2.x版本</li>
+</ul>
+<h2>安装</h2>
+<ul>
+<li>安装：<code>npm install -g @vue/cli</code></li>
+<li>查看版本号：<code>vue -V</code>或者<code>vue --version</code></li>
+</ul>
+<h2>建立项目</h2>
+<ul>
+<li>cd 到你的项目文件夹 <code>vue create 项目名称</code></li>
+<li>这个时候如果有一些配置信息，选择默认的即可，除非你已经很熟悉每个配置文件的作用，可以手动配置</li>
+<li>这个时候项目的基本开发环境已经配置好了</li>
+<li>cd 到 项目名称文件夹下</li>
+<li>运行：<code>npm run serve</code></li>
+<li>这样他会提供两种方式进入运行的项目中，在浏览器中输入即可进入</li>
+</ul>
+<h2>部署</h2>
+<ul>
+<li>在项目文件夹下:<code>npm run build</code></li>
+<li>这样会在项目的生成<code>dist</code>目录，这个目录就是你需要发布的文件</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/使用Vue脚手架搭建项目/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -314,24 +330,65 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用</p>
+<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用
+&lt;!-- more --&gt;
+&lt;!--toc--&gt;</p>
 </blockquote>
+<hr>
+<h3>两者区别</h3>
+<hr>
+<ol>
+<li>
+<p>在webpack中，我们需要将所有的包在<code>main.js</code>这个入口文件中导入，在在我们安装<code>vue(npm i vue -D)</code>到本地时，我们在<code>main.js</code>导入这个包
+<figure class="highlight capnproto hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>会爆出以下异常： <code>You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.</code></p>
+</li>
+<li>
+<p>以下的问题解释是：在webpack中使用 import Vue from &quot;vue&quot; 引入的 vue构造函数 功能是不完整的，它只提供了runtime-only 的方式，并没有提供 像网页中使用 script引入的那些功能</p>
+</li>
+</ol>
+<ul>
+<li>解决方式一：
+<ul>
+<li>使用：<code>import Vue from &quot;../node_modules/vue/dist/vue&quot;</code>这种引入方式</li>
+</ul>
+</li>
+<li>解决方式二：
+<ul>
+<li>
+<p>配置<code>webpack.config.js</code>文件，新增一个属性:<code>resolve</code>，在里面中还有一个属性:<code>alias</code>，配置如下
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">resolve</span>: &#123;</span><br><span class="line">    <span class="hljs-attribute">alias</span>: &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-string">'vue$'</span>: <span class="hljs-string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样使用<code>import Vue from &quot;vue&quot;</code>引入也不会报错了</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>说明</h3>
+<hr>
+<ul>
+<li>由于<code>webpack</code>是使用Node架构的，所以合法的Node语法都支持，当然，引入包的规则也是一致的</li>
+<li>如下：</li>
+<li>Nodejs中包的查找规则:
+<ol>
+<li>找项目根目录中是否有安装 node_modules 的文件夹</li>
+<li>在node_modules 中根据包名，找对应的 vue 文件夹</li>
+<li>在 vue中，找到一个叫packahe.json的配置文件</li>
+<li>在package.json 文件夹中，查找一个 main 属性，这个属性指定了这个包被加载时的入口文件</li>
+</ol>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/23/webpack中引入vue/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -499,7 +556,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -629,7 +686,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -661,7 +718,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -731,7 +788,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -747,7 +804,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -775,7 +832,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -957,7 +1014,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -989,7 +1046,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1059,7 +1116,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1075,7 +1132,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1103,7 +1160,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

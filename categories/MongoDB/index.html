@@ -248,22 +248,36 @@
                             <blockquote>
 <p>我们可以在js文件中对数据库进行批量操作,更方便.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>使用JS对数据表进行批量插入</h2>
+<ul>
+<li>
+<p>使用循环插入数据
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    db.user.insert(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)  <span class="hljs-comment">//往数据表循环添加数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//604ms</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用批量插入
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"><span class="hljs-keyword">var</span> dataArray = []</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    dataArray.push(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.user.insert(dataArray)  <span class="hljs-comment">//批量操作</span></span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//34ms</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2>总结:</h2>
+<ul>
+<li>使用批量操作对数据表进行数据的插入比循环插入性能快了几十倍</li>
+<li>尽量使用批量插入</li>
+</ul>
+<h3>vsode操作mongodb</h3>
+<ul>
+<li>在vscode中，我们打开了数据库服务之后，可以直接在终端调试工具执行这个mongo</li>
+<li>我们在js文件中写好了要插入的数据后，我们可以在终端使用 <code>mongo js文件名</code>,这样自动会执行我们的js代码进行数据库的操作</li>
+<li>或者使用mongo后进入数据库界面使用<code>load('./文件名的方式')</code>，但是这个前提是要终端的路径打开在文件的路径中，而且需要<code>use</code>了当前数据表的数据库，可以不要连接数据库直接插入数据或者查找数据</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/使用JS对数据表进行批量插入和vscode工具/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -317,22 +331,85 @@
                             <blockquote>
 <p>数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>MongoDB数据库的备份与还原</h2>
+<h3>备份</h3>
+<ul>
+<li>
+<p>备份格式：
+<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>mongodump命令脚本语法如下
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
+</li>
+<li>
+<p>-d：需要备份的数据库实例，例如：test</p>
+</li>
+<li>
+<p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+</li>
+</ul>
+<h4>注意：</h4>
+<ul>
+<li>
+<p>备份格式中，后面那些参数都是可选的</p>
+</li>
+<li>
+<p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份
+<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>也可以简写成这样
+<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>恢复还原</h3>
+<ul>
+<li>mongodb使用 mongorerstore 命令来恢复备份的数据。</li>
+</ul>
+<h4>语法</h4>
+<ul>
+<li>
+<p>mongorestore命令脚本语法如下：
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>-h：MongoDB所在服务器地址</p>
+</li>
+<li>
+<p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
+</li>
+<li>
+<p>--directoryperdb：
+备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
+</li>
+<li>
+<p>--drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+</li>
+<li>
+<p>基本格式
+<figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用命令进行恢复
+<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB数据库的备份与还原/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -386,22 +463,120 @@
                             <blockquote>
 <p>一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>用户的创建删除和管理</h2>
+<ul>
+<li>
+<p>创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">use admin后</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;<span class="hljs-comment">// 创建user表</span></span><br><span class="line"><span class="hljs-string">user:</span> <span class="hljs-string">"zhong"</span>,   <span class="hljs-comment">//用户名称</span></span><br><span class="line"><span class="hljs-string">pwd:</span> <span class="hljs-string">"123456"</span>, <span class="hljs-comment">//用户密码</span></span><br><span class="line"><span class="hljs-string">customData:</span> &#123;  <span class="hljs-comment">//数据</span></span><br><span class="line"><span class="hljs-symbol">    name:</span> <span class="hljs-string">'Mrzhong'</span>, <span class="hljs-comment">//用户名</span></span><br><span class="line"><span class="hljs-symbol">    email:</span> <span class="hljs-string">'web0432@126.com'</span>, <span class="hljs-comment">//邮箱</span></span><br><span class="line"><span class="hljs-symbol">    age:</span> <span class="hljs-number">18</span>,</span><br><span class="line">&#125;,</span><br><span class="line"><span class="hljs-string">roles:</span> [&#123;  <span class="hljs-comment">//权限模块</span></span><br><span class="line"><span class="hljs-symbol">    role:</span> <span class="hljs-string">"readWrite"</span>,  <span class="hljs-comment">// 具体权限</span></span><br><span class="line"><span class="hljs-symbol">    db:</span> <span class="hljs-string">"User"</span>  <span class="hljs-comment">//赋予该权限的数据库</span></span><br><span class="line">&#125;,</span><br><span class="line">    <span class="hljs-string">'read'</span>  <span class="hljs-comment">//其他数据库</span></span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>用户权限的说明：</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td style="text-align:center">允许用户读取指定数据库</td>
+</tr>
+<tr>
+<td>readWrite</td>
+<td style="text-align:center">允许用户读写指定数据库</td>
+</tr>
+<tr>
+<td>dbAdmin</td>
+<td style="text-align:center">允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</td>
+</tr>
+<tr>
+<td>userAdmin</td>
+<td style="text-align:center">允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</td>
+</tr>
+<tr>
+<td>clusterAdmin</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</td>
+</tr>
+<tr>
+<td>readAnyDatabase</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读权限</td>
+</tr>
+<tr>
+<td>readWriteAnyDatabase</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读写权限</td>
+</tr>
+<tr>
+<td>userAdminAnyDatabase</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</td>
+</tr>
+<tr>
+<td>dbAdminAnyDatabase</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</td>
+</tr>
+<tr>
+<td>root</td>
+<td style="text-align:center">只在admin数据库中可用。超级账号，超级权限</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3>删除用户数据</h3>
+<ul>
+<li>使用<code>db.system.users.remove({要删除的用户信息条件})</code>一般是以用户名为条件</li>
+</ul>
+<h3>建权</h3>
+<ul>
+<li>
+<p>有时候我们要验证用户的用户名密码是否正确，就需要用到MongoDB提供的健全操作。也算是一种登录操作，不过MongoDB把这叫做建权。</p>
+</li>
+<li>
+<p>建权就是给之前的数据表注册给功能一样，登陆了建权的用户可以和创建用户时的权限做匹配，就是你创建用户的时候允许的权限，建权之后就可以获得权限</p>
+</li>
+<li>
+<p>如何建权呢？
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用用户名称和密码进行建权，建权成功后返回1
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br><span class="line"><span class="hljs-selector-tag">1</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>错误返回
+<figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">Error: </span>Authentication failed.</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>启动建权</h4>
+<ul>
+<li>
+<p>重启数据库服务器，设置必须使用建权登陆
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod <span class="hljs-comment">--auth</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>启动后，用户登录只能用用户名和密码进行登录，原来的mongo形式链接已经不起作用了。相应的用户权限也对应妥当。实际项目中我们启动服务器必须使用建权形式</p>
+</li>
+</ul>
+<h4>登录</h4>
+<ul>
+<li>
+<p>如果在配置用户之后，用户想登录，可以使用mongo的形式，不过需要配置用户名密码：
+<figure class="highlight dns hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongom  -u zhong -p <span class="hljs-number">123456 127.0</span>.<span class="hljs-number">0.1:27017</span>/admin</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>登陆成功后，我们可以对指定的<code>User</code>数据库进行读写操作，但是对其他数据库只读，这个时候我们修改其他数据库的数据就会报错
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.insert</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;)  <span class="hljs-comment">//这个时test数据库的表</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nInserted"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB用户的创建删除和管理/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -455,22 +630,113 @@
                             <blockquote>
 <p>使用索引可以帮助我们更快速的查找到数据，我们现在插入200W条数据到数据库，进行性能的测试。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>MongoDB索引</h2>
+<h3>插入200w条数据</h3>
+<ul>
+<li>
+<p>我们先插入两百万条数据到数据库中
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">//生成随机数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomNumber</span>(<span class="hljs-params">min, max</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> range = max - min</span><br><span class="line">    <span class="hljs-keyword">let</span> rand = <span class="hljs-built_in">Math</span>.random()</span><br><span class="line">    <span class="hljs-keyword">let</span> number = (min + <span class="hljs-built_in">Math</span>.round(rand * range))</span><br><span class="line">    <span class="hljs-keyword">return</span> number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// //生成随机用户名</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomName</span>(<span class="hljs-params">min, max</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//将每个字符串切割成数组</span></span><br><span class="line">    <span class="hljs-keyword">let</span> userNameString = <span class="hljs-string">"0123456789azqwsxedcrfvtgbyhnujmikolp"</span>.split(<span class="hljs-string">''</span>)</span><br><span class="line">    <span class="hljs-keyword">let</span> outName = <span class="hljs-string">''</span></span><br><span class="line">    <span class="hljs-comment">//定义名字的长度，随机生成区间的长度,每次循环从userNameString取一个数组出来拼接到outName</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; getRandomNumber(min, max); i++) &#123;</span><br><span class="line">        <span class="hljs-comment">//生成名字，从userNameString数组种，随机从0到userNameString数组的长度中抽取</span></span><br><span class="line">        outName = outName + userNameString[getRandomNumber(<span class="hljs-number">0</span>, userNameString.length)]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> outName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//随机生成200w条数据插入到数据库中</span></span><br><span class="line"><span class="hljs-keyword">var</span> stratTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> DataArray = []</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2000000</span>; i++) &#123;</span><br><span class="line">    DataArray.push(&#123;</span><br><span class="line">        username: getRandomName(<span class="hljs-number">6</span>, <span class="hljs-number">15</span>),</span><br><span class="line">        regeditemTime: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),</span><br><span class="line">        randNumber: getRandomNumber(<span class="hljs-number">100000</span>, <span class="hljs-number">999999</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line">db.random.drop() <span class="hljs-comment">//先删除数据库，防止数据出错</span></span><br><span class="line">db.random.insert(DataArray)  <span class="hljs-comment">//插入数据</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> useTime = endTime - stratTime</span><br><span class="line">print(useTime + <span class="hljs-string">"ms"</span>)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>耗时两分多钟，插入完毕后，我们可以使用<code>db.random.stats()</code>查看数据的条数是否正确，其实在中途我有查看大概的插入时间实际上都在是js在做数组插入工作，少数时间插入到数据库中，这跟我们使用批量插入是离不开的</p>
+</li>
+</ul>
+<h3>查询数据并遍历</h3>
+<ul>
+<li>
+<p>设计查询程序
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"usermae"</span>: <span class="hljs-string">"7xo6cg"</span> &#125;)  <span class="hljs-comment">//使用db.random.find().skip(50000)查询到的一个名字</span></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询结束，耗时"'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>)  <span class="hljs-comment">//稳定在0.9s</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询结果
+<figure class="highlight puppet hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; load(<span class="hljs-string">'./demo05.js'</span>)</span><br><span class="line">connecting to: mongodb://127.0.0.1:27017/User</span><br><span class="line">Implicit session: <span class="hljs-keyword">session</span> &#123; <span class="hljs-string">"id"</span> : UUID(<span class="hljs-string">"66dab01f-697b-4529-a2d5-106eecf3dbca"</span>) &#125;</span><br><span class="line"><span class="hljs-keyword">MongoDB</span> <span class="hljs-keyword">server</span> <span class="hljs-keyword">version</span>: 4.0.10</span><br><span class="line">查询结束，耗时<span class="hljs-string">"0.928s</span></span><br><span class="line"><span class="hljs-string">true</span></span><br><span class="line"><span class="hljs-string">&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>建立索引</h3>
+<ul>
+<li>
+<p>使用<code>db.数据表名.ensureIndex({&quot;username&quot;:1})</code>来建立索引，1表示true，就是建立索引的意思</p>
+</li>
+<li>
+<p>查看索引：<code>db.数据表名.getIndexes()</code>来查看索引，结果是一个数组，里面有一个对象代表有几个索引，一般地我们不会使用<code>_id</code>因为这个是系统随机生成的不好查找</p>
+</li>
+<li>
+<p>建立索引后查找:
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"ux5suyundefinednn"</span> &#125;)  <span class="hljs-comment">//使用db.random.find().skip(50000)查询到的一个名字</span></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询结束，耗时"'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>)  <span class="hljs-comment">//第一次在0.01s之间，以后有查询缓存稳定在0.005s左右</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询结果:
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="hljs-string">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-string">"5d43aefc04d831b959b4175c"</span>),</span><br><span class="line">    <span class="hljs-string">"username"</span> : "<span class="hljs-type">ux5suyundefinednn</span><span class="hljs-string">",</span></span><br><span class="line"><span class="hljs-string">    "</span>regeditemTime<span class="hljs-string">" : ISODate("</span><span class="hljs-number">2019</span>-<span class="hljs-number">08</span>-<span class="hljs-number">02</span>T03:<span class="hljs-number">31</span>:<span class="hljs-number">00.788</span>Z<span class="hljs-string">"),</span></span><br><span class="line"><span class="hljs-string">    "</span>randNumber<span class="hljs-string">" : 806500</span></span><br><span class="line"><span class="hljs-string">&#125;</span></span><br><span class="line"><span class="hljs-string">查询结束，耗时"</span><span class="hljs-number">0.006</span>s</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>使用索引的注意事项</h4>
+<ul>
+<li>数据不超万条时，不需要使用索引。性能的提升并不明显，而大大增加了内存和硬盘的消耗。</li>
+<li>查询数据超过表数据量30%时，不要使用索引字段查询。实际证明会比不使用索引更慢，因为它大量检索了索引表和我们原表。</li>
+<li>数字索引，要比字符串索引快的多，在百万级甚至千万级数据量面前，使用数字索引是个明确的选择。</li>
+<li>把你经常查询的数据做成一个内嵌数据（对象型的数据），然后集体进行索引。</li>
+</ul>
+<h3>复合索引</h3>
+<ul>
+<li>
+<p>两条以上的索引称为符合索引</p>
+</li>
+<li>
+<p>复合索引查询
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"ux5suyundefinednn"</span>, <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">806500</span> &#125;)</span><br><span class="line"></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询成功,耗时'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>) <span class="hljs-comment">//第一次耗时0.02s左右,后面查询都为0.01s左右</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>默认复合查找的索引顺序其实不是以我们写的索引顺序为准，而是以设置索引的顺序，就是<code>db.数据表.getIndexes()</code>查询到的顺序为准的，但是由于数字所以速度比字符串索引要快，我们有时候需要改变其索引的顺序，就需要使用<code>hint</code>关键字进行优先指定索引查找
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> res = db.random.find(&#123; <span class="hljs-string">"username"</span>: <span class="hljs-string">"elhm4th"</span>, <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">364231</span> &#125;).hint(&#123; <span class="hljs-string">"randNumber"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line"></span><br><span class="line">res.forEach(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;</span><br><span class="line">    printjson(res)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> endTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(<span class="hljs-string">'查询成功,耗时'</span> + endTime / <span class="hljs-number">1000</span> + <span class="hljs-string">"s"</span>) <span class="hljs-comment">//第一次耗时0.006s左右,后面查询都为0.01s左右</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询结果：
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; load(<span class="hljs-string">'./demo06.js'</span>)</span><br><span class="line">connecting <span class="hljs-string">to:</span> <span class="hljs-string">mongodb:</span><span class="hljs-comment">//127.0.0.1:27017/User</span></span><br><span class="line">Implicit <span class="hljs-string">session:</span> session &#123; <span class="hljs-string">"id"</span> : UUID(<span class="hljs-string">"07312a2c-b849-4862-a53d-6dd796b5cfaf"</span>) &#125;</span><br><span class="line">MongoDB server <span class="hljs-string">version:</span> <span class="hljs-number">4.0</span><span class="hljs-number">.10</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d43af0f04d831b959c2964b"</span>),</span><br><span class="line">        <span class="hljs-string">"username"</span> : <span class="hljs-string">"elhm4th"</span>,</span><br><span class="line">        <span class="hljs-string">"regeditemTime"</span> : ISODate(<span class="hljs-string">"2019-08-02T03:31:40.391Z"</span>),</span><br><span class="line">        <span class="hljs-string">"randNumber"</span> : <span class="hljs-number">364231</span></span><br><span class="line">&#125;</span><br><span class="line">查询成功,耗时<span class="hljs-number">0.005</span>s</span><br><span class="line"><span class="hljs-literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在这里其实看不出来有太明显的效果，因为200W条数据太少了</p>
+</li>
+</ul>
+<h3>删除索引</h3>
+<ul>
+<li>有时候我们建立索引错了，需要删除，使用<code>db.数据表.dropIndex(&quot;&quot;)</code>这里的内容填的是索引的名字,使用<code>db.数据表.getIndexes()</code>查询你要删除的索引名字<code>name</code>属性的值，不是<code>key</code>属性的值</li>
+</ul>
+<h3>建立全文索引</h3>
+<ul>
+<li>在一些很大的数据中，比如一篇长文，这个时候我们如果想查找文章内容的某一部分，这个时候就需要使用全文索引来帮助我们查找</li>
+<li>使用<code>db.数据表.ensureIndex({需要建立全文索引的属性:&quot;text&quot;})</code>这里需要跟上<code>text</code>表示建立全文索引，而不是<strong>1或true</strong>表示建立索引</li>
+<li><strong>全文索引查找</strong>:
+<ol>
+<li>$text:表示要在全文索引中查东西。</li>
+<li>$search:后边跟查找的内容。
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h4>查找多个词:</h4>
+<ul>
+<li>
+<p>全文索引是支持多个次查找的，比如我们希望查找数据中有programmer，family，diary，drink的数据（这是或的关系），所以两条数据都会出现。
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer family diary drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果我们这时候希望不查找出来有drink这个单词的记录，我们可以使用“-”减号来取消,就相当于查找的记录要前面的，不要带<code>-</code>的
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbd <span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"programmer family diary -drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>转义符</h4>
+<ul>
+<li>全文搜索中是支持转义符的，比如我们想搜索的是两个词（love PlayGame和drink），这时候需要使用\斜杠来转意。
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$text</span>:&#123;<span class="hljs-variable">$search</span>:<span class="hljs-string">"\"love PlayGame\" drink"</span>&#125;&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB索引/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -524,22 +790,131 @@
                             <blockquote>
 <p>数据库中最常用的就是增加数据和修改数据。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>数据库与数据表的删除和修改</h2>
+<h3>删除数据表(集合)</h3>
+<ul>
+<li>
+<p>使用:<code>db.表名.drop()</code>
+<figure class="highlight sqf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; show dbs  <span class="hljs-comment">//查看数据库</span></span><br><span class="line">Mrzhong  <span class="hljs-number">0.000</span>GB</span><br><span class="line"><span class="hljs-built_in">admin</span>    <span class="hljs-number">0.000</span>GB</span><br><span class="line">config   <span class="hljs-number">0.000</span>GB</span><br><span class="line"><span class="hljs-built_in">local</span>    <span class="hljs-number">0.000</span>GB</span><br><span class="line">test     <span class="hljs-number">0.000</span>GB</span><br><span class="line">&gt; use Mrzhong  <span class="hljs-comment">//使用数据库</span></span><br><span class="line">switched <span class="hljs-keyword">to</span> db Mrzhong</span><br><span class="line">&gt; show collections <span class="hljs-comment">//查看数据表</span></span><br><span class="line"><span class="hljs-built_in">text</span></span><br><span class="line">user</span><br><span class="line">&gt; db.<span class="hljs-built_in">text</span>.<span class="hljs-built_in">drop</span>() <span class="hljs-comment">//删除数据表</span></span><br><span class="line"><span class="hljs-literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果将一个数据库的数据表全部删除了，那么数据库也会自动删除
+<figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; show dbs  //查看数据库</span><br><span class="line">Mrzhong  0.000GB</span><br><span class="line">admin    0.000GB</span><br><span class="line">config   0.000GB</span><br><span class="line">local    0.000GB</span><br><span class="line"><span class="hljs-keyword">test     </span>0.000GB</span><br><span class="line">&gt; use Mrzhong  //使用数据库</span><br><span class="line">switched to db Mrzhong</span><br><span class="line">&gt; show collections //查看数据表</span><br><span class="line">text</span><br><span class="line">user</span><br><span class="line">&gt; db.text.drop() //删除数据表</span><br><span class="line">true</span><br><span class="line">&gt; show collections</span><br><span class="line">user</span><br><span class="line">&gt; db.user.drop() //删除数据表</span><br><span class="line">true</span><br><span class="line">&gt; show dbs  //查看数据库</span><br><span class="line">admin   0.000GB</span><br><span class="line">config  0.000GB</span><br><span class="line">local   0.000GB</span><br><span class="line"><span class="hljs-keyword">test    </span>0.000GB</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>删除数据库</h3>
+<ul>
+<li>删除当前所在的数据库，使用<code>db.数据库名称.dropDatabase()</code></li>
+<li>进行删除
+<figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; show dbs  //查看数据库</span><br><span class="line">MyDb    0.000GB</span><br><span class="line">admin   0.000GB</span><br><span class="line">config  0.000GB</span><br><span class="line">local   0.000GB</span><br><span class="line"><span class="hljs-keyword">test    </span>0.000GB</span><br><span class="line">&gt; use MyDb  //使用数据库</span><br><span class="line">switched to db MyDb</span><br><span class="line">&gt; db</span><br><span class="line">MyDb</span><br><span class="line">&gt; db.dropDatabase() //删除数据库</span><br><span class="line">&#123; "dropped" : "MyDb", "ok" : 1 &#125;</span><br><span class="line">&gt; show dbs  //再次查看数据库</span><br><span class="line">admin   0.000GB</span><br><span class="line">config  0.000GB</span><br><span class="line">local   0.000GB</span><br><span class="line"><span class="hljs-keyword">test    </span>0.000GB</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>修改数据表的数据</h3>
+<ul>
+<li>
+<p>使用<code>db.数据表.update({修改的条件},{$set:{修改的内容}})</code></p>
+</li>
+<li>
+<p><code>update</code>接收的参数update({更新条件},{更新的数据},不符合条件的时候是否增加条件(true),是否更新全部(true))</p>
+</li>
+<li>
+<p>db.user.update({&quot;sex&quot;:&quot;男&quot;},{$set:{&quot;money&quot;:1000}},false,true) -- 表示查找性别为男的数据，新增一个money属性。属性值为1000，如果没有查到数据不增加条件，将满足条件的全部更新</p>
+</li>
+<li>
+<p>比如：我们将以下数据表的内容的<code>name</code>改成<code>zs666</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-variable">$set</span>:&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs666"</span>&#125;&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42a57e96bf23841b62eabd"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs666"</span> &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就修改成功了</p>
+</li>
+</ul>
+<h3>替换数据表中的数据</h3>
+<ul>
+<li>使用<code>db.数据表.update({替换的条件},{替换的内同})</code></li>
+<li>如将下面的数据表的内容替换成<code>{&quot;name&quot;:'ls',&quot;age&quot;::20}</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs666"</span>&#125;,&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"ls"</span>,age:<span class="hljs-number">20</span>&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42a57e96bf23841b62eabd"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>删除数据表中的数据</h3>
+<ul>
+<li>
+<p>使用<code>db.数据表.remove({删除条件})</code></p>
+</li>
+<li>
+<p>比如我们删除<code>name=&quot;ls&quot;</code>的数据
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()  <span class="hljs-comment">//删除前</span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42a57e96bf23841b62eabd"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.remove</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"ls"</span>&#125;)  <span class="hljs-comment">//删除</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nRemoved"</span> : <span class="hljs-number">1</span> &#125;)</span></span> </span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()<span class="hljs-comment">//删除后，因为每页数据了，所以没有显示</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果数据表中有多条数据符合删除条件，那么都会被删除，如果我们只想要删除一个可以这样删除<code>db.数据表.update({删除条件},{justOne:true})</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42abf696bf23841b62eabe"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42abfa96bf23841b62eabf"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.remove</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"ls"</span>&#125;,&#123;justOne:true&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nRemoved"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42abfa96bf23841b62eabf"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>数组属性修改</h3>
+<ul>
+<li>
+<p>如果数据表中有数据是一个数组形式的，比如一个人的爱好，如果我们需要删除爱好中的最后几个或者前面几个，我们可以使用<code>$pop</code>来删除，它接收1或-1，整数表示从末端删除，负数表示从开头删除
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()  <span class="hljs-comment">//删除前</span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打篮球"</span>, <span class="hljs-string">"踢足球"</span>, <span class="hljs-string">"唱歌"</span> ] &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-variable">$pop</span>:&#123;<span class="hljs-string">"like"</span>:<span class="hljs-number">1</span>&#125;&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>() <span class="hljs-comment">//删除后</span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打篮球"</span>, <span class="hljs-string">"踢足球"</span> ] &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>有时候我们需要修改数组中的某一项替换成别的数据，比如爱好写错了，我们需要修改，这个时候我们就需要使用数组定位修改，比如将爱好中的游戏修改成电脑游戏
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>() <span class="hljs-comment">//修改前</span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打篮球"</span>, <span class="hljs-string">"踢足球"</span> ] &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-variable">$set</span>:&#123;<span class="hljs-string">"like.1"</span>:<span class="hljs-string">"电脑游戏"</span>&#125;&#125;) <span class="hljs-comment">//修改like.1表示修改like数组中的第一项，数组是0开始的</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>() <span class="hljs-comment">//修改后</span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"电脑游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打 篮球"</span>, <span class="hljs-string">"踢足球"</span> ] &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>数组查询</h3>
+<ul>
+<li>
+<p>有时候我们需要查询数组中含有某些特定值的数据，如果我们想知道有那些人的爱好是画画的,并且只显示它的爱好有哪些
+<figure class="highlight smalltalk hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.user.find(&#123;<span class="hljs-comment">"like"</span>:<span class="hljs-comment">"游泳"</span>&#125;,&#123;<span class="hljs-comment">"like"</span>:<span class="hljs-keyword">true</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-comment">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-comment">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-comment">"like"</span> : [ <span class="hljs-comment">"游泳"</span>, <span class="hljs-comment">"电脑游戏"</span>, <span class="hljs-comment">"写代码"</span>, <span class="hljs-comment">"打篮球"</span>, <span class="hljs-comment">"踢足球"</span> ] &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是有时候我们需要即会游泳、又会写代码的，那么这个时候上面的查询不能满足我们的需求，所以需要使用<code>$all</code>来查询
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"like"</span>:&#123;<span class="hljs-variable">$all</span>:[<span class="hljs-string">"游泳"</span>,<span class="hljs-string">"写代码"</span>]&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"电脑游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打 篮球"</span>, <span class="hljs-string">"踢足球"</span> ], <span class="hljs-string">"money"</span> : <span class="hljs-number">1000</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>有时候我们需要满足其中一项就可以的，需要使用<code>$in</code>来查询
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"like"</span>:&#123;<span class="hljs-variable">$in</span>:[<span class="hljs-string">"游泳"</span>,<span class="hljs-string">"写代码"</span>]&#125;&#125;))</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"电脑游戏"</span>, <span class="hljs-string">"写代码"</span>, <span class="hljs-string">"打 篮球"</span>, <span class="hljs-string">"踢足球"</span> ], <span class="hljs-string">"money"</span> : <span class="hljs-number">1000</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>有时候我们需要只有一个爱好的,使用<code>$size</code>来查询
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"like"</span>:&#123;<span class="hljs-variable">$size</span>:<span class="hljs-number">1</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42ddad677cf75a716796c6"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"money"</span> : <span class="hljs-number">1000</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"跑步"</span> ] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>有时候我们需要只需要爱好中的第一项，使用<code>$slice</code>来进行处理,如果需要查询最后一项，使用负数就可以了
+<figure class="highlight smalltalk hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.user.find(&#123;<span class="hljs-comment">"age"</span>:<span class="hljs-number">20</span>&#125;,&#123;<span class="hljs-comment">"like"</span>:&#123;<span class="hljs-string">$s</span>lice:<span class="hljs-number">1</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-comment">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-comment">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-comment">"name"</span> : <span class="hljs-comment">"zs"</span>, <span class="hljs-comment">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-comment">"like"</span> : [ <span class="hljs-comment">"游泳"</span> ], <span class="hljs-comment">"money"</span> : <span class="hljs-number">1000</span> &#125;</span><br><span class="line">&#123; <span class="hljs-comment">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-comment">"5d42ddad677cf75a716796c6"</span>), <span class="hljs-comment">"name"</span> : <span class="hljs-comment">"ls"</span>, <span class="hljs-comment">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-comment">"money"</span> : <span class="hljs-number">1000</span>, <span class="hljs-comment">"like"</span> : [ <span class="hljs-comment">"跑步"</span> ] &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>增加数据表中的数据</h3>
+<ul>
+<li>有时候我们需要对表中的数据进行增加操作，使用<code>db.数据表.update({增加条件},{$push:{要增加的数据}})</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span> &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-variable">$push</span>:&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">20</span>,<span class="hljs-string">"sex"</span>:<span class="hljs-string">"男"</span>&#125;&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()                                            )</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : [ <span class="hljs-number">20</span> ], <span class="hljs-string">"sex"</span> : [ <span class="hljs-string">"男"</span> ] &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>判断后增加数据或不增加数据</h3>
+<ul>
+<li>
+<p>有时候我们需要对表中的数据进行判断数据，比如爱好，查看爱好中是否有某个选项，有则不添加，没有则添加，那么使用<code>$ne</code>可以来处理这个查询
+<figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &gt; <span class="hljs-keyword">db</span>.user.find()           <span class="hljs-comment">//查看数据  </span></span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : 20, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>] &#125;</span><br><span class="line">&gt; <span class="hljs-keyword">db</span>.user.<span class="hljs-keyword">update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>,like:&#123;<span class="hljs-variable">$ne</span>:<span class="hljs-string">"游戏"</span>&#125;&#125;,&#123;<span class="hljs-variable">$push</span>:&#123;like:<span class="hljs-string">"游戏"</span>&#125;&#125;) <span class="hljs-comment">//查看爱好中是否有游泳，没有则使用$push添加</span></span><br><span class="line">WriteResult(&#123; <span class="hljs-string">"nMatched"</span> : 1, <span class="hljs-string">"nUpserted"</span> : 0, <span class="hljs-string">"nModified"</span> : 1 &#125;)</span><br><span class="line">&gt; <span class="hljs-keyword">db</span>.user.find()                                                   "&#125;&#125;))</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : 20, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span> ] &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是上面的方式用来增加数据过于麻烦，我们可以使用<code>$addToSet</code>来做这个功能，上述的<code>$ne</code>修饰符做其他功能较为合适
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span> ] &#125;</span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.update</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-variable">$addToSet</span>:&#123;<span class="hljs-string">"like"</span>:<span class="hljs-string">"写代码"</span>&#125;&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nMatched"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"nUpserted"</span> : <span class="hljs-number">0</span>, <span class="hljs-string">"nModified"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()                                          &#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42cdf7677cf75a716796c5"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span>, <span class="hljs-string">"like"</span> : [ <span class="hljs-string">"游泳"</span>, <span class="hljs-string">"游戏"</span>, <span class="hljs-string">"写代码"</span> ] &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>自定义数据id</h3>
+<ul>
+<li>
+<p>在mongodb中，数据库默认会给给我们添加一个id，而且是不重复的，但是很多时候我们需要使用id进行数据增删改查，所以我们可以自己定义id
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.insert</span>(&#123;<span class="hljs-string">"_id"</span>:<span class="hljs-number">1</span>,<span class="hljs-string">"name"</span>:<span class="hljs-string">"wangmazi"</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">20</span>&#125;)</span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nInserted"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42abfa96bf23841b62eabf"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-number">1</span>, <span class="hljs-string">"name"</span> : <span class="hljs-string">"wangmazi"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>插入id其实和插入其他数据一样，一直插入即可，如果id有重复的话，那么它会报错的</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB数据库与数据表数据的增加、删除和修改/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -593,22 +968,143 @@
                             <blockquote>
 <p>在所有数据库中，查询数据表都是一些操作数据库的最基本操作。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h3>查询数据表</h3>
+<h4>条件查询</h4>
+<ul>
+<li>
+<p>查询名字为:<code>zs</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;name:<span class="hljs-string">'zs'</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询年龄<code>大于20</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$gt</span>:<span class="hljs-number">20</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询年龄<code>小于20</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$lt</span>:<span class="hljs-number">20</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询年龄<code>大于等于12</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$gte</span>:<span class="hljs-number">12</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询年龄<code>小于等于12</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$lte</span>:<span class="hljs-number">12</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果有名字相同的时候，我们需要多个条件查询
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>,<span class="hljs-string">"age"</span>:<span class="hljs-number">12</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询年龄<code>大于10岁小于30</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$gt</span>:<span class="hljs-number">20</span>,<span class="hljs-variable">$lt</span>:<span class="hljs-number">30</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>模糊查询</h4>
+<ul>
+<li>
+<p>如下一个数据表，有以下数据
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.text.find()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-string">"5d42504fe28fa15fcd55b0d5"</span>), <span class="hljs-string">"title"</span> : "精品男装、时尚" &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-string">"5d425077e28fa15fcd55b0d6"</span>), <span class="hljs-string">"title"</span> : "精品女装包包、潮流" &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : <span class="hljs-type">ObjectId</span>(<span class="hljs-string">"5d425085e28fa15fcd55b0d7"</span>), <span class="hljs-string">"title"</span> : "精品女装皮靴、<span class="hljs-type">g</span>复古<span class="hljs-string">" &#125;</span></span><br><span class="line"><span class="hljs-string">&#123; "</span>_id<span class="hljs-string">" : ObjectId("</span><span class="hljs-number">5</span>d4250a7e28fa15fcd55b0d8<span class="hljs-string">"), "</span>title<span class="hljs-string">" : "</span>精品男装牛仔裤、韩国风<span class="hljs-string">" &#125;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询含有<code>男装</code>的数据
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.text</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"title"</span>:/男装/&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d42504fe28fa15fcd55b0d5"</span>), <span class="hljs-string">"title"</span> : <span class="hljs-string">"精品男装、时尚"</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4250a7e28fa15fcd55b0d8"</span>), <span class="hljs-string">"title"</span> : <span class="hljs-string">"精品男装牛仔裤、韩国风"</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询含有<code>女装</code>的数据
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.text</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"title"</span>:/女装/&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425077e28fa15fcd55b0d6"</span>), <span class="hljs-string">"title"</span> : <span class="hljs-string">"精品女装包包、潮流"</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425085e28fa15fcd55b0d7"</span>), <span class="hljs-string">"title"</span> : <span class="hljs-string">"精品女装皮靴、g复古"</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询名字以<code>z</code>开头的
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//数据表</span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//查询后</span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"name"</span>:/^z/&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询名字以<code>g</code>结尾的
+<figure class="highlight elixir hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.user.find(&#123;<span class="hljs-string">"name"</span><span class="hljs-symbol">:/g</span><span class="hljs-variable">$/</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>查询指定列</h4>
+<ul>
+<li>查询name，第一个字段是条件，第二个是指定列
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;,&#123;name:<span class="hljs-number">1</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>升序降序</h4>
+<ul>
+<li>
+<p>按照年龄升序排序
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).sort(&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">1</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>按照年龄降序排序
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).sort(&#123;<span class="hljs-string">"age"</span>:-<span class="hljs-number">1</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>查询指定条数数据</h4>
+<ul>
+<li>
+<p>查询前2条数据并降序(当然也可以先排序再数据)
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).limit(<span class="hljs-number">2</span>).sort(&#123;<span class="hljs-string">"age"</span>:-<span class="hljs-number">1</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询第3条以后的数据并升序
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).skip(<span class="hljs-number">2</span>).sort(&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">1</span>&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>分页查询</h4>
+<ul>
+<li>
+<p>查询第几页，每页多少条数据，可以用来做分页查询  skip表示的是从第几条数据开始，从0开始计算，limit表示截取几条数据,假设我们以下数据
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果我们将这个数据分成两页，那么第一页就是<code>skip(0).limit(2)</code>,第二页就是<code>skip(2).limit(2)</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//第一页</span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).skip(<span class="hljs-number">0</span>).limit(<span class="hljs-number">2</span>)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//第二页</span></span><br><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;&#125;).skip(<span class="hljs-number">2</span>).limit(<span class="hljs-number">2</span>)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果有100条数据，每页10条那么我们可以这样进行切割 skip((页数-1)*10).limit(10)</p>
+</li>
+</ul>
+<h3>or与查询</h3>
+<ul>
+<li>
+<p>当我们查询条件是具体的时候，但是又是多个的时候，以上查询方式并不适合我们，比如：查询<code>age:20</code>或者<code>age:24</code>这种情况，我们就需要使用  <strong>$or</strong>来查询</p>
+</li>
+<li>
+<p>查询年龄<code>age=20</code>或者<code>age=22</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$or</span>:[&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">20</span>&#125;,&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">22</span>&#125;]&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>查询名字为<code>zs</code>或者<code>age=20</code>
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-variable">$or</span>:[&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;,&#123;<span class="hljs-string">"age"</span>:<span class="hljs-number">20</span>&#125;]&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424e06e28fa15fcd55b0d4"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">20</span> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用 $or查询，如果有多个筛选项那么只需要满足一项即可，如果不适用$or表示并且，就需要都满足</p>
+</li>
+</ul>
+<h3>查询一条数据</h3>
+<ul>
+<li>使用findOne()查询时返回第一个数据
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.findOne</span>()</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d4246624239b28d6b556da7"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zs"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">12</span> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>查询结果符合的条数</h3>
+<ul>
+<li>
+<p>有时候我们用于统计，比如查询年龄大于20岁的有多少人，但是不需要具体的姓名性别等信息
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$gt</span>:<span class="hljs-number">20</span>&#125;&#125;)</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d424ba1e28fa15fcd55b0d3"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"ls"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">25</span> &#125;</span><br><span class="line">&#123; <span class="hljs-string">"_id"</span> : ObjectId(<span class="hljs-string">"5d425231e28fa15fcd55b0d9"</span>), <span class="hljs-string">"name"</span> : <span class="hljs-string">"zhong"</span>, <span class="hljs-string">"age"</span> : <span class="hljs-number">22</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.user</span><span class="hljs-selector-class">.find</span>(&#123;<span class="hljs-string">"age"</span>:&#123;<span class="hljs-variable">$gt</span>:<span class="hljs-number">20</span>&#125;&#125;).count()</span><br><span class="line"><span class="hljs-number">2</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB查询数据表/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -662,22 +1158,31 @@
                             <blockquote>
 <p>mongodb是在非关系型数据库中最接近关系型数据库的，关系型数据库能实现的功能MongoDb基本上都可以实现。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>启动MongoDB</h2>
+<ul>
+<li>安装完成后使用<code>mongod</code>启动数据库</li>
+<li>连接:<code>mongo</code>连接数据库</li>
+<li>连接远程数据库:<code>mongo ip:端口</code></li>
+<li>查询数据库 ：<code>show dbs</code></li>
+<li>定位当前数据库:<code>db</code></li>
+<li>使用数据库(创建数据库):<code>use 数据库名</code></li>
+<li>查询数据表:<code>show collections</code></li>
+<li>向表中插入数据(创建表):<code>db.表名.insert({&quot;name&quot;:&quot;zs&quot;,&quot;age&quot;:12})</code></li>
+<li>查询数据表的内容:<code>db.数据表.find()</code></li>
+</ul>
+<h3>注意：</h3>
+<ul>
+<li>mongodb数据库没有创建表和数据库的指令，你直接当做有就行，没有自己会创建，有就直接使用</li>
+<li>数据表使用json格式的字符串</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/启动MongoDB/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -845,7 +1350,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -975,7 +1480,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1007,7 +1512,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1077,7 +1582,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1093,7 +1598,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1121,7 +1626,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1303,7 +1808,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1335,7 +1840,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1405,7 +1910,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1421,7 +1926,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1449,7 +1954,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

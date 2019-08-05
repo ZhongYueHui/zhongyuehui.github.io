@@ -248,22 +248,31 @@
                             <blockquote>
 <p>React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>使用calss创建的类作为组件</h2>
+<ul>
+<li>
+<p>使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了</p>
+</li>
+<li>
+<p>我们在定义class实现组件的内部，必须定义一个render函数</p>
+</li>
+<li>
+<p>在render函数中必须要返回一个东西，如果你不想返回什么，那么就return null
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//报错信息:No `render` method found on the returned component instance: you may have forgotten to define `render`</span></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-comment">// Nothing was returned from render.This usually means a return statement is missing.Or, to render nothing, return null.</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>组件内的一些注意事项：
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123; <span class="hljs-comment">// </span></span><br><span class="line">        <span class="hljs-keyword">super</span>()  <span class="hljs-comment">//继承的类必须使用super，否则会报错</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//直接使用props拿数据输出 undefined </span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">//&#123;name:'zs,age:'12'&#125; //使用props拿数据是必须在constructor传递参数，并且不能使用this拿</span></span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//这里可以通过this直接访问到传递的数据不需要接收</span></span><br><span class="line">        <span class="hljs-comment">// this.props.name = 'ls'  //修改数据后报错，这个数据只是只读的不能修改</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span> &gt;</span></span></span><br><span class="line"><span class="hljs-xml">    &#125;</span></span><br><span class="line"><span class="hljs-xml">&#125;</span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">    &lt;Hello name='zs' age='12'&gt;&lt;/Hello&gt;</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React使用class创建的类作为组件/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -317,22 +326,67 @@
                             <blockquote>
 <p>我们使用React创建一个最基本的组件，来看一下React的运行流程。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React创建最基本的组件</h2>
+<ul>
+<li>在React中，构造函数，就是一个最基本的组件</li>
+<li>如果像把组件放到页面中，可以把构造函数的名称，当作组件的名称，以HTML标签的形式引入页面中即可</li>
+<li>注意：在React解析标签的时候，是以标签首字母来区分的，首字母是小写按照HTML标签进行解析，首字母是大写，按照组件形式去渲染</li>
+<li>所以组件的首字母必须是大写的
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 入口文件</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello React'</span>  <span class="hljs-comment">//此时一定需要返回值，如果不需要返回内容，则直接返回 null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2>组件使用外部数据</h2>
+<ul>
+<li>
+<p>我们在全局中定义的数据，组件中可以直接拿到并修改
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">username = <span class="hljs-string">'ls'</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> username = <span class="hljs-string">'zs'</span></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们在传递一个对象时，组件中必须定义形参用来接收这个对象，并且这个对象不能被修改
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">//报错 username 未定义</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">// &#123;username: "kobe", age: 12&#125; 此时已经接收到了person的全部属性</span></span><br><span class="line">props.name = <span class="hljs-string">'zs'</span> <span class="hljs-comment">//如果我们修改属性名的话就会抛出异常 Cannot add property name, object is not extensible</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2>抽离组件</h2>
+<ul>
+<li>
+<p>将组件放到Hello.js中
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>  <span class="hljs-comment">//这里的React是规定死的必须这么写</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123; <span class="hljs-comment">//暴露出这个组件</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在main.js中引入组件
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Hello <span class="hljs-keyword">from</span> <span class="hljs-string">'./Hello'</span> <span class="hljs-comment">//这里可以不加后缀</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>使用jsx文件</h3>
+<ul>
+<li>
+<p>我们在 .js中书写组件没有智能提示，开发效率不高，我们可以将js后缀改为jsx</p>
+</li>
+<li>
+<p>那么改完之后我们需要在webpack.config.js中配置一下jsx文件处理的loader</p>
+<ul>
+<li>
+<p>方法一：
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.(js|jsx)$/,</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>方法二：
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.jsx?$/,  //正则中的?表示可以要也可以不要</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong>：我们在使用jsx文件创建组件时，引入组件时后缀名不能省略</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React创建最基本的组件/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -386,22 +440,49 @@
                             <blockquote>
 <p>在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React中绑定this并传参的几种方式</h2>
+<blockquote>
+<p>在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。</p>
+</blockquote>
+<h3>第一种方式</h3>
+<ul>
+<li>
+<p>在事件函数处理中，直接使用bind绑定this并传参
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// bindThis.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>)&#125;&gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">  <span class="hljs-comment">//这个时候因为this指向问题，所以会报错undefined，所以需要修改this的指向</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><strong>bind</strong>的作用：为前面的函数，修改函数中的this指向，让函数内部的this，指向bind参数列表中的第一个参数</p>
+</li>
+<li>
+<p><strong>bind和call/apply之间的区别</strong>:call/apply修改完this的指向后会立即调用前面的函数，bind方法的返回值是改变了this指向的原函数的拷贝，但是不会对原函数的this进行改变</p>
+</li>
+<li>
+<p>**注意：**bind中的第一个参数，是用来修改this指向的，第一个参数后面所有的参数，都会当作将来调用前面函数时的参数</p>
+</li>
+</ul>
+<h3>第二种方式</h3>
+<ul>
+<li>在constructor中改变函数this
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-comment">/*因为函数执行必然会执行constructor函数，所以我们在这对函数的this进行修改</span></span><br><span class="line"><span class="hljs-comment">    注意：bind方法并不会修改原函数，而是返回一个修改后的原函数拷贝，就是返回一个修改了this的函数，所以我们需要接收一下</span></span><br><span class="line"><span class="hljs-comment">    注意：这个时候我们使用原函数进行接收，这样就覆盖了没有修改this的函数</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.changeMes = <span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定This传参的方式&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &#123;/</span>* 因为在上面我们已经修改过<span class="hljs-keyword">this</span>的指向了，所以在这里并不需要进行修改 *<span class="hljs-regexp">/&#125;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;button onClick=&#123;this.changeMes&#125;&gt;绑定This传参&lt;/</span>button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>第三种方式</h3>
+<ul>
+<li>
+<p>在调用时使用箭头函数
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 因为此时的this就是我们的实例，这个时候去调用函数，那么被调用函数中this就是指向这个调用者，就是实例对象 */</span>&#125;</span><br><span class="line">        &lt;button</span><br><span class="line">          onClick=&#123;() =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.changeMes(<span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是需要注意的是； <code>&lt;button onClick={() =&gt; {this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}}&gt;绑定This传参&lt;/button&gt;</code>中我们不能省略<code>()=&gt;</code>写成<code>&lt;button onClick={this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}&gt;绑定This传参&lt;/button&gt;</code>，这样的话React在解析的时候发现这个是一个函数调用，那么就会立即进行调用，如果使用的是箭头函数，它会解析成你点击的时候再来触发这个函数，这样才是我们想要的结果</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/16/React中绑定this并传参的几种方式/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -588,7 +669,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T14:06:47.000Z">2019-08-04</time></div>
                     <a href="/2019/08/04/Nodejs连接并操作MongoDB数据库/" class="has-link-black-ter is-size-6">Nodejs连接并操作MongoDB数据库</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
                     </p>
                 </div>
             </div>
@@ -718,7 +799,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -750,7 +831,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -820,7 +901,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -836,7 +917,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -864,7 +945,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1046,7 +1127,7 @@
                 <span class="level-item">Angular</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/ES6/">
@@ -1078,7 +1159,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1148,7 +1229,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.57px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.43px;">ES6</a> <a href="/tags/Express/" style="font-size: 12.86px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 15.71px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 11.43px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.29px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.14px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.43px;">Vue</a> <a href="/tags/git/" style="font-size: 11.43px;">git</a> <a href="/tags/ionic/" style="font-size: 11.43px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.43px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 11.25px;">ES6</a> <a href="/tags/Express/" style="font-size: 13.75px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 12.5px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
     </div>
 </div>
 
@@ -1164,7 +1245,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1192,7 +1273,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
