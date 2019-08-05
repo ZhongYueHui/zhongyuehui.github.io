@@ -237,135 +237,22 @@
                             <blockquote>
 <p>session是另一种记录客户状态的机制，不同的cookie保存在客户端的浏览器中，而session保存在服务器上</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h1>Session的使用</h1>
-<h2>什么是session</h2>
-<ul>
-<li>session是另一种记录客户状态的机制，不同的cookie保存在客户端的浏览器中，而session保存在服务器上</li>
-</ul>
-<h3>session的用途</h3>
-<ul>
-<li>session运行在服务器端，当客户端第一次访问服务器时，可以将客户的登录信息保存。
-当客户访问其他页面时，可以判断客户的登录状态，做出提示，相当于登录拦截。</li>
-<li>session可以和Redis或者数据库等结合做持久化操作，当服务器挂掉时也不会导致某些客户信息（购物车）丢失。</li>
-</ul>
-<h3>Session的工作流程</h3>
-<ul>
-<li>当浏览器访问服务器并发送第一次请求时，服务器端会创建一个session对象，生成一个类似于key,value的键值对，然后将key(cookie)返回到浏览器(客户)端，浏览器下次再访问时，携带key(cookie)，找到对应的session(value)。客户的信息都保存在session中
-<img src="https://s2.ax1x.com/2019/08/04/eylZMn.jpg" alt="session"></li>
-</ul>
-<h3>session的使用</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i express-session -save</code></p>
-</li>
-<li>
-<p>引入：
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> session = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express-session'</span>)`</span><br><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express-session'</span>)</span><br><span class="line"><span class="hljs-comment">//配置中间件</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(session(&#123;</span><br><span class="line">    secret: <span class="hljs-string">'keyboard cat'</span>,</span><br><span class="line">    resave: <span class="hljs-keyword">false</span>,</span><br><span class="line">    saveUninitialized: <span class="hljs-keyword">true</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (req.session.username) &#123;  <span class="hljs-comment">//判断session</span></span><br><span class="line">        res.send(<span class="hljs-string">'欢迎你'</span> + req.session.username)  <span class="hljs-comment">//获取session</span></span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        res.send(<span class="hljs-string">'未登陆'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setsession'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    req.session.username = <span class="hljs-string">"zs"</span>  <span class="hljs-comment">//设置session</span></span><br><span class="line">    res.send(<span class="hljs-string">'session设置成功'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello World!'</span>))</span><br><span class="line">app.listen(port, () =&gt; console.log(`Example app listening on port port!`))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>与cookie不同的是，cookie获取数据是在request请求的时候获取，设置数据是response响应的时候设置，因为这个时候才可以获得需要设置的数据，比如路由传递的值，但是session都是在请求的时候获取和发送，因为获取也要去服务端中进行key/value的验证，而设置的时候value也是设置到服务端去的，所以需要在请求的时候带上要设置的数据</p>
-</li>
-<li>
-<p>cookie中只要数据不过期，就可以一直使用，但是session只要你关闭了浏览器，本地数据就没了，需要重新请求</p>
-</li>
-</ul>
-<h3>session的一些配置项</h3>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>secret</td>
-<td style="text-align:center">一个 String 类型的字符串，作为服务器端生成 session 的签名。</td>
-</tr>
-<tr>
-<td>name</td>
-<td style="text-align:center">返回客户端的 key 的名称，默认为 connect.sid,也可以自己设置。</td>
-</tr>
-<tr>
-<td>resave</td>
-<td style="text-align:center">强制保存 session 即使它并没有变化,。默认为 true。建议设置成 false。 don'tsavesessionifunmodified</td>
-</tr>
-<tr>
-<td>saveUninitialized</td>
-<td style="text-align:center">强制将未初始化的session存储。当新建了一个session且未设定属性或值时，它就处于未初始化状态。在设定一个 cookie 前，这对于登陆验证，减轻服务端存储压力，权限控制是有帮助的。（默 认：true）。建议手动添加。</td>
-</tr>
-<tr>
-<td>cookie</td>
-<td style="text-align:center">设置返回到前端 key 的属性，默认值为{path: ‘/’, httpOnly: true,secure:false,maxAge: null}。</td>
-</tr>
-<tr>
-<td>rolling</td>
-<td style="text-align:center">在每次请求时强行设置 cookie，这将重置 cookie 过期时间（默认：false）</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>相关的使用
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express-session'</span>)</span><br><span class="line"><span class="hljs-comment">//配置中间件</span></span><br><span class="line">app.use(session(&#123;</span><br><span class="line">    secret: <span class="hljs-string">'keyboard cat'</span>,  <span class="hljs-comment">//这个字符可以随便写，生命session的前面，但是一般不要些太长</span></span><br><span class="line">    name: <span class="hljs-string">'session_id'</span>,<span class="hljs-comment">//保存到cookie的名称，默认是connect_sid 可以不设置</span></span><br><span class="line">    resave: <span class="hljs-literal">false</span>, <span class="hljs-comment">//强制保存session 即使它没变化，一一般我们是设置有变化再保存</span></span><br><span class="line">    saveUninitialized: <span class="hljs-literal">true</span>, <span class="hljs-comment">//强制将未初始化的session存储，就是你没有session的时候会帮你建一个名为session_id的cookie</span></span><br><span class="line">    cookie: &#123;  <span class="hljs-comment">//这里的cookie设置与express-cookie相似</span></span><br><span class="line">        maxAge: <span class="hljs-number">50000</span>  <span class="hljs-comment">//过期时间，就算不关闭窗口也会过期</span></span><br><span class="line">    &#125;,</span><br><span class="line">    rolling: <span class="hljs-literal">true</span>  <span class="hljs-comment">//只要你在操作，每次操作重置cookie的过期时间</span></span><br><span class="line"></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (req.session.username) &#123;  <span class="hljs-comment">//判断session</span></span><br><span class="line">        res.send(<span class="hljs-string">'欢迎你'</span> + req.session.username)  <span class="hljs-comment">//获取session</span></span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        res.send(<span class="hljs-string">'未登陆'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/login'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'登陆成功'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setsession'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    req.session.username = <span class="hljs-string">"zs"</span>  <span class="hljs-comment">//设置session</span></span><br><span class="line">    res.send(<span class="hljs-string">'session设置成功'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>session的常用方法</h3>
-<ul>
-<li>注意：设置和获取都是在request请求中的，因为session的value是传递到服务端的，所以需要在请求的时候传递过去，而获取是根据key来向服务端获取value的，也需要在请求的时候验证</li>
-</ul>
-<ol>
-<li>
-<p>设置session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">req<span class="hljs-selector-class">.session</span>.(key)=<span class="hljs-string">"(value)"</span></span><br><span class="line">如：</span><br><span class="line">req<span class="hljs-selector-class">.sesssion</span><span class="hljs-selector-class">.username</span>=<span class="hljs-string">"zs"</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>获取session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">req<span class="hljs-selector-class">.session</span>.(key)</span><br><span class="line">如：</span><br><span class="line">req<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>重新设置过期时间
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.cookie</span><span class="hljs-selector-class">.maxAge</span>=<span class="hljs-number">60000</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ol>
-<h3>session的销毁</h3>
-<ul>
-<li>
-<p>如果我们在过期时间内想要退出账号，那么必须销毁session
-<figure class="highlight coffeescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="hljs-string">'/loginOut'</span>, <span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> &#123;</span><br><span class="line"><span class="hljs-regexp">//</span> req.session.cookie.maxAge = <span class="hljs-number">0</span>  //重新设置cookie的过期时间为<span class="hljs-number">0</span>，马上过期 实现账号的退出</span><br><span class="line">req.session.destroy(<span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"销毁成功"</span>);</span><br><span class="line">&#125;)</span><br><span class="line">res.send(<span class="hljs-string">'退出登陆'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>销毁session的两种方式</p>
-</li>
-</ul>
-<ol>
-<li>设置过期时间为0</li>
-<li>使用destory来主动销毁session</li>
-</ol>
-<h3>session的负载均衡</h3>
-<ul>
-<li>一般的我们都是将session保存到数据库中，请求的时候通过Nginx判断服务器负载信息，比如广州的用户数据在广州的服务器，而且有两台这个时候Nginx做出负载判断后随机向负载教低的服务器传送数据，服务器再去数据库中取数据返回到我们的客户端中，这个就是负载均衡</li>
-</ul>
-<h4>将session保存到数据库中</h4>
-<ul>
-<li>
-<p>首先需要安装两个模块
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm <span class="hljs-selector-tag">i</span> express-session --save  <span class="hljs-comment">//session模块</span></span><br><span class="line">cnpm <span class="hljs-selector-tag">i</span> connect-mongo --save   <span class="hljs-comment">//连接数据库的模块</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>配置并使用
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express-session'</span>)</span><br><span class="line"><span class="hljs-comment">//使用connect-mongo</span></span><br><span class="line"><span class="hljs-keyword">const</span> MongoStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'connect-mongo'</span>)(session)</span><br><span class="line"><span class="hljs-comment">//配置中间件</span></span><br><span class="line">app.use(session(&#123;</span><br><span class="line">    secret: <span class="hljs-string">'keyboard cat'</span>,  <span class="hljs-comment">//这个字符可以随便写，生命session的前面，但是一般不要些太长</span></span><br><span class="line">    name: <span class="hljs-string">'session_id'</span>,<span class="hljs-comment">//保存到cookie的名称，默认是connect_sid 可以不设置</span></span><br><span class="line">    resave: <span class="hljs-literal">false</span>, <span class="hljs-comment">//强制保存session 即使它没变化，一一般我们是设置有变化再保存</span></span><br><span class="line">    saveUninitialized: <span class="hljs-literal">true</span>, <span class="hljs-comment">//强制将未初始化的session存储，就是你没有session的时候会帮你建一个名为session_id的cookie</span></span><br><span class="line">    cookie: &#123;  <span class="hljs-comment">//这里的cookie设置与express-cookie相似</span></span><br><span class="line">        maxAge: <span class="hljs-number">5000</span>  <span class="hljs-comment">//过期时间，就算不关闭窗口也会过期</span></span><br><span class="line">    &#125;,</span><br><span class="line">    rolling: <span class="hljs-literal">true</span>,  <span class="hljs-comment">//只要你在操作，每次操作重置cookie的过期时间</span></span><br><span class="line">    store: <span class="hljs-keyword">new</span> MongoStore(&#123;  <span class="hljs-comment">//连接数据库</span></span><br><span class="line">        url: <span class="hljs-string">'mongodb://127.0.0.1:27017/study'</span>, <span class="hljs-comment">//数据库的地址</span></span><br><span class="line">        touchAfter: <span class="hljs-number">24</span> * <span class="hljs-number">3600</span>  <span class="hljs-comment">//设置时间</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (req.session.username) &#123;  <span class="hljs-comment">//判断session</span></span><br><span class="line">        res.send(<span class="hljs-string">'欢迎你'</span> + req.session.username)  <span class="hljs-comment">//获取session</span></span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        res.send(<span class="hljs-string">'未登陆'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/login'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(<span class="hljs-string">'登陆成功'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setsession'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    req.session.username = <span class="hljs-string">"ls"</span>  <span class="hljs-comment">//设置session</span></span><br><span class="line">    res.send(<span class="hljs-string">'session设置成功'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/loginOut'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">// req.session.cookie.maxAge = 0  //重新设置cookie的过期时间为0，马上过期 实现账号的退出</span></span><br><span class="line">    req.session.destroy(<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"销毁成功"</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    res.send(<span class="hljs-string">'退出登陆'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这个时候我们设置的session就会保存到数据库中去了</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/Express-session的使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -417,7 +304,7 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>使用原声的Ndeojs来操作数据库进行增删改查</p>
+<p>使用原生的Ndeojs来操作数据库进行增删改查</p>
 </blockquote>
 <p>&lt;!-- more --&gt;</p>
 <h1>Nodejs连接并操作MongoDB数据库</h1>
@@ -631,89 +518,22 @@
                             <blockquote>
 <p>cookie是存储于访问者的计算机中的变量。可以让我们用同一个浏览器访问同一个域名时共享数据</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Cookie的基本使用</h2>
-<h3>认识cookie</h3>
-<ul>
-<li>cookie是存储于访问者的计算机中的变量。可以让我们用同一个浏览器访问同一个域名时共享数据。</li>
-<li>HTTP 是无状态协议。简单地说，当你浏览了一个页面，然后转到同一个网站的另一个页面，服务器无法认识到这是同一个浏览器在访问同一个网站。每一次的访问，都是没有任何 关系的。</li>
-<li>Cookie 是一个简单到爆的想法：当访问一个页面的时候，服务器在下行 HTTP 报文中， 命令浏览器存储一个字符串; 浏览器再访问同一个域的时候，将把这个字符串携带到上行 HTTP 请求中。第一次访问一个服务器，不可能携带 cookie。 必须是服务器得到这次请求， 在下行响应报头中，携带 cookie 信息，此后每一次浏览器往这个服务器发出的请求，都会 携带这个 cookie。</li>
-</ul>
-<h3>Cookie 特点</h3>
-<ul>
-<li>cookie 保存在浏览器本地</li>
-<li>正常设置的 cookie 是不加密的，用户可以自由看到;</li>
-<li>用户可以删除 cookie，或者禁用它</li>
-<li>cookie 可以被篡改</li>
-<li>cookie 可以用于攻击</li>
-<li>cookie 存储量很小。未来实际上要被 localStorage 替代，但是后者 IE9 兼容</li>
-</ul>
-<h3>cookie的用途</h3>
-<ul>
-<li>用来保存用户登陆状态</li>
-<li>用来获取商品浏览信息，进行相似商品的推送</li>
-<li>用来保存浏览的历史记录</li>
-</ul>
-<h3>cookie的使用</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i cookie-parser --save</code></p>
-</li>
-<li>
-<p>因为cookie也是一个中间件
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">var</span> cookieParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">var</span> app = express()</span><br><span class="line">app.<span class="hljs-keyword">use</span>(cookieParser())</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>实例
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">var</span> cookie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line">app.use(cookie())</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//读取cookie的值</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.signedCookies)</span><br><span class="line">    res.send(<span class="hljs-string">'Hello Nodejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setcookie'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//设置cookie</span></span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    参数一:'cookie的名字'</span></span><br><span class="line"><span class="hljs-comment">    参数二：cookie的值</span></span><br><span class="line"><span class="hljs-comment">    参数三：cookie的配置信息</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    res.cookie(<span class="hljs-string">'userinfo'</span>, <span class="hljs-string">"zs"</span>, &#123; maxAge: <span class="hljs-number">60000</span> &#125;) <span class="hljs-comment">//表示6000毫秒后过期</span></span><br><span class="line">    <span class="hljs-comment">//这个时候cookie的值时这样的[&#123;userinfo:'zs&#125;]，如果需要设置多个cookie值，那么就需要多次使用res.cookie</span></span><br><span class="line">    res.send(<span class="hljs-string">'设置cookie完成'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h2><strong>cookie的一些属性说明</strong></h2>
-<ul>
-<li><code>domain</code>: 域名</li>
-<li><code>name=value</code>：键值对，可以设置要保存的 Key/Value，注意这里的 name 不能和其他属性项的名字 一样</li>
-<li><code>Expires</code>： 过期时间（秒），在设置的某个时间点后该 Cookie 就会失效，如 expires=Wednesday,
-09-Nov-99 23:12:40 GMT</li>
-<li><code>maxAge</code>： 最大失效时间（毫秒），设置在多少后失效   -   secure： 当 secure 值为 true 时，cookie 在 HTTP 中是无效，在 HTTPS 中才有效</li>
-<li><code>Path</code>： 表示 cookie 影响到的路由，如 path=/。如果路径不能匹配时，浏览器则不发送这个 Cookie</li>
-<li><code>httpOnly</code>：是微软对 COOKIE 做的扩展。如果在 COOKIE 中设置了“httpOnly”属性，则通过程序（JS 脚本、applet 等）将无法读取到COOKIE 信息，防止 XSS 攻击产生 singed：表示是否签名cookie, 设为true 会对这个 cookie 签名，这样就需要用 res.signedCookies 而不是 res.cookies 访问它。被篡改的签名 cookie 会被服务器拒绝，并且 cookie 值会重置为它的原始值</li>
-</ul>
-<h3>Cookie多个二级域名之间的共享</h3>
-<ul>
-<li>
-<p>在一般的网站中，难免会有二级域名，如果需要在二级域名中使用一级域名的Cookie数据，那么就需要在设置cookie的时候加入一些参数</p>
-</li>
-<li>
-<p>比如我们在hosts文件下添加以下域名解析
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.1</span>  <span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span></span><br><span class="line">127<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.1</span>  <span class="hljs-selector-tag">news</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这是时候news.hello.com就是二级域名，我们如果需要在二级域名也使用cookie。就需要如下添加<code>domain</code>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">var</span> cookie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line">app.use(cookie())</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//读取cookie的值</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.signedCookies)</span><br><span class="line">    res.send(<span class="hljs-string">'Hello Nodejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setcookie'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//设置cookie</span></span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    参数一:'cookie的名字'</span></span><br><span class="line"><span class="hljs-comment">    参数二：cookie的值</span></span><br><span class="line"><span class="hljs-comment">    参数三：cookie的配置信息</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-comment">//    -domain表示主域名 设置后我们可以在  xxx.hello.com中使用cookie的值</span></span><br><span class="line">    res.cookie(<span class="hljs-string">'userinfo'</span>, <span class="hljs-string">"zs"</span>, &#123; maxAge: <span class="hljs-number">60000</span>, domain: <span class="hljs-string">".hello.com"</span> &#125;) <span class="hljs-comment">//表示60000毫秒后过期</span></span><br><span class="line">    <span class="hljs-comment">//这个时候cookie的值时这样的[&#123;userinfo:'zs&#125;]</span></span><br><span class="line">    res.send(<span class="hljs-string">'设置cookie完成'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3><strong>设置cookie</strong>使用路径</h3>
-<ul>
-<li>有时候我们并不希望所有的页面都可以访问到cookie那么我们可以设置指定的路由地址才能访问到cookie，使用<code>path</code>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">var</span> cookie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line">app.use(cookie())</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//读取cookie的值</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.signedCookies)</span><br><span class="line">    res.send(<span class="hljs-string">'Hello Nodejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    res.send(<span class="hljs-string">'news '</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setcookie'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//设置cookie</span></span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    参数一:'cookie的名字'</span></span><br><span class="line"><span class="hljs-comment">    参数二：cookie的值</span></span><br><span class="line"><span class="hljs-comment">    参数三：cookie的配置信息</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-comment">//path表示需要访问cookie的路由，这个时候只有/news才能访问cookie</span></span><br><span class="line">    res.cookie(<span class="hljs-string">'userinfo'</span>, <span class="hljs-string">"zs"</span>, &#123; maxAge: <span class="hljs-number">60000</span>, path: <span class="hljs-string">'/news'</span> &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个时候cookie的值时这样的[&#123;userinfo:'zs&#125;]</span></span><br><span class="line">    res.send(<span class="hljs-string">'设置cookie完成'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>设置cookie的访问权限</h3>
-<ul>
-<li>在cookie中添加<code>httpOnly</code>可以使得只能在服务端访问cookie，在js中是不能访问得，增加了安全性
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">var</span> cookie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line">app.use(cookie())</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//读取cookie的值</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.signedCookies)</span><br><span class="line">    res.send(<span class="hljs-string">'Hello Nodejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    res.send(<span class="hljs-string">'news '</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setcookie'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//设置cookie</span></span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    参数一:'cookie的名字'</span></span><br><span class="line"><span class="hljs-comment">    参数二：cookie的值</span></span><br><span class="line"><span class="hljs-comment">    参数三：cookie的配置信息</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-comment">//path表示需要访问cookie的路由，这个时候只有/news才能访问cookie,并且只有在服务端才能使用cookie</span></span><br><span class="line">    res.cookie(<span class="hljs-string">'userinfo'</span>, <span class="hljs-string">"zs"</span>, &#123; maxAge: <span class="hljs-number">60000</span>, path: <span class="hljs-string">'/news'</span>, httpOnly: <span class="hljs-literal">true</span> &#125;)</span><br><span class="line">    <span class="hljs-comment">//这个时候cookie的值时这样的[&#123;userinfo:'zs&#125;]</span></span><br><span class="line">    res.send(<span class="hljs-string">'设置cookie完成'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>cookie的加密</h3>
-<ul>
-<li>使用<code>singed</code>属性加密，获取加密cookie需要使用<code>res.singedCookie</code>而不是<code>re.cookie</code>，需要配置中间件，不然不能起作用
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">var</span> cookie = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cookie-parser'</span>)</span><br><span class="line">app.use(cookie(<span class="hljs-string">'a12a'</span>)) <span class="hljs-comment">//配置加密，可以是任意字符串</span></span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.signedCookies) <span class="hljs-comment">//读取加密的cookie</span></span><br><span class="line">    res.send(<span class="hljs-string">'Hello Nodejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.cookies);</span><br><span class="line">    res.send(<span class="hljs-string">'news '</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="hljs-string">'/setcookie'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//设置cookie</span></span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    参数一:'cookie的名字'</span></span><br><span class="line"><span class="hljs-comment">    参数二：cookie的值</span></span><br><span class="line"><span class="hljs-comment">    参数三：cookie的配置信息</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    res.cookie(<span class="hljs-string">'userinfo'</span>, <span class="hljs-string">"zs"</span>, &#123; maxAge: <span class="hljs-number">60000</span>, signed: <span class="hljs-literal">true</span> &#125;) <span class="hljs-comment">//表示需要加密，这个加密是在浏览器显示的时候加密</span></span><br><span class="line">    <span class="hljs-comment">//这个时候cookie的值时这样的[&#123;userinfo:'zs&#125;]</span></span><br><span class="line">    res.send(<span class="hljs-string">'设置cookie完成'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/Cookie的基本使用与Cookie二级域名之间的共享、Cookie的加密/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -767,103 +587,22 @@
                             <blockquote>
 <p>在Nodejs中的Express框架来说，中间件是一个比较抽象的概念，但是对于理解Nodejs的请求原理是非常重要的，这里简单的介绍了Nodejs中Express框架的中间件原理</p>
 </blockquote>
-<p>&lt;!-- more --&gt;
-&lt;!-- toc --&gt;</p>
-<hr>
-<h2>中间件的原理</h2>
-<hr>
-<p><img src="https://i.loli.net/2019/06/24/5d1044327363a92295.png" alt></p>
-<ul>
-<li>就是相当于水经过一系列处理到用户的过程，中间不能跳过某些步骤或者调换某些步骤</li>
-</ul>
-<h2>Express中间件</h2>
-<ul>
-<li>Express是一个自身功能极简，完全是由路由和中间件构成的一个web开发框架，从本质来说，一个Express应用就是在调用各种中间件</li>
-<li>中间件(Middlewaew)是一个函数，它可以访问请求对象(request object(req))，响应对象(response(res))和web应用中处理数据请求-响应循环流程中的中间件，一般命名为next的变量</li>
-<li><strong>中间件的功能:</strong>
-<ul>
-<li>执行任何代码</li>
-<li>修改请求和响应对象</li>
-<li>终结请求-响应循环</li>
-<li>调用堆栈中的下一个中间件</li>
-</ul>
-</li>
-<li>如果我的get、post回调函数中，没有next参数，那么匹配上第一个路由，就不会往下匹配，如果需要匹配，就需要写next()</li>
-<li><strong>Express应用可使用如下几种中间件</strong>
-<ul>
-<li>应用级中间件</li>
-<li>路由中间件</li>
-</ul>
-</li>
-</ul>
-<h3>应用级中间件</h3>
-<ul>
-<li>
-<p>例如：我们需要在匹配路由前打印以下时间
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-string">'/public/'</span>, express.static(<span class="hljs-string">'./public'</span>))</span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"><span class="hljs-comment">/*中间件</span></span><br><span class="line"><span class="hljs-comment">    应用级中间件</span></span><br><span class="line"><span class="hljs-comment">    这里表示匹配任何路由</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>())  <span class="hljs-comment">//到这里时路由不会继续往下匹配，因为匹配成功了一个，如果需要继续匹配加入next()</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<span class="hljs-comment">//同样的如果这里匹配成功了还需要继续往下匹配，那么这里也需要使用next()</span></span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>一般地应用级中间件用来做权限的判断，比如没有登陆不能访问某些页面，这个时候我们可以使用这个中间件进行处理</p>
-</li>
-</ul>
-<h3>路由中间件</h3>
-<ul>
-<li>
-<p>路由中间件用来匹配路由规则，如果匹配成功做出对应的处理，但是如果没有next同样的路由，只能执行一次不会往下执行
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-string">'/public/'</span>, express.static(<span class="hljs-string">'./public'</span>))</span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//路由中间件</span></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'news'</span>);</span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'news.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>当然，应用级中间件也可以匹配路由
-<figure class="highlight lua hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="hljs-string">'/news'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res, next)</span></span> &#123;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(<span class="hljs-string">"use --news"</span>);</span><br><span class="line"><span class="hljs-built_in">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3>配置错误处理中间件</h3>
-<ul>
-<li>
-<p>由于中间件和路由执行顺序都是从上往下的，如果以上路由都没有匹配成功，我们将应用级中间件放到最后面，这样前面的路由没有匹配成功就会进入这个中间件处理
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-string">'/public/'</span>, express.static(<span class="hljs-string">'./public'</span>))</span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'news.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置错误处理中间件</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//status表示改变状态。200为请求成功，304为缓存，404为请求失败</span></span><br><span class="line">    res.status(<span class="hljs-number">404</span>).send(<span class="hljs-string">'Not Found 404'</span>)  <span class="hljs-comment">//当然，在这里也可以使用render一个错误页面</span></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这个时候，我们除了请求/和/news，其他的路由都会进入404，因为前面无法匹配</p>
-</li>
-</ul>
-<h3>内置中间件</h3>
-<ul>
-<li>之前学习的<code>app.use(express.static('/public'))</code>就是内置的一个中间件，用来托管静态公共资源的，因为我们使用<code>app.use('/static',express.static('/public'))</code>用过/static/也能获取到public里面的资源</li>
-</ul>
-<h3>使用body-parser第三方中间件</h3>
-<ul>
-<li>
-<p>因为express并没有提供<code>post</code>的方式，所以我们需要借助于第三方的中间件来进行<code>post</code>操作</p>
-</li>
-<li>
-<p>最简单的使用方式，将通用JSON和URL编码的解析器添加为顶级中间件，它将解析所有传入请求的主体。这是最简单的设置。
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">var</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'body-parser'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">var</span> app = express()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// parse application/x-www-form-urlencoded</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser.urlencoded(&#123; extended: <span class="hljs-keyword">false</span> &#125;))</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// parse application/json</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser.json())</span><br><span class="line">app.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(req, res)</span> </span>&#123;</span><br><span class="line">  res.setHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'text/plain'</span>)</span><br><span class="line">  res.write(<span class="hljs-string">'you posted:\n'</span>)</span><br><span class="line">  res.end(JSON.stringify(req.body, <span class="hljs-keyword">null</span>, <span class="hljs-number">2</span>))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>将如body解析器专门添加到需要它们的路由中。通常，这是在Express中使用body-parser的最佳方法。
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">var</span> app = express()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// create application/json parser</span></span><br><span class="line"><span class="hljs-keyword">var</span> jsonParser = bodyParser.json()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// create application/x-www-form-urlencoded parser</span></span><br><span class="line"><span class="hljs-keyword">var</span> urlencodedParser = bodyParser.urlencoded(&#123; <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> &#125;)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// POST /login gets urlencoded bodies</span></span><br><span class="line">app.post(<span class="hljs-string">'/login'</span>, urlencodedParser, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="hljs-string">'welcome, '</span> + req.body.username)</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// POST /api/users gets JSON bodies</span></span><br><span class="line">app.post(<span class="hljs-string">'/api/users'</span>, jsonParser, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// create user in req.body</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>所有解析器都接受一个类型选项，允许您更改中间件将解析的Content-Type
-<figure class="highlight lasso hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">var</span> express = <span class="hljs-keyword">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-built_in">var</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'body-parser'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="hljs-built_in">var</span> app = express()</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// parse various different custom JSON types as JSON</span></span><br><span class="line">app.use(bodyParser.json(&#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">'application/*+json'</span> &#125;))</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// parse some custom thing into a Buffer</span></span><br><span class="line">app.use(bodyParser.raw(&#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">'application/vnd.custom-type'</span> &#125;))</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">// parse an HTML body into a string</span></span><br><span class="line">app.use(bodyParser.text(&#123; <span class="hljs-keyword">type</span>: <span class="hljs-string">'text/html'</span> &#125;))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用body-parser中间件处理表单post请求，并使用<code>req.body</code>获取传递的值
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-comment">//引入body-parser</span></span><br><span class="line"><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置body-parser</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: <span class="hljs-literal">false</span> &#125;))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// parse application/json</span></span><br><span class="line">app.use(bodyParser.json())</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-string">'/public/'</span>, express.static(<span class="hljs-string">'./public'</span>))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置ejs模板</span></span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'news.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-comment">//配置表单数据路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/login'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.render(<span class="hljs-string">'login.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-comment">//配置表单提交路由</span></span><br><span class="line">app.post(<span class="hljs-string">'/login'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.send(req.body)  <span class="hljs-comment">//使用req获取请求的数据，就是表单提交的数据</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-comment">//配置错误处理中间件</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//status表示改变状态。200为请求成功，304为缓存，404为请求失败</span></span><br><span class="line">    res.status(<span class="hljs-number">404</span>).send(<span class="hljs-string">'Not Found 404'</span>)  <span class="hljs-comment">//当然，在这里也可以使用render一个错误页面</span></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p><code>login.ejs</code>页面
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">""</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"username"</span>&gt;</span></span><br><span class="line">            用户名: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"username"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"password"</span>&gt;</span></span><br><span class="line">            密 码: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/express中的中间件/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -917,67 +656,22 @@
                             <blockquote>
 <p>ejs模板引擎在Express中有集成渲染的中间件,不需要配置即可使用.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>在Express使用ejs模板引擎</h2>
-<ul>
-<li>
-<p>在之前我们使用ejs模板需要先安装，再引入，才能使用，但是在express中，安装后就可以直接使用</p>
-</li>
-<li>
-<p>安装:<code>cnpm i ejs --save-dev</code></p>
-</li>
-<li>
-<p>使用express的render渲染页面
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置模板引擎</span></span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//使用express的render渲染页面</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//这里使用render表示渲染哪个页面，默认从views中查找</span></span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>渲染页面并传值
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置模板引擎</span></span><br><span class="line">app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//使用express的render渲染页面</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//这里使用render表示渲染哪个页面，默认从views中查找</span></span><br><span class="line">    res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-comment">//使用express的render渲染页面并传递参数</span></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> list = [<span class="hljs-string">'number'</span>, <span class="hljs-string">'string'</span>, <span class="hljs-string">'boolean'</span>, <span class="hljs-string">'undefined'</span>, <span class="hljs-string">'null'</span>, <span class="hljs-string">'object'</span>]</span><br><span class="line">    res.render(<span class="hljs-string">'news.ejs'</span>, &#123;</span><br><span class="line">        list: list  <span class="hljs-comment">//可以简写成list</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>获取传递的值<code>news.ejs</code>
-<figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>news<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> <span class="hljs-keyword">for</span>(let i=<span class="hljs-number">0</span>;i&lt;list.length;i++)&#123;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="hljs-ruby">list[i] </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> &#125; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>补充：</p>
-<ul>
-<li>
-<p>在渲染页面的时候默认会在views中进行查找，如果需要改变默认视图页面的目录可以使用如下方式</p>
-</li>
-<li>
-<p><code>app.set(&quot;views&quot;,__dirname + &quot;/设置的目录名称&quot;)</code></p>
-</li>
-<li>
-<p>但是这种方式不被推荐，一般使用默认的目录</p>
-</li>
-<li>
-<p>在使用ejs模板引擎的时候，如果你想使用html的文件后缀名，可以使用如下配置
-<figure class="highlight lasso hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入ejs</span></span><br><span class="line"><span class="hljs-built_in">var</span> ejs = <span class="hljs-keyword">require</span>(<span class="hljs-string">'ejs'</span>)</span><br><span class="line"><span class="hljs-comment">//配置ejs</span></span><br><span class="line">app.engine(<span class="hljs-string">'html'</span>, ejs.__express)</span><br><span class="line"><span class="hljs-comment">//配置模板引擎</span></span><br><span class="line">app.<span class="hljs-built_in">set</span>(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"html"</span>)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>但是一般我们不需要去修改</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3>静态文件的托管</h3>
-<ul>
-<li>
-<p>如果我们定义了一些页面的样式，样式被其他页面引入，这时候如果直接使用css样式会报错，因为路径不唯一，那么这个时候我们就需要使用静态资源的托管，在express中已经为我们提供了这项功能
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"> <span class="hljs-keyword">const</span> app = express()</span><br><span class="line"> <span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"> <span class="hljs-comment">//配置静态资源文件,第一个参数是使用的文件名，第二个参数的设置静态资源的文件夹</span></span><br><span class="line"> app.use(<span class="hljs-string">'/public/'</span>, express.static(<span class="hljs-string">'./public'</span>))</span><br><span class="line"> <span class="hljs-comment">// http://localhost:3000/public/css/style.css可以使用css文件,其中第一个参数中的这个public可以不写，</span></span><br><span class="line"> <span class="hljs-comment">//通过http://localhost:3000/css/style.cs来使用文件，也可以修改任意名，这个时候就形成了虚拟目录，只要使用的时候带上这个路由名即可</span></span><br><span class="line"> <span class="hljs-comment">// app.use(express.static('./public'))</span></span><br><span class="line"> </span><br><span class="line"> app.set(<span class="hljs-string">"View engine"</span>, <span class="hljs-string">"ejs"</span>)</span><br><span class="line"> app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">     res.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"> &#125;)</span><br><span class="line"> app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用静态文件下的css样式文件,公共样式表哪里引入公共样式就在那里引入样式
-<figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- 因为配置了静态web服务 我们只需要使用这个路径就可以使用public下的css文件夹下的文件 --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/public/css/style.css"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- 引入公共样式 --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"><span class="hljs-keyword">include</span> ./header.ejs </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>你好ejs<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1031,42 +725,22 @@
                             <blockquote>
 <p>Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Express框架的安装和基本使用</h2>
-<ul>
-<li>
-<p>安装：<code>cnpm i express -save-dev</code></p>
-</li>
-<li>
-<p>引入:<code>const express= require(&quot;express&quot;)</code></p>
-</li>
-<li>
-<p>实例化:<code>const app =express()</code>,也可以使用<code>const app=new express()</code></p>
-</li>
-<li>
-<p>使用
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由规则</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.end(<span class="hljs-string">'xixi'</span>))<span class="hljs-comment">//使用原生的end方法</span></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>配置动态路由
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'新闻'</span>))</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>获取动态路由的值,使用req.params可以获取传递的数据对象,req.params.属性名获取传递的值
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.params);  <span class="hljs-comment">//获取传递过来的数据&#123;&#125;</span></span><br><span class="line">    res.send(<span class="hljs-string">'新闻'</span> + req.params.id)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>get传值与获取，使用<code>/news?id=5&amp;name=&quot;zs&quot;</code>这种形式传值
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//get传值</span></span><br><span class="line"><span class="hljs-comment">// http://localhost:3000/product?id=5&amp;name="zs"</span></span><br><span class="line">app.get(<span class="hljs-string">'/product'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.query);</span><br><span class="line">    res.send(<span class="hljs-string">'product'</span> + req.query.id + <span class="hljs-string">"------"</span> + req.query.name)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/Express框架的安装和基本使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1120,46 +794,22 @@
                             <blockquote>
 <p>ejs模板引擎和art-template引擎一样,都是快速渲染数据,减少代码工作量.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Nodejs的<a href="https://ejs.bootcss.com" target="_blank" rel="noopener">ejs</a>模板引擎的使用</h2>
-<ul>
-<li>
-<p>安装:<code>cnpm i ejs --save</code></p>
-</li>
-<li>
-<p>标签：
-<figure class="highlight mel hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="hljs-string">'脚本'</span> 标签，用于流程控制，无输出。</span><br><span class="line">&lt;%_ 删除其前面的空格符</span><br><span class="line">&lt;%= 输出数据到模板（输出是转义 HTML 标签）</span><br><span class="line">&lt;%- 输出非转义的数据到模板</span><br><span class="line">&lt;%# 注释标签，不执行、不输出内容</span><br><span class="line">&lt;%% 输出字符串 <span class="hljs-string">'&lt;%'</span></span><br><span class="line">%&gt; 一般结束标签</span><br><span class="line">-%&gt; 删除紧随其后的换行符</span><br><span class="line">_%&gt; 将结束标签后面的空格符删除</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>语法：
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.js</span></span><br><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> ejs =<span class="hljs-built_in">require</span>(<span class="hljs-string">'ejs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">8081</span></span><br><span class="line">http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//头文件</span></span><br><span class="line">    response.writeHead(<span class="hljs-number">200</span>, &#123; <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/html'</span> &#125;);</span><br><span class="line">    <span class="hljs-comment">//过滤掉url中的参数</span></span><br><span class="line">    <span class="hljs-keyword">let</span> pathname = url.parse(request.url).pathname</span><br><span class="line">    <span class="hljs-keyword">if</span> (pathname == <span class="hljs-string">'/login'</span>) &#123;</span><br><span class="line">        <span class="hljs-comment">//传递参数</span></span><br><span class="line">        <span class="hljs-keyword">let</span> data = <span class="hljs-string">'123'</span></span><br><span class="line">        <span class="hljs-comment">// 传递数组</span></span><br><span class="line">        <span class="hljs-keyword">let</span> list=[</span><br><span class="line">            <span class="hljs-string">'123'</span>,</span><br><span class="line">            <span class="hljs-string">'456'</span>,</span><br><span class="line">            <span class="hljs-string">'789'</span></span><br><span class="line">        ]</span><br><span class="line">        ejs.renderFile(<span class="hljs-string">'views/login.html'</span>,&#123;<span class="hljs-built_in">number</span>:data,list&#125;,<span class="hljs-function">(<span class="hljs-params">error,data</span>)=&gt;</span>&#123;</span><br><span class="line">        response.end(data);            </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathname == <span class="hljs-string">'/resgin'</span>) &#123;</span><br><span class="line">        <span class="hljs-comment">//使用模板引擎的方法读取数据并渲染</span></span><br><span class="line">        <span class="hljs-keyword">let</span> html=<span class="hljs-string">'&lt;h2&gt;这是注册页面&lt;/h2&gt;'</span></span><br><span class="line">        ejs.renderFile(<span class="hljs-string">'views/resgin.html'</span>,&#123;html&#125;,<span class="hljs-function">(<span class="hljs-params">error,data</span>)=&gt;</span>&#123;</span><br><span class="line">            response.end(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'run'</span> + port)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>login.html
-<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=number%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">for</span>(<span class="hljs-attr">let</span> <span class="hljs-attr">i</span>= <span class="hljs-string">0;i</span>&lt;<span class="hljs-attr">list.length</span>;<span class="hljs-attr">i</span>++) &#123; %&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=list[i]</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span> &#125; %&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>resgin.html
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>resgin<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">%-</span> <span class="hljs-attr">html</span>%&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>上述代码中实现了一些简单的语法使用方式</p>
-</li>
-</ul>
-<h3>公共部分</h3>
-<ul>
-<li>使用ejs模板引擎引入公共头部或者尾部，在index.ejs中引入<code>header.ejs</code>
-<figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">%-</span></span></span><span class="hljs-ruby"><span class="hljs-keyword">include</span> ../public/header.ejs </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4>ejs循环语句</h4>
-<pre><code><figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)&#123; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span> </span></span><br><span class="line"><span class="hljs-xml"> </span></span><br><span class="line"><span class="hljs-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> </span></span><br><span class="line"><span class="hljs-xml"> </span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125; <span class="hljs-keyword">else</span>&#123; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span> </span></span><br><span class="line"><span class="hljs-xml"> </span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> </span></span><br><span class="line"><span class="hljs-xml"> </span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br></pre></td></tr></table></figure></code></pre>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/Nodejs的ejs模板引擎的使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1213,36 +863,22 @@
                             <blockquote>
 <p>我们可以在js文件中对数据库进行批量操作,更方便.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>使用JS对数据表进行批量插入</h2>
-<ul>
-<li>
-<p>使用循环插入数据
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    db.user.insert(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)  <span class="hljs-comment">//往数据表循环添加数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//604ms</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用批量插入
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"><span class="hljs-keyword">var</span> dataArray = []</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    dataArray.push(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.user.insert(dataArray)  <span class="hljs-comment">//批量操作</span></span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//34ms</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h2>总结:</h2>
-<ul>
-<li>使用批量操作对数据表进行数据的插入比循环插入性能快了几十倍</li>
-<li>尽量使用批量插入</li>
-</ul>
-<h3>vsode操作mongodb</h3>
-<ul>
-<li>在vscode中，我们打开了数据库服务之后，可以直接在终端调试工具执行这个mongo</li>
-<li>我们在js文件中写好了要插入的数据后，我们可以在终端使用 <code>mongo js文件名</code>,这样自动会执行我们的js代码进行数据库的操作</li>
-<li>或者使用mongo后进入数据库界面使用<code>load('./文件名的方式')</code>，但是这个前提是要终端的路径打开在文件的路径中，而且需要<code>use</code>了当前数据表的数据库，可以不要连接数据库直接插入数据或者查找数据</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/使用JS对数据表进行批量插入和vscode工具/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1296,85 +932,22 @@
                             <blockquote>
 <p>数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>MongoDB数据库的备份与还原</h2>
-<h3>备份</h3>
-<ul>
-<li>
-<p>备份格式：
-<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>mongodump命令脚本语法如下
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
-</li>
-<li>
-<p>-d：需要备份的数据库实例，例如：test</p>
-</li>
-<li>
-<p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
-</li>
-</ul>
-<h4>注意：</h4>
-<ul>
-<li>
-<p>备份格式中，后面那些参数都是可选的</p>
-</li>
-<li>
-<p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份
-<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>也可以简写成这样
-<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3>恢复还原</h3>
-<ul>
-<li>mongodb使用 mongorerstore 命令来恢复备份的数据。</li>
-</ul>
-<h4>语法</h4>
-<ul>
-<li>
-<p>mongorestore命令脚本语法如下：
-<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>-h：MongoDB所在服务器地址</p>
-</li>
-<li>
-<p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
-</li>
-<li>
-<p>--directoryperdb：
-备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
-</li>
-<li>
-<p>--drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
-</li>
-<li>
-<p>基本格式
-<figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用命令进行恢复
-<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB数据库的备份与还原/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1428,120 +1001,22 @@
                             <blockquote>
 <p>一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>用户的创建删除和管理</h2>
-<ul>
-<li>
-<p>创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限
-<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">use admin后</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;<span class="hljs-comment">// 创建user表</span></span><br><span class="line"><span class="hljs-string">user:</span> <span class="hljs-string">"zhong"</span>,   <span class="hljs-comment">//用户名称</span></span><br><span class="line"><span class="hljs-string">pwd:</span> <span class="hljs-string">"123456"</span>, <span class="hljs-comment">//用户密码</span></span><br><span class="line"><span class="hljs-string">customData:</span> &#123;  <span class="hljs-comment">//数据</span></span><br><span class="line"><span class="hljs-symbol">    name:</span> <span class="hljs-string">'Mrzhong'</span>, <span class="hljs-comment">//用户名</span></span><br><span class="line"><span class="hljs-symbol">    email:</span> <span class="hljs-string">'web0432@126.com'</span>, <span class="hljs-comment">//邮箱</span></span><br><span class="line"><span class="hljs-symbol">    age:</span> <span class="hljs-number">18</span>,</span><br><span class="line">&#125;,</span><br><span class="line"><span class="hljs-string">roles:</span> [&#123;  <span class="hljs-comment">//权限模块</span></span><br><span class="line"><span class="hljs-symbol">    role:</span> <span class="hljs-string">"readWrite"</span>,  <span class="hljs-comment">// 具体权限</span></span><br><span class="line"><span class="hljs-symbol">    db:</span> <span class="hljs-string">"User"</span>  <span class="hljs-comment">//赋予该权限的数据库</span></span><br><span class="line">&#125;,</span><br><span class="line">    <span class="hljs-string">'read'</span>  <span class="hljs-comment">//其他数据库</span></span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>用户权限的说明：</p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Read</td>
-<td style="text-align:center">允许用户读取指定数据库</td>
-</tr>
-<tr>
-<td>readWrite</td>
-<td style="text-align:center">允许用户读写指定数据库</td>
-</tr>
-<tr>
-<td>dbAdmin</td>
-<td style="text-align:center">允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</td>
-</tr>
-<tr>
-<td>userAdmin</td>
-<td style="text-align:center">允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</td>
-</tr>
-<tr>
-<td>clusterAdmin</td>
-<td style="text-align:center">只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</td>
-</tr>
-<tr>
-<td>readAnyDatabase</td>
-<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读权限</td>
-</tr>
-<tr>
-<td>readWriteAnyDatabase</td>
-<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读写权限</td>
-</tr>
-<tr>
-<td>userAdminAnyDatabase</td>
-<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</td>
-</tr>
-<tr>
-<td>dbAdminAnyDatabase</td>
-<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</td>
-</tr>
-<tr>
-<td>root</td>
-<td style="text-align:center">只在admin数据库中可用。超级账号，超级权限</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<h3>删除用户数据</h3>
-<ul>
-<li>使用<code>db.system.users.remove({要删除的用户信息条件})</code>一般是以用户名为条件</li>
-</ul>
-<h3>建权</h3>
-<ul>
-<li>
-<p>有时候我们要验证用户的用户名密码是否正确，就需要用到MongoDB提供的健全操作。也算是一种登录操作，不过MongoDB把这叫做建权。</p>
-</li>
-<li>
-<p>建权就是给之前的数据表注册给功能一样，登陆了建权的用户可以和创建用户时的权限做匹配，就是你创建用户的时候允许的权限，建权之后就可以获得权限</p>
-</li>
-<li>
-<p>如何建权呢？
-<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用用户名称和密码进行建权，建权成功后返回1
-<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br><span class="line"><span class="hljs-selector-tag">1</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>错误返回
-<figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">Error: </span>Authentication failed.</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h4>启动建权</h4>
-<ul>
-<li>
-<p>重启数据库服务器，设置必须使用建权登陆
-<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod <span class="hljs-comment">--auth</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>启动后，用户登录只能用用户名和密码进行登录，原来的mongo形式链接已经不起作用了。相应的用户权限也对应妥当。实际项目中我们启动服务器必须使用建权形式</p>
-</li>
-</ul>
-<h4>登录</h4>
-<ul>
-<li>
-<p>如果在配置用户之后，用户想登录，可以使用mongo的形式，不过需要配置用户名密码：
-<figure class="highlight dns hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongom  -u zhong -p <span class="hljs-number">123456 127.0</span>.<span class="hljs-number">0.1:27017</span>/admin</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>登陆成功后，我们可以对指定的<code>User</code>数据库进行读写操作，但是对其他数据库只读，这个时候我们修改其他数据库的数据就会报错
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.insert</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;)  <span class="hljs-comment">//这个时test数据库的表</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nInserted"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/04/MongoDB用户的创建删除和管理/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>

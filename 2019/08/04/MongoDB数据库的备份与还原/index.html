@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
+        <meta name="description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
 <meta name="keywords" content="MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB数据库的备份与还原">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/MongoDB数据库的备份与还原/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
+<meta property="og:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
 <meta property="og:updated_time" content="2019-08-04T10:19:25.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB数据库的备份与还原">
-<meta name="twitter:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
+<meta name="twitter:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
             
 
@@ -240,77 +240,52 @@
                             <blockquote>
 <p>数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>MongoDB数据库的备份与还原</h2>
-<h3>备份</h3>
-<ul>
-<li>
-<p>备份格式：
-<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="MongoDB数据库的备份与还原"><a href="#MongoDB数据库的备份与还原" class="headerlink" title="MongoDB数据库的备份与还原"></a>MongoDB数据库的备份与还原</h2><h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><ul>
+<li><p>备份格式：</p>
+  <figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>mongodump命令脚本语法如下
-<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure></p>
+<li><p>mongodump命令脚本语法如下</p>
+  <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
+<li><p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
 </li>
-<li>
-<p>-d：需要备份的数据库实例，例如：test</p>
+<li><p>-d：需要备份的数据库实例，例如：test</p>
 </li>
-<li>
-<p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+<li><p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4></li>
+<li><p>备份格式中，后面那些参数都是可选的</p>
 </li>
-</ul>
-<h4>注意：</h4>
-<ul>
-<li>
-<p>备份格式中，后面那些参数都是可选的</p>
+<li><p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份</p>
+  <figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份
-<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>也可以简写成这样
-<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure></p>
+<li><p>也可以简写成这样</p>
+  <figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h3>恢复还原</h3>
-<ul>
-<li>mongodb使用 mongorerstore 命令来恢复备份的数据。</li>
-</ul>
-<h4>语法</h4>
-<ul>
-<li>
-<p>mongorestore命令脚本语法如下：
-<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="恢复还原"><a href="#恢复还原" class="headerlink" title="恢复还原"></a>恢复还原</h3><ul>
+<li><p>mongodb使用 mongorerstore 命令来恢复备份的数据。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4></li>
+<li><p>mongorestore命令脚本语法如下：</p>
+  <figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>-h：MongoDB所在服务器地址</p>
+<li><p>-h：MongoDB所在服务器地址</p>
 </li>
-<li>
-<p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
+<li><p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
 </li>
-<li>
-<p>--directoryperdb：
-备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
+<li><p>–directoryperdb：<br>备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
 </li>
-<li>
-<p>--drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+<li><p>–drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
 </li>
-<li>
-<p>基本格式
-<figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure></p>
+<li><p>基本格式</p>
+  <figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure></p>
+<li><p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>使用命令进行恢复
-<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></p>
-</li>
+<li><p>使用命令进行恢复</p>
+  <figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
 
@@ -435,23 +410,23 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#MongoDB数据库的备份与还原">
         <span class="has-mr-6">1</span>
         <span>MongoDB数据库的备份与还原</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#备份">
         <span class="has-mr-6">1.1</span>
         <span>备份</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#注意：">
         <span class="has-mr-6">1.1.1</span>
         <span>注意：</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#恢复还原">
         <span class="has-mr-6">1.2</span>
         <span>恢复还原</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#语法">
         <span class="has-mr-6">1.2.1</span>
         <span>语法</span>
         </a></li></ul></li></ul></li></ul>
