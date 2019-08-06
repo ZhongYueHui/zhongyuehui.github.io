@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用">
+        <meta name="description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用 &amp;lt;!-- more --&amp;gt; &amp;lt;!--toc--&amp;gt;   两者区别    在webpack中，我们需要将所有的包在main.js这个入口文件中导入，在在我们安装vue(npm i vue -D)到本地时，我们在main.js导入这个包 1import V">
 <meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack中引入vue">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/06/23/webpack中引入vue/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用">
+<meta property="og:description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用 &amp;lt;!-- more --&amp;gt; &amp;lt;!--toc--&amp;gt;   两者区别    在webpack中，我们需要将所有的包在main.js这个入口文件中导入，在在我们安装vue(npm i vue -D)到本地时，我们在main.js导入这个包 1import V">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg">
 <meta property="og:updated_time" content="2019-07-09T11:17:26.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack中引入vue">
-<meta name="twitter:description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用">
+<meta name="twitter:description" content="在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用 &amp;lt;!-- more --&amp;gt; &amp;lt;!--toc--&amp;gt;   两者区别    在webpack中，我们需要将所有的包在main.js这个入口文件中导入，在在我们安装vue(npm i vue -D)到本地时，我们在main.js导入这个包 1import V">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg">
             
 
@@ -238,43 +238,51 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用</p>
+<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用
+&lt;!-- more --&gt;
+&lt;!--toc--&gt;</p>
 </blockquote>
-<a id="more"></a>
-<!--toc-->
 <hr>
-<h3 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h3><hr>
+<h3>两者区别</h3>
+<hr>
 <ol>
-<li><p>在webpack中，我们需要将所有的包在<code>main.js</code>这个入口文件中导入，在在我们安装<code>vue(npm i vue -D)</code>到本地时，我们在<code>main.js</code>导入这个包</p>
-<figure class="highlight capnproto hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>在webpack中，我们需要将所有的包在<code>main.js</code>这个入口文件中导入，在在我们安装<code>vue(npm i vue -D)</code>到本地时，我们在<code>main.js</code>导入这个包
+<figure class="highlight capnproto hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>会爆出以下异常： <code>You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.</code></p>
+<li>
+<p>会爆出以下异常： <code>You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.</code></p>
 </li>
-<li><p>以下的问题解释是：在webpack中使用 import Vue from “vue” 引入的 vue构造函数 功能是不完整的，它只提供了runtime-only 的方式，并没有提供 像网页中使用 script引入的那些功能</p>
+<li>
+<p>以下的问题解释是：在webpack中使用 import Vue from &quot;vue&quot; 引入的 vue构造函数 功能是不完整的，它只提供了runtime-only 的方式，并没有提供 像网页中使用 script引入的那些功能</p>
 </li>
 </ol>
 <ul>
-<li><p>解决方式一：</p>
+<li>解决方式一：
 <ul>
 <li>使用：<code>import Vue from &quot;../node_modules/vue/dist/vue&quot;</code>这种引入方式</li>
 </ul>
 </li>
-<li><p>解决方式二：</p>
+<li>解决方式二：
 <ul>
-<li><p>配置<code>webpack.config.js</code>文件，新增一个属性:<code>resolve</code>，在里面中还有一个属性:<code>alias</code>，配置如下</p>
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">resolve</span>: &#123;</span><br><span class="line">    <span class="hljs-attribute">alias</span>: &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-string">'vue$'</span>: <span class="hljs-string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>配置<code>webpack.config.js</code>文件，新增一个属性:<code>resolve</code>，在里面中还有一个属性:<code>alias</code>，配置如下
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">resolve</span>: &#123;</span><br><span class="line">    <span class="hljs-attribute">alias</span>: &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-string">'vue$'</span>: <span class="hljs-string">'vue/dist/vue.esm.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样使用<code>import Vue from &quot;vue&quot;</code>引入也不会报错了</p>
+<li>
+<p>这样使用<code>import Vue from &quot;vue&quot;</code>引入也不会报错了</p>
 </li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><hr>
+<h3>说明</h3>
+<hr>
 <ul>
 <li>由于<code>webpack</code>是使用Node架构的，所以合法的Node语法都支持，当然，引入包的规则也是一致的</li>
 <li>如下：</li>
-<li>Nodejs中包的查找规则:<ol>
+<li>Nodejs中包的查找规则:
+<ol>
 <li>找项目根目录中是否有安装 node_modules 的文件夹</li>
 <li>在node_modules 中根据包名，找对应的 vue 文件夹</li>
 <li>在 vue中，找到一个叫packahe.json的配置文件</li>
@@ -405,11 +413,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#两者区别">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>两者区别</span>
         </a></li><li>
-        <a class="is-flex" href="#说明">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>说明</span>
         </a></li></ul>
@@ -453,7 +461,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -527,6 +535,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -604,25 +631,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -644,7 +652,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -722,7 +730,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -836,7 +844,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

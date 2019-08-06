@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.">
+        <meta name="description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.  &amp;lt;!--more --&amp;gt; Context的使用   在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果 12345678910111213141516171819202122232425262728293">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React中Context的使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React中Context的使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.">
+<meta property="og:description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.  &amp;lt;!--more --&amp;gt; Context的使用   在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果 12345678910111213141516171819202122232425262728293">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:18:28.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React中Context的使用">
-<meta name="twitter:description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.">
+<meta name="twitter:description" content="React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.  &amp;lt;!--more --&amp;gt; Context的使用   在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果 12345678910111213141516171819202122232425262728293">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,19 +240,25 @@
                             <blockquote>
 <p>React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Context的使用"><a href="#Context的使用" class="headerlink" title="Context的使用"></a>Context的使用</h2><ul>
-<li><p>在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果</p>
-  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> color=&#123;<span class="hljs-keyword">this</span>.state.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> color=&#123;<span class="hljs-keyword">this</span>.props.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.props.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&lt;!--more --&gt;</p>
+<h2>Context的使用</h2>
+<ul>
+<li>
+<p>在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> color=&#123;<span class="hljs-keyword">this</span>.state.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> color=&#123;<span class="hljs-keyword">this</span>.props.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.props.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>但是，这样的话子组件本来是不需要做这个工作的，但是却让他担任了桥梁的角色，这个是不合理的</p>
+<li>
+<p>但是，这样的话子组件本来是不需要做这个工作的，但是却让他担任了桥梁的角色，这个是不合理的</p>
 </li>
-<li><p>所以，我们可以使用Context来解决这个问题，实现属性值的共享</p>
+<li>
+<p>所以，我们可以使用Context来解决这个问题，实现属性值的共享</p>
 </li>
-<li><p>使用context实现数据的共享</p>
-  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">ReactTypes</span> from <span class="hljs-string">"prop-types"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//在父组件中，定义一个function，这个function有个固定的名称，叫做getChildContext，内部必须返回一个对象，这个对象就是需要共享给所有子孙组件的数据</span></span><br><span class="line">  getChildContext() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">      color: <span class="hljs-keyword">this</span>.state.color</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//这里对父组件要传递的数据做类型规定，需要定义一个静态的(static) childContextTypes 这个是固定的方法</span></span><br><span class="line">  static childContextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//上来之后先做属性校验，校验一下父组件传递的参数类型</span></span><br><span class="line">  static contextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string <span class="hljs-comment">//这里如果子组件想使用 通过context共享的数据，使用之前必须做类型校验</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.context.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用context实现数据的共享
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">ReactTypes</span> from <span class="hljs-string">"prop-types"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//在父组件中，定义一个function，这个function有个固定的名称，叫做getChildContext，内部必须返回一个对象，这个对象就是需要共享给所有子孙组件的数据</span></span><br><span class="line">  getChildContext() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">      color: <span class="hljs-keyword">this</span>.state.color</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//这里对父组件要传递的数据做类型规定，需要定义一个静态的(static) childContextTypes 这个是固定的方法</span></span><br><span class="line">  static childContextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//上来之后先做属性校验，校验一下父组件传递的参数类型</span></span><br><span class="line">  static contextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string <span class="hljs-comment">//这里如果子组件想使用 通过context共享的数据，使用之前必须做类型校验</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.context.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>快速识记这几个方法</p>
+<li>
+<p>快速识记这几个方法</p>
 <ul>
 <li>记住这串单词<code>getChildContextTypes</code></li>
 <li>前三(<code>getChildContext()</code>)、后三(<code>static childContextTypes={}</code>)、后俩(<code>static contextTypes={}</code>)</li>
@@ -383,7 +389,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Context的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Context的使用</span>
         </a></li></ul>
@@ -427,7 +433,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -501,6 +507,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -578,25 +603,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -618,7 +624,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -696,7 +702,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -810,7 +816,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

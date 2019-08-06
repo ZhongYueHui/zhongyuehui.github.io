@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。">
+        <meta name="description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。  &amp;lt;!-- more --&amp;gt; 计数器   在下列的计数器组件中，我们给他传递了一个值 1234567//main.jsimport React from &apos;react&apos;import ReactDOM from &apos;react-dom&apos;import Count from &apos;./comments/cou">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React定义数据默认值和数据类型校验">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React定义数据默认值和数据类型校验/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。">
+<meta property="og:description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。  &amp;lt;!-- more --&amp;gt; 计数器   在下列的计数器组件中，我们给他传递了一个值 1234567//main.jsimport React from &apos;react&apos;import ReactDOM from &apos;react-dom&apos;import Count from &apos;./comments/cou">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:13:29.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React定义数据默认值和数据类型校验">
-<meta name="twitter:description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。">
+<meta name="twitter:description" content="定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。  &amp;lt;!-- more --&amp;gt; 计数器   在下列的计数器组件中，我们给他传递了一个值 1234567//main.jsimport React from &apos;react&apos;import ReactDOM from &apos;react-dom&apos;import Count from &apos;./comments/cou">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,37 +240,49 @@
                             <blockquote>
 <p>定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h2><ul>
-<li><p>在下列的计数器组件中，我们给他传递了一个值</p>
-  <figure class="highlight gradle hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//main.js</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./comments/count.jsx'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;<span class="hljs-keyword">Count</span> defalutNumber=&#123;<span class="hljs-number">1</span>&#125; <span class="hljs-regexp">/&gt;, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//count.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">s  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defalutNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>&lt;!-- more --&gt;</p>
+<h2>计数器</h2>
+<ul>
+<li>
+<p>在下列的计数器组件中，我们给他传递了一个值
+<figure class="highlight gradle hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//main.js</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./comments/count.jsx'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;<span class="hljs-keyword">Count</span> defalutNumber=&#123;<span class="hljs-number">1</span>&#125; <span class="hljs-regexp">/&gt;, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//count.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">s  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defalutNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-<h3 id="使用static-defaultProps定义默认值"><a href="#使用static-defaultProps定义默认值" class="headerlink" title="使用static defaultProps定义默认值"></a>使用static defaultProps定义默认值</h3><ul>
-<li><p>但是这样当用户没有传值时，没有默认值，在封装一个组件的时候，肯定有数据是必须的，哪怕用户没有传递参数，这时候组件内部尽量给自己提供一个默认值</p>
+<h3>使用static defaultProps定义默认值</h3>
+<ul>
+<li>
+<p>但是这样当用户没有传值时，没有默认值，在封装一个组件的时候，肯定有数据是必须的，哪怕用户没有传递参数，这时候组件内部尽量给自己提供一个默认值</p>
 </li>
-<li><p>使用<code>static defaultProps</code>来进行默认值的操作</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用<code>static defaultProps</code>来进行默认值的操作
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样的话就设置好了，当你没有传入数据时，那么就会使用默认值</p>
-<h3 id="使用propType数据的类型校验"><a href="#使用propType数据的类型校验" class="headerlink" title="使用propType数据的类型校验"></a>使用propType数据的类型校验</h3></li>
-<li><p>当用户在传入一些不合法数据时，组件对其验证后不进行处理，提示用户类型错误</p>
+<li>
+<p>这样的话就设置好了，当你没有传入数据时，那么就会使用默认值</p>
 </li>
-<li><p>注意：在react中 <code>15.x</code>版本后，propTypes被单独的抽离出来了，需要安装才能使用</p>
+</ul>
+<h3>使用propType数据的类型校验</h3>
+<ul>
+<li>
+<p>当用户在传入一些不合法数据时，组件对其验证后不进行处理，提示用户类型错误</p>
 </li>
-<li><p>安装: <code>cnpm i prop-type -D</code>即可</p>
+<li>
+<p>注意：在react中 <code>15.x</code>版本后，propTypes被单独的抽离出来了，需要安装才能使用</p>
 </li>
-<li><p>然后在组件中引入就可以使用了</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactTypes <span class="hljs-keyword">from</span> <span class="hljs-string">"prop-types"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="hljs-keyword">static</span> propTypes = &#123;</span><br><span class="line">    defaultNumber: ReactTypes.number</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=</span></span><span class="hljs-xquery">&#123;<span class="hljs-number">1</span>&#125;</span><span class="hljs-xml"><span class="hljs-tag"> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=<span class="hljs-string">"哈啊哈"</span> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">,<span class="hljs-built_in"> document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>安装: <code>cnpm i prop-type -D</code>即可</p>
 </li>
-<li><p>当我们进行了类型校验为number时，你传递字符串虽然会给你显示出来，但是会进行报错<code>Failed prop type: Invalid prop</code>defaultNumber <strong><code>of type</code>string<code>supplied to</code>Count<code>, expected</code>number<code>.in Count</code></strong></p>
+<li>
+<p>然后在组件中引入就可以使用了
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactTypes <span class="hljs-keyword">from</span> <span class="hljs-string">"prop-types"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Count</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">static</span> defaultProps = &#123;</span><br><span class="line">    defaultNumber: <span class="hljs-number">0</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="hljs-keyword">static</span> propTypes = &#123;</span><br><span class="line">    defaultNumber: ReactTypes.number</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;计数器&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;input type="button" value="+1" /</span>&gt;</span><br><span class="line">        &lt;hr /&gt;</span><br><span class="line">        &lt;h4&gt;当前的数值是:&#123;<span class="hljs-keyword">this</span>.props.defaultNumber&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=</span></span><span class="hljs-xquery">&#123;<span class="hljs-number">1</span>&#125;</span><span class="hljs-xml"><span class="hljs-tag"> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Count</span> <span class="hljs-attr">defaultNumber</span>=<span class="hljs-string">"哈啊哈"</span> /&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">,<span class="hljs-built_in"> document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>修改后就没有问题了</p>
+<li>
+<p>当我们进行了类型校验为number时，你传递字符串虽然会给你显示出来，但是会进行报错<code>Failed prop type: Invalid prop</code>defaultNumber <strong><code>of type</code>string<code>supplied to</code>Count<code>, expected</code>number<code>.in Count</code></strong></p>
+</li>
+<li>
+<p>修改后就没有问题了</p>
 </li>
 </ul>
 
@@ -396,15 +408,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#计数器">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>计数器</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用static-defaultProps定义默认值">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>使用static defaultProps定义默认值</span>
         </a></li><li>
-        <a class="is-flex" href="#使用propType数据的类型校验">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>使用propType数据的类型校验</span>
         </a></li></ul></li></ul>
@@ -448,7 +460,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -522,6 +534,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -599,25 +630,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -639,7 +651,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -717,7 +729,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -831,7 +843,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

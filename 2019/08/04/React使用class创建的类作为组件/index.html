@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。">
+        <meta name="description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。  &amp;lt;!-- more --&amp;gt; 使用calss创建的类作为组件   使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了   我们在定义class实现组件的内部，必须定义一个render函数   在render函数中必须要返回一个东西，如果你不">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React使用class创建的类作为组件">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React使用class创建的类作为组件/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。">
+<meta property="og:description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。  &amp;lt;!-- more --&amp;gt; 使用calss创建的类作为组件   使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了   我们在定义class实现组件的内部，必须定义一个render函数   在render函数中必须要返回一个东西，如果你不">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zhongyuehui.github.io/React使用class创建的类作为组件">
 <meta property="og:updated_time" content="2019-08-04T09:05:50.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React使用class创建的类作为组件">
-<meta name="twitter:description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。">
+<meta name="twitter:description" content="React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。  &amp;lt;!-- more --&amp;gt; 使用calss创建的类作为组件   使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了   我们在定义class实现组件的内部，必须定义一个render函数   在render函数中必须要返回一个东西，如果你不">
 <meta name="twitter:image" content="https://zhongyuehui.github.io/React使用class创建的类作为组件">
             
 
@@ -240,17 +240,23 @@
                             <blockquote>
 <p>React的组件分为有状态组件和无状态组件，我们现在来学习一下无状态组件。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="使用calss创建的类作为组件"><a href="#使用calss创建的类作为组件" class="headerlink" title="使用calss创建的类作为组件"></a>使用calss创建的类作为组件</h2><ul>
-<li><p>使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>使用calss创建的类作为组件</h2>
+<ul>
+<li>
+<p>使用class创建的类，通过extends关键字，继承了React.Component之后，这个类，就是一个组件的模板了</p>
 </li>
-<li><p>我们在定义class实现组件的内部，必须定义一个render函数</p>
+<li>
+<p>我们在定义class实现组件的内部，必须定义一个render函数</p>
 </li>
-<li><p>在render函数中必须要返回一个东西，如果你不想返回什么，那么就return null</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//报错信息:No `render` method found on the returned component instance: you may have forgotten to define `render`</span></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-comment">// Nothing was returned from render.This usually means a return statement is missing.Or, to render nothing, return null.</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>在render函数中必须要返回一个东西，如果你不想返回什么，那么就return null
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//报错信息:No `render` method found on the returned component instance: you may have forgotten to define `render`</span></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-comment">// Nothing was returned from render.This usually means a return statement is missing.Or, to render nothing, return null.</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>组件内的一些注意事项：</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123; <span class="hljs-comment">// </span></span><br><span class="line">        <span class="hljs-keyword">super</span>()  <span class="hljs-comment">//继承的类必须使用super，否则会报错</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//直接使用props拿数据输出 undefined </span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">//&#123;name:'zs,age:'12'&#125; //使用props拿数据是必须在constructor传递参数，并且不能使用this拿</span></span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//这里可以通过this直接访问到传递的数据不需要接收</span></span><br><span class="line">        <span class="hljs-comment">// this.props.name = 'ls'  //修改数据后报错，这个数据只是只读的不能修改</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span> &gt;</span></span></span><br><span class="line"><span class="hljs-xml">    &#125;</span></span><br><span class="line"><span class="hljs-xml">&#125;</span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">    &lt;Hello name='zs' age='12'&gt;&lt;/Hello&gt;</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure></li>
+<li>
+<p>组件内的一些注意事项：
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123; <span class="hljs-comment">// </span></span><br><span class="line">        <span class="hljs-keyword">super</span>()  <span class="hljs-comment">//继承的类必须使用super，否则会报错</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//直接使用props拿数据输出 undefined </span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">//&#123;name:'zs,age:'12'&#125; //使用props拿数据是必须在constructor传递参数，并且不能使用this拿</span></span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props) <span class="hljs-comment">//这里可以通过this直接访问到传递的数据不需要接收</span></span><br><span class="line">        <span class="hljs-comment">// this.props.name = 'ls'  //修改数据后报错，这个数据只是只读的不能修改</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> React<span class="hljs-tag">&lt;/<span class="hljs-name">div</span> &gt;</span></span></span><br><span class="line"><span class="hljs-xml">    &#125;</span></span><br><span class="line"><span class="hljs-xml">&#125;</span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line">ReactDOM.render(&lt;div&gt;</span><br><span class="line">    &lt;Hello name='zs' age='12'&gt;&lt;/Hello&gt;</span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>, document.getElementById('app'))</span></span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -375,7 +381,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#使用calss创建的类作为组件">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>使用calss创建的类作为组件</span>
         </a></li></ul>
@@ -419,7 +425,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -493,6 +499,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -570,25 +595,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -610,7 +616,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -688,7 +694,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -802,7 +808,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

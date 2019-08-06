@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="我们可以在js文件中对数据库进行批量操作,更方便.">
+        <meta name="description" content="我们可以在js文件中对数据库进行批量操作,更方便.  &amp;lt;!-- more --&amp;gt; 使用JS对数据表进行批量插入   使用循环插入数据 123456789var startTime = (new Date()).getTime()var db = connect(&apos;User&apos;)  //连接数据库for (let i = 0; i &amp;lt; 1000; i++) &amp;#123;    db">
 <meta name="keywords" content="MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用JS对数据表进行批量插入和vscode工具">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/使用JS对数据表进行批量插入和vscode工具/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="我们可以在js文件中对数据库进行批量操作,更方便.">
+<meta property="og:description" content="我们可以在js文件中对数据库进行批量操作,更方便.  &amp;lt;!-- more --&amp;gt; 使用JS对数据表进行批量插入   使用循环插入数据 123456789var startTime = (new Date()).getTime()var db = connect(&apos;User&apos;)  //连接数据库for (let i = 0; i &amp;lt; 1000; i++) &amp;#123;    db">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
 <meta property="og:updated_time" content="2019-08-04T10:21:07.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JS对数据表进行批量插入和vscode工具">
-<meta name="twitter:description" content="我们可以在js文件中对数据库进行批量操作,更方便.">
+<meta name="twitter:description" content="我们可以在js文件中对数据库进行批量操作,更方便.  &amp;lt;!-- more --&amp;gt; 使用JS对数据表进行批量插入   使用循环插入数据 123456789var startTime = (new Date()).getTime()var db = connect(&apos;User&apos;)  //连接数据库for (let i = 0; i &amp;lt; 1000; i++) &amp;#123;    db">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
             
 
@@ -240,22 +240,28 @@
                             <blockquote>
 <p>我们可以在js文件中对数据库进行批量操作,更方便.</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="使用JS对数据表进行批量插入"><a href="#使用JS对数据表进行批量插入" class="headerlink" title="使用JS对数据表进行批量插入"></a>使用JS对数据表进行批量插入</h2><ul>
-<li><p>使用循环插入数据</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    db.user.insert(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)  <span class="hljs-comment">//往数据表循环添加数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//604ms</span></span><br></pre></td></tr></table></figure>
+<p>&lt;!-- more --&gt;</p>
+<h2>使用JS对数据表进行批量插入</h2>
+<ul>
+<li>
+<p>使用循环插入数据
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    db.user.insert(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)  <span class="hljs-comment">//往数据表循环添加数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//604ms</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>使用批量插入</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"><span class="hljs-keyword">var</span> dataArray = []</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    dataArray.push(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.user.insert(dataArray)  <span class="hljs-comment">//批量操作</span></span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//34ms</span></span><br></pre></td></tr></table></figure>
-
+<li>
+<p>使用批量插入
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> startTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime()</span><br><span class="line"><span class="hljs-keyword">var</span> db = connect(<span class="hljs-string">'User'</span>)  <span class="hljs-comment">//连接数据库</span></span><br><span class="line"><span class="hljs-keyword">var</span> dataArray = []</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) &#123;</span><br><span class="line">    dataArray.push(&#123; <span class="hljs-string">"num"</span>: <span class="hljs-number">1</span> &#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.user.insert(dataArray)  <span class="hljs-comment">//批量操作</span></span><br><span class="line"><span class="hljs-keyword">var</span> runTime = (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).getTime() - startTime</span><br><span class="line"></span><br><span class="line">print(runTime + <span class="hljs-string">'ms'</span>)  <span class="hljs-comment">//34ms</span></span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><ul>
+<h2>总结:</h2>
+<ul>
 <li>使用批量操作对数据表进行数据的插入比循环插入性能快了几十倍</li>
-<li>尽量使用批量插入<h3 id="vsode操作mongodb"><a href="#vsode操作mongodb" class="headerlink" title="vsode操作mongodb"></a>vsode操作mongodb</h3></li>
+<li>尽量使用批量插入</li>
+</ul>
+<h3>vsode操作mongodb</h3>
+<ul>
 <li>在vscode中，我们打开了数据库服务之后，可以直接在终端调试工具执行这个mongo</li>
 <li>我们在js文件中写好了要插入的数据后，我们可以在终端使用 <code>mongo js文件名</code>,这样自动会执行我们的js代码进行数据库的操作</li>
-<li>或者使用mongo后进入数据库界面使用<code>load(&#39;./文件名的方式&#39;)</code>，但是这个前提是要终端的路径打开在文件的路径中，而且需要<code>use</code>了当前数据表的数据库，可以不要连接数据库直接插入数据或者查找数据</li>
+<li>或者使用mongo后进入数据库界面使用<code>load('./文件名的方式')</code>，但是这个前提是要终端的路径打开在文件的路径中，而且需要<code>use</code>了当前数据表的数据库，可以不要连接数据库直接插入数据或者查找数据</li>
 </ul>
 
 
@@ -380,15 +386,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#使用JS对数据表进行批量插入">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>使用JS对数据表进行批量插入</span>
         </a></li><li>
-        <a class="is-flex" href="#总结">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>总结:</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#vsode操作mongodb">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.1</span>
         <span>vsode操作mongodb</span>
         </a></li></ul></li></ul>
@@ -432,7 +438,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -506,6 +512,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -583,25 +608,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -623,7 +629,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -701,7 +707,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -815,7 +821,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

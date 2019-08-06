@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。">
+        <meta name="description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。  &amp;lt;!-- more --&amp;gt; React的动画 使用css来完成动画效果  在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画 12345678910111213141516171819202122232425import React, &amp;#123; Component &amp;#125; fr">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React的动画">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React的动画/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。">
+<meta property="og:description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。  &amp;lt;!-- more --&amp;gt; React的动画 使用css来完成动画效果  在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画 12345678910111213141516171819202122232425import React, &amp;#123; Component &amp;#125; fr">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:22:14.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React的动画">
-<meta name="twitter:description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。">
+<meta name="twitter:description" content="我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。  &amp;lt;!-- more --&amp;gt; React的动画 使用css来完成动画效果  在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画 12345678910111213141516171819202122232425import React, &amp;#123; Component &amp;#125; fr">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,20 +240,21 @@
                             <blockquote>
 <p>我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="React的动画"><a href="#React的动画" class="headerlink" title="React的动画"></a>React的动画</h2><h3 id="使用css来完成动画效果"><a href="#使用css来完成动画效果" class="headerlink" title="使用css来完成动画效果"></a>使用css来完成动画效果</h3><ul>
-<li>在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CssStudy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props)</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div className=&#123;<span class="hljs-keyword">this</span>.state.isShow ? <span class="hljs-string">'show'</span> : <span class="hljs-string">'hide'</span>&#125;&gt;今天的天气真不错&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.toggle&#125;&gt;你好&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">        );</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">    toggle = () =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="hljs-regexp">            isShow: !this.state.isShow</span></span><br><span class="line"><span class="hljs-regexp">        &#125;)</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default CssStudy;</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
+<p>&lt;!-- more --&gt;</p>
+<h2>React的动画</h2>
+<h3>使用css来完成动画效果</h3>
+<ul>
+<li>在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CssStudy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props)</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div className=&#123;<span class="hljs-keyword">this</span>.state.isShow ? <span class="hljs-string">'show'</span> : <span class="hljs-string">'hide'</span>&#125;&gt;今天的天气真不错&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.toggle&#125;&gt;你好&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">        );</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">    toggle = () =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="hljs-regexp">            isShow: !this.state.isShow</span></span><br><span class="line"><span class="hljs-regexp">        &#125;)</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default CssStudy;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <ul>
-<li>css样式  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: aqua;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>css样式
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: aqua;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="使用关键帧制作动画"><a href="#使用关键帧制作动画" class="headerlink" title="使用关键帧制作动画"></a>使用关键帧制作动画</h3><ul>
-<li>在css3中，动画还加入了关键帧，可以让我们更好的制作动画的效果  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">  <span class="hljs-comment">/* animation（两个必要参数，其他都是可选参数）</span></span><br><span class="line"><span class="hljs-comment">    参数一：表示需要引入的关键帧动画名称</span></span><br><span class="line"><span class="hljs-comment">    参数二：动画时间</span></span><br><span class="line"><span class="hljs-comment">    参数三：动画的效果</span></span><br><span class="line"><span class="hljs-comment">    参数四：动画完成后结束位置在100%还是0%，如果不加则默认是0%</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line">  <span class="hljs-attribute">animation</span>: hide-style <span class="hljs-number">2s</span> ease-in forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="hljs-keyword">keyframes</span> hide-style &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: green;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: red;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h3>使用关键帧制作动画</h3>
+<ul>
+<li>在css3中，动画还加入了关键帧，可以让我们更好的制作动画的效果
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">  <span class="hljs-comment">/* animation（两个必要参数，其他都是可选参数）</span></span><br><span class="line"><span class="hljs-comment">    参数一：表示需要引入的关键帧动画名称</span></span><br><span class="line"><span class="hljs-comment">    参数二：动画时间</span></span><br><span class="line"><span class="hljs-comment">    参数三：动画的效果</span></span><br><span class="line"><span class="hljs-comment">    参数四：动画完成后结束位置在100%还是0%，如果不加则默认是0%</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line">  <span class="hljs-attribute">animation</span>: hide-style <span class="hljs-number">2s</span> ease-in forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="hljs-keyword">keyframes</span> hide-style &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: green;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: red;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
 
@@ -378,15 +379,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#React的动画">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>React的动画</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用css来完成动画效果">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>使用css来完成动画效果</span>
         </a></li><li>
-        <a class="is-flex" href="#使用关键帧制作动画">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>使用关键帧制作动画</span>
         </a></li></ul></li></ul>
@@ -430,7 +431,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -504,6 +505,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -581,25 +601,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -621,7 +622,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -699,7 +700,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -813,7 +814,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

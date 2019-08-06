@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。">
+        <meta name="description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。  &amp;lt;!-- more --&amp;gt; 组件的状态 使用function和class创建组件的区别  使用以上两种创建组件的方式，有本质的区别 使用function构造函数创建的组件，内部没有state私有数据，只有一个props来接收外界传递的数据 使用calss关键字创建的组件，内部除了有thi">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React组件的状态">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React组件的状态/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。">
+<meta property="og:description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。  &amp;lt;!-- more --&amp;gt; 组件的状态 使用function和class创建组件的区别  使用以上两种创建组件的方式，有本质的区别 使用function构造函数创建的组件，内部没有state私有数据，只有一个props来接收外界传递的数据 使用calss关键字创建的组件，内部除了有thi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:08:12.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React组件的状态">
-<meta name="twitter:description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。">
+<meta name="twitter:description" content="React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。  &amp;lt;!-- more --&amp;gt; 组件的状态 使用function和class创建组件的区别  使用以上两种创建组件的方式，有本质的区别 使用function构造函数创建的组件，内部没有state私有数据，只有一个props来接收外界传递的数据 使用calss关键字创建的组件，内部除了有thi">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,13 +240,21 @@
                             <blockquote>
 <p>React组件的状态分成两种，我们现在来分析一下它们的区别和使用场景，可以帮助我们更好的使用。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="组件的状态"><a href="#组件的状态" class="headerlink" title="组件的状态"></a>组件的状态</h2><h3 id="使用function和class创建组件的区别"><a href="#使用function和class创建组件的区别" class="headerlink" title="使用function和class创建组件的区别"></a>使用function和class创建组件的区别</h3><ol>
+<p>&lt;!-- more --&gt;</p>
+<h2>组件的状态</h2>
+<h3>使用function和class创建组件的区别</h3>
+<ol>
 <li>使用以上两种创建组件的方式，有本质的区别</li>
 <li>使用function构造函数创建的组件，内部没有state私有数据，只有一个props来接收外界传递的数据</li>
 <li>使用calss关键字创建的组件，内部除了有this.props这个只读的属性外，还有一个专门用于存放私有数据的this.state属性，这个state是可读可写的</li>
-<li>基于以上的区别：我们可以为这两种创建组件的方式下定义了:使用了function创建的组件，叫做无状态组件，使用class创建的组件，叫做有状态组件<h3 id="有状态组件和无状态组件最本质的区别"><a href="#有状态组件和无状态组件最本质的区别" class="headerlink" title="有状态组件和无状态组件最本质的区别"></a>有状态组件和无状态组件最本质的区别</h3></li>
-<li>有无状态就是有无state属性，同时。calss创建的组件，有自己的生命周期函数，但是function创建的组件，没有自己的生命周期函数<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3></li>
+<li>基于以上的区别：我们可以为这两种创建组件的方式下定义了:使用了function创建的组件，叫做无状态组件，使用class创建的组件，叫做有状态组件</li>
+</ol>
+<h3>有状态组件和无状态组件最本质的区别</h3>
+<ol>
+<li>有无状态就是有无state属性，同时。calss创建的组件，有自己的生命周期函数，但是function创建的组件，没有自己的生命周期函数</li>
+</ol>
+<h3>适用场景</h3>
+<ol>
 <li>如果一个组件需要存放自己的私有数据，或者在组件中的不同阶段执行不同的功能。此时，适合使用class创建的有状态组件</li>
 <li>如果一个组件，只需要根据外界传递过来的props，渲染固定的页面结构，此时，适合使用function创建出来的无状态组件，由于无状态组件没有生命周期，所以运行速度相对快一些</li>
 </ol>
@@ -373,19 +381,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#组件的状态">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>组件的状态</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用function和class创建组件的区别">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>使用function和class创建组件的区别</span>
         </a></li><li>
-        <a class="is-flex" href="#有状态组件和无状态组件最本质的区别">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>有状态组件和无状态组件最本质的区别</span>
         </a></li><li>
-        <a class="is-flex" href="#适用场景">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>适用场景</span>
         </a></li></ul></li></ul>
@@ -429,7 +437,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -503,6 +511,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -580,25 +607,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -620,7 +628,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -698,7 +706,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -812,7 +820,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

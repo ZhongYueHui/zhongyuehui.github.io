@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大">
+        <meta name="description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大  &amp;lt;!-- more --&amp;gt; Ionic的安装运行  目前Ionic已经支持了Vue、angular、react三大框架 只要有相关基础的就可以使用Ionic  安装  cnpm i -g cordova ionic 查看是否安装：ionic -v  创建项目  cd到">
 <meta name="keywords" content="ionic">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ionic的安装运行">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Ionic的安装运行/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大">
+<meta property="og:description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大  &amp;lt;!-- more --&amp;gt; Ionic的安装运行  目前Ionic已经支持了Vue、angular、react三大框架 只要有相关基础的就可以使用Ionic  安装  cnpm i -g cordova ionic 查看是否安装：ionic -v  创建项目  cd到">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=2033384204,1146787582&fm=85&s=B8207C32EF326D9048DF37D60200D0BE">
 <meta property="og:updated_time" content="2019-08-04T12:05:35.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ionic的安装运行">
-<meta name="twitter:description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大">
+<meta name="twitter:description" content="ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大  &amp;lt;!-- more --&amp;gt; Ionic的安装运行  目前Ionic已经支持了Vue、angular、react三大框架 只要有相关基础的就可以使用Ionic  安装  cnpm i -g cordova ionic 查看是否安装：ionic -v  创建项目  cd到">
 <meta name="twitter:image" content="https://ss0.baidu.com/73t1bjeh1BF3odCf/it/u=2033384204,1146787582&fm=85&s=B8207C32EF326D9048DF37D60200D0BE">
             
 
@@ -240,32 +240,44 @@
                             <blockquote>
 <p>ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Ionic的安装运行"><a href="#Ionic的安装运行" class="headerlink" title="Ionic的安装运行"></a><a href="http://www.ionic.wang/components_doc-index-id-224.html" target="_blank" rel="noopener">Ionic</a>的安装运行</h2><ul>
-<li><p>目前Ionic已经支持了Vue、angular、react三大框架</p>
+<p>&lt;!-- more --&gt;</p>
+<h2><a href="http://www.ionic.wang/components_doc-index-id-224.html" target="_blank" rel="noopener">Ionic</a>的安装运行</h2>
+<ul>
+<li>目前Ionic已经支持了Vue、angular、react三大框架</li>
+<li>只要有相关基础的就可以使用Ionic</li>
+</ul>
+<h2>安装</h2>
+<ul>
+<li><code>cnpm i -g cordova ionic</code></li>
+<li>查看是否安装：<code>ionic -v</code></li>
+</ul>
+<h2>创建项目</h2>
+<ul>
+<li>cd到你要创建项目的文件夹</li>
+</ul>
+<h3>创建的方式</h3>
+<ul>
+<li><code>ionic start my-app</code>直接创建空项目</li>
+<li><code>ionic start my-app tabs</code>，创建有<code>tabs</code>的项目，当然你也可以在后面追加多个UI组件</li>
+</ul>
+<h3>运行项目</h3>
+<ul>
+<li><code>ionic serve</code></li>
+</ul>
+<h3>创建一个页面并实现跳转</h3>
+<ul>
+<li>
+<p><code>ionic g page 页面名</code></p>
 </li>
-<li><p>只要有相关基础的就可以使用Ionic</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2></li>
-<li><p><code>cnpm i -g cordova ionic</code></p>
+<li>
+<p>如果你想要创建其他的组件或者服务，可以使用<code>ng g --help</code>来获取提示</p>
 </li>
-<li><p>查看是否安装：<code>ionic -v</code></p>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2></li>
-<li><p>cd到你要创建项目的文件夹</p>
-<h3 id="创建的方式"><a href="#创建的方式" class="headerlink" title="创建的方式"></a>创建的方式</h3></li>
-<li><p><code>ionic start my-app</code>直接创建空项目</p>
+<li>
+<p>比如我们创建一个<code>button</code>页面，那么我们在tab2中创建一个按钮，导航到这个<code>button</code>页面
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//tab2.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">      Tab Two</span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- 导航到Button页面 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-button</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/button' ]"</span>&gt;</span></span><br><span class="line">  Click me</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-content</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ion-content</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p><code>ionic start my-app tabs</code>，创建有<code>tabs</code>的项目，当然你也可以在后面追加多个UI组件</p>
-<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3></li>
-<li><p><code>ionic serve</code></p>
-<h3 id="创建一个页面并实现跳转"><a href="#创建一个页面并实现跳转" class="headerlink" title="创建一个页面并实现跳转"></a>创建一个页面并实现跳转</h3></li>
-<li><p><code>ionic g page 页面名</code></p>
-</li>
-<li><p>如果你想要创建其他的组件或者服务，可以使用<code>ng g --help</code>来获取提示</p>
-</li>
-<li><p>比如我们创建一个<code>button</code>页面，那么我们在tab2中创建一个按钮，导航到这个<code>button</code>页面</p>
-  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//tab2.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">      Tab Two</span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- 导航到Button页面 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-button</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/button' ]"</span>&gt;</span></span><br><span class="line">  Click me</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-content</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ion-content</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这样就完成了，感觉是真的非常方便，因为配置路由啥的在你生成这个页面的时候全部给你更新好了</p>
+<li>
+<p>这样就完成了，感觉是真的非常方便，因为配置路由啥的在你生成这个页面的时候全部给你更新好了</p>
 </li>
 </ul>
 
@@ -391,27 +403,27 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Ionic的安装运行">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Ionic的安装运行</span>
         </a></li><li>
-        <a class="is-flex" href="#安装">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>安装</span>
         </a></li><li>
-        <a class="is-flex" href="#创建项目">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
         <span>创建项目</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#创建的方式">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.1</span>
         <span>创建的方式</span>
         </a></li><li>
-        <a class="is-flex" href="#运行项目">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.2</span>
         <span>运行项目</span>
         </a></li><li>
-        <a class="is-flex" href="#创建一个页面并实现跳转">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.3</span>
         <span>创建一个页面并实现跳转</span>
         </a></li></ul></li></ul>
@@ -455,7 +467,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -529,6 +541,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -606,25 +637,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -646,7 +658,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -724,7 +736,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -838,7 +850,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

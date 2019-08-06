@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。">
+        <meta name="description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。  &amp;lt;!-- more --&amp;gt; React创建最基本的组件  在React中，构造函数，就是一个最基本的组件 如果像把组件放到页面中，可以把构造函数的名称，当作组件的名称，以HTML标签的形式引入页面中即可 注意：在React解析标签的时候，是以标签首字母来区分的，首字母是小写按照HTML标签进行解析，首字母是大写">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React创建最基本的组件">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React创建最基本的组件/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。">
+<meta property="og:description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。  &amp;lt;!-- more --&amp;gt; React创建最基本的组件  在React中，构造函数，就是一个最基本的组件 如果像把组件放到页面中，可以把构造函数的名称，当作组件的名称，以HTML标签的形式引入页面中即可 注意：在React解析标签的时候，是以标签首字母来区分的，首字母是小写按照HTML标签进行解析，首字母是大写">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:04:14.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React创建最基本的组件">
-<meta name="twitter:description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。">
+<meta name="twitter:description" content="我们使用React创建一个最基本的组件，来看一下React的运行流程。  &amp;lt;!-- more --&amp;gt; React创建最基本的组件  在React中，构造函数，就是一个最基本的组件 如果像把组件放到页面中，可以把构造函数的名称，当作组件的名称，以HTML标签的形式引入页面中即可 注意：在React解析标签的时候，是以标签首字母来区分的，首字母是小写按照HTML标签进行解析，首字母是大写">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,49 +240,58 @@
                             <blockquote>
 <p>我们使用React创建一个最基本的组件，来看一下React的运行流程。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="React创建最基本的组件"><a href="#React创建最基本的组件" class="headerlink" title="React创建最基本的组件"></a>React创建最基本的组件</h2><ul>
+<p>&lt;!-- more --&gt;</p>
+<h2>React创建最基本的组件</h2>
+<ul>
 <li>在React中，构造函数，就是一个最基本的组件</li>
 <li>如果像把组件放到页面中，可以把构造函数的名称，当作组件的名称，以HTML标签的形式引入页面中即可</li>
 <li>注意：在React解析标签的时候，是以标签首字母来区分的，首字母是小写按照HTML标签进行解析，首字母是大写，按照组件形式去渲染</li>
-<li>所以组件的首字母必须是大写的  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 入口文件</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello React'</span>  <span class="hljs-comment">//此时一定需要返回值，如果不需要返回内容，则直接返回 null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>所以组件的首字母必须是大写的
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 入口文件</span></span><br><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello React'</span>  <span class="hljs-comment">//此时一定需要返回值，如果不需要返回内容，则直接返回 null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="组件使用外部数据"><a href="#组件使用外部数据" class="headerlink" title="组件使用外部数据"></a>组件使用外部数据</h2><ul>
-<li><p>我们在全局中定义的数据，组件中可以直接拿到并修改</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">username = <span class="hljs-string">'ls'</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> username = <span class="hljs-string">'zs'</span></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>我们在传递一个对象时，组件中必须定义形参用来接收这个对象，并且这个对象不能被修改</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">//报错 username 未定义</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">// &#123;username: "kobe", age: 12&#125; 此时已经接收到了person的全部属性</span></span><br><span class="line">props.name = <span class="hljs-string">'zs'</span> <span class="hljs-comment">//如果我们修改属性名的话就会抛出异常 Cannot add property name, object is not extensible</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="抽离组件"><a href="#抽离组件" class="headerlink" title="抽离组件"></a>抽离组件</h2><ul>
-<li><p>将组件放到Hello.js中</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>  <span class="hljs-comment">//这里的React是规定死的必须这么写</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123; <span class="hljs-comment">//暴露出这个组件</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在main.js中引入组件</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Hello <span class="hljs-keyword">from</span> <span class="hljs-string">'./Hello'</span> <span class="hljs-comment">//这里可以不加后缀</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="使用jsx文件"><a href="#使用jsx文件" class="headerlink" title="使用jsx文件"></a>使用jsx文件</h3><ul>
-<li><p>我们在 .js中书写组件没有智能提示，开发效率不高，我们可以将js后缀改为jsx</p>
-</li>
-<li><p>那么改完之后我们需要在webpack.config.js中配置一下jsx文件处理的loader</p>
+<h2>组件使用外部数据</h2>
 <ul>
-<li><p>方法一：</p>
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.(js|jsx)$/,</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>我们在全局中定义的数据，组件中可以直接拿到并修改
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">username = <span class="hljs-string">'ls'</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> username = <span class="hljs-string">'zs'</span></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>方法二：</p>
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.jsx?$/,  //正则中的?表示可以要也可以不要</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>我们在传递一个对象时，组件中必须定义形参用来接收这个对象，并且这个对象不能被修改
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>  <span class="hljs-comment">//报错 username 未定义</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>))</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(props); <span class="hljs-comment">// &#123;username: "kobe", age: 12&#125; 此时已经接收到了person的全部属性</span></span><br><span class="line">props.name = <span class="hljs-string">'zs'</span> <span class="hljs-comment">//如果我们修改属性名的话就会抛出异常 Cannot add property name, object is not extensible</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2>抽离组件</h2>
+<ul>
+<li>
+<p>将组件放到Hello.js中
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>  <span class="hljs-comment">//这里的React是规定死的必须这么写</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Hello</span>(<span class="hljs-params">props</span>) </span>&#123; <span class="hljs-comment">//暴露出这个组件</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Hello---&#123;props.username&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在main.js中引入组件
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> Hello <span class="hljs-keyword">from</span> <span class="hljs-string">'./Hello'</span> <span class="hljs-comment">//这里可以不加后缀</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> person = &#123;</span><br><span class="line">    username: <span class="hljs-string">'kobe'</span>,</span><br><span class="line">    age: <span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Hello &#123;...person&#125;&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Hello</span>&gt;</span></span>, <span class="hljs-comment">//我们可以使用ES6的扩散符，这样我们就不需要挨个传递person对象中的每一个属性</span></span><br><span class="line">    <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>使用jsx文件</h3>
+<ul>
+<li>
+<p>我们在 .js中书写组件没有智能提示，开发效率不高，我们可以将js后缀改为jsx</p>
+</li>
+<li>
+<p>那么改完之后我们需要在webpack.config.js中配置一下jsx文件处理的loader</p>
+<ul>
+<li>
+<p>方法一：
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.(js|jsx)$/,</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>方法二：
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="hljs-attribute">test</span>: /\.jsx?$/,  //正则中的?表示可以要也可以不要</span><br><span class="line">        use: <span class="hljs-string">'babel-loader'</span>,</span><br><span class="line">        exclude: /node_modules/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
 </li>
-<li><p><strong>注意</strong>：我们在使用jsx文件创建组件时，引入组件时后缀名不能省略</p>
+<li>
+<p><strong>注意</strong>：我们在使用jsx文件创建组件时，引入组件时后缀名不能省略</p>
 </li>
 </ul>
 
@@ -408,19 +417,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#React创建最基本的组件">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>React创建最基本的组件</span>
         </a></li><li>
-        <a class="is-flex" href="#组件使用外部数据">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2</span>
         <span>组件使用外部数据</span>
         </a></li><li>
-        <a class="is-flex" href="#抽离组件">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3</span>
         <span>抽离组件</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用jsx文件">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.1</span>
         <span>使用jsx文件</span>
         </a></li></ul></li></ul>
@@ -464,7 +473,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -538,6 +547,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -615,25 +643,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -655,7 +664,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -733,7 +742,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -847,7 +856,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

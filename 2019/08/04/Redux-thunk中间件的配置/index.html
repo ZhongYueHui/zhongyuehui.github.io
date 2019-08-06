@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+        <meta name="description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta name="keywords" content="Redux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux-thunk中间件的配置">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Redux-thunk中间件的配置/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+<meta property="og:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:52:51.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux-thunk中间件的配置">
-<meta name="twitter:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+<meta name="twitter:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
             
 
@@ -240,19 +240,25 @@
                             <blockquote>
 <p>Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Redux-thunk中间件的配置"><a href="#Redux-thunk中间件的配置" class="headerlink" title="Redux-thunk中间件的配置"></a>Redux-thunk中间件的配置</h2><ul>
-<li><p>在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Redux-thunk中间件的配置</h2>
+<ul>
+<li>
+<p>在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下</p>
 </li>
-<li><p>配置如下：</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    applyMiddleware(thunk),</span><br><span class="line">    <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__())</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<li>
+<p>配置如下：
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    applyMiddleware(thunk),</span><br><span class="line">    <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__())</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>以上这种方式会导致我们配置的redux失效，因为它只能接收两个参数</p>
+<li>
+<p>以上这种方式会导致我们配置的redux失效，因为它只能接收两个参数</p>
 </li>
-<li><p>使用增强函数配置redux-thunk</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//判断是否有redux调试的配置项</span></span><br><span class="line"><span class="hljs-keyword">const</span> composeEnhancers = <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;) : compose</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    enhancer</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用增强函数配置redux-thunk
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//判断是否有redux调试的配置项</span></span><br><span class="line"><span class="hljs-keyword">const</span> composeEnhancers = <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;) : compose</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    enhancer</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就配置完成了</p>
+<li>
+<p>这样就配置完成了</p>
 </li>
 </ul>
 
@@ -378,7 +384,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Redux-thunk中间件的配置">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Redux-thunk中间件的配置</span>
         </a></li></ul>
@@ -422,7 +428,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -496,6 +502,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -573,25 +598,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -613,7 +619,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -691,7 +697,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -805,7 +811,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.">
+        <meta name="description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.  &amp;lt;!-- more --&amp;gt; Express框架的安装和基本使用   安装：cnpm i express -save-dev   引入:const express= require(&amp;quot;express&amp;quot;)   实例化:const app =express(),也可以使用const app=ne">
 <meta name="keywords" content="Express">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Express框架的安装和基本使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Express框架的安装和基本使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.">
+<meta property="og:description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.  &amp;lt;!-- more --&amp;gt; Express框架的安装和基本使用   安装：cnpm i express -save-dev   引入:const express= require(&amp;quot;express&amp;quot;)   实例化:const app =express(),也可以使用const app=ne">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564924233932&di=1e3688ff380771ad9fd7eb32545cf574&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg">
 <meta property="og:updated_time" content="2019-08-04T10:26:06.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Express框架的安装和基本使用">
-<meta name="twitter:description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.">
+<meta name="twitter:description" content="Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.  &amp;lt;!-- more --&amp;gt; Express框架的安装和基本使用   安装：cnpm i express -save-dev   引入:const express= require(&amp;quot;express&amp;quot;)   实例化:const app =express(),也可以使用const app=ne">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564924233932&di=1e3688ff380771ad9fd7eb32545cf574&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg">
             
 
@@ -240,25 +240,34 @@
                             <blockquote>
 <p>Express框架是基于Nodejs的框架,非常简洁,但是功能非常强大.</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Express框架的安装和基本使用"><a href="#Express框架的安装和基本使用" class="headerlink" title="Express框架的安装和基本使用"></a>Express框架的安装和基本使用</h2><ul>
-<li><p>安装：<code>cnpm i express -save-dev</code></p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Express框架的安装和基本使用</h2>
+<ul>
+<li>
+<p>安装：<code>cnpm i express -save-dev</code></p>
 </li>
-<li><p>引入:<code>const express= require(&quot;express&quot;)</code></p>
+<li>
+<p>引入:<code>const express= require(&quot;express&quot;)</code></p>
 </li>
-<li><p>实例化:<code>const app =express()</code>,也可以使用<code>const app=new express()</code></p>
+<li>
+<p>实例化:<code>const app =express()</code>,也可以使用<code>const app=new express()</code></p>
 </li>
-<li><p>使用</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由规则</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.end(<span class="hljs-string">'xixi'</span>))<span class="hljs-comment">//使用原生的end方法</span></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由规则</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line">app.get(<span class="hljs-string">'/news'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.end(<span class="hljs-string">'xixi'</span>))<span class="hljs-comment">//使用原生的end方法</span></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>配置动态路由</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'新闻'</span>))</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>配置动态路由
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'新闻'</span>))</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>获取动态路由的值,使用req.params可以获取传递的数据对象,req.params.属性名获取传递的值</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.params);  <span class="hljs-comment">//获取传递过来的数据&#123;&#125;</span></span><br><span class="line">    res.send(<span class="hljs-string">'新闻'</span> + req.params.id)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>获取动态路由的值,使用req.params可以获取传递的数据对象,req.params.属性名获取传递的值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置动态路由，传递id</span></span><br><span class="line">app.get(<span class="hljs-string">'/news/:id'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.params);  <span class="hljs-comment">//获取传递过来的数据&#123;&#125;</span></span><br><span class="line">    res.send(<span class="hljs-string">'新闻'</span> + req.params.id)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>get传值与获取，使用<code>/news?id=5&amp;name=&quot;zs&quot;</code>这种形式传值</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//get传值</span></span><br><span class="line"><span class="hljs-comment">// http://localhost:3000/product?id=5&amp;name="zs"</span></span><br><span class="line">app.get(<span class="hljs-string">'/product'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.query);</span><br><span class="line">    res.send(<span class="hljs-string">'product'</span> + req.query.id + <span class="hljs-string">"------"</span> + req.query.name)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>get传值与获取，使用<code>/news?id=5&amp;name=&quot;zs&quot;</code>这种形式传值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置静态路由</span></span><br><span class="line">app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> res.send(<span class="hljs-string">'Hello World!'</span>))  <span class="hljs-comment">//使用express的send方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//get传值</span></span><br><span class="line"><span class="hljs-comment">// http://localhost:3000/product?id=5&amp;name="zs"</span></span><br><span class="line">app.get(<span class="hljs-string">'/product'</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(req.query);</span><br><span class="line">    res.send(<span class="hljs-string">'product'</span> + req.query.id + <span class="hljs-string">"------"</span> + req.query.name)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening on port port!`</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -383,7 +392,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Express框架的安装和基本使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Express框架的安装和基本使用</span>
         </a></li></ul>
@@ -427,7 +436,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -501,6 +510,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -578,25 +606,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -618,7 +627,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -696,7 +705,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -810,7 +819,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

@@ -248,22 +248,103 @@
                             <blockquote>
 <p>因为单页面应用在移动端应用的比较广泛，所以tbas选项是必不可少的，我们可以查看如何增加.</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>新增一个tabs</h2>
+<ul>
+<li>在ionic中，默认tabs是有三个tab1-3组成，如果我们们需要添加一个的话，那么我们就需要添加一个页面模块，还需要配置一下新增的路由</li>
+</ul>
+<h3>添加模块</h3>
+<ol>
+<li>
+<p><code>ionic g page tab4</code></p>
+</li>
+<li>
+<p>删除<code>app.routing.module.ts</code>文件中的<code>tab4</code>路由配置，因为我们不需要配置到这里，而是配置到<code>tabs.routing.module.ts</code>中，然后追加到<code>tab3</code>后面
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//删除app.routing.module.ts中,tab4路由配置</span></span><br><span class="line"></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">''</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./tabs/tabs.module#TabsPageModule'</span> &#125;,</span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'button'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./button/button.module#ButtonPageModule'</span> &#125;,</span><br><span class="line">  <span class="hljs-comment">//删除这个</span></span><br><span class="line">  &#123; <span class="hljs-string">path:</span> <span class="hljs-string">'tab4'</span>, <span class="hljs-string">loadChildren:</span> <span class="hljs-string">'./tab4/tab4.module#Tab4PageModule'</span> &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在tabs.routing.module.ts追加tab4
+<figure class="highlight xl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; from '@angular/core';</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RouterModule, Routes &#125; from '@angular/router';</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; TabsPage &#125; from './tabs.<span class="hljs-built_in">page</span>';</span><br><span class="line"></span><br><span class="line">const routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="hljs-built_in">path</span>: <span class="hljs-string">'tabs'</span>,</span><br><span class="line">    component: TabsPage,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab1'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab1/tab1.module#Tab1PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab2'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab2/tab2.module#Tab2PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab3'</span>,</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">            loadChildren: <span class="hljs-string">'../tab3/tab3.module#Tab3PageModule'</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;, &#123;<span class="hljs-comment">//追加tab4</span></span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">'tab4'</span>,</span><br><span class="line"></span><br><span class="line">        children: [</span><br><span class="line">          &#123; <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>, loadChildren: <span class="hljs-string">'../tab4/tab4.module#Tab4PageModule'</span> &#125;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">        redirectTo: <span class="hljs-string">'/tabs/tab1'</span>,</span><br><span class="line">        pathMatch: <span class="hljs-string">'full'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,</span><br><span class="line">    redirectTo: <span class="hljs-string">'/tabs/tab1'</span>,</span><br><span class="line">    pathMatch: <span class="hljs-string">'full'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    RouterModule.forChild(routes)</span><br><span class="line">  ],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line">export class TabsPageRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<ul>
+<li>然后在tabs根组件下的<code>tabs.page.html</code>引入tab4就完成了
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--增加tab4 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-tab-button</span> <span class="hljs-attr">tab</span>=<span class="hljs-string">"tab4"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-icon</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"settings"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ion-icon</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-label</span>&gt;</span>Tab Four<span class="hljs-tag">&lt;/<span class="hljs-name">ion-label</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-tab-button</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>新增tab总结：</h4>
+<ul>
+<li>创建的<code>tab4</code>其实就是一个模块，我们可以在模块创建子组件实现功能，因为ionic一开始就是为Angular量身定制的，所以兼容成程度和适应性比较强，跟为Vue量身定制的Mui、React量身定制的ant design一样，还有Element UI组件库都是很好的UI组件</li>
+</ul>
+<h3>定义公共模块</h3>
+<ul>
+<li>在ionic中，页面都是由模块组成的，当然，模块下也可以定义组件，但是我们如果由这样的需求，在多个模块中有一样的功能，如果在Angular中是可以实现多个模块共用一个组件的，但是在ionic中，无法在多个模块中使用一个组件，这时候就需要把组件封装成模块，让模块引入模块</li>
+</ul>
+<ol>
+<li>
+<p>创建公共的模块以及组件，这里以轮播图组件为例
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//创建模块</span></span><br><span class="line">ionic g <span class="hljs-keyword">module</span> <span class="hljs-keyword">module</span>/slide</span><br><span class="line"><span class="hljs-comment">//创建模块的组件</span></span><br><span class="line">ionic g component <span class="hljs-keyword">module</span>/slide</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>创建好模块和组件后，就需要在<code>slide.module.ts</code>中声明和暴露这个模块
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; SlideComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./slide.component'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [SlideComponent],  <span class="hljs-comment">//声明这个模块</span></span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  exports: [SlideComponent] <span class="hljs-comment">//暴露这个模块</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SlideModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>slide模块被导出后，那么我们在需要这个模块的模块中引入就行了。例如在<code>tab1</code>中引入这个模块
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FormsModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Tab1Page &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./tab1.page'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; SlideModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../module/slide/slide.module'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    IonicModule,</span><br><span class="line">    CommonModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    SlideModule,<span class="hljs-comment">//声明挂载这个模块</span></span><br><span class="line">    RouterModule.forChild([&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">component</span>: Tab1Page &#125;])</span><br><span class="line">  ],</span><br><span class="line">  declarations: [Tab1Page]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tab1PageModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<ul>
+<li>引入和挂载这个组件后，我们就可以在<code>tab1.component.html</code>中使用<code>&lt;app-slide&gt;&lt;/app-slide&gt;</code>这个标签来引用这个组件了，当然，如果需要在其他的模块中使用这个模块，重复上面的引入步骤就可以了</li>
+</ul>
+<h4>引入公共模块的子组件</h4>
+<ul>
+<li>如果我们在使用公共模块时，还需要使用公共模块下的子组件，那么我们再将子组件暴露出去即可</li>
+<li>以<code>list</code>模块为例子，建立一个<code>listInfo</code>的子组件，并在<code>tab4</code>中使用该子组件</li>
+</ul>
+<ol>
+<li>
+<p>创建list模块:<code>ng g module module/list</code></p>
+</li>
+<li>
+<p>创建list根组件:<code>ng g component module/list</code></p>
+</li>
+<li>
+<p>创建listInfo组件：<code>ng g component module/list/listInfo</code>，这里需要注意的是，使用驼峰命名会装换成成<code>-小写</code>的格式</p>
+</li>
+<li>
+<p>在<code>list.module.ts</code>中将根组件和子组件导入并暴露，当然你可以根据自己的需要暴露相关的组件
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//导入根组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list.component'</span></span><br><span class="line"><span class="hljs-comment">//导入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListInfoComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list-info/list-info.component'</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;<span class="hljs-comment">//声明组件</span></span><br><span class="line">  declarations: [ListInfoComponent, ListComponent],</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],<span class="hljs-comment">//暴露组件</span></span><br><span class="line">  exports: [ListInfoComponent, ListComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在<code>tab4</code>模块中使用这个<code>list</code>模块
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//tab4.module.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FormsModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Tab4Page &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./tab4.page'</span>;</span><br><span class="line"><span class="hljs-comment">//引入list模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../module/list/list.module'</span></span><br><span class="line"><span class="hljs-keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="hljs-string">''</span>,</span><br><span class="line">    component: Tab4Page</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    IonicModule,</span><br><span class="line">    ListModule, <span class="hljs-comment">//挂载list模块</span></span><br><span class="line">    RouterModule.forChild(routes)</span><br><span class="line">  ],</span><br><span class="line">  declarations: [Tab4Page]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tab4PageModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在<code>tab4</code>中使用<code>list</code>组件和<code>listInfo</code>子组件
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//tab4.page.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ion-title</span>&gt;</span>tab4<span class="hljs-tag">&lt;/<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-content</span>&gt;</span></span><br><span class="line">  <span class="hljs-comment">&lt;!-- 使用list模块的根组件 --&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">app-list</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-list</span>&gt;</span></span><br><span class="line">  <span class="hljs-comment">&lt;!-- 使用list模块的子组件 --&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">app-list-info</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-list-info</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-content</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<h4>定义公共模块总结：</h4>
+<ul>
+<li>如果需要定义一个公共模块，只需要将该模块需要暴露的组件声明一下再暴露出去，然后在需要引入该模块的组件的模块引入这个模块，然后挂载一下这个模块，就可以在自己的模块中使用这个组件了，当然，如果这个模块有子组件，那么要使用这个子组件，只需要暴露这个子组件就行了</li>
+</ul>
+<h3>自定义公共模块中使用ionic</h3>
+<ul>
+<li>
+<p>在自定义的模块中，我们是无法直接使用ionic的组件的，因为我们自定义组件中并没有引入ionic的依赖，如果需要使用，那么需要在自定义模块中的<code>module.ts</code>中引入和挂载一下
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CommonModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入ionic依赖</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; IonicModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ionic/angular'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//导入根组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list.component'</span></span><br><span class="line"><span class="hljs-comment">//导入子组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ListInfoComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./list-info/list-info.component'</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;<span class="hljs-comment">//声明组件</span></span><br><span class="line">  declarations: [ListInfoComponent, ListComponent],</span><br><span class="line">  imports: [</span><br><span class="line">    CommonModule,</span><br><span class="line">    <span class="hljs-comment">//挂载ionic依赖</span></span><br><span class="line">    IonicModule</span><br><span class="line">  ],<span class="hljs-comment">//暴露组件</span></span><br><span class="line">  exports: [ListInfoComponent, ListComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样的话那么该模块下所有的组件都可以使用ionic提供的组件了</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Ionic新增一个tabs和定义公共模块/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -317,22 +398,53 @@
                             <blockquote>
 <p>ionic起初是为Angular打造的ui组件库，但是后面因为收到欢迎，就又支持了Vue和React，功能非常强大</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2><a href="http://www.ionic.wang/components_doc-index-id-224.html" target="_blank" rel="noopener">Ionic</a>的安装运行</h2>
+<ul>
+<li>目前Ionic已经支持了Vue、angular、react三大框架</li>
+<li>只要有相关基础的就可以使用Ionic</li>
+</ul>
+<h2>安装</h2>
+<ul>
+<li><code>cnpm i -g cordova ionic</code></li>
+<li>查看是否安装：<code>ionic -v</code></li>
+</ul>
+<h2>创建项目</h2>
+<ul>
+<li>cd到你要创建项目的文件夹</li>
+</ul>
+<h3>创建的方式</h3>
+<ul>
+<li><code>ionic start my-app</code>直接创建空项目</li>
+<li><code>ionic start my-app tabs</code>，创建有<code>tabs</code>的项目，当然你也可以在后面追加多个UI组件</li>
+</ul>
+<h3>运行项目</h3>
+<ul>
+<li><code>ionic serve</code></li>
+</ul>
+<h3>创建一个页面并实现跳转</h3>
+<ul>
+<li>
+<p><code>ionic g page 页面名</code></p>
+</li>
+<li>
+<p>如果你想要创建其他的组件或者服务，可以使用<code>ng g --help</code>来获取提示</p>
+</li>
+<li>
+<p>比如我们创建一个<code>button</code>页面，那么我们在tab2中创建一个按钮，导航到这个<code>button</code>页面
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//tab2.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">      Tab Two</span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">ion-title</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;/<span class="hljs-name">ion-toolbar</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- 导航到Button页面 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-button</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/button' ]"</span>&gt;</span></span><br><span class="line">  Click me</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">ion-button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">ion-content</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ion-content</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就完成了，感觉是真的非常方便，因为配置路由啥的在你生成这个页面的时候全部给你更新好了</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Ionic的安装运行/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -393,7 +505,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -467,6 +579,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -544,25 +675,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -584,7 +696,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -662,7 +774,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -776,7 +888,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -912,7 +1024,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -990,7 +1102,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1104,7 +1216,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

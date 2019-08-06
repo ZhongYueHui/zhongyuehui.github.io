@@ -200,6 +200,110 @@
     <div class="card">
     
         <div class="card-image">
+            <a href="/2019/08/04/Redux的一些小技巧/" class="image is-7by1">
+                <img class="thumbnail" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&amp;fm=26&amp;gp=0.jpg" alt="Redux的一些小技巧">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-04T09:48:49.000Z">2019-08-04</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Redux/">Redux</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    10 分钟 读完 (大约 1512 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/08/04/Redux的一些小技巧/">
+                                    Redux的一些小技巧
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>Redux的一些小技巧，可以帮助我们更好的上手Redux.</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h1>Redux的一些小技巧</h1>
+<h2>action中的type抽离</h2>
+<ul>
+<li>
+<p>在redux中，我们需要操作store的话，都需要使用action帮助我们进行操作，但是action如果很多的话，<code>type</code>属性也会增多，我们在实践中发现，如果你的方法中设置的<code>type</code>属性和<code>reducer</code>中的<code>type</code>时不一致时，例如:
+<figure class="highlight flix hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-comment">//TodoLIst.jsx</span></span><br><span class="line">  deleteItem(<span class="hljs-keyword">index</span>) &#123;</span><br><span class="line">  const action = &#123;</span><br><span class="line">    <span class="hljs-keyword">type</span>: <span class="hljs-string">"deleteaItem"</span>, <span class="hljs-comment">//如果这里多写少写一个字母</span></span><br><span class="line">    <span class="hljs-keyword">index</span></span><br><span class="line">  &#125;;</span><br><span class="line">  store.dispatch(action);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight haxe hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reducer.js</span><br><span class="line"><span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'deleteItem'</span>) &#123;</span><br><span class="line">    const <span class="hljs-keyword">new</span><span class="hljs-type">State</span> = JSON.parse(JSON.stringify(state))</span><br><span class="line">    <span class="hljs-comment">//根据传递的下标实现删除对应的数组</span></span><br><span class="line">    <span class="hljs-keyword">new</span><span class="hljs-type">State</span>.list.splice(action.index, <span class="hljs-number">1</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span><span class="hljs-type">State</span></span><br><span class="line"><span class="hljs-type"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这种错误不会报错，但是你的代码就是执行不了，控制台也一切正常，这个时候你可能会花费很多时间在排错，这就降低了效率，所以我们将action的type单独抽离出一个actionTypoes.js文件，用来保存这些属性名
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//actionTypoes.js</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CHANGE_INPUT = <span class="hljs-string">"changeInput"</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ADD_ITEM = <span class="hljs-string">"addItem"</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DELETE_ITEM = <span class="hljs-string">"deleteItem"</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>然后在需要使用的地方导入这个文件按需引入一下就可以了
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Input, List, Button &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-comment">//引入store</span></span><br><span class="line"><span class="hljs-keyword">import</span> store from <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入actionType</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ADD_ITEM, CHANGE_INPUT, DELETE_ITEM &#125; from <span class="hljs-string">"../store/actionTypes"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-title">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//使用getstore()方法可以获取store的数据，就是存到store的数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">    <span class="hljs-keyword">this</span>.changeValue = <span class="hljs-keyword">this</span>.changeValue.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.storeChange = <span class="hljs-keyword">this</span>.storeChange.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">    <span class="hljs-comment">//订阅state，调用storeChange这个方法</span></span><br><span class="line">    store.subscribe(<span class="hljs-keyword">this</span>.storeChange);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.addList = <span class="hljs-keyword">this</span>.addList.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div style=&#123;&#123; width: <span class="hljs-number">500</span>, margin: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input</span><br><span class="line">            type=<span class="hljs-string">"primary"</span></span><br><span class="line">            style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125;</span><br><span class="line">            placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            value=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            onChange=&#123;<span class="hljs-keyword">this</span>.changeValue&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">          &lt;Button onClick=&#123;<span class="hljs-keyword">this</span>.addList&#125;&gt;增加&lt;/Button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; width: <span class="hljs-number">200</span>, marginTop: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;List</span><br><span class="line">            <span class="hljs-comment">//使用store的数据进行渲染</span></span><br><span class="line">            dataSource=&#123;<span class="hljs-keyword">this</span>.state.list&#125;</span><br><span class="line">            bordered</span><br><span class="line">            renderItem=&#123;(item, index) =&gt; (</span><br><span class="line">              <span class="hljs-comment">//因为在这里使用()的方式会执行这个函数，所以我们传递参数时可以使用bind，因为bind可以传递参数</span></span><br><span class="line">              <span class="hljs-comment">// &lt;List.Item onClick=&#123;this.deleteItem.bind(this, index)&#125;&gt;</span></span><br><span class="line">              <span class="hljs-comment">//也可以使用这种箭头函数的方式</span></span><br><span class="line">              &lt;List.Item onClick=&#123;() =&gt; <span class="hljs-keyword">this</span>.deleteItem(index)&#125;&gt;</span><br><span class="line">                &#123;item&#125;</span><br><span class="line">              &lt;/List.Item&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeValue(e) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = &#123;</span><br><span class="line">      <span class="hljs-comment">//修改store需要使用action</span></span><br><span class="line">      type: CHANGE_INPUT,</span><br><span class="line">      value: e.target.value</span><br><span class="line">    &#125;;</span><br><span class="line">    store.dispatch(action); <span class="hljs-comment">//使用dispatch方法将action传递过去store就可以接收到值了,store接收到得值会直接发送到reducer中</span></span><br><span class="line">  &#125;</span><br><span class="line">  storeChange() &#123;</span><br><span class="line">    <span class="hljs-comment">//重新设置state为最新的store</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(store.getState());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//点击增加按钮，增加数据到列表中</span></span><br><span class="line">  addList() &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = &#123;</span><br><span class="line">      type: ADD_ITEM</span><br><span class="line">    &#125;;</span><br><span class="line">    store.dispatch(action);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//点击列表项进行删除</span></span><br><span class="line">  deleteItem(index) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = &#123;</span><br><span class="line">      type: DELETE_ITEM,</span><br><span class="line">      index</span><br><span class="line">    &#125;;</span><br><span class="line">    store.dispatch(action);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> TodoList;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>reducer.js
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ADD_ITEM, CHANGE_INPUT, DELETE_ITEM &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./actionTypes"</span>;</span><br><span class="line"></span><br><span class="line">const <span class="hljs-keyword">default</span>Value = &#123;</span><br><span class="line">    inputValue: 'Writing Something',</span><br><span class="line">    list: [<span class="hljs-string">"今天的心情真好"</span>, <span class="hljs-string">"代码问题解决了"</span>, <span class="hljs-string">"以后要多重启"</span>]</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = <span class="hljs-keyword">default</span>Value, action) =&gt; &#123;</span><br><span class="line">    //此时已经可以接收到TodoList中发送得值，那么我们就需要处理一些发送过来的数据</span><br><span class="line">    //注意:reducer不能直接<span class="hljs-keyword">state</span>中的值，只能通过action来生成新的值，然后返回，store自己会监听值发生改变而变化</span><br><span class="line">    // console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">state</span>, action);</span><br><span class="line"></span><br><span class="line">//如果是action的type是changInput，做这步操作</span><br><span class="line">if (action.type === CHANGE_INPUT) &#123;</span><br><span class="line">    //深度克隆原数据</span><br><span class="line">    const newState = JSON.parse(JSON.stringify(<span class="hljs-keyword">state</span>))</span><br><span class="line">    //修改inputValue</span><br><span class="line">    newState.inputValue = action.value</span><br><span class="line">    console.<span class="hljs-keyword">log</span>(newState);</span><br><span class="line">    //返回新的<span class="hljs-keyword">state</span></span><br><span class="line">    return newState</span><br><span class="line">&#125;</span><br><span class="line">//如果是action的type是addItem，做这步操作</span><br><span class="line">if (action.type === ADD_ITEM) &#123;</span><br><span class="line">    //深度克隆原数据</span><br><span class="line">    const newState = JSON.parse(JSON.stringify(<span class="hljs-keyword">state</span>))</span><br><span class="line">    newState.list.push(newState.inputValue)</span><br><span class="line">    //push完成后将输入框清空,因为在上面的时候store已经被订阅了</span><br><span class="line">    newState.inputValue = ''</span><br><span class="line">    return newState</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (action.type === DELETE_ITEM) &#123;</span><br><span class="line">    const newState = JSON.parse(JSON.stringify(<span class="hljs-keyword">state</span>))</span><br><span class="line">    //根据传递的下标实现删除对应的数组</span><br><span class="line">    newState.list.splice(action.index, <span class="hljs-number">1</span>)</span><br><span class="line">    return newState</span><br><span class="line">&#125;</span><br><span class="line">return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样，如果你的属性名出现了问题，直接会告诉你哪行错误，快速定位，节约时间，而且如果你使用复制属性名的话一般不会出错</p>
+</li>
+</ul>
+<h3>action数据抽离</h3>
+<ul>
+<li>
+<p>在上面的代码中，我们可以看到每一个方法的action都写在Todolist中，这样如果太多的话不利于管理，所以我们需要将这个抽离出去，在store新建一个文件<code>actionCreators.js</code>
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//actionCreators.js</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ADD_ITEM, CHANGE_INPUT, DELETE_ITEM &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionTypes'</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> changeInput = <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> (&#123;</span><br><span class="line">    <span class="hljs-keyword">type</span>: CHANGE_INPUT,</span><br><span class="line">    value</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> addItem = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (&#123;</span><br><span class="line">    <span class="hljs-keyword">type</span>: ADD_ITEM,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> deleteItem = <span class="hljs-function">(<span class="hljs-params">index</span>) =&gt;</span> (&#123;</span><br><span class="line">    <span class="hljs-keyword">type</span>: DELETE_ITEM,</span><br><span class="line">    index</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样我们就实现了action的抽离，只需要调用引用<code>actionCreators</code>暴露出来的方法就行，而且不需要引用<code>actionTypes.js</code>了
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Input, List, Button &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-comment">//引入store</span></span><br><span class="line"><span class="hljs-keyword">import</span> store from <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入actionCreatros.js</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; changeInput, deleteItem, addItem &#125; from <span class="hljs-string">"../store/actionCreatros"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-title">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//使用getstore()方法可以获取store的数据，就是存到store的数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">    <span class="hljs-keyword">this</span>.changeValue = <span class="hljs-keyword">this</span>.changeValue.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.storeChange = <span class="hljs-keyword">this</span>.storeChange.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">    <span class="hljs-comment">//订阅state，调用storeChange这个方法</span></span><br><span class="line">    store.subscribe(<span class="hljs-keyword">this</span>.storeChange);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.addList = <span class="hljs-keyword">this</span>.addList.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div style=&#123;&#123; width: <span class="hljs-number">500</span>, margin: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input</span><br><span class="line">            type=<span class="hljs-string">"primary"</span></span><br><span class="line">            style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125;</span><br><span class="line">            placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            value=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            onChange=&#123;<span class="hljs-keyword">this</span>.changeValue&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">          &lt;Button onClick=&#123;<span class="hljs-keyword">this</span>.addList&#125;&gt;增加&lt;/Button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; width: <span class="hljs-number">200</span>, marginTop: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;List</span><br><span class="line">            <span class="hljs-comment">//使用store的数据进行渲染</span></span><br><span class="line">            dataSource=&#123;<span class="hljs-keyword">this</span>.state.list&#125;</span><br><span class="line">            bordered</span><br><span class="line">            renderItem=&#123;(item, index) =&gt; (</span><br><span class="line">              <span class="hljs-comment">//因为在这里使用()的方式会执行这个函数，所以我们传递参数时可以使用bind，因为bind可以传递参数</span></span><br><span class="line">              <span class="hljs-comment">// &lt;List.Item onClick=&#123;this.deleteItem.bind(this, index)&#125;&gt;</span></span><br><span class="line">              <span class="hljs-comment">//也可以使用这种箭头函数的方式</span></span><br><span class="line">              &lt;List.Item onClick=&#123;() =&gt; <span class="hljs-keyword">this</span>.deleteItem(index)&#125;&gt;</span><br><span class="line">                &#123;item&#125;</span><br><span class="line">              &lt;/List.Item&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  storeChange() &#123;</span><br><span class="line">    <span class="hljs-comment">//重新设置state为最新的store</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(store.getState());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  changeValue(e) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = changeInput(e.target.value);</span><br><span class="line">    store.dispatch(action); <span class="hljs-comment">//使用dispatch方法将action传递过去store就可以接收到值了,store接收到得值会直接发送到reducer中</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//点击增加按钮，增加数据到列表中</span></span><br><span class="line">  addList() &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = addItem();</span><br><span class="line">    store.dispatch(action);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//点击列表项进行删除</span></span><br><span class="line">  deleteItem(index) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = deleteItem(index);</span><br><span class="line">    store.dispatch(action);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> TodoList;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>其实就相当于一个返回了一个函数
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const deleteItem = (<span class="hljs-built_in">index</span>) =&gt; (&#123;</span><br><span class="line"><span class="hljs-keyword">type</span>: DELETE_ITEM,</span><br><span class="line"><span class="hljs-built_in">index</span></span><br><span class="line">&#125;)</span><br><span class="line">----&gt;</span><br><span class="line">const deleteItem= <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(index)</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span>&#123;</span><br><span class="line">        <span class="hljs-keyword">type</span>: DELETE_ITEM,</span><br><span class="line">        <span class="hljs-built_in">index</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们在使用的时候就是调用这个函数，然后它会返回这些数据，这是ES6箭头函数的用法
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">//ES6</span></span><br><span class="line"><span class="hljs-keyword">const</span> test=<span class="hljs-function">(<span class="hljs-params">index</span>)=&gt;</span>(index)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//ES5</span></span><br><span class="line">test=<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">index</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> index</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//当然一个参数可以省略()，默认会返回，但是如果第一个参数是一个对象的话，就不能省略，因为它不知道你是传递参数还写代码</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//如果不写()</span></span><br><span class="line"><span class="hljs-keyword">const</span> test = <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">'zs'</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">12</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//根本没有返回值，如果要返回对象需要加()表示传递的参数是一个对象</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">index</span>)</span>&#123;</span><br><span class="line">    name:<span class="hljs-string">'zs'</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">12</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
             <a href="/2019/08/04/Redux修改store的数据/" class="image is-7by1">
                 <img class="thumbnail" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&amp;fm=26&amp;gp=0.jpg" alt="Redux修改store的数据">
                 </a>
@@ -237,22 +341,32 @@
                             <blockquote>
 <p>在redux中，我们不能直接修改store中的数据，如果需要修改，则需要使用<code>action</code>来进行改变数据。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>修改store中的数据</h2>
+<ul>
+<li>
+<p>在redux中，我们不能直接修改store中的数据，如果需要修改，则需要使用<code>action</code>来进行修改(重新复制，并不是去修改)，<code>action</code>是一个对象，其中<code>type</code>属性是必须的，然后使用<code>store.dispatch(action)</code>将数据传递给<code>reducer.js</code>中进行处理</p>
+</li>
+<li>
+<p>如:我们输入在<code>Input</code>输入数据的时候，将最新的数据发送到store中
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span>, &#123; <span class="hljs-type">Component</span> &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; <span class="hljs-type">Input</span>, <span class="hljs-type">List</span>, <span class="hljs-type">Button</span> &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-comment">//引入store</span></span><br><span class="line"><span class="hljs-keyword">import</span> store from <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//使用getstore()方法可以获取store的数据，就是存到store的数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">    <span class="hljs-keyword">this</span>.changeValue = <span class="hljs-keyword">this</span>.changeValue.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div style=&#123;&#123; width: <span class="hljs-number">500</span>, margin: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Input</span></span><br><span class="line">            <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">"primary"</span></span><br><span class="line">            style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125;</span><br><span class="line">            placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            onChange=&#123;<span class="hljs-keyword">this</span>.changeValue&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Button</span>&gt;增加&lt;/<span class="hljs-type">Button</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; width: <span class="hljs-number">200</span>, marginTop: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;<span class="hljs-type">List</span></span><br><span class="line">            <span class="hljs-comment">//使用store的数据进行渲染</span></span><br><span class="line">            dataSource=&#123;<span class="hljs-keyword">this</span>.state.list&#125;</span><br><span class="line">            bordered</span><br><span class="line">            renderItem=&#123;item =&gt; &lt;<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#123;item&#125;&lt;/<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeValue(e) &#123;</span><br><span class="line">    const action = &#123;</span><br><span class="line">      <span class="hljs-comment">//修改store需要使用action，type属性是必须的</span></span><br><span class="line">      <span class="hljs-class"><span class="hljs-keyword">type</span></span>: <span class="hljs-string">"changeInput"</span>,</span><br><span class="line">      value: e.target.value</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="hljs-comment">//使用dispatch方法将action传递过去store就可以接收到值了,store接收到得值会直接发送到reducer中</span></span><br><span class="line">    store.dispatch(action); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-type">TodoList</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>action发送数据后，store会收到值，但是他默认发送给了reduces，我们在reduces就可以获取到最新的数据
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    const <span class="hljs-keyword">default</span>Value = &#123;</span><br><span class="line">    inputValue: 'Writing Something',</span><br><span class="line">    list: [<span class="hljs-string">"今天的心情真好"</span>, <span class="hljs-string">"代码问题解决了"</span>, <span class="hljs-string">"以后要多重启"</span>]</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = <span class="hljs-keyword">default</span>Value, action) =&gt; &#123;</span><br><span class="line">    //此时已经可以接收到TodoList中发送得值，那么我们就需要处理一些发送过来的数据</span><br><span class="line">    //注意:reducer不能直接<span class="hljs-keyword">state</span>中的值，只能通过action来生成新的值，然后返回，store自己会监听值发生改变而变化</span><br><span class="line">    // console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">state</span>, action);</span><br><span class="line"></span><br><span class="line">    if (action.type === 'changeInput') &#123;</span><br><span class="line">        //深度克隆原数据</span><br><span class="line">        const newState = JSON.parse(JSON.stringify(<span class="hljs-keyword">state</span>))</span><br><span class="line">        //修改inputValue</span><br><span class="line">        newState.inputValue = action.value</span><br><span class="line">        console.<span class="hljs-keyword">log</span>(newState);</span><br><span class="line">        //返回新的<span class="hljs-keyword">state</span></span><br><span class="line">        return newState</span><br><span class="line">    &#125;</span><br><span class="line">    return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这个时候，我们已经能够在redux调试工具中看到redux中的state发生变化了，但是我们还需要订阅store，不然input如果含有<code>value</code>属性时会出<code>BUG</code>，订阅的作用是input的值改变后，重新设置state的值与store的值同步，因为每次<code>Input</code>改变都会向<code>store</code>发送最新的数据
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Input, List, Button &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-comment">//引入store</span></span><br><span class="line"><span class="hljs-keyword">import</span> store from <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-title">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//使用getstore()方法可以获取store的数据，就是存到store的数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">    <span class="hljs-keyword">this</span>.changeValue = <span class="hljs-keyword">this</span>.changeValue.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.storeChange = <span class="hljs-keyword">this</span>.storeChange.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">    <span class="hljs-comment">//订阅state，调用storeChange这个方法</span></span><br><span class="line">    store.subscribe(<span class="hljs-keyword">this</span>.storeChange);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div style=&#123;&#123; width: <span class="hljs-number">500</span>, margin: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;Input</span><br><span class="line">            type=<span class="hljs-string">"primary"</span></span><br><span class="line">            style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125;</span><br><span class="line">            placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            value=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">            onChange=&#123;<span class="hljs-keyword">this</span>.changeValue&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">          &lt;Button&gt;增加&lt;/Button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; width: <span class="hljs-number">200</span>, marginTop: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;List</span><br><span class="line">            <span class="hljs-comment">//使用store的数据进行渲染</span></span><br><span class="line">            dataSource=&#123;<span class="hljs-keyword">this</span>.state.list&#125;</span><br><span class="line">            bordered</span><br><span class="line">            renderItem=&#123;item =&gt; &lt;List.Item&gt;&#123;item&#125;&lt;/List.Item&gt;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeValue(e) &#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> action = &#123;</span><br><span class="line">      <span class="hljs-comment">//修改store需要使用action</span></span><br><span class="line">      type: <span class="hljs-string">"changeInput"</span>,</span><br><span class="line">      value: e.target.value</span><br><span class="line">    &#125;;</span><br><span class="line">    store.dispatch(action); <span class="hljs-comment">//使用dispatch方法将action传递过去store就可以接收到值了,store接收到得值会直接发送到reducer中</span></span><br><span class="line">  &#125;</span><br><span class="line">  storeChange() &#123;</span><br><span class="line">    <span class="hljs-comment">//重新设置state为最新的store</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(store.getState());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> TodoList;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Redux修改store的数据/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -306,22 +420,58 @@
                             <blockquote>
 <p>Redux 是 JavaScript 状态容器， 提供可预测化的状态管理。那什么是可以预测化，我的理解就是根据一个固定的输入，必然会得到一个固定的结果。redux是专门为react开发的，但并不是只能用于react,可以用于任何界面库</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>使用Ant Design 创建列表</h2>
+<ul>
+<li>创建一个列表
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span>, &#123; <span class="hljs-type">Component</span> &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; <span class="hljs-type">Button</span>, <span class="hljs-type">List</span>, <span class="hljs-type">Input</span> &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-string">"antd/dist/antd.css"</span>;</span><br><span class="line"></span><br><span class="line">const data = [<span class="hljs-string">"今天的心情特别不好"</span>, <span class="hljs-string">"因为代码老是出问题"</span>, <span class="hljs-string">"感到很头疼"</span>];</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Input</span> placeholder=<span class="hljs-string">"please wirting"</span> style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125; /&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Button</span>&gt;增加&lt;/<span class="hljs-type">Button</span>&gt;</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;<span class="hljs-type">List</span></span><br><span class="line">              bordered=&#123;<span class="hljs-literal">true</span>&#125; <span class="hljs-comment">//是否使用边框</span></span><br><span class="line">              dataSource=&#123;data&#125; <span class="hljs-comment">//列表数据源</span></span><br><span class="line">              renderItem=&#123;item =&gt; &lt;<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#123;item&#125;&lt;/<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#125; <span class="hljs-comment">//自定义渲染列表项</span></span><br><span class="line">            /&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-type">TodoList</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>安装Redux</h3>
+<ul>
+<li>安装:<code>yarn add redux</code></li>
+</ul>
+<h4>初始化</h4>
+<ul>
+<li>
+<p>在src下创建一个store文件夹，文件夹下创建index.js、reducer.js两个文件</p>
+</li>
+<li>
+<p>在index.js中，我们需要创建redux仓库
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//创建仓库</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(reducer)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在reducer.js中，我们需要创建管理程序,里面用来存放业务逻辑
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const <span class="hljs-keyword">default</span>Value = &#123;</span><br><span class="line">inputValue: 'Writing Something',</span><br><span class="line">list: [<span class="hljs-string">"今天的心情真好"</span>, <span class="hljs-string">"代码问题解决了"</span>, <span class="hljs-string">"以后要多重启"</span>]</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = <span class="hljs-keyword">default</span>Value, action) =&gt; &#123;</span><br><span class="line">    return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>获取store中的数据</h4>
+<ul>
+<li>在TodoLost.jsx中获取store中的数据
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span>, &#123; <span class="hljs-type">Component</span> &#125; from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; <span class="hljs-type">Input</span>, <span class="hljs-type">List</span>, <span class="hljs-type">Button</span> &#125; from <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-comment">//引入store</span></span><br><span class="line"><span class="hljs-keyword">import</span> store from <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//使用getstore()方法可以获取store的数据，就是存到store的数据</span></span><br><span class="line">    console.log(store.getState());</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div style=&#123;&#123; width: <span class="hljs-number">500</span>, margin: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Input</span></span><br><span class="line">            <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">"primary"</span></span><br><span class="line">            style=&#123;&#123; width: <span class="hljs-number">200</span> &#125;&#125;</span><br><span class="line">            placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">          &lt;<span class="hljs-type">Button</span>&gt;增加&lt;/<span class="hljs-type">Button</span>&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div style=&#123;&#123; width: <span class="hljs-number">200</span>, marginTop: <span class="hljs-number">20</span> &#125;&#125;&gt;</span><br><span class="line">          &lt;<span class="hljs-type">List</span></span><br><span class="line">            <span class="hljs-comment">//使用store的数据进行渲染</span></span><br><span class="line">            dataSource=&#123;<span class="hljs-keyword">this</span>.state.list&#125;</span><br><span class="line">            bordered</span><br><span class="line">            renderItem=&#123;item =&gt; &lt;<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#123;item&#125;&lt;/<span class="hljs-type">List</span>.<span class="hljs-type">Item</span>&gt;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-type">TodoList</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>在chrome中使用redux调试工具</h4>
+<ul>
+<li>
+<p>在chrome应用商店下载redux dev</p>
+</li>
+<li>
+<p>然后在配置中勾选允许访问文件地址，然后重启chrome就可以在控制台看到redux了</p>
+</li>
+<li>
+<p>配置redux，在store/index.js中创建store的时候加入一个参数
+<figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const store = createStore(</span><br><span class="line">reducer, /<span class="hljs-bullet">* preloadedState, *</span>/</span><br><span class="line"><span class="hljs-bullet">+  </span>window.<span class="hljs-strong">__REDUX_DEVTOOLS_EXTENSION__</span> &amp;&amp; window.<span class="hljs-strong">__REDUX_DEVTOOLS_EXTENSION__</span>()</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就可以在调试工具中看到了</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/Redex的准备/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -375,22 +525,22 @@
                             <blockquote>
 <p>使用React脚手架可以快速生成项目结构和基本组件。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React脚手架创建项目</h2>
+<ul>
+<li>在之前我们创建项目都是用<code>npm init -y</code>来初始化项目的，但是这样项目结构不清晰，所以在Vue中，也使用了脚手架，而React、Angular也有脚手架</li>
+<li>安装:<code>cnpm install -g create-react-app</code>脚手架</li>
+<li>创建项目：<code>create-react-app react-demo</code></li>
+<li>运行项目: <code>cd react-demo</code>,然后<code>yarn start</code></li>
+<li>打包项目:<code>npm run build</code>，打包之后<strong>build文件夹</strong>就有你需要发布的包了，<code>启动node http-server服务即可运行打包后的项目</code></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React脚手架创建项目/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -444,22 +594,38 @@
                             <blockquote>
 <p>使用vue-cli搭建项目，可以快速生成项目和项目结构。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h1><a href="%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6">vue-cli</a></h1>
+<ul>
+<li>安装<code>Nodejs</code>环境，这个是必须要的，使用了<code>npm</code> 就标识需要使用 <code>Nodejs</code></li>
+<li>如果需要使用<code>vue-cli 3.x</code>,那么需要卸载1.x,2.x版本</li>
+</ul>
+<h2>安装</h2>
+<ul>
+<li>安装：<code>npm install -g @vue/cli</code></li>
+<li>查看版本号：<code>vue -V</code>或者<code>vue --version</code></li>
+</ul>
+<h2>建立项目</h2>
+<ul>
+<li>cd 到你的项目文件夹 <code>vue create 项目名称</code></li>
+<li>这个时候如果有一些配置信息，选择默认的即可，除非你已经很熟悉每个配置文件的作用，可以手动配置</li>
+<li>这个时候项目的基本开发环境已经配置好了</li>
+<li>cd 到 项目名称文件夹下</li>
+<li>运行：<code>npm run serve</code></li>
+<li>这样他会提供两种方式进入运行的项目中，在浏览器中输入即可进入</li>
+</ul>
+<h2>部署</h2>
+<ul>
+<li>在项目文件夹下:<code>npm run build</code></li>
+<li>这样会在项目的生成<code>dist</code>目录，这个目录就是你需要发布的文件</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/使用Vue脚手架搭建项目/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -513,22 +679,93 @@
                             <blockquote>
 <p>React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-native开发app</h2>
+<ul>
+<li>配置好Android环境之后，只需要使用<code>react-native init 项目名称</code></li>
+<li>cd <code>项目名称</code></li>
+<li><code>react-native run-android</code>即可运行</li>
+<li>推荐使用模拟器开发，较为方便</li>
+</ul>
+<h3>react-native项目的一些说明</h3>
+<ul>
+<li>在项目的<code>index.js</code>中，从react-native导入的<code>AppRegistery</code>，它的作用就是注册首页的</li>
+<li>使用AppRegistery注册项目时，第一个参数是你要做的项目app名称，第二个参数是表示把哪个页面注册为项目的首页</li>
+</ul>
+<h3>创建自己的首页</h3>
+<ul>
+<li>在react-native中， 不能使用<code>.jsx</code>文件，只能使用<code>.js</code></li>
+<li>在react-native中,组件的语法与<code>react</code>相似，在组件中也必须要有<code>render</code>函数，但是需要注意的是，RN中，不能使用网页的标签(div,p,img...)，取而代之的是RN的View组件来实现布局</li>
+</ul>
+<h4>布局的一些说明</h4>
+<ul>
+<li>
+<p>使用组件时必须先引入，再使用</p>
+</li>
+<li>
+<p>必须使用<code>View</code>作为布局容器</p>
+</li>
+<li>
+<p>文本内容必须使用<code>Text</code>标签包裹</p>
+</li>
+<li>
+<p><strong>Platform</strong>:提供平台检测功能</p>
+</li>
+<li>
+<p><strong>StyleSheet</strong>：样式相关的组件，专门用来创建样式的</p>
+</li>
+<li>
+<p><strong>Text</strong>：文本节点，所有的文本必须放在里面</p>
+</li>
+<li>
+<p><strong>View</strong>：用来布局的，相当于div</p>
+</li>
+<li>
+<p><strong>TextInput</strong>：文本框组件</p>
+</li>
+<li>
+<p><strong>Image</strong>:图片组件</p>
+</li>
+<li>
+<p><strong>Button</strong>：按钮组件</p>
+</li>
+<li>
+<p><strong>ActivityIndicator</strong>：加载中的loading图</p>
+</li>
+<li>
+<p><strong>ScrollView</strong>：超出内容后显示滚动条</p>
+</li>
+</ul>
+<h4>View</h4>
+<ul>
+<li>必须将元素放在View中，才能显示</li>
+</ul>
+<h4>Text</h4>
+<ul>
+<li>存放文本内容的阿</li>
+</ul>
+<h4>Image</h4>
+<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用Image引入图片，引入本地图片:`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;requrie(</span>'<span class="hljs-attr">.</span>/<span class="hljs-attr">1.jpg</span>')&#125; /&gt;</span>`</span><br><span class="line">引入网络图片`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;&#123;uri:</span>'<span class="hljs-attr">http:</span>//<span class="hljs-attr">xxx.xxx.xxx</span>'&#125;&#125; <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;width:200,height:150&#125;&#125;</span> /&gt;</span>`需要设置宽高，否则不显示</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4>Button</h4>
+<ul>
+<li>使用BUtton必须要一个<code>title</code>属性，作为按钮显示的名字</li>
+</ul>
+<h4>ActivityIndicator</h4>
+<ul>
+<li>属性：animating(是否要显示加载动画：true or false)、color(颜色)、size('large,small'):安卓可以使用数字、hidesWhenStopped(ios)</li>
+</ul>
+<h4>ScrollView</h4>
+<ul>
+<li>在RN中，内容超出界面不会自动出现滚动条，需要使用<code>ScrollView</code>将元素包裹起来，才会出现滚动条.</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React-native的学习/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -582,22 +819,36 @@
                             <blockquote>
 <p>react-transition-group动画库可以帮助我们很好的完成组件的动画，功能非常强大。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React的react-transition-group动画库</h2>
+<ol>
+<li>安装：<code>cnpm install react-transition-group --save</code>因为这是生产环境也需要用到的，也可以使用<code>-S</code>代替<code>--save</code>，使用yarn安装：<code>yarn add react-transition-group</code></li>
+<li>这个动画库是由 <code>CSSTransition,Transition,TransitionGroup</code>三个组成的</li>
+<li>使用
+<ul>
+<li>组件中引入CSSTransition模块：<code>import { CSSTransition } from 'react-transition-group'</code></li>
+<li>将CSSTransition标签包裹在需要实现动画效果的元素外，然后进行相关属性的配置：
+<figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-comment">//jsx</span></span><br><span class="line"><span class="hljs-keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props);</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">                &lt;CSSTransition</span><br><span class="line">                      <span class="hljs-keyword">in</span>=&#123;<span class="hljs-keyword">this</span>.state.isShow&#125; <span class="hljs-comment">// 如果this.state.isShow从false变为true，则动画入场，反之out出场</span></span><br><span class="line">                      timeout=&#123;<span class="hljs-number">1000</span>&#125; <span class="hljs-comment">//动画执行1秒</span></span><br><span class="line">                      classNames=<span class="hljs-string">'css-style'</span> <span class="hljs-comment">//自定义的class名</span></span><br><span class="line">                      unMountOnExit <span class="hljs-comment">//可选，当动画出场后在页面上移除包裹的dom节点，删除DOM元素且不占位置</span></span><br><span class="line">                      onEntered=&#123;(el) =&gt; &#123;</span><br><span class="line">                            el.style.color=<span class="hljs-string">'blue'</span>   <span class="hljs-comment">//可选，动画入场之后的回调，el指被包裹的dom，让div内的字体颜色等于蓝色</span></span><br><span class="line">                      &#125;&#125;</span><br><span class="line">                      onExited=&#123;() =&gt; &#123;</span><br><span class="line">                            xxxxx   <span class="hljs-comment">//同理，动画出场之后的回调，也可以在这里来个setState啥的操作</span></span><br><span class="line">                      &#125;&#125;</span><br><span class="line">                      </span><br><span class="line">                &gt;</span><br><span class="line">                    &lt;div&gt;hello&lt;/div&gt;</span><br><span class="line">                &lt;/CSSTransition&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.handleToggole&#125;&gt;toggle&lt;/button&gt;</span><br><span class="line">            &lt;/Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        handleToggole: ()=&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">                isShow: !<span class="hljs-keyword">this</span>.state.isShow</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>一旦动画入场，插件将会自动的在包裹住的标签上添加很多css样式，默认class名是fade，所以我们需要给CSSTransition标签加上classNames='css-style'，然后去css文件进行配置：
+<figure class="highlight awk hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-regexp">//</span>enter是入场前的刹那（点击按钮），appear指页面第一次加载前的一刹那（自动）</span><br><span class="line">.css-style-enter, .css-style-appear &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>enter-active指入场后到入场结束的过程，appear-active则是页面第一次加载自动执行</span><br><span class="line">.css-style-enter-active, .css-style-appear-active &#123; </span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">    transition: opacity <span class="hljs-number">1</span>s ease-<span class="hljs-keyword">in</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>入场动画执行完毕后，保持状态</span><br><span class="line">.css-style-enter-done &#123;</span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-regexp">//</span>同理，出场前的一刹那，以下就不详细解释了，一样的道理</span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span> &#123;</span><br><span class="line">    opacity: <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span>-active &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">    transition: opacity <span class="hljs-number">1</span>s ease-<span class="hljs-keyword">in</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.css-style-<span class="hljs-keyword">exit</span>-done &#123;</span><br><span class="line">    opacity: <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果页面上一组dom都需要添加动画效果时我们需要在最外面再加一个TransitionGroup
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">import</span> React, &#123; Component, Fragment &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; CSSTransition, TransitionGroup &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-transition-group'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-string">'./style.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props);</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            list: []</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">this</span>.handleAddItem = <span class="hljs-keyword">this</span>.handleAddItem.bind(<span class="hljs-keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">                &lt;TransitionGroup&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="hljs-keyword">this</span>.state.list.map(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="hljs-keyword">return</span> (</span><br><span class="line">                            &lt;CSSTransition</span><br><span class="line">                                timeout=&#123;<span class="hljs-number">1000</span>&#125;</span><br><span class="line">                                classNames=<span class="hljs-string">'fade'</span></span><br><span class="line">                                unmountOnExit</span><br><span class="line">                                onEntered=&#123;(el) =&gt; &#123;el.style.color=<span class="hljs-string">'blue'</span>&#125;&#125;</span><br><span class="line">                                appear=&#123;<span class="hljs-literal">true</span>&#125;</span><br><span class="line">                                key=&#123;index&#125;</span><br><span class="line">                            &gt;</span><br><span class="line">                                &lt;div&gt;&#123;item&#125;&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                            &lt;/</span>CSSTransition&gt;</span><br><span class="line">                        )</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">                &lt;<span class="hljs-regexp">/TransitionGroup&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.handleAddItem&#125;&gt;toggle&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/Fragment&gt;</span></span><br><span class="line"><span class="hljs-regexp">        )</span></span><br><span class="line"><span class="hljs-regexp">        &#125;</span></span><br><span class="line"><span class="hljs-regexp">    </span></span><br><span class="line"><span class="hljs-regexp">        handleAddItem() &#123;</span></span><br><span class="line"><span class="hljs-regexp">            this.setState((prevState) =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">                return &#123;</span></span><br><span class="line"><span class="hljs-regexp">                    list: [...prevState.list, 'item']</span></span><br><span class="line"><span class="hljs-regexp">                &#125;</span></span><br><span class="line"><span class="hljs-regexp">            &#125;)</span></span><br><span class="line"><span class="hljs-regexp">        &#125;</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">    export default App;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React的react-transition-group动画库/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -651,22 +902,29 @@
                             <blockquote>
 <p>我们在React中也可以使用CSS来帮助我们完成一些普通的动画效果。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React的动画</h2>
+<h3>使用css来完成动画效果</h3>
+<ul>
+<li>在需要使用动画的元素中加入两个类，让他点击切换，然后每个类设置一下css动画
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CssStudy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="hljs-keyword">super</span>(props)</span><br><span class="line">        <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">            isShow: <span class="hljs-literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div className=&#123;<span class="hljs-keyword">this</span>.state.isShow ? <span class="hljs-string">'show'</span> : <span class="hljs-string">'hide'</span>&#125;&gt;今天的天气真不错&lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">                &lt;button onClick=&#123;this.toggle&#125;&gt;你好&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">        );</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">    toggle = () =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="hljs-regexp">            isShow: !this.state.isShow</span></span><br><span class="line"><span class="hljs-regexp">        &#125;)</span></span><br><span class="line"><span class="hljs-regexp">    &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default CssStudy;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>css样式
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: aqua;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>使用关键帧制作动画</h3>
+<ul>
+<li>在css3中，动画还加入了关键帧，可以让我们更好的制作动画的效果
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.show</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.hide</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="line">  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span> ease-in;</span><br><span class="line">  <span class="hljs-comment">/* animation（两个必要参数，其他都是可选参数）</span></span><br><span class="line"><span class="hljs-comment">    参数一：表示需要引入的关键帧动画名称</span></span><br><span class="line"><span class="hljs-comment">    参数二：动画时间</span></span><br><span class="line"><span class="hljs-comment">    参数三：动画的效果</span></span><br><span class="line"><span class="hljs-comment">    参数四：动画完成后结束位置在100%还是0%，如果不加则默认是0%</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line">  <span class="hljs-attribute">animation</span>: hide-style <span class="hljs-number">2s</span> ease-in forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="hljs-keyword">keyframes</span> hide-style &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: green;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">12px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  50% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: red;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="hljs-attribute">color</span>: yellow;</span><br><span class="line">    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React的动画/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -720,22 +978,39 @@
                             <blockquote>
 <p>React中的context和vue中的vuex有些相似,可以实现数据的共享,让获取数据不再受组件嵌套的限制.</p>
 </blockquote>
+<p>&lt;!--more --&gt;</p>
+<h2>Context的使用</h2>
+<ul>
+<li>
+<p>在某些时候，当组件形成嵌套时，我们在父组件中像传值给孙子组件，那么我们可以使用先给子组件传值，在给孙组件传值，达到效果
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> color=&#123;<span class="hljs-keyword">this</span>.state.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> color=&#123;<span class="hljs-keyword">this</span>.props.color&#125; /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.props.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是，这样的话子组件本来是不需要做这个工作的，但是却让他担任了桥梁的角色，这个是不合理的</p>
+</li>
+<li>
+<p>所以，我们可以使用Context来解决这个问题，实现属性值的共享</p>
+</li>
+<li>
+<p>使用context实现数据的共享
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">ReactTypes</span> from <span class="hljs-string">"prop-types"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Father</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      color: <span class="hljs-string">"red"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//在父组件中，定义一个function，这个function有个固定的名称，叫做getChildContext，内部必须返回一个对象，这个对象就是需要共享给所有子孙组件的数据</span></span><br><span class="line">  getChildContext() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="line">      color: <span class="hljs-keyword">this</span>.state.color</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-comment">//这里对父组件要传递的数据做类型规定，需要定义一个静态的(static) childContextTypes 这个是固定的方法</span></span><br><span class="line">  static childContextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;父组件&lt;/h1&gt;</span><br><span class="line">        &lt;<span class="hljs-type">SonOne</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SonOne</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;子组件&lt;/h3&gt;</span><br><span class="line">        &lt;<span class="hljs-type">GrandSon</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GrandSon</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//上来之后先做属性校验，校验一下父组件传递的参数类型</span></span><br><span class="line">  static contextTypes = &#123;</span><br><span class="line">    color: <span class="hljs-type">ReactTypes</span>.string <span class="hljs-comment">//这里如果子组件想使用 通过context共享的数据，使用之前必须做类型校验</span></span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> &lt;h5 style=&#123;&#123; color: <span class="hljs-keyword">this</span>.context.color &#125;&#125;&gt;孙组件&lt;/h5&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>快速识记这几个方法</p>
+<ul>
+<li>记住这串单词<code>getChildContextTypes</code></li>
+<li>前三(<code>getChildContext()</code>)、后三(<code>static childContextTypes={}</code>)、后俩(<code>static contextTypes={}</code>)</li>
+<li>一个方法，两个静态类型</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React中Context的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -789,91 +1064,63 @@
                             <blockquote>
 <p>生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>componentWillMount函数</h2>
+<ul>
+<li>在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中</li>
+<li>虚拟DOM也还没有开始创建</li>
+<li>此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素</li>
+<li>但是可以获取到props和state的值，也可以调用函数</li>
+<li>这个函数等同于Vue中的<code>created</code>生命周期函数</li>
+</ul>
+<h2>render函数</h2>
+<ul>
+<li>当执行到这个生命周期函数时，即将开始渲染内存中的虚拟DOM了，但是页面上尚未真正显示DOM元素</li>
+<li>在render函数中，在return之前，虚拟DOM还没有开始创建，页面上也是空的，拿不到任何的元素</li>
+<li>当render函数中的return执行完毕后，虚拟DOM创建好了，但是还没有真正的挂载到页面中</li>
+</ul>
+<h2>componentDidMount函数</h2>
+<ul>
+<li>当组件挂载到页面上之后，会进入这个生命周期函数，只要进入这个生命周期函数了，说明页面上已经有可见DOM元素了</li>
+<li>在这个函数中，可以放心的操作页面上你需要操作的DOM元素了</li>
+<li>如果我们需要操作DOM元素。最早只能在这个生命周期函数中进行</li>
+<li>componentDidMounti相当于vue中的mounted函数</li>
+</ul>
+<h3>组件生命周期函数执行顺序</h3>
+<ul>
+<li>组件生命周期的执行顺序：</li>
+</ul>
+<ul>
+<li><strong>Mounting</strong>：
+<ul>
+<li>constructor()</li>
+<li>componentWillMount()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+</li>
+<li><strong>Updating</strong>：
+<ul>
+<li>componentWillReceiveProps(nextProps)</li>
+<li>shouldComponentUpdate(nextProps, nextState)</li>
+<li>componentWillUpdate(nextProps, nextState)</li>
+<li>render()</li>
+<li>componentDidUpdate(prevProps, prevState)</li>
+</ul>
+</li>
+<li><strong>Unmounting</strong>：
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React生命周期函数/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/08/04/React定义数据默认值和数据类型校验/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg" alt="React定义数据默认值和数据类型校验">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-08-04T09:11:54.000Z">2019-08-04</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/React/">React</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 479 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/08/04/React定义数据默认值和数据类型校验/">
-                                    React定义数据默认值和数据类型校验
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>定义数据类型和校验主要是为了数据的安全性和准确性，可以让我们在使用数据的时候更为方便。</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React定义数据默认值和数据类型校验/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -961,7 +1208,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -1035,6 +1282,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1112,25 +1378,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1152,7 +1399,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -1230,7 +1477,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1344,7 +1591,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1480,7 +1727,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -1558,7 +1805,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -1672,7 +1919,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

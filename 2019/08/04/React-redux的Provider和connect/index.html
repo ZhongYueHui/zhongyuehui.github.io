@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Provider和connect可以帮助我们更方便的获取数据。">
+        <meta name="description" content="Provider和connect可以帮助我们更方便的获取数据。  &amp;lt;!-- more --&amp;gt; React-redux的Provider和connect 提供器Provider的使用  使用Provider可以让在&amp;lt;Provider&amp;gt;&amp;lt;/Provider&amp;gt;标签内的所有组件和元素都可以访问store 很简单，我们在项目的index.js中使用Provider 12">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-redux的Provider和connect">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React-redux的Provider和connect/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Provider和connect可以帮助我们更方便的获取数据。">
+<meta property="og:description" content="Provider和connect可以帮助我们更方便的获取数据。  &amp;lt;!-- more --&amp;gt; React-redux的Provider和connect 提供器Provider的使用  使用Provider可以让在&amp;lt;Provider&amp;gt;&amp;lt;/Provider&amp;gt;标签内的所有组件和元素都可以访问store 很简单，我们在项目的index.js中使用Provider 12">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565516568&di=a10f2baa58d59cbaaa005d74a8ea73a7&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.ruanyifeng.com%2Fblogimg%2Fasset%2F2016%2Fbg2016092101.jpg">
 <meta property="og:updated_time" content="2019-08-04T10:07:08.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-redux的Provider和connect">
-<meta name="twitter:description" content="Provider和connect可以帮助我们更方便的获取数据。">
+<meta name="twitter:description" content="Provider和connect可以帮助我们更方便的获取数据。  &amp;lt;!-- more --&amp;gt; React-redux的Provider和connect 提供器Provider的使用  使用Provider可以让在&amp;lt;Provider&amp;gt;&amp;lt;/Provider&amp;gt;标签内的所有组件和元素都可以访问store 很简单，我们在项目的index.js中使用Provider 12">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565516568&di=a10f2baa58d59cbaaa005d74a8ea73a7&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.ruanyifeng.com%2Fblogimg%2Fasset%2F2016%2Fbg2016092101.jpg">
             
 
@@ -240,15 +240,18 @@
                             <blockquote>
 <p>Provider和connect可以帮助我们更方便的获取数据。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="React-redux的Provider和connect"><a href="#React-redux的Provider和connect" class="headerlink" title="React-redux的Provider和connect"></a>React-redux的Provider和connect</h2><h3 id="提供器Provider的使用"><a href="#提供器Provider的使用" class="headerlink" title="提供器Provider的使用"></a>提供器Provider的使用</h3><ul>
-<li>使用Provider可以让在<provider></provider>标签内的所有组件和元素都可以访问store</li>
-<li>很简单，我们在项目的index.js中使用Provider  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> TodoList <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/TodoList.jsx'</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Provider &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'./store/index'</span></span><br><span class="line"><span class="hljs-keyword">const</span> App = (</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        <span class="hljs-comment">// Provider包裹的元素都可以使用store</span></span><br><span class="line">        &lt;TodoList&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">TodoList</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="hljs-regexp">/Provider&gt;</span></span><br><span class="line"><span class="hljs-regexp">)</span></span><br><span class="line"><span class="hljs-regexp">ReactDOM.render(App, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-redux的Provider和connect</h2>
+<h3>提供器Provider的使用</h3>
+<ul>
+<li>使用Provider可以让在&lt;Provider&gt;&lt;/Provider&gt;标签内的所有组件和元素都可以访问store</li>
+<li>很简单，我们在项目的index.js中使用Provider
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> TodoList <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/TodoList.jsx'</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Provider &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'./store/index'</span></span><br><span class="line"><span class="hljs-keyword">const</span> App = (</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        <span class="hljs-comment">// Provider包裹的元素都可以使用store</span></span><br><span class="line">        &lt;TodoList&gt;<span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">TodoList</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="hljs-regexp">/Provider&gt;</span></span><br><span class="line"><span class="hljs-regexp">)</span></span><br><span class="line"><span class="hljs-regexp">ReactDOM.render(App, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="连接器connect的使用"><a href="#连接器connect的使用" class="headerlink" title="连接器connect的使用"></a>连接器connect的使用</h3><ul>
-<li>使用connect映射store中的对应数据,这时候不需要在使用state来获取store的数据，它会变成props属性，我们直接根据映射关系就可以拿到值  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.props.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp">const StateToProps = state =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">  return &#123;</span></span><br><span class="line"><span class="hljs-regexp">    inputValue: state.inputValue /</span><span class="hljs-regexp">/这里其实就是一个映射关系</span></span><br><span class="line"><span class="hljs-regexp">  &#125;;</span></span><br><span class="line"><span class="hljs-regexp">&#125;;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default connect(</span></span><br><span class="line"><span class="hljs-regexp">  StateToProps,</span></span><br><span class="line"><span class="hljs-regexp">  null</span></span><br><span class="line"><span class="hljs-regexp">)(TodoList);</span></span><br></pre></td></tr></table></figure></li>
+<h3>连接器connect的使用</h3>
+<ul>
+<li>使用connect映射store中的对应数据,这时候不需要在使用state来获取store的数据，它会变成props属性，我们直接根据映射关系就可以拿到值
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.props.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp">const StateToProps = state =&gt; &#123;</span></span><br><span class="line"><span class="hljs-regexp">  return &#123;</span></span><br><span class="line"><span class="hljs-regexp">    inputValue: state.inputValue /</span><span class="hljs-regexp">/这里其实就是一个映射关系</span></span><br><span class="line"><span class="hljs-regexp">  &#125;;</span></span><br><span class="line"><span class="hljs-regexp">&#125;;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default connect(</span></span><br><span class="line"><span class="hljs-regexp">  StateToProps,</span></span><br><span class="line"><span class="hljs-regexp">  null</span></span><br><span class="line"><span class="hljs-regexp">)(TodoList);</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
 
@@ -373,15 +376,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#React-redux的Provider和connect">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>React-redux的Provider和connect</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#提供器Provider的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>提供器Provider的使用</span>
         </a></li><li>
-        <a class="is-flex" href="#连接器connect的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>连接器connect的使用</span>
         </a></li></ul></li></ul>
@@ -425,7 +428,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -499,6 +502,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -576,25 +598,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -616,7 +619,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -694,7 +697,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -808,7 +811,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

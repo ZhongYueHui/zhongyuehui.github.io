@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在Angular中，angular的路由使用与Vue非常相似">
+        <meta name="description" content="在Angular中，angular的路由使用与Vue非常相似  &amp;lt;!-- more --&amp;gt; Angular中的路由 配置路由   在app-routing.module.ts中引入需要配置路由的组件和配置路由 1234567891011121314151617181920212223import &amp;#123; NgModule &amp;#125; from &apos;@angular/core&apos;;">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular中的路由">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Angular中的路由/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在Angular中，angular的路由使用与Vue非常相似">
+<meta property="og:description" content="在Angular中，angular的路由使用与Vue非常相似  &amp;lt;!-- more --&amp;gt; Angular中的路由 配置路由   在app-routing.module.ts中引入需要配置路由的组件和配置路由 1234567891011121314151617181920212223import &amp;#123; NgModule &amp;#125; from &apos;@angular/core&apos;;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
 <meta property="og:updated_time" content="2019-08-04T12:09:07.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular中的路由">
-<meta name="twitter:description" content="在Angular中，angular的路由使用与Vue非常相似">
+<meta name="twitter:description" content="在Angular中，angular的路由使用与Vue非常相似  &amp;lt;!-- more --&amp;gt; Angular中的路由 配置路由   在app-routing.module.ts中引入需要配置路由的组件和配置路由 1234567891011121314151617181920212223import &amp;#123; NgModule &amp;#125; from &apos;@angular/core&apos;;">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
@@ -240,23 +240,32 @@
                             <blockquote>
 <p>在Angular中，angular的路由使用与Vue非常相似</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Angular中的路由"><a href="#Angular中的路由" class="headerlink" title="Angular中的路由"></a>Angular中的路由</h2><h3 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h3><ul>
-<li><p>在<code>app-routing.module.ts</code>中引入需要配置路由的组件和配置路由</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入需要配置的组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NewsComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/news/news.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; HomeComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/home/home.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FooterComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/footer/footer.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> routes: Routes = [&#123;</span><br><span class="line">  path: <span class="hljs-string">'home'</span>, <span class="hljs-attr">component</span>: HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'news'</span>, <span class="hljs-attr">component</span>: NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'footer'</span>, <span class="hljs-attr">component</span>: FooterComponent</span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的路由</h2>
+<h3>配置路由</h3>
+<ul>
+<li>
+<p>在<code>app-routing.module.ts</code>中引入需要配置路由的组件和配置路由
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Routes, RouterModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入需要配置的组件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NewsComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/news/news.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; HomeComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/home/home.component'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; FooterComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/footer/footer.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> routes: Routes = [&#123;</span><br><span class="line">  path: <span class="hljs-string">'home'</span>, <span class="hljs-attr">component</span>: HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'news'</span>, <span class="hljs-attr">component</span>: NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  path: <span class="hljs-string">'footer'</span>, <span class="hljs-attr">component</span>: FooterComponent</span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppRoutingModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>点击路由跳转到对应的组件</p>
-  <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//app.html</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/home' ]"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  // <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/home"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> //这样也是可以的</span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/news' ]"</span>&gt;</span>新闻资讯<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/footer' ]"</span>&gt;</span>尾部<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>点击路由跳转到对应的组件
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//app.html</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/home' ]"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  // <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/home"</span>&gt;</span>首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> //这样也是可以的</span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/news' ]"</span>&gt;</span>新闻资讯<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/footer' ]"</span>&gt;</span>尾部<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">router-outlet</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这个时候已经实现了点击显示对应的组件了，但是我们会发现一进入页面默认是没有组件显示的，这样的话并不好，需要重定向路由</p>
+<li>
+<p>这个时候已经实现了点击显示对应的组件了，但是我们会发现一进入页面默认是没有组件显示的，这样的话并不好，需要重定向路由</p>
 </li>
-<li><p>Angular中使用<code>&#39;**&#39;</code>来表示没有匹配到路由后，使用<code>redirectTo</code>重定向，比如我们一打开页面要进入首页</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'home'</span>, <span class="hljs-string">component:</span> HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'news'</span>, <span class="hljs-string">component:</span> NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'footer'</span>, <span class="hljs-string">component:</span> FooterComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'home'</span></span><br><span class="line">&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<li>
+<p>Angular中使用<code>'**'</code>来表示没有匹配到路由后，使用<code>redirectTo</code>重定向，比如我们一打开页面要进入首页
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//配置路由</span></span><br><span class="line">const <span class="hljs-string">routes:</span> Routes = [&#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'home'</span>, <span class="hljs-string">component:</span> HomeComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'news'</span>, <span class="hljs-string">component:</span> NewsComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'footer'</span>, <span class="hljs-string">component:</span> FooterComponent</span><br><span class="line">&#125;, &#123;</span><br><span class="line"><span class="hljs-symbol">  path:</span> <span class="hljs-string">'**'</span>, <span class="hljs-string">redirectTo:</span> <span class="hljs-string">'home'</span></span><br><span class="line">&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就实现了重定向的功能</p>
-<h4 id="选中路由高亮"><a href="#选中路由高亮" class="headerlink" title="选中路由高亮"></a>选中路由高亮</h4></li>
-<li><p>我们希望路由选中时有高亮，在Angular中其实已经给我们提供了这个功能，和Vue非常相似，只需要在路由中加入<code>routerLinkActive=&quot;active&quot;</code>就可以了，我们可以自己设置<code>active</code>这个类的样式，达到自己想要的选中效果</p>
+<li>
+<p>这样就实现了重定向的功能</p>
 </li>
+</ul>
+<h4>选中路由高亮</h4>
+<ul>
+<li>我们希望路由选中时有高亮，在Angular中其实已经给我们提供了这个功能，和Vue非常相似，只需要在路由中加入<code>routerLinkActive=&quot;active&quot;</code>就可以了，我们可以自己设置<code>active</code>这个类的样式，达到自己想要的选中效果</li>
 </ul>
 
 
@@ -381,15 +390,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Angular中的路由">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Angular中的路由</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#配置路由">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>配置路由</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#选中路由高亮">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1.1</span>
         <span>选中路由高亮</span>
         </a></li></ul></li></ul></li></ul>
@@ -433,7 +442,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -507,6 +516,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -584,25 +612,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -624,7 +633,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -702,7 +711,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -816,7 +825,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

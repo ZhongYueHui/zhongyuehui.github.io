@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程">
+        <meta name="description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程  &amp;lt;!-- more --&amp;gt; React-redux的使用   安装：yarn add react-redux   初始化store，src/store/index.js 12345import &amp;#123;createStore&amp;#125; from &apos;redux&apos;import reducer fro">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-redux的使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React-redux的使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程">
+<meta property="og:description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程  &amp;lt;!-- more --&amp;gt; React-redux的使用   安装：yarn add react-redux   初始化store，src/store/index.js 12345import &amp;#123;createStore&amp;#125; from &apos;redux&apos;import reducer fro">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565516568&di=a10f2baa58d59cbaaa005d74a8ea73a7&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.ruanyifeng.com%2Fblogimg%2Fasset%2F2016%2Fbg2016092101.jpg">
 <meta property="og:updated_time" content="2019-08-04T10:05:06.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-redux的使用">
-<meta name="twitter:description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程">
+<meta name="twitter:description" content="React-Redux这是一个React生态中常用组件，它可以简化Redux流程  &amp;lt;!-- more --&amp;gt; React-redux的使用   安装：yarn add react-redux   初始化store，src/store/index.js 12345import &amp;#123;createStore&amp;#125; from &apos;redux&apos;import reducer fro">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565516568&di=a10f2baa58d59cbaaa005d74a8ea73a7&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.ruanyifeng.com%2Fblogimg%2Fasset%2F2016%2Fbg2016092101.jpg">
             
 
@@ -240,20 +240,26 @@
                             <blockquote>
 <p>React-Redux这是一个React生态中常用组件，它可以简化Redux流程</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="React-redux的使用"><a href="#React-redux的使用" class="headerlink" title="React-redux的使用"></a>React-redux的使用</h2><ul>
-<li><p>安装：<code>yarn add react-redux</code></p>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-redux的使用</h2>
+<ul>
+<li>
+<p>安装：<code>yarn add react-redux</code></p>
 </li>
-<li><p>初始化store，src/store/index.js</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123;createStore&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(reducer)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<li>
+<p>初始化store，src/store/index.js
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123;createStore&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(reducer)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>src/store/reducer.js</p>
-  <figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const defalueState = &#123;</span><br><span class="line">inputValue: 'Mr zhong',</span><br><span class="line">list: []</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = defalueState, action) =&gt; &#123;</span><br><span class="line">    return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>src/store/reducer.js
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const defalueState = &#123;</span><br><span class="line">inputValue: 'Mr zhong',</span><br><span class="line">list: []</span><br><span class="line">&#125;</span><br><span class="line">export <span class="hljs-keyword">default</span> (<span class="hljs-keyword">state</span> = defalueState, action) =&gt; &#123;</span><br><span class="line">    return <span class="hljs-keyword">state</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>初始化完毕后在需要使用的组件中引用store</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default TodoList;</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>初始化完毕后在需要使用的组件中引用store
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//TodoList.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Button, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"antd"</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">"../store/index"</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = store.getState();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">400</span> &#125;&#125; placeholder=&#123;<span class="hljs-keyword">this</span>.state.inputValue&#125; /&gt;</span><br><span class="line">        &lt;Button type=<span class="hljs-string">"primary"</span>&gt;按钮&lt;<span class="hljs-regexp">/Button&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="hljs-regexp">          &lt;li&gt;今天天气真不错！&lt;/</span>li&gt;</span><br><span class="line">          &lt;li&gt;万里无云&lt;<span class="hljs-regexp">/li&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/u</span>l&gt;</span><br><span class="line">      &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    );</span></span><br><span class="line"><span class="hljs-regexp">  &#125;</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br><span class="line"><span class="hljs-regexp"></span></span><br><span class="line"><span class="hljs-regexp">export default TodoList;</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>初始化完毕！</p>
+<li>
+<p>初始化完毕！</p>
 </li>
 </ul>
 
@@ -379,7 +385,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#React-redux的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>React-redux的使用</span>
         </a></li></ul>
@@ -423,7 +429,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -497,6 +503,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -574,25 +599,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -614,7 +620,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -692,7 +698,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -806,7 +812,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

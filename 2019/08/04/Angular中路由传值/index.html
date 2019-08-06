@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富">
+        <meta name="description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富  &amp;lt;!-- more --&amp;gt; Angular中路由传值 get传值   Angular中get传值，只需要在路由加入一项参数即可   我们定义一个数组，里面放10条数据,然后循环这个数组 1234//news-info.html&amp;lt;li *ngFor=&quot;let item of list;let i=">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular中路由传值">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Angular中路由传值/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富">
+<meta property="og:description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富  &amp;lt;!-- more --&amp;gt; Angular中路由传值 get传值   Angular中get传值，只需要在路由加入一项参数即可   我们定义一个数组，里面放10条数据,然后循环这个数组 1234//news-info.html&amp;lt;li *ngFor=&quot;let item of list;let i=">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
 <meta property="og:updated_time" content="2019-08-04T12:09:44.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular中路由传值">
-<meta name="twitter:description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富">
+<meta name="twitter:description" content="Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富  &amp;lt;!-- more --&amp;gt; Angular中路由传值 get传值   Angular中get传值，只需要在路由加入一项参数即可   我们定义一个数组，里面放10条数据,然后循环这个数组 1234//news-info.html&amp;lt;li *ngFor=&quot;let item of list;let i=">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
@@ -240,47 +240,66 @@
                             <blockquote>
 <p>Angular中的路由传值稍微和React、Vue中有所区别，方式和功能相对丰富</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Angular中路由传值"><a href="#Angular中路由传值" class="headerlink" title="Angular中路由传值"></a>Angular中路由传值</h2><h3 id="get传值"><a href="#get传值" class="headerlink" title="get传值"></a>get传值</h3><ul>
-<li><p>Angular中get传值，只需要在路由加入一项参数即可</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中路由传值</h2>
+<h3>get传值</h3>
+<ul>
+<li>
+<p>Angular中get传值，只需要在路由加入一项参数即可</p>
 </li>
-<li><p>我们定义一个数组，里面放10条数据,然后循环这个数组</p>
-  <figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo"</span> [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">&#123;id:i&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;</span><span class="hljs-xml">&#125; ---</span><span class="hljs-template-variable">&#123;&#123; item&#125;</span><span class="hljs-xml">&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<li>
+<p>我们定义一个数组，里面放10条数据,然后循环这个数组
+<figure class="highlight dust hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo"</span> [<span class="hljs-attr">queryParams</span>]=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">&#123;id:i&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;</span><span class="hljs-xml">&#125; ---</span><span class="hljs-template-variable">&#123;&#123; item&#125;</span><span class="hljs-xml">&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>我们将下标作为id传入，然后在组件中获取到传入的id，当然也可以在对象中传递多个参数</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条数据</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>我们将下标作为id传入，然后在组件中获取到传入的id，当然也可以在对象中传递多个参数
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条数据</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就获取到了这个传递的参数</p>
-<h3 id="动态路由传值"><a href="#动态路由传值" class="headerlink" title="动态路由传值"></a>动态路由传值</h3></li>
-<li><p>配置动态路由</p>
-  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.routing.module.ts</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="hljs-attribute">path</span>: <span class="hljs-string">'newsinfo/:id'</span>, <span class="hljs-attribute">component</span>: NewsInfoComponent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>传值路由参数,两种方式，任选一种</p>
-  <figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">// <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo/</span></span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/newsinfo', i ]"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取传递的值</p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.get传值获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">    <span class="hljs-comment">//动态路由获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.params.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li>
+<p>这样就获取到了这个传递的参数</p>
 </li>
 </ul>
-<h3 id="js跳转路由"><a href="#js跳转路由" class="headerlink" title="js跳转路由"></a>js跳转路由</h3><h4 id="动态路由的js跳转"><a href="#动态路由的js跳转" class="headerlink" title="动态路由的js跳转"></a>动态路由的js跳转</h4><ul>
-<li><p>引入：</p>
-  <figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> &#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure>
+<h3>动态路由传值</h3>
+<ul>
+<li>
+<p>配置动态路由
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//app.routing.module.ts</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="hljs-attribute">path</span>: <span class="hljs-string">'newsinfo/:id'</span>, <span class="hljs-attribute">component</span>: NewsInfoComponent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>初始化</p>
-  <figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> router: Router)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">goNews</span><span class="hljs-params">()</span><span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">// this.router.navigate(['/news', hero.id]);//如果是动态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">this.router.navigate(['/news']);  //静态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure>
-
+<li>
+<p>传值路由参数,两种方式，任选一种
+<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml">//news-info.html</span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let item of list;let i=index"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">// <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/newsinfo/</span></span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[ '/newsinfo', i ]"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;i&#125;&#125;</span><span class="hljs-xml">--</span><span class="hljs-template-variable">&#123;&#123;item&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>获取传递的值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news-info.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//1.引入 ActivatedRoute</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; ActivatedRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news-info'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news-info.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news-info.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsInfoComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: <span class="hljs-built_in">any</span>[] = []</span><br><span class="line">  <span class="hljs-comment">//2.初始化ActivatedRoute</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> route: ActivatedRoute</span>) &#123;</span><br><span class="line">    <span class="hljs-comment">//3.get传值获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.queryParams.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(data))</span><br><span class="line">    <span class="hljs-comment">//动态路由获取数据</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.route.params.subscribe(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-built_in">console</span>.log())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="hljs-comment">//添加10条</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.list.push(<span class="hljs-string">`第<span class="hljs-subst">$&#123;i&#125;</span>个数据`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-<h4 id="get传值js跳转"><a href="#get传值js跳转" class="headerlink" title="get传值js跳转"></a>get传值js跳转</h4><ul>
-<li><p>引入</p>
-  <figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> ,NavigationExtras&#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure>
+<h3>js跳转路由</h3>
+<h4>动态路由的js跳转</h4>
+<ul>
+<li>
+<p>引入：
+<figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> &#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>定义一个goNewsInfo方法进行跳转并传参</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">goNewsContent()&#123;</span><br><span class="line">let <span class="hljs-string">navigationExtras:</span> NavigationExtras = &#123;</span><br><span class="line"><span class="hljs-string">queryParams:</span> &#123; <span class="hljs-string">'session_id'</span>: <span class="hljs-string">'123'</span> &#125;,</span><br><span class="line"><span class="hljs-string">fragment:</span> <span class="hljs-string">'anchor'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-keyword">this</span>.router.navigate([<span class="hljs-string">'/news'</span>],navigationExtras);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>初始化
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> router: Router)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">goNews</span><span class="hljs-params">()</span><span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">// this.router.navigate(['/news', hero.id]);//如果是动态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">this.router.navigate(['/news']);  //静态路由</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>获取get传值</p>
-  <figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> route: ActivatedRoute)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">     console.log(this.route.queryParams);</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>get传值js跳转</h4>
+<ul>
+<li>
+<p>引入
+<figure class="highlight nginx hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section">import</span> &#123; <span class="hljs-attribute">Router</span> ,NavigationExtras&#125; from <span class="hljs-string">'<span class="hljs-variable">@angular</span>/router'</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义一个goNewsInfo方法进行跳转并传参
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">goNewsContent()&#123;</span><br><span class="line">let <span class="hljs-string">navigationExtras:</span> NavigationExtras = &#123;</span><br><span class="line"><span class="hljs-string">queryParams:</span> &#123; <span class="hljs-string">'session_id'</span>: <span class="hljs-string">'123'</span> &#125;,</span><br><span class="line"><span class="hljs-string">fragment:</span> <span class="hljs-string">'anchor'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-keyword">this</span>.router.navigate([<span class="hljs-string">'/news'</span>],navigationExtras);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>获取get传值
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">private</span> route: ActivatedRoute)</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">     console.log(this.route.queryParams);</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -405,27 +424,27 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Angular中路由传值">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Angular中路由传值</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#get传值">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>get传值</span>
         </a></li><li>
-        <a class="is-flex" href="#动态路由传值">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>动态路由传值</span>
         </a></li><li>
-        <a class="is-flex" href="#js跳转路由">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>js跳转路由</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#动态路由的js跳转">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3.1</span>
         <span>动态路由的js跳转</span>
         </a></li><li>
-        <a class="is-flex" href="#get传值js跳转">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3.2</span>
         <span>get传值js跳转</span>
         </a></li></ul></li></ul></li></ul>
@@ -469,7 +488,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -543,6 +562,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -620,25 +658,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -660,7 +679,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -738,7 +757,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -852,7 +871,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

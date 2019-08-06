@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API">
+        <meta name="description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6的fetch的使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/07/23/ES6的fetch的使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API">
+<meta property="og:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
 <meta property="og:updated_time" content="2019-08-05T09:44:58.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6的fetch的使用">
-<meta name="twitter:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API">
+<meta name="twitter:description" content="在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API  &amp;lt;!-- more --&amp;gt; fetch 的使用  在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据 fetch API 是基于 promise 封装的 API  使用   fetch 的使用:">
 <meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
             
 
@@ -240,21 +240,27 @@
                             <blockquote>
 <p>在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="fetch-的使用"><a href="#fetch-的使用" class="headerlink" title="fetch 的使用"></a>fetch 的使用</h2><ul>
-<li><p>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>fetch 的使用</h2>
+<ul>
+<li>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</li>
+<li>fetch API 是基于 promise 封装的 API</li>
+</ul>
+<h3>使用</h3>
+<ul>
+<li>
+<p>fetch 的使用:
+<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>fetch API 是基于 promise 封装的 API</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3></li>
-<li><p>fetch 的使用:</p>
-<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li>
+<p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
 </li>
-<li><p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
+<li>
+<p>但是我们可以调用 response.json()得到一个新的 promise
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>但是我们可以调用 response.json()得到一个新的 promise</p>
-<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
+<li>
+<p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
 </li>
 </ul>
 
@@ -380,11 +386,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#fetch-的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>fetch 的使用</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>使用</span>
         </a></li></ul></li></ul>
@@ -428,7 +434,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        66
+                        67
                     </p>
                 </div>
             </div>
@@ -502,6 +508,25 @@
         <h3 class="menu-label">
             📕最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/06/Nodejs配置MD5加密/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="Nodejs配置MD5加密">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T08:21:49.000Z">2019-08-06</time></div>
+                    <a href="/2019/08/06/Nodejs配置MD5加密/" class="has-link-black-ter is-size-6">Nodejs配置MD5加密</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -579,25 +604,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1564924233932&amp;di=1e3688ff380771ad9fd7eb32545cf574&amp;imgtype=0&amp;src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F17%2F05%2F74570573d8af1b7.jpg" alt="在Express使用ejs模板引擎以及静态文件的托管">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-04T10:26:28.000Z">2019-08-04</time></div>
-                    <a href="/2019/08/04/在Express使用ejs模板引擎以及静态文件的托管/" class="has-link-black-ter is-size-6">在Express使用ejs模板引擎以及静态文件的托管</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -619,7 +625,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">43</span>
+                    <span class="level-item tag">44</span>
                 </span>
             </a>
         </li>
@@ -697,7 +703,7 @@
                 <span class="level-item">Nodejs</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React/">
@@ -811,7 +817,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Nodejs/">
                         <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
