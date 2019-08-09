@@ -5,24 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    归档 - Just for fun
+    ES6遍历数组的一些方法 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="Just for fun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Just for fun">
-<meta property="og:url" content="https://zhongyuehui.github.io/archives/page/6/index.html">
+        <meta name="description" content="在很多时候，我感觉数组遍历和对象遍历总是必不可少的，所以我整理出来了遍历数组和对象的一些方法。">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6遍历数组的一些方法">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/08/09/ES6遍历数组的一些方法/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Just for fun">
+<meta property="og:description" content="在很多时候，我感觉数组遍历和对象遍历总是必不可少的，所以我整理出来了遍历数组和对象的一些方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
+<meta property="og:updated_time" content="2019-08-09T02:24:05.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Just for fun">
-<meta name="twitter:description" content="Just for fun">
-<meta name="twitter:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta name="twitter:title" content="ES6遍历数组的一些方法">
+<meta name="twitter:description" content="在很多时候，我感觉数组遍历和对象遍历总是必不可少的，所以我整理出来了遍历数组和对象的一些方法。">
+<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png">
             
 
 
@@ -30,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="Just for fun" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="ES6遍历数组的一些方法" type="application/atom+xml">
                             
 
                                 
@@ -113,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                <img src="/images/mylogo.png" alt="ES6遍历数组的一些方法" height="28">
             
             </a>
         </div>
@@ -144,6 +146,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="🔍搜索" href="javascript:;">
@@ -195,309 +201,223 @@
                                 <div class="container">
                                     <div class="columns">
                                         <!-- 将main_column_class() 改为 col() -->
-                                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
+                                            <div class="card">
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png" alt="ES6遍历数组的一些方法">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-09T02:12:32.000Z">2019-08-09</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/ES6/">ES6</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 545 个字)
+                </span>
+                                        
                                             
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    ES6遍历数组的一些方法
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在很多时候，我感觉数组遍历和对象遍历总是必不可少的，所以我整理出来了遍历数组和对象的一些方法。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="ES6遍历数组的一些方法"><a href="#ES6遍历数组的一些方法" class="headerlink" title="ES6遍历数组的一些方法"></a>ES6遍历数组的一些方法</h2><ul>
+<li><p>forEach()</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line">    arr.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item,index</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'forEach'</span>,item);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map()可以遍历数组中的每项并且进行某一种运算，产生一个新数组</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> newArrmap = arr.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item,index</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'map'</span>, item);</span><br><span class="line">    <span class="hljs-keyword">return</span> item * <span class="hljs-number">2</span>;            </span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'map'</span>,newArrmap);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>filter()筛选出数组中符合条件的项，组成新数组</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> newArrfilter = arr.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item,index</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'filter'</span>,item);</span><br><span class="line">    <span class="hljs-keyword">return</span> item&gt;<span class="hljs-number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'filter'</span>,newArrfilter);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reduce()让数组中的前项和后项做某种计算，并累计最终值</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> result = arr.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">prev,next</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'reduce'</span>,prev);</span><br><span class="line">    <span class="hljs-keyword">return</span> prev + next;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'reduce'</span>,result); <span class="hljs-comment">// result 15</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>every()检测数组中的每一项是否符合条件</p>
+  <figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> res = arr.<span class="hljs-keyword">every</span>(<span class="hljs-keyword">function</span>(<span class="hljs-type">item</span>,index)&#123;</span><br><span class="line">    console.log(<span class="hljs-string">'every'</span>,<span class="hljs-type">item</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-type">item</span> &gt; <span class="hljs-number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(<span class="hljs-string">'every'</span>,res); //<span class="hljs-built_in"> true</span> 全部满足才为<span class="hljs-built_in"> true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>some()检测数组中是否有某些项符合条件</p>
+  <figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">let</span> resu = arr.<span class="hljs-keyword">some</span>(<span class="hljs-keyword">function</span>(<span class="hljs-type">item</span>, index)&#123;</span><br><span class="line">    console.log(<span class="hljs-string">'some'</span>,<span class="hljs-type">item</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-type">item</span> &gt; <span class="hljs-number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(<span class="hljs-string">'some'</span>, resu); //一<span class="hljs-built_in">个true</span>则<span class="hljs-built_in">为true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="数组的排序"><a href="#数组的排序" class="headerlink" title="数组的排序"></a>数组的排序</h3><ul>
+<li><p>顺序排序</p>
+  <figure class="highlight lsl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>];</span><br><span class="line"><span class="hljs-comment">//顺序排序</span></span><br><span class="line">console.log(a.sort())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逆序排序</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//逆序排序</span></span><br><span class="line">console.log(<span class="hljs-selector-tag">a</span>.sort().reverse())</span><br><span class="line">console.log(<span class="hljs-selector-tag">a</span>.sort(function (<span class="hljs-selector-tag">a</span>, b) &#123; return <span class="hljs-selector-tag">b</span> - <span class="hljs-selector-tag">a</span> &#125;))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="遍历对象的一些方法"><a href="#遍历对象的一些方法" class="headerlink" title="遍历对象的一些方法"></a>遍历对象的一些方法</h2><ul>
+<li><p>使用Object.keys()遍历，返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性).</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-string">'0'</span>:<span class="hljs-string">'a'</span>,<span class="hljs-string">'1'</span>:<span class="hljs-string">'b'</span>,<span class="hljs-string">'2'</span>:<span class="hljs-string">'c'</span>&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>&#123;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-built_in">console</span>.log(key,obj[key]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用for..in..遍历,循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-string">'0'</span>:<span class="hljs-string">'a'</span>,<span class="hljs-string">'1'</span>:<span class="hljs-string">'b'</span>,<span class="hljs-string">'2'</span>:<span class="hljs-string">'c'</span>&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> obj) &#123;</span><br><span class="line"> </span><br><span class="line"><span class="hljs-built_in">console</span>.log(i,<span class="hljs-string">":"</span>,obj[i]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Object.getOwnPropertyNames(obj)遍历,返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-string">'0'</span>:<span class="hljs-string">'a'</span>,<span class="hljs-string">'1'</span>:<span class="hljs-string">'b'</span>,<span class="hljs-string">'2'</span>:<span class="hljs-string">'c'</span>&#125;;</span><br><span class="line"><span class="hljs-built_in">Object</span>.getOwnPropertyNames(obj).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>&#123;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(key,obj[key]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Reflect.ownKeys(obj)遍历,返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举. </p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-string">'0'</span>:<span class="hljs-string">'a'</span>,<span class="hljs-string">'1'</span>:<span class="hljs-string">'b'</span>,<span class="hljs-string">'2'</span>:<span class="hljs-string">'c'</span>&#125;;</span><br><span class="line"><span class="hljs-built_in">Reflect</span>.ownKeys(obj).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>&#123;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(key,obj[key]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/08/09/ES6遍历数组的一些方法/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/ES6/">ES6</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/07/15/5d2bd45a3679321657.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
         
-<div class="card widget">
+
+            
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/09/ES7-async的使用/">
+                                            <span class="level-item">ES7-async的使用</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <a href="/2019/07/23/Angular的服务以及数据的持久化存储/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="Angular的服务以及数据的持久化存储">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-23T13:58:39.000Z">2019-07-23</time>
-                        <a href="/2019/07/23/Angular的服务以及数据的持久化存储/" class="has-link-black-ter is-size-6">Angular的服务以及数据的持久化存储</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/22/初识Angular/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="初识Angular">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-22T03:01:27.000Z">2019-07-22</time>
-                        <a href="/2019/07/22/初识Angular/" class="has-link-black-ter is-size-6">初识Angular</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/16/React中绑定this并传参的几种方式/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg" alt="React中绑定this并传参的几种方式">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-16T02:58:17.000Z">2019-07-16</time>
-                        <a href="/2019/07/16/React中绑定this并传参的几种方式/" class="has-link-black-ter is-size-6">React中绑定this并传参的几种方式</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/React/">React</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/09/TypeScript中的装饰器/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的装饰器">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-09T15:34:31.000Z">2019-07-09</time>
-                        <a href="/2019/07/09/TypeScript中的装饰器/" class="has-link-black-ter is-size-6">TypeScript中的装饰器</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/09/TypeScript中的模块以及命名空间/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的模块以及命名空间">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-09T15:33:30.000Z">2019-07-09</time>
-                        <a href="/2019/07/09/TypeScript中的模块以及命名空间/" class="has-link-black-ter is-size-6">TypeScript中的模块以及命名空间</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript对类型、接口、类、泛型的综合运用">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-09T11:01:11.000Z">2019-07-09</time>
-                        <a href="/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/" class="has-link-black-ter is-size-6">TypeScript对类型、接口、类、泛型的综合运用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/09/TypeScript中的泛型/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的泛型">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-09T10:57:05.000Z">2019-07-09</time>
-                        <a href="/2019/07/09/TypeScript中的泛型/" class="has-link-black-ter is-size-6">TypeScript中的泛型</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/09/ES6中的模块导入与导出/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png" alt="ES6中的模块导入与导出">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-09T10:43:40.000Z">2019-07-09</time>
-                        <a href="/2019/07/09/ES6中的模块导入与导出/" class="has-link-black-ter is-size-6">ES6中的模块导入与导出</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/ES6/">ES6</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/08/TypeScript中的接口/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的接口">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-08T14:20:04.000Z">2019-07-08</time>
-                        <a href="/2019/07/08/TypeScript中的接口/" class="has-link-black-ter is-size-6">TypeScript中的接口</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/07/08/TypeScript中的类/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=29439568c711728b24208470a995a8ab/908fa0ec08fa513dded47627376d55fbb3fbd9c9.jpg" alt="TypeScript中的类">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-07-08T08:19:25.000Z">2019-07-08</time>
-                        <a href="/2019/07/08/TypeScript中的类/" class="has-link-black-ter is-size-6">TypeScript中的类</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#ES6遍历数组的一些方法">
+        <span class="has-mr-6">1</span>
+        <span>ES6遍历数组的一些方法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#数组的排序">
+        <span class="has-mr-6">1.1</span>
+        <span>数组的排序</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#遍历对象的一些方法">
+        <span class="has-mr-6">2</span>
+        <span>遍历对象的一些方法</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
 
-    
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/5/">上一页</a>
-        </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/7/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/5/">5</a></li>
-            
-            <li><a class="pagination-link is-current" href="/archives/page/6/">6</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/7/">7</a></li>
-            
-        </ul>
-    </nav>
-</div>
-
-                                        </div>
-                                        
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
-                        
-                            
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -599,8 +519,8 @@
         
     </div>
 </div>
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -705,11 +625,11 @@
     </div>
 </div>
 
-                                
-                                    
-                                        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-                                            
-                                                <div class="card widget">
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -754,8 +674,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -872,8 +792,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -883,8 +803,8 @@
     </div>
 </div>
 
-                                                    
-                                                <div class="card widget">
+                                                                            
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
@@ -1008,8 +928,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 
 <div class="card widget">
     <div class="card-content">
@@ -1036,353 +956,12 @@
 </div>
 
 
-                                                    
-                                        </div>
-                                        
-                    </div>
-                    
-
-                        <!-- 粘贴的部分 -->
-                        
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
                                             
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-                        
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">47</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">20</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Angular/">
-            <span class="level-start">
-                <span class="level-item">Angular</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">11</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ES6/">
-            <span class="level-start">
-                <span class="level-item">ES6</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ES7/">
-            <span class="level-start">
-                <span class="level-item">ES7</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Git/">
-            <span class="level-start">
-                <span class="level-item">Git</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/MongoDB/">
-            <span class="level-start">
-                <span class="level-item">MongoDB</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">7</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Nodejs/">
-            <span class="level-start">
-                <span class="level-item">Nodejs</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">10</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React/">
-            <span class="level-start">
-                <span class="level-item">React</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">13</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React-native/">
-            <span class="level-start">
-                <span class="level-item">React-native</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Redux/">
-            <span class="level-start">
-                <span class="level-item">Redux</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/TypeScript/">
-            <span class="level-start">
-                <span class="level-item">TypeScript</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">8</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ionic/">
-            <span class="level-start">
-                <span class="level-item">ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/开发工具/">
-            <span class="level-start">
-                <span class="level-item">开发工具</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            ✍标签云
-        </h3>
-        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.75px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
-    </div>
-</div>
-
-                                
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Angular/">
-                        <span class="tag">Angular</span>
-                        <span class="tag is-grey">11</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES6/">
-                        <span class="tag">ES6</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES7/">
-                        <span class="tag">ES7</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Express/">
-                        <span class="tag">Express</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MongoDB/">
-                        <span class="tag">MongoDB</span>
-                        <span class="tag is-grey">7</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Nodejs/">
-                        <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React/">
-                        <span class="tag">React</span>
-                        <span class="tag is-grey">13</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React-native/">
-                        <span class="tag">React-native</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Redux/">
-                        <span class="tag">Redux</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/TypeScript/">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
-                        <span class="tag">Vue</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/git/">
-                        <span class="tag">git</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ionic/">
-                        <span class="tag">ionic</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vs-code/">
-                        <span class="tag">vs code</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vuex/">
-                        <span class="tag">vuex</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-                                
-                            
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            🔗友情链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">ranshan丶</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">q32757468.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-                                
-                                    
-                    </div>
-                    
+                                            
 
                         <!-- 粘贴的部分 -->
                         
@@ -1395,7 +974,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                                <img src="/images/mylogo.png" alt="ES6遍历数组的一些方法" height="28">
                                 
                 </a>
                 <p class="is-size-7">
