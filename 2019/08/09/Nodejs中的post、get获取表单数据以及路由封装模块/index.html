@@ -5,24 +5,26 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
 <title>
-    分类: Git - Just for fun
+    Nodejs中的post、get获取表单数据以及路由封装模块 - Just for fun
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
     
-        <meta name="description" content="Just for fun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Just for fun">
-<meta property="og:url" content="https://zhongyuehui.github.io/categories/Git/index.html">
+        <meta name="description" content="在原生Nodejs中如何获取get和post数据，相对于express框架来说，原生较为麻烦。">
+<meta name="keywords" content="Nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs中的post、get获取表单数据以及路由封装模块">
+<meta property="og:url" content="https://zhongyuehui.github.io/2019/08/09/Nodejs中的post、get获取表单数据以及路由封装模块/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Just for fun">
+<meta property="og:description" content="在原生Nodejs中如何获取get和post数据，相对于express框架来说，原生较为麻烦。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta property="og:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
+<meta property="og:updated_time" content="2019-08-11T01:21:20.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Just for fun">
-<meta name="twitter:description" content="Just for fun">
-<meta name="twitter:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta name="twitter:title" content="Nodejs中的post、get获取表单数据以及路由封装模块">
+<meta name="twitter:description" content="在原生Nodejs中如何获取get和post数据，相对于express框架来说，原生较为麻烦。">
+<meta name="twitter:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
             
 
 
@@ -30,7 +32,7 @@
                 
 
                         
-                            <link rel="alternative" href="/atom.xml" title="Just for fun" type="application/atom+xml">
+                            <link rel="alternative" href="/atom.xml" title="Nodejs中的post、get获取表单数据以及路由封装模块" type="application/atom+xml">
                             
 
                                 
@@ -113,7 +115,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                <img src="/images/mylogo.png" alt="Nodejs中的post、get获取表单数据以及路由封装模块" height="28">
             
             </a>
         </div>
@@ -144,6 +146,10 @@
                     </a>
                     
                 
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
                 
                 
                 <a class="navbar-item search" title="🔍搜索" href="javascript:;">
@@ -195,170 +201,212 @@
                                 <div class="container">
                                     <div class="columns">
                                         <!-- 将main_column_class() 改为 col() -->
-                                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                                        <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
                                             <div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">分类</a></li>
+    
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="Nodejs中的post、get获取表单数据以及路由封装模块">
+                </span>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-08-09T01:18:10.000Z">2019-08-09</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 663 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                    Nodejs中的post、get获取表单数据以及路由封装模块
+                                        
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在原生Nodejs中如何获取get和post数据，相对于express框架来说，原生较为麻烦。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Nodejs中的post、get获取表单数据"><a href="#Nodejs中的post、get获取表单数据" class="headerlink" title="Nodejs中的post、get获取表单数据"></a>Nodejs中的post、get获取表单数据</h2><h3 id="获取get数据"><a href="#获取get数据" class="headerlink" title="获取get数据"></a>获取get数据</h3><ul>
+<li><p>假设有一个登陆页面<code>login.html</code></p>
+  <figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> &lt;h2&gt;登陆&lt;/h2&gt;</span><br><span class="line">&lt;<span class="hljs-keyword">form</span> action=<span class="hljs-string">"/dologin"</span> method=<span class="hljs-string">"get"</span>&gt;</span><br><span class="line">    &lt;<span class="hljs-keyword">label</span> id=<span class="hljs-string">"username"</span>&gt;</span><br><span class="line">        用户名:</span><br><span class="line">        &lt;<span class="hljs-keyword">input</span> name=<span class="hljs-string">"username"</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"text"</span> id=<span class="hljs-string">"username"</span> /&gt;</span><br><span class="line">    &lt;/<span class="hljs-keyword">label</span>&gt;</span><br><span class="line">    &lt;<span class="hljs-keyword">br</span>&gt;</span><br><span class="line">    &lt;<span class="hljs-keyword">label</span> id=<span class="hljs-string">"password"</span>&gt;</span><br><span class="line">        密码:</span><br><span class="line">        &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"password"</span> name=<span class="hljs-string">"password"</span> id=<span class="hljs-string">"password"</span>&gt;</span><br><span class="line">    &lt;/<span class="hljs-keyword">label</span>&gt;</span><br><span class="line">    &lt;<span class="hljs-keyword">br</span>&gt;</span><br><span class="line">    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"登陆"</span>&gt;</span><br><span class="line">&lt;/<span class="hljs-keyword">form</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们在<code>app.js</code>中的路由模块中可以使用url.parse(request.url,true).query拿到传递过来的数据对象</p>
+  <figure class="highlight qml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-built_in">url</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> ejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ejs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> port = <span class="hljs-number">8081</span></span><br><span class="line">http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//头文件</span></span><br><span class="line">    response.writeHead(<span class="hljs-number">200</span>, &#123; <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/html'</span> &#125;);</span><br><span class="line">    <span class="hljs-comment">//过滤掉url中的参数</span></span><br><span class="line">    <span class="hljs-keyword">let</span> pathname = <span class="hljs-built_in">url</span>.parse(request.url).pathname</span><br><span class="line">    </span><br><span class="line">     <span class="hljs-keyword">if</span> (pathname == <span class="hljs-string">'/dologin'</span>) &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">url</span>.parse(request.url, <span class="hljs-literal">true</span>).query)</span><br><span class="line">        response.end(<span class="hljs-string">'dologin'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).listen(port, () =&gt; &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'run'</span> + port)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样就成功的获取到了我们传递过来的数据</p>
+<h3 id="获取POST传递的数据"><a href="#获取POST传递的数据" class="headerlink" title="获取POST传递的数据"></a>获取POST传递的数据</h3></li>
+<li><p>使用req.method可以获取请求的类型，判断类型后进行处理</p>
+  <figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">const http = require('http')</span><br><span class="line">const fs = require('fs')</span><br><span class="line">const url = require('url')</span><br><span class="line">const ejs = require('ejs')</span><br><span class="line">http.createServer(function (request, response) &#123;</span><br><span class="line">    response.writeHead(200, &#123; 'Content-Type': 'text/html' &#125;);</span><br><span class="line">    const URL = url.parse(request.url)</span><br><span class="line">    const pathname = URL.pathname</span><br><span class="line">    if (pathname == '/') &#123;</span><br><span class="line">        ejs.renderFile('views/index.html', (error, data) =&gt; &#123;</span><br><span class="line">            <span class="hljs-attribute">response.end(data)</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; else if (pathname == '/login') &#123;</span><br><span class="line">        ejs.renderFile('views/login.html', (error, data) =&gt; &#123;</span><br><span class="line">            <span class="hljs-attribute">response.end(data)</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; else if (pathname == '/dologin') &#123;</span><br><span class="line">        const method = request.method</span><br><span class="line">        if (method == 'GET') &#123;//判断请求类型是不是GET</span><br><span class="line">            <span class="hljs-attribute">console.log(URL.query);//获取get请求的数据，写入文件中</span></span><br><span class="line">            fs.appendFile('./files/user.txt', URL.query + '\n', error =&gt; &#123;</span><br><span class="line">                if (error) &#123;</span><br><span class="line">                    <span class="hljs-attribute">console.log(error);</span></span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    <span class="hljs-attribute">response.end("&lt;script&gt;alert('登陆成功');history.back()&lt;/script&gt;")</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125; else if (method == 'POST') &#123; //判断请求类型是不是POST</span><br><span class="line">            let postData = ''</span><br><span class="line">            request.on('data', chunk =&gt; &#123; //获取post请求的数据</span><br><span class="line">                postData += chunk</span><br><span class="line">            &#125;)</span><br><span class="line">            request.on('end', (error, chunk) =&gt; &#123;</span><br><span class="line">                if (postData) &#123;</span><br><span class="line">                    // 写入文件中</span><br><span class="line">                    fs.appendFile('./files/user.txt', postData + '\n', error =&gt; &#123;</span><br><span class="line">                        if (error) &#123;</span><br><span class="line">                            <span class="hljs-attribute">console.log(error);</span></span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            <span class="hljs-attribute">response.end("&lt;script&gt;alert('登陆成功');history.back()&lt;/script&gt;")</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).listen(8081);</span><br><span class="line"></span><br><span class="line">console.log('Server running at http://127.0.0.1:8081/');</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="封装模块"><a href="#封装模块" class="headerlink" title="封装模块"></a>封装模块</h3><ul>
+<li><p>将路由模块封装单独封装出来,models/model.js</p>
+  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> ejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ejs'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = &#123;</span><br><span class="line">    login: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'login'</span>);</span><br><span class="line">        ejs.renderFile(<span class="hljs-function">(<span class="hljs-params">'views/login.html'</span>), (<span class="hljs-params">error, data</span>) =&gt;</span> &#123;</span><br><span class="line">            response.end(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    resgin: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"resgin"</span>);</span><br><span class="line">        ejs.renderFile(<span class="hljs-string">'views/resgin.html'</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> &#123;</span><br><span class="line">            response.end(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    home: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line">        response.end(<span class="hljs-string">'home'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    dologin: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">let</span> postData = <span class="hljs-string">''</span></span><br><span class="line">        request.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123; <span class="hljs-comment">//获取post请求的数据</span></span><br><span class="line">            postData += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        request.on(<span class="hljs-string">'end'</span>, <span class="hljs-function">(<span class="hljs-params">error, chunk</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">if</span> (postData) &#123;</span><br><span class="line">                <span class="hljs-comment">// 写入文件中</span></span><br><span class="line">                fs.appendFile(<span class="hljs-string">'./files/user2.txt'</span>, postData + <span class="hljs-string">'\n'</span>, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="hljs-keyword">if</span> (error) &#123;</span><br><span class="line">                        <span class="hljs-built_in">console</span>.log(error);</span><br><span class="line">                    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">                        response.end(<span class="hljs-string">"&lt;script&gt;alert('登陆成功');history.back()&lt;/script&gt;"</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = app</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>那么此时router模块就非常简洁了 router.js</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> model = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./models/model'</span>)</span><br><span class="line">http.createServer(<span class="hljs-function">(<span class="hljs-params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">    response.writeHead(<span class="hljs-number">200</span>, &#123; <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'text/html'</span> &#125;);</span><br><span class="line">    <span class="hljs-comment">//将路由从 /login 切割成 login</span></span><br><span class="line">    <span class="hljs-keyword">const</span> pathname = url.parse(request.url).pathname.replace(<span class="hljs-string">'/'</span>, <span class="hljs-string">''</span>)</span><br><span class="line">    <span class="hljs-comment">//调用model路由模块，使用[]的形式可以传递属性变量</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (pathname != <span class="hljs-string">'favicon.ico'</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">try</span> &#123; <span class="hljs-comment">//如果可以找到pathname对应的路由，就执行这个</span></span><br><span class="line">            model[pathname](request, response)</span><br><span class="line"></span><br><span class="line">        &#125; <span class="hljs-keyword">catch</span>&#123;<span class="hljs-comment">//找不到就执行这个</span></span><br><span class="line">            model[<span class="hljs-string">'home'</span>](request, response)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="hljs-number">8081</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Server running at http://127.0.0.1:8081/'</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+
+                                
+    <div style="padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #565a5f;
+        line-height: 2em;
+    ">
+        <div class="copyright-left">
+            <i class="fa fa-lightbulb"></i> 本文由 <a href="http://blog.kimzing.com/">Just for fun - zhongyuehui</a> 创作，采用
+            <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。 可自由转载、引用，但需署名作者且注明文章出处
+            https://zhongyuehui.github.io/2019/08/09/Nodejs中的post、get获取表单数据以及路由封装模块/index.html <br>
+        </div>
+        <div style="clear:both;height:0px;"></div>
+    </div>
+    
+
+                        </div>
+                        
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/Nodejs/">Nodejs</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                                        
+            </div>
+</div>
+
+
+    
+        <div class="card">
+            <div class="card-content">
+                <h3 class="menu-label has-text-centered">
+                    喜欢这篇文章？打赏一下作者吧
+                </h3>
+                <div class="buttons is-centered">
+                    
+                        
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/07/15/5d2bd45a3679321657.jpg" alt="支付宝"></div>
+</a>
+
+                            
+                        
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://i.loli.net/2019/06/24/5d10522527bd654254.png" alt="微信"></div>
+</a>
+
+                            
+                </div>
+            </div>
+        </div>
+        
+
             
-            <li class="is-active"><a href="#" aria-current="page">Git</a></li>
-        </ul>
-        </nav>
+                <div class="card card-transparent">
+                    <div class="level post-navigation is-flex-wrap is-mobile">
+                        
+                            <div class="level-start">
+                                <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/09/ES7-async的使用/">
+                                    <i class="level-item fas fa-chevron-left"></i>
+                                    <span class="level-item">ES7-async的使用</span>
+                                </a>
+                            </div>
+                            
+                                
+                                    <div class="level-end">
+                                        <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/08/Express路由的模块化/">
+                                            <span class="level-item">Express路由的模块化</span>
+                                            <i class="level-item fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    
+                    </div>
+                </div>
+                
+
+                    
+                        <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
+
+                            
+                                        </div>
+                                        
+
+                        <!-- 粘贴的部分 -->
+                        
+                            <!-- 修改，可选保留的栏 -->
+                            
+                                
+                                    
+                                        
+                                            <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+                                                
+                                                    
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#Nodejs中的post、get获取表单数据">
+        <span class="has-mr-6">1</span>
+        <span>Nodejs中的post、get获取表单数据</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#获取get数据">
+        <span class="has-mr-6">1.1</span>
+        <span>获取get数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#获取POST传递的数据">
+        <span class="has-mr-6">1.2</span>
+        <span>获取POST传递的数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#封装模块">
+        <span class="has-mr-6">1.3</span>
+        <span>封装模块</span>
+        </a></li></ul></li></ul>
+        </div>
     </div>
 </div>
 
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/02/关联多个远程仓库/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg" alt="关联多个远程仓库">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-02T01:21:36.000Z">2019-07-02</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 466 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/02/关联多个远程仓库/">
-                                    关联多个远程仓库
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/02/关联多个远程仓库/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/01/git的使用/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/01/ZGibf1.png" alt="git的使用">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-01T13:47:23.000Z">2019-07-01</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    28 分钟 读完 (大约 4149 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/01/git的使用/">
-                                    git的使用
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>git是什么？Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/01/git的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-
-                                        </div>
-                                        
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
-                        
-                            
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -460,8 +508,8 @@
         
     </div>
 </div>
-                                
-                            
+                                                        
+                                                    
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -566,11 +614,11 @@
     </div>
 </div>
 
-                                
-                                    
-                                        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-                                            
-                                                <div class="card widget">
+                                                        
+                                                            
+                                                                <div class="column-right-shadow is-hidden-widescreen is-sticky">
+                                                                    
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -615,8 +663,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -733,8 +781,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -744,8 +792,8 @@
     </div>
 </div>
 
-                                                    
-                                                <div class="card widget">
+                                                                            
+                                                                        <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
@@ -883,8 +931,8 @@
         </div>
     </div>
 </div>
-                                                    
-                                                
+                                                                            
+                                                                        
 
 <div class="card widget">
     <div class="card-content">
@@ -911,367 +959,12 @@
 </div>
 
 
-                                                    
-                                        </div>
-                                        
-                    </div>
-                    
-
-                        <!-- 粘贴的部分 -->
-                        
+                                                                            
+                                                                </div>
+                                                                
+                                            </div>
                                             
-    <!-- 修改 -->
-    
-        
-            
-                
-                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-                        
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">52</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">20</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Angular/">
-            <span class="level-start">
-                <span class="level-item">Angular</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">11</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ES6/">
-            <span class="level-start">
-                <span class="level-item">ES6</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ES7/">
-            <span class="level-start">
-                <span class="level-item">ES7</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Git/">
-            <span class="level-start">
-                <span class="level-item">Git</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/MongoDB/">
-            <span class="level-start">
-                <span class="level-item">MongoDB</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">7</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Nodejs/">
-            <span class="level-start">
-                <span class="level-item">Nodejs</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">15</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React/">
-            <span class="level-start">
-                <span class="level-item">React</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">13</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React-native/">
-            <span class="level-start">
-                <span class="level-item">React-native</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Redux/">
-            <span class="level-start">
-                <span class="level-item">Redux</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/TypeScript/">
-            <span class="level-start">
-                <span class="level-item">TypeScript</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">8</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/ionic/">
-            <span class="level-start">
-                <span class="level-item">ionic</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/开发工具/">
-            <span class="level-start">
-                <span class="level-item">开发工具</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-                                
-                            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            ✍标签云
-        </h3>
-        <a href="/tags/Angular/" style="font-size: 18.75px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.5px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 15px;">Express</a> <a href="/tags/Koa/" style="font-size: 11.25px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 16.25px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.75px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 15px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 17.5px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.25px;">Vue</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/ionic/" style="font-size: 11.25px;">ionic</a> <a href="/tags/koa/" style="font-size: 12.5px;">koa</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.25px;">webpack</a>
-    </div>
-</div>
-
-                                
-                            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Angular/">
-                        <span class="tag">Angular</span>
-                        <span class="tag is-grey">11</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES6/">
-                        <span class="tag">ES6</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ES7/">
-                        <span class="tag">ES7</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Express/">
-                        <span class="tag">Express</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Koa/">
-                        <span class="tag">Koa</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MongoDB/">
-                        <span class="tag">MongoDB</span>
-                        <span class="tag is-grey">7</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Nodejs/">
-                        <span class="tag">Nodejs</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React/">
-                        <span class="tag">React</span>
-                        <span class="tag is-grey">13</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/React-native/">
-                        <span class="tag">React-native</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Redux/">
-                        <span class="tag">Redux</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/TypeScript/">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
-                        <span class="tag">Vue</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/git/">
-                        <span class="tag">git</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ionic/">
-                        <span class="tag">ionic</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/koa/">
-                        <span class="tag">koa</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vs-code/">
-                        <span class="tag">vs code</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/vuex/">
-                        <span class="tag">vuex</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack/">
-                        <span class="tag">webpack</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-                                
-                            
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            🔗友情链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://q32757468.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">ranshan丶</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">q32757468.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-                                
-                                    
-                    </div>
-                    
+                                            
 
                         <!-- 粘贴的部分 -->
                         
@@ -1284,7 +977,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/mylogo.png" alt="Just for fun" height="28">
+                                <img src="/images/mylogo.png" alt="Nodejs中的post、get获取表单数据以及路由封装模块" height="28">
                                 
                 </a>
                 <p class="is-size-7">
