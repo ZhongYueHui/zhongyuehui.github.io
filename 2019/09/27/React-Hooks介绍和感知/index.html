@@ -11,19 +11,20 @@
 
 
     
-        <meta name="description" content="Just for fun">
+        <meta name="description" content="2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏  React-Hooks介绍  2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏。React Hooks就是用函数的形式代替原来的继承类的形式，并且使用预函数的形式管理state，有Hooks可以不再使用类的形式定义组件了。这时候你的认知也">
+<meta name="keywords" content="React-Hooks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-Hooks介绍和感知">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/09/27/React-Hooks介绍和感知/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Just for fun">
+<meta property="og:description" content="2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏  React-Hooks介绍  2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏。React Hooks就是用函数的形式代替原来的继承类的形式，并且使用预函数的形式管理state，有Hooks可以不再使用类的形式定义组件了。这时候你的认知也">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhongyuehui.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-27T09:37:22.101Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
+<meta property="og:updated_time" content="2019-09-27T10:35:03.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-Hooks介绍和感知">
-<meta name="twitter:description" content="Just for fun">
-<meta name="twitter:image" content="https://zhongyuehui.github.io/images/og_image.png">
+<meta name="twitter:description" content="2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏  React-Hooks介绍  2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏。React Hooks就是用函数的形式代替原来的继承类的形式，并且使用预函数的形式管理state，有Hooks可以不再使用类的形式定义组件了。这时候你的认知也">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
             
 
 
@@ -203,17 +204,27 @@
                                         <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main">
                                             <div class="card">
     
+        <div class="card-image">
+            <span class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                </span>
+        </div>
+        
             <div class="card-content article ">
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
                             <time class="level-item has-text-grey" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time>
                             
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/React/">React</a>
+                                </div>
+                                
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 0 个字)
+                    2 分钟 读完 (大约 364 个字)
                 </span>
                                         
                                             
@@ -226,7 +237,38 @@
                                         
                         </h1>
                         <div class="content">
-                            
+                            <blockquote>
+<p>2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏</p>
+</blockquote>
+<h2>React-Hooks介绍</h2>
+<ul>
+<li>2018年底FaceBook的React小组推出Hooks以来，所有的React的开发者都对它大为赞赏。React Hooks就是用函数的形式代替原来的继承类的形式，并且使用预函数的形式管理state，有Hooks可以不再使用类的形式定义组件了。这时候你的认知也要发生变化了，原来把组件分为有状态组件和无状态组件，有状态组件用类的形式声明，无状态组件用函数的形式声明。那现在所有的组件都可以用函数来声明了。</li>
+</ul>
+<h2>React-Hooks感知</h2>
+<ul>
+<li>
+<p>首先我们先创建一个React项目，使用脚手架创建：create-react-app demo01</p>
+</li>
+<li>
+<p>我们定义一个Example.js组件，并且在index.js中注册组件</p>
+</li>
+<li>
+<p>index.js
+<figure class="highlight coffeescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./Example'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;Example /&gt;, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>));</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>Example.js
+<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 原始react语法</span><br><span class="line">/* import React, &#123; Component &#125; <span class="hljs-keyword">from</span> 'react'</span><br><span class="line"></span><br><span class="line">export <span class="hljs-keyword">default</span> class Example extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">    </span><br><span class="line">        this.<span class="hljs-keyword">state</span> = &#123;</span><br><span class="line">             count:<span class="hljs-number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            <span class="hljs-variable">&lt;div&gt;</span></span><br><span class="line">            <span class="hljs-variable">&lt;p&gt;</span>You clicked &#123;this.<span class="hljs-keyword">state</span>.count&#125; times&lt;/p&gt;</span><br><span class="line">            <span class="hljs-variable">&lt;button onClick=&#123;this.countAdd.bind(this)&#125;&gt;</span>Chlick me&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">    countAdd=()=&gt;&#123;</span><br><span class="line">     this.<span class="hljs-built_in">set</span>State(&#123;count:this.<span class="hljs-keyword">state</span>.count+<span class="hljs-number">1</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; */</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用Hokks之后
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 使用React-Hooks</span></span><br><span class="line"><span class="hljs-keyword">import</span> React,&#123;useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> [count,stateCount]=useState(<span class="hljs-number">0</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span>(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;You clicked &#123;count&#125; times&lt;<span class="hljs-regexp">/p&gt;</span></span><br><span class="line"><span class="hljs-regexp">            &lt;button onClick=&#123;()=&gt;&#123;stateCount(count+1)&#125;&#125;&gt;Click Me&lt;/</span>button&gt;</span><br><span class="line">        &lt;<span class="hljs-regexp">/div&gt;</span></span><br><span class="line"><span class="hljs-regexp">    )</span></span><br><span class="line"><span class="hljs-regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>很明显我们可以看出代码简化了很多，但是功能却没有变化</p>
+</li>
+</ul>
+
 
                                 
     <div style="padding: 15px;
@@ -253,6 +295,15 @@
 
                         </div>
                         
+                            <div class="level is-size-7 is-uppercase">
+                                <div class="level-start">
+                                    <div class="level-item">
+                                        <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                        <a class="has-link-grey -link" href="/tags/React-Hooks/">React-Hooks</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
                                 
                                         
             </div>
@@ -332,7 +383,15 @@
             <h3 class="menu-label">
                 目录
             </h3>
-            
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1</span>
+        <span>React-Hooks介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2</span>
+        <span>React-Hooks感知</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -393,7 +452,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -452,7 +511,7 @@
             
             <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
                 </p>
             </a>
             
@@ -461,7 +520,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
                     <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -669,7 +728,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">13</span>
+                <span class="level-item tag">14</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -731,7 +790,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -797,6 +856,13 @@
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
                         <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/React-Hooks/">
+                        <span class="tag">React-Hooks</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
