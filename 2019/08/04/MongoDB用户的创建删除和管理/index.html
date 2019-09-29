@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.">
+        <meta name="description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.  &amp;lt;!-- more --&amp;gt; 用户的创建删除和管理   创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限 1234567891011121314151617use admin后db.createUser(&amp;#123;// 创建user表user: &quot;zhong&quot;">
 <meta name="keywords" content="MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB用户的创建删除和管理">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/MongoDB用户的创建删除和管理/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.">
+<meta property="og:description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.  &amp;lt;!-- more --&amp;gt; 用户的创建删除和管理   创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限 1234567891011121314151617use admin后db.createUser(&amp;#123;// 创建user表user: &quot;zhong&quot;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
 <meta property="og:updated_time" content="2019-08-04T10:17:45.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB用户的创建删除和管理">
-<meta name="twitter:description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.">
+<meta name="twitter:description" content="一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.  &amp;lt;!-- more --&amp;gt; 用户的创建删除和管理   创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限 1234567891011121314151617use admin后db.createUser(&amp;#123;// 创建user表user: &quot;zhong&quot;">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
             
 
@@ -240,91 +240,112 @@
                             <blockquote>
 <p>一般的在一些项目上,我们都是通过用户来登陆数据库和访问数据库的,这样可以更好的管理用户的权限.</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="用户的创建删除和管理"><a href="#用户的创建删除和管理" class="headerlink" title="用户的创建删除和管理"></a>用户的创建删除和管理</h2><ul>
-<li><p>创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限</p>
-  <figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">use admin后</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;<span class="hljs-comment">// 创建user表</span></span><br><span class="line"><span class="hljs-string">user:</span> <span class="hljs-string">"zhong"</span>,   <span class="hljs-comment">//用户名称</span></span><br><span class="line"><span class="hljs-string">pwd:</span> <span class="hljs-string">"123456"</span>, <span class="hljs-comment">//用户密码</span></span><br><span class="line"><span class="hljs-string">customData:</span> &#123;  <span class="hljs-comment">//数据</span></span><br><span class="line"><span class="hljs-symbol">    name:</span> <span class="hljs-string">'Mrzhong'</span>, <span class="hljs-comment">//用户名</span></span><br><span class="line"><span class="hljs-symbol">    email:</span> <span class="hljs-string">'web0432@126.com'</span>, <span class="hljs-comment">//邮箱</span></span><br><span class="line"><span class="hljs-symbol">    age:</span> <span class="hljs-number">18</span>,</span><br><span class="line">&#125;,</span><br><span class="line"><span class="hljs-string">roles:</span> [&#123;  <span class="hljs-comment">//权限模块</span></span><br><span class="line"><span class="hljs-symbol">    role:</span> <span class="hljs-string">"readWrite"</span>,  <span class="hljs-comment">// 具体权限</span></span><br><span class="line"><span class="hljs-symbol">    db:</span> <span class="hljs-string">"User"</span>  <span class="hljs-comment">//赋予该权限的数据库</span></span><br><span class="line">&#125;,</span><br><span class="line">    <span class="hljs-string">'read'</span>  <span class="hljs-comment">//其他数据库</span></span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>&lt;!-- more --&gt;</p>
+<h2>用户的创建删除和管理</h2>
+<ul>
+<li>
+<p>创建用户,在admim数据库中创建user数据表，在该表中添加用户数据和权限
+<figure class="highlight groovy hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">use admin后</span><br><span class="line"></span><br><span class="line">db.createUser(&#123;<span class="hljs-comment">// 创建user表</span></span><br><span class="line"><span class="hljs-string">user:</span> <span class="hljs-string">"zhong"</span>,   <span class="hljs-comment">//用户名称</span></span><br><span class="line"><span class="hljs-string">pwd:</span> <span class="hljs-string">"123456"</span>, <span class="hljs-comment">//用户密码</span></span><br><span class="line"><span class="hljs-string">customData:</span> &#123;  <span class="hljs-comment">//数据</span></span><br><span class="line"><span class="hljs-symbol">    name:</span> <span class="hljs-string">'Mrzhong'</span>, <span class="hljs-comment">//用户名</span></span><br><span class="line"><span class="hljs-symbol">    email:</span> <span class="hljs-string">'web0432@126.com'</span>, <span class="hljs-comment">//邮箱</span></span><br><span class="line"><span class="hljs-symbol">    age:</span> <span class="hljs-number">18</span>,</span><br><span class="line">&#125;,</span><br><span class="line"><span class="hljs-string">roles:</span> [&#123;  <span class="hljs-comment">//权限模块</span></span><br><span class="line"><span class="hljs-symbol">    role:</span> <span class="hljs-string">"readWrite"</span>,  <span class="hljs-comment">// 具体权限</span></span><br><span class="line"><span class="hljs-symbol">    db:</span> <span class="hljs-string">"User"</span>  <span class="hljs-comment">//赋予该权限的数据库</span></span><br><span class="line">&#125;,</span><br><span class="line">    <span class="hljs-string">'read'</span>  <span class="hljs-comment">//其他数据库</span></span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>用户权限的说明：</p>
+<li>
+<p>用户权限的说明：</p>
 <table>
 <thead>
 <tr>
 <th>权限</th>
-<th align="center">说明</th>
+<th style="text-align:center">说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Read</td>
-<td align="center">允许用户读取指定数据库</td>
+<td style="text-align:center">允许用户读取指定数据库</td>
 </tr>
 <tr>
 <td>readWrite</td>
-<td align="center">允许用户读写指定数据库</td>
+<td style="text-align:center">允许用户读写指定数据库</td>
 </tr>
 <tr>
 <td>dbAdmin</td>
-<td align="center">允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</td>
+<td style="text-align:center">允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</td>
 </tr>
 <tr>
 <td>userAdmin</td>
-<td align="center">允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</td>
+<td style="text-align:center">允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</td>
 </tr>
 <tr>
 <td>clusterAdmin</td>
-<td align="center">只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</td>
 </tr>
 <tr>
 <td>readAnyDatabase</td>
-<td align="center">只在admin数据库中可用，赋予用户所有数据库的读权限</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读权限</td>
 </tr>
 <tr>
 <td>readWriteAnyDatabase</td>
-<td align="center">只在admin数据库中可用，赋予用户所有数据库的读写权限</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的读写权限</td>
 </tr>
 <tr>
 <td>userAdminAnyDatabase</td>
-<td align="center">只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</td>
 </tr>
 <tr>
 <td>dbAdminAnyDatabase</td>
-<td align="center">只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</td>
+<td style="text-align:center">只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</td>
 </tr>
 <tr>
 <td>root</td>
-<td align="center">只在admin数据库中可用。超级账号，超级权限</td>
+<td style="text-align:center">只在admin数据库中可用。超级账号，超级权限</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </li>
 </ul>
-<h3 id="删除用户数据"><a href="#删除用户数据" class="headerlink" title="删除用户数据"></a>删除用户数据</h3><ul>
-<li><p>使用<code>db.system.users.remove({要删除的用户信息条件})</code>一般是以用户名为条件</p>
-<h3 id="建权"><a href="#建权" class="headerlink" title="建权"></a>建权</h3></li>
-<li><p>有时候我们要验证用户的用户名密码是否正确，就需要用到MongoDB提供的健全操作。也算是一种登录操作，不过MongoDB把这叫做建权。</p>
+<h3>删除用户数据</h3>
+<ul>
+<li>使用<code>db.system.users.remove({要删除的用户信息条件})</code>一般是以用户名为条件</li>
+</ul>
+<h3>建权</h3>
+<ul>
+<li>
+<p>有时候我们要验证用户的用户名密码是否正确，就需要用到MongoDB提供的健全操作。也算是一种登录操作，不过MongoDB把这叫做建权。</p>
 </li>
-<li><p>建权就是给之前的数据表注册给功能一样，登陆了建权的用户可以和创建用户时的权限做匹配，就是你创建用户的时候允许的权限，建权之后就可以获得权限</p>
+<li>
+<p>建权就是给之前的数据表注册给功能一样，登陆了建权的用户可以和创建用户时的权限做匹配，就是你创建用户的时候允许的权限，建权之后就可以获得权限</p>
 </li>
-<li><p>如何建权呢？</p>
-  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br></pre></td></tr></table></figure>
+<li>
+<p>如何建权呢？
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>使用用户名称和密码进行建权，建权成功后返回1</p>
-  <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br><span class="line"><span class="hljs-selector-tag">1</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>使用用户名称和密码进行建权，建权成功后返回1
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="hljs-selector-tag">db</span><span class="hljs-selector-class">.auth</span>(<span class="hljs-string">"zhong"</span>,<span class="hljs-string">"123456"</span>)</span><br><span class="line"><span class="hljs-selector-tag">1</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>错误返回</p>
-  <figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">Error: </span>Authentication failed.</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-
+<li>
+<p>错误返回
+<figure class="highlight subunit hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">Error: </span>Authentication failed.</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-<h4 id="启动建权"><a href="#启动建权" class="headerlink" title="启动建权"></a>启动建权</h4><ul>
-<li><p>重启数据库服务器，设置必须使用建权登陆</p>
-  <figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod <span class="hljs-comment">--auth</span></span><br></pre></td></tr></table></figure>
+<h4>启动建权</h4>
+<ul>
+<li>
+<p>重启数据库服务器，设置必须使用建权登陆
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod <span class="hljs-comment">--auth</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>启动后，用户登录只能用用户名和密码进行登录，原来的mongo形式链接已经不起作用了。相应的用户权限也对应妥当。实际项目中我们启动服务器必须使用建权形式</p>
-<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4></li>
-<li><p>如果在配置用户之后，用户想登录，可以使用mongo的形式，不过需要配置用户名密码：</p>
-  <figure class="highlight dns hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongom  -u zhong -p <span class="hljs-number">123456 127.0</span>.<span class="hljs-number">0.1:27017</span>/admin</span><br></pre></td></tr></table></figure>
+<li>
+<p>启动后，用户登录只能用用户名和密码进行登录，原来的mongo形式链接已经不起作用了。相应的用户权限也对应妥当。实际项目中我们启动服务器必须使用建权形式</p>
 </li>
-<li><p>登陆成功后，我们可以对指定的<code>User</code>数据库进行读写操作，但是对其他数据库只读，这个时候我们修改其他数据库的数据就会报错</p>
-  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.insert</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;)  <span class="hljs-comment">//这个时test数据库的表</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nInserted"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>登录</h4>
+<ul>
+<li>
+<p>如果在配置用户之后，用户想登录，可以使用mongo的形式，不过需要配置用户名密码：
+<figure class="highlight dns hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongom  -u zhong -p <span class="hljs-number">123456 127.0</span>.<span class="hljs-number">0.1:27017</span>/admin</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>登陆成功后，我们可以对指定的<code>User</code>数据库进行读写操作，但是对其他数据库只读，这个时候我们修改其他数据库的数据就会报错
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db<span class="hljs-selector-class">.info</span><span class="hljs-selector-class">.insert</span>(&#123;<span class="hljs-string">"name"</span>:<span class="hljs-string">"zs"</span>&#125;)  <span class="hljs-comment">//这个时test数据库的表</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">WriteResult</span><span class="hljs-params">(&#123; <span class="hljs-string">"nInserted"</span> : <span class="hljs-number">1</span> &#125;)</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -449,23 +470,23 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#用户的创建删除和管理">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>用户的创建删除和管理</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#删除用户数据">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>删除用户数据</span>
         </a></li><li>
-        <a class="is-flex" href="#建权">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>建权</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#启动建权">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2.1</span>
         <span>启动建权</span>
         </a></li><li>
-        <a class="is-flex" href="#登录">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2.2</span>
         <span>登录</span>
         </a></li></ul></li></ul></li></ul>
@@ -509,7 +530,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -586,16 +607,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -605,18 +626,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -624,18 +645,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -643,18 +664,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -662,18 +683,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -700,7 +721,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -805,7 +826,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -867,7 +888,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -939,7 +960,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

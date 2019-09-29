@@ -247,22 +247,93 @@
                             <blockquote>
 <p>React-native是基于React框架的移动端技术，与接近原生的框架，性能高，只要你会React你就可以学习React-native。</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React-native开发app</h2>
+<ul>
+<li>配置好Android环境之后，只需要使用<code>react-native init 项目名称</code></li>
+<li>cd <code>项目名称</code></li>
+<li><code>react-native run-android</code>即可运行</li>
+<li>推荐使用模拟器开发，较为方便</li>
+</ul>
+<h3>react-native项目的一些说明</h3>
+<ul>
+<li>在项目的<code>index.js</code>中，从react-native导入的<code>AppRegistery</code>，它的作用就是注册首页的</li>
+<li>使用AppRegistery注册项目时，第一个参数是你要做的项目app名称，第二个参数是表示把哪个页面注册为项目的首页</li>
+</ul>
+<h3>创建自己的首页</h3>
+<ul>
+<li>在react-native中， 不能使用<code>.jsx</code>文件，只能使用<code>.js</code></li>
+<li>在react-native中,组件的语法与<code>react</code>相似，在组件中也必须要有<code>render</code>函数，但是需要注意的是，RN中，不能使用网页的标签(div,p,img...)，取而代之的是RN的View组件来实现布局</li>
+</ul>
+<h4>布局的一些说明</h4>
+<ul>
+<li>
+<p>使用组件时必须先引入，再使用</p>
+</li>
+<li>
+<p>必须使用<code>View</code>作为布局容器</p>
+</li>
+<li>
+<p>文本内容必须使用<code>Text</code>标签包裹</p>
+</li>
+<li>
+<p><strong>Platform</strong>:提供平台检测功能</p>
+</li>
+<li>
+<p><strong>StyleSheet</strong>：样式相关的组件，专门用来创建样式的</p>
+</li>
+<li>
+<p><strong>Text</strong>：文本节点，所有的文本必须放在里面</p>
+</li>
+<li>
+<p><strong>View</strong>：用来布局的，相当于div</p>
+</li>
+<li>
+<p><strong>TextInput</strong>：文本框组件</p>
+</li>
+<li>
+<p><strong>Image</strong>:图片组件</p>
+</li>
+<li>
+<p><strong>Button</strong>：按钮组件</p>
+</li>
+<li>
+<p><strong>ActivityIndicator</strong>：加载中的loading图</p>
+</li>
+<li>
+<p><strong>ScrollView</strong>：超出内容后显示滚动条</p>
+</li>
+</ul>
+<h4>View</h4>
+<ul>
+<li>必须将元素放在View中，才能显示</li>
+</ul>
+<h4>Text</h4>
+<ul>
+<li>存放文本内容的阿</li>
+</ul>
+<h4>Image</h4>
+<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用Image引入图片，引入本地图片:`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;requrie(</span>'<span class="hljs-attr">.</span>/<span class="hljs-attr">1.jpg</span>')&#125; /&gt;</span>`</span><br><span class="line">引入网络图片`<span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&#123;&#123;uri:</span>'<span class="hljs-attr">http:</span>//<span class="hljs-attr">xxx.xxx.xxx</span>'&#125;&#125; <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;width:200,height:150&#125;&#125;</span> /&gt;</span>`需要设置宽高，否则不显示</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h4>Button</h4>
+<ul>
+<li>使用BUtton必须要一个<code>title</code>属性，作为按钮显示的名字</li>
+</ul>
+<h4>ActivityIndicator</h4>
+<ul>
+<li>属性：animating(是否要显示加载动画：true or false)、color(颜色)、size('large,small'):安卓可以使用数字、hidesWhenStopped(ios)</li>
+</ul>
+<h4>ScrollView</h4>
+<ul>
+<li>在RN中，内容超出界面不会自动出现滚动条，需要使用<code>ScrollView</code>将元素包裹起来，才会出现滚动条.</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/08/04/React-native的学习/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -323,7 +394,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -400,16 +471,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -419,18 +490,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -438,18 +509,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -457,18 +528,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -476,18 +547,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -514,7 +585,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -619,7 +690,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -681,7 +752,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -753,7 +824,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -882,7 +953,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -987,7 +1058,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -1049,7 +1120,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -1121,7 +1192,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

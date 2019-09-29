@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置">
+        <meta name="description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置  &amp;lt;!-- more --&amp;gt; Angular中的内置模块以及自定义模块 内置模块   模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入forms表单模块，需要发送数据请求就需要引入http模块  自定义模块   使用ng g module 模块名创建模块   创建模块后，在自定义的模块中创建组件的">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular中的内置模块以及自定义模块">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Angular中的内置模块以及自定义模块/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置">
+<meta property="og:description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置  &amp;lt;!-- more --&amp;gt; Angular中的内置模块以及自定义模块 内置模块   模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入forms表单模块，需要发送数据请求就需要引入http模块  自定义模块   使用ng g module 模块名创建模块   创建模块后，在自定义的模块中创建组件的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
 <meta property="og:updated_time" content="2019-08-04T12:09:12.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular中的内置模块以及自定义模块">
-<meta name="twitter:description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置">
+<meta name="twitter:description" content="Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置  &amp;lt;!-- more --&amp;gt; Angular中的内置模块以及自定义模块 内置模块   模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入forms表单模块，需要发送数据请求就需要引入http模块  自定义模块   使用ng g module 模块名创建模块   创建模块后，在自定义的模块中创建组件的">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg">
             
 
@@ -240,43 +240,60 @@
                             <blockquote>
 <p>Angular集成了许多功能，封装在模块中，我们需要使用模块就需要调用和配置</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Angular中的内置模块以及自定义模块"><a href="#Angular中的内置模块以及自定义模块" class="headerlink" title="Angular中的内置模块以及自定义模块"></a>Angular中的内置模块以及自定义模块</h2><h3 id="内置模块"><a href="#内置模块" class="headerlink" title="内置模块"></a>内置模块</h3><p><img src="https://s2.ax1x.com/2019/07/26/embnL6.jpg" alt="内置模块"></p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular中的内置模块以及自定义模块</h2>
+<h3>内置模块</h3>
+<p><img src="https://s2.ax1x.com/2019/07/26/embnL6.jpg" alt="内置模块"></p>
 <ul>
-<li><p>模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入<code>forms</code>表单模块，需要发送数据请求就需要引入<code>http</code>模块</p>
-<h3 id="自定义模块"><a href="#自定义模块" class="headerlink" title="自定义模块"></a>自定义模块</h3></li>
-<li><p>使用<code>ng g module 模块名</code>创建模块</p>
+<li>模块的使用，比如我们需要实现数据的双向绑定，那么就需要引入<code>forms</code>表单模块，需要发送数据请求就需要引入<code>http</code>模块</li>
+</ul>
+<h3>自定义模块</h3>
+<ul>
+<li>
+<p>使用<code>ng g module 模块名</code>创建模块</p>
 </li>
-<li><p>创建模块后，在自定义的模块中创建组件的话，那么这个模块会自动引入这些创建的组件，如果你创建的组件名和路径与模块名一样，那么就会认为是创建这个模块的根组件</p>
+<li>
+<p>创建模块后，在自定义的模块中创建组件的话，那么这个模块会自动引入这些创建的组件，如果你创建的组件名和路径与模块名一样，那么就会认为是创建这个模块的根组件</p>
 </li>
-<li><p>在app根组件中，是不能直接使用自定义模块中的组件的，如果需要使用，需要在自定义模块的<code>module.ts</code>文件中，使用<code>exports</code>暴露要被其他模块是使用的组件</p>
-  <figure class="highlight accesslog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exports:<span class="hljs-string">[要暴露的组件名]</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>在app根组件中，是不能直接使用自定义模块中的组件的，如果需要使用，需要在自定义模块的<code>module.ts</code>文件中，使用<code>exports</code>暴露要被其他模块是使用的组件
+<figure class="highlight accesslog hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exports:<span class="hljs-string">[要暴露的组件名]</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样才能在其他模块中使用该组件，但是需要注意的是，使用之前先要在<code>app.module.ts</code>中引入自定义的模块，然后在<code>imports</code>中挂载这个模块，然后才能使用自定义的组件</p>
+<li>
+<p>这样才能在其他模块中使用该组件，但是需要注意的是，使用之前先要在<code>app.module.ts</code>中引入自定义的模块，然后在<code>imports</code>中挂载这个模块，然后才能使用自定义的组件</p>
 </li>
-<li><p>自定义下的模块下的组件之间可以相互访问，但是不同模块之间需要使用别的模块的组件必须要暴露出去，不然使用不了</p>
-<h3 id="具体定义步骤"><a href="#具体定义步骤" class="headerlink" title="具体定义步骤"></a>具体定义步骤</h3></li>
-<li><p>如果实际开发中建议将自定义的模块放在一个单独的<code>modules</code>文件夹中，但是这里我们就不做这个操作了</p>
+<li>
+<p>自定义下的模块下的组件之间可以相互访问，但是不同模块之间需要使用别的模块的组件必须要暴露出去，不然使用不了</p>
 </li>
 </ul>
+<h3>具体定义步骤</h3>
+<ul>
+<li>如果实际开发中建议将自定义的模块放在一个单独的<code>modules</code>文件夹中，但是这里我们就不做这个操作了</li>
+</ul>
 <ol>
-<li><p>先创建模块</p>
- <figure class="highlight crystal hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">use</span></span></span><br></pre></td></tr></table></figure>
+<li>
+<p>先创建模块
+<figure class="highlight crystal hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">use</span></span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>创建模块根组件</p>
- <figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>创建模块根组件
+<figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>在模块下创建一个组件</p>
- <figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span>/userinfo</span><br></pre></td></tr></table></figure>
+<li>
+<p>在模块下创建一个组件
+<figure class="highlight vhdl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g <span class="hljs-keyword">component</span> <span class="hljs-keyword">use</span>/userinfo</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>在<code>use.module.ts</code>将<code>userinfo</code>组件暴露出去</p>
- <figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">@NgModule</span>(&#123;</span><br><span class="line">  <span class="hljs-attribute">declarations</span>: [UseComponent, UserinfoComponent],</span><br><span class="line">  <span class="hljs-attribute">imports</span>: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-attribute">exports</span>: [UseComponent] <span class="hljs-comment">//暴露组件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<li>
+<p>在<code>use.module.ts</code>将<code>userinfo</code>组件暴露出去
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">@NgModule</span>(&#123;</span><br><span class="line">  <span class="hljs-attribute">declarations</span>: [UseComponent, UserinfoComponent],</span><br><span class="line">  <span class="hljs-attribute">imports</span>: [</span><br><span class="line">    CommonModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-attribute">exports</span>: [UseComponent] <span class="hljs-comment">//暴露组件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </li>
 </ol>
-<p>5.在根组件<code>app.module.ts</code>中引入<code>use</code>模块并注入<br>    <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; BrowserModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppRoutingModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app-routing.module'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入自定义模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UseModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./use/use.module'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    UseModule  <span class="hljs-comment">//注入模块</span></span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>5.在根组件<code>app.module.ts</code>中引入<code>use</code>模块并注入
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; BrowserModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; NgModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppRoutingModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app-routing.module'</span>;</span><br><span class="line"><span class="hljs-keyword">import</span> &#123; AppComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//引入自定义模块</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; UseModule &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./use/use.module'</span></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    UseModule  <span class="hljs-comment">//注入模块</span></span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
 <p>6.在根模块的根组件<code>app.component.html</code>中使用自定义模块的组件</p>
-<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-use</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-use</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><ul>
+<pre><code><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--The content below is only a placeholder and can be replaced.--&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-use</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-use</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
 <li>这样就完成了自定义的模块的组件在其他模块中使用</li>
 </ul>
 
@@ -402,19 +419,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Angular中的内置模块以及自定义模块">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Angular中的内置模块以及自定义模块</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#内置模块">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>内置模块</span>
         </a></li><li>
-        <a class="is-flex" href="#自定义模块">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>自定义模块</span>
         </a></li><li>
-        <a class="is-flex" href="#具体定义步骤">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>具体定义步骤</span>
         </a></li></ul></li></ul>
@@ -458,7 +475,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -535,16 +552,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -554,18 +571,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -573,18 +590,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -592,18 +609,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -611,18 +628,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -649,7 +666,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -754,7 +771,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -816,7 +833,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -888,7 +905,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

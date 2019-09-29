@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛">
+        <meta name="description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛  &amp;lt;!-- more --&amp;gt; Nodejs配置MD5加密 MD5算法 MD5是计算机领域使用最广泛的散列函数(可以叫哈希算法、摘要算法)，注意是用来确保消息的完整和一致性。 下面我们最主要是以 md5 加密为例来了解下加密算法。 MD5算法有以下特点：">
 <meta name="keywords" content="Nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs配置MD5加密">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/06/Nodejs配置MD5加密/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛">
+<meta property="og:description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛  &amp;lt;!-- more --&amp;gt; Nodejs配置MD5加密 MD5算法 MD5是计算机领域使用最广泛的散列函数(可以叫哈希算法、摘要算法)，注意是用来确保消息的完整和一致性。 下面我们最主要是以 md5 加密为例来了解下加密算法。 MD5算法有以下特点：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
 <meta property="og:updated_time" content="2019-08-11T01:19:39.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs配置MD5加密">
-<meta name="twitter:description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛">
+<meta name="twitter:description" content="在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛  &amp;lt;!-- more --&amp;gt; Nodejs配置MD5加密 MD5算法 MD5是计算机领域使用最广泛的散列函数(可以叫哈希算法、摘要算法)，注意是用来确保消息的完整和一致性。 下面我们最主要是以 md5 加密为例来了解下加密算法。 MD5算法有以下特点：">
 <meta name="twitter:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
             
 
@@ -240,39 +240,54 @@
                             <blockquote>
 <p>在服务端语言中，加密数据是必不可少的，这关系到用户的数据的安全性，我们在一般的使用加密数据时，md5加密用户的密码等信息使用尤其广泛</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Nodejs配置MD5加密"><a href="#Nodejs配置MD5加密" class="headerlink" title="Nodejs配置MD5加密"></a>Nodejs配置MD5加密</h2><h3 id="MD5算法"><a href="#MD5算法" class="headerlink" title="MD5算法"></a>MD5算法</h3><p>MD5是计算机领域使用最广泛的散列函数(可以叫哈希算法、摘要算法)，注意是用来确保消息的完整和一致性。<br>下面我们最主要是以 md5 加密为例来了解下加密算法。<br>MD5算法有以下特点：</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Nodejs配置MD5加密</h2>
+<h3>MD5算法</h3>
+<p>MD5是计算机领域使用最广泛的散列函数(可以叫哈希算法、摘要算法)，注意是用来确保消息的完整和一致性。
+下面我们最主要是以 md5 加密为例来了解下加密算法。
+MD5算法有以下特点：</p>
 <ol>
 <li>压缩性： 任意长度的数据，算出的MD5值长度都是固定的。</li>
 <li>容易计算：从原数据算出MD5值很容易。</li>
 <li>抗修改性：对原数据进行任何改动，哪怕只修改一个字节，所得到的MD5值都有很大的区别。</li>
-<li>强抗碰撞：已知原数据和其MD5值，想找到一个具有相同的MD5值的伪数据是非常困难的。<h3 id="在nodejs中使用md5加密"><a href="#在nodejs中使用md5加密" class="headerlink" title="在nodejs中使用md5加密"></a>在nodejs中使用md5加密</h3></li>
+<li>强抗碰撞：已知原数据和其MD5值，想找到一个具有相同的MD5值的伪数据是非常困难的。</li>
 </ol>
+<h3>在nodejs中使用md5加密</h3>
 <ul>
-<li><p>使用自带的加密模块<code>crypto</code></p>
+<li>
+<p>使用自带的加密模块<code>crypto</code></p>
 </li>
-<li><p>引入模块:<code>const crypto = require(&#39;crypto&#39;);</code></p>
+<li>
+<p>引入模块:<code>const crypto = require('crypto');</code></p>
 </li>
-<li><p>创建一个hash对象<code>const md5=crypto.createHash(&#39;md5&#39;);</code></p>
+<li>
+<p>创建一个hash对象<code>const md5=crypto.createHash('md5');</code></p>
 </li>
-<li><p>往hash对象中添加要摘要的内容<code>md5.update(str);</code></p>
+<li>
+<p>往hash对象中添加要摘要的内容<code>md5.update(str);</code></p>
 </li>
-<li><p>使用digest方法输出内容，如果不适用编码格式的参数，输出的是一个<code>Buffer</code>对象</p>
-  <figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">md5</span><span class="hljs-selector-class">.digest</span>());</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用digest方法输出内容，如果不适用编码格式的参数，输出的是一个<code>Buffer</code>对象
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-selector-tag">md5</span><span class="hljs-selector-class">.digest</span>());</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>使用编码格式的参数，输出的是一个字符串格式的摘要内容</p>
-  <figure class="highlight 1c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="hljs-built_in">log</span>(md5.digest('hex')); <span class="hljs-comment">// 输出 900150983cd24fb0d6963f7d28e17f72</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>使用编码格式的参数，输出的是一个字符串格式的摘要内容
+<figure class="highlight 1c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="hljs-built_in">log</span>(md5.digest('hex')); <span class="hljs-comment">// 输出 900150983cd24fb0d6963f7d28e17f72</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>完整示例代码如下:</p>
-  <figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> crypto = require(<span class="hljs-string">'crypto'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-built_in">str</span> = <span class="hljs-string">'abc'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 创建一个hash对象</span></span><br><span class="line"><span class="hljs-keyword">const</span> md5 = crypto.createHash(<span class="hljs-string">'md5'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 往hash对象中添加摘要内容</span></span><br><span class="line">md5.update(<span class="hljs-built_in">str</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 使用 digest 方法输出摘要内容，不使用编码格式的参数 其输出的是一个Buffer对象</span></span><br><span class="line"><span class="hljs-comment">// console.log(md5.digest()); </span></span><br><span class="line"><span class="hljs-comment">// 输出 &lt;Buffer 90 01 50 98 3c d2 4f b0 d6 96 3f 7d 28 e1 7f 72&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 使用编码格式的参数，输出的是一个字符串格式的摘要内容</span></span><br><span class="line">console.<span class="hljs-built_in">log</span>(md5.digest(<span class="hljs-string">'hex'</span>)); <span class="hljs-comment">// 输出 900150983cd24fb0d6963f7d28e17f72</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>完整示例代码如下:
+<figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> crypto = require(<span class="hljs-string">'crypto'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-built_in">str</span> = <span class="hljs-string">'abc'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 创建一个hash对象</span></span><br><span class="line"><span class="hljs-keyword">const</span> md5 = crypto.createHash(<span class="hljs-string">'md5'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 往hash对象中添加摘要内容</span></span><br><span class="line">md5.update(<span class="hljs-built_in">str</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 使用 digest 方法输出摘要内容，不使用编码格式的参数 其输出的是一个Buffer对象</span></span><br><span class="line"><span class="hljs-comment">// console.log(md5.digest()); </span></span><br><span class="line"><span class="hljs-comment">// 输出 &lt;Buffer 90 01 50 98 3c d2 4f b0 d6 96 3f 7d 28 e1 7f 72&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 使用编码格式的参数，输出的是一个字符串格式的摘要内容</span></span><br><span class="line">console.<span class="hljs-built_in">log</span>(md5.digest(<span class="hljs-string">'hex'</span>)); <span class="hljs-comment">// 输出 900150983cd24fb0d6963f7d28e17f72</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>但是经过我的实践，发现这个md5如果直接在一个页面上添加摘要内容再输出，只能有一次，如果使用第二次就会报错，如果我们再处理用户的密码的时候往往需要使用加密，所以我们需要将这个md5单独的封装成一个模块，使用的时候调用这个模块即可</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//md5.js</span></span><br><span class="line"></span><br><span class="line">exports.md5 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) </span>&#123; <span class="hljs-comment">//暴露出md5s方法</span></span><br><span class="line"><span class="hljs-keyword">var</span> crypto = <span class="hljs-built_in">require</span>(<span class="hljs-string">'crypto'</span>)  <span class="hljs-comment">//加载加密文件</span></span><br><span class="line"><span class="hljs-keyword">var</span> md5 = crypto.createHash(<span class="hljs-string">'md5'</span>)</span><br><span class="line">md5.update(str)</span><br><span class="line">str = md5.digest(<span class="hljs-string">'hex'</span>)</span><br><span class="line"><span class="hljs-keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>
+<p>但是经过我的实践，发现这个md5如果直接在一个页面上添加摘要内容再输出，只能有一次，如果使用第二次就会报错，如果我们再处理用户的密码的时候往往需要使用加密，所以我们需要将这个md5单独的封装成一个模块，使用的时候调用这个模块即可
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//md5.js</span></span><br><span class="line"></span><br><span class="line">exports.md5 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) </span>&#123; <span class="hljs-comment">//暴露出md5s方法</span></span><br><span class="line"><span class="hljs-keyword">var</span> crypto = <span class="hljs-built_in">require</span>(<span class="hljs-string">'crypto'</span>)  <span class="hljs-comment">//加载加密文件</span></span><br><span class="line"><span class="hljs-keyword">var</span> md5 = crypto.createHash(<span class="hljs-string">'md5'</span>)</span><br><span class="line">md5.update(str)</span><br><span class="line">str = md5.digest(<span class="hljs-string">'hex'</span>)</span><br><span class="line"><span class="hljs-keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这个时候我们使用只需要调用这个模块就行了</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> md5s=<span class="hljs-built_in">require</span>(<span class="hljs-string">'./md5'</span>) <span class="hljs-comment">//调用模块</span></span><br><span class="line">md5s.md5(str) <span class="hljs-comment">//使用模块中的方法并传入str</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>这个时候我们使用只需要调用这个模块就行了
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> md5s=<span class="hljs-built_in">require</span>(<span class="hljs-string">'./md5'</span>) <span class="hljs-comment">//调用模块</span></span><br><span class="line">md5s.md5(str) <span class="hljs-comment">//使用模块中的方法并传入str</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就不受限制了，可以一直使用。</p>
+<li>
+<p>这样就不受限制了，可以一直使用。</p>
 </li>
 </ul>
 
@@ -398,15 +413,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Nodejs配置MD5加密">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Nodejs配置MD5加密</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#MD5算法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>MD5算法</span>
         </a></li><li>
-        <a class="is-flex" href="#在nodejs中使用md5加密">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>在nodejs中使用md5加密</span>
         </a></li></ul></li></ul>
@@ -450,7 +465,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -527,16 +542,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -546,18 +561,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -565,18 +580,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -584,18 +599,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -603,18 +618,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -641,7 +656,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -746,7 +761,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -808,7 +823,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -880,7 +895,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

@@ -200,8 +200,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/08/TypeScript中的接口/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的接口">
+            <a href="/2019/07/24/Angular中父子组件传值/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="Angular中父子组件传值">
                 </a>
         </div>
         
@@ -209,7 +209,597 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-08T14:20:04.000Z">2019-07-08</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-24T14:28:21.000Z">2019-07-24</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1649 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/07/24/Angular中父子组件传值/">
+                                    Angular中父子组件传值
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>之前我们已经看过了Angular中的DOM，现在我们来了解一下Angular中的组件之间的传值</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h1>Angular中父子组件之间的传值</h1>
+<h2>父子组件之间的传值</h2>
+<h3>父组件给子组件传值</h3>
+<ul>
+<li>
+<p>父组件一般是挂载到app渲染的组件，子组件一般是被父组件使用的组件</p>
+</li>
+<li>
+<p>我们创建两个组件分别为父组件<strong>home</strong>和子组件<strong>header</strong>,将home组件挂载到app根组件中后，我们在home组件中想使用header组件为我们的home组件设置页面的header部分，但是内容是通过home传递过去的，代码如下
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-home'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./home.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./home.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> title: <span class="hljs-built_in">string</span> = <span class="hljs-string">'首页'</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  ngOnInit() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>父组件的业务逻辑里面只需要在逻辑中定义一个要传递的数据即可</p>
+</li>
+<li>
+<p>使用[<strong>要传递的属性名</strong>]=&quot;<strong>要传递的属性值</strong>&quot;,就可以将父组件的<code>title</code>传递给header组件
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//home.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-header</span> [<span class="hljs-attr">title</span>]=<span class="hljs-string">"title"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>我是home组件<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这个时候，header组件需要接收一下home组件传过来的值。引入<code>{Input}</code>组件，定义<code>@input()装饰器</code>装饰器后面跟上传递过来的属性名就接收完成了，这个时候，我们就可以在<code>header.html</code>中直接使用了
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Input &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-header'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./header.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./header.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HeaderComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-meta">@Input</span>() title: <span class="hljs-built_in">string</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight gauss hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.html</span></span><br><span class="line">&lt;<span class="hljs-built_in">header</span>&gt;&#123;&#123; <span class="hljs-built_in">title</span> &#125;&#125;&lt;/<span class="hljs-built_in">header</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h4>父组件给子组件传递方法</h4>
+<ul>
+<li>
+<p>其实传值和传递方法是一样的，我们在home父组件组件中定义一个<code>run</code>方法
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.ts</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">run</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    console.log(<span class="hljs-string">'这是home组件的run方法'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>将方法传递过去
+<figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [title]=<span class="hljs-string">"title"</span> [message]=<span class="hljs-string">"message"</span> [<span class="hljs-keyword">run</span>]=<span class="hljs-string">"run"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：传递方法的时候也不需要加<code>()</code>，否则会执行，只需要传递方法名就可以了</p>
+</li>
+<li>
+<p>在header子组件中接收该方法，并创建一个点击事件调用该方法
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"UseRun()"</span>&gt; 执行父组件的<span class="hljs-keyword">run</span>方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<pre><code><figure class="highlight kotlin hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// header.ts</span></span><br><span class="line"><span class="hljs-meta">@Input()</span> run: any</span><br><span class="line"> </span><br><span class="line">UseRun() &#123;</span><br><span class="line"><span class="hljs-keyword">this</span>.run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li>我们在执行的时候需要使用<code>()</code>表示执行这个方法，因为他传递过来的就是一个函数，这个时候我们点击这个button就可以执行home组件传递过来的方法了。</li>
+</ul>
+<h4>将整个父组件传递给子组件</h4>
+<ul>
+<li>
+<p>如果需要传递的数据太多了，每一个我们都传递过去，一个是太繁琐了，对开发人员不友好，于是有了将整个父组件传递给子组件的功能</p>
+</li>
+<li>
+<p>其实传递父组件给子组件和普通传值都是一样的，只需要传递一个<code>this</code>即可
+<figure class="highlight stata hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//home.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">app</span>-header [home]=<span class="hljs-string">"this"</span>&gt;&lt;/<span class="hljs-keyword">app</span>-header&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样就把父组件整个对象传递过去了</p>
+</li>
+<li>
+<p>接收也是和以前一样的
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//header.ts</span></span><br><span class="line">  @Input() home: any</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123; &#125;</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">ngOnInit</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">getParMes</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    console.log(this.home.message)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br><span class="line"><span class="hljs-function">  <span class="hljs-title">UseRun</span><span class="hljs-params">()</span> <span class="hljs-comment">&#123;</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">    this.home.postSonRun()</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">  &#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用这中方式就避免了繁琐的传值。</p>
+</li>
+</ul>
+<h3>父组件获取子组件的值(@Viewchild)</h3>
+<ul>
+<li>在DOM操作中，其实就已经说到了使用@Viewchild获取到子组件的整个DOM实例</li>
+<li>我们创建一个news组件作为父组件，一个footer组件作为子组件</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>子组件的定义属性和方法
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"><span class="hljs-keyword">public</span> mes: <span class="hljs-keyword">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line"><span class="hljs-built_in">run</span>() &#123;</span><br><span class="line">console.log(<span class="hljs-string">'我是footer组件的run方法'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义标识
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//news.html</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">app-footer</span> #<span class="hljs-attr">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-footer</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 定义footer，就像id一样作为标识 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>这是news组件<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"getSon()"</span>&gt;</span>获取子组件的数据和方法<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>调用子组件的方法和属性
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, ViewChild &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;  <span class="hljs-comment">//引入Viewchild</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-news'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./news.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./news.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewsComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'footer'</span>, &#123; <span class="hljs-keyword">static</span>: <span class="hljs-literal">false</span> &#125;) footer: <span class="hljs-built_in">any</span>  <span class="hljs-comment">//定义属性装饰器</span></span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  getSon() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.footer.mes);  <span class="hljs-comment">//打印子组件的mes</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.footer.run()  <span class="hljs-comment">//调用父组件的run方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>子组件通过@Output触发父组件的方法并传值</h3>
+<ul>
+<li>
+<p>子组件引入Output组件和EvenEmitter事件驱动
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>子组件实例化 EventEmitter
+<figure class="highlight aspectj hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们在footer子组件中定义一个button注册一个点击事件，向父组件发送数据
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.html</span></span><br><span class="line">&lt;<span class="hljs-keyword">button</span> (click)=<span class="hljs-string">"postFa()"</span>&gt;给父组件传递方法&lt;/<span class="hljs-keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>然后定义一下这个事件函数并传值
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//footer.ts</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; Component, OnInit, Output, EventEmitter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="hljs-string">'app-footer'</span>,</span><br><span class="line">  templateUrl: <span class="hljs-string">'./footer.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="hljs-string">'./footer.component.scss'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FooterComponent <span class="hljs-keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> mes: <span class="hljs-built_in">string</span> = <span class="hljs-string">'我是footer组件的message'</span></span><br><span class="line">  <span class="hljs-meta">@Output</span>() <span class="hljs-keyword">public</span> getFa = <span class="hljs-keyword">new</span> EventEmitter()</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  postFa() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.getFa.emit(<span class="hljs-keyword">this</span>.mes) <span class="hljs-comment">// 这个getFa就是实例化对象，所以我们接下来在父组件中需要使用它进行接收值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这里表示传递了子组件中的<code>mes</code>属性给父组件</p>
+</li>
+<li>
+<p>父组件接收子组件的值
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//news.html</span></span><br><span class="line">&lt;app-<span class="hljs-selector-tag">footer</span> <span class="hljs-selector-id">#footer</span> (getFa)=<span class="hljs-string">"run($event)"</span>&gt;&lt;/app-footer&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在上面，<code>()</code>内表示的是子组件传递的那个实例化对象，并且需要使用父组件的run方法，而这个<code>$event</code>参数就是子组件传递的那个参数<code>this.mes</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>父组件接收子组件传递的值
+<figure class="highlight hsp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-comment">//news.ts</span></span><br><span class="line"> <span class="hljs-keyword">run</span>(<span class="hljs-keyword">mes</span>) &#123;</span><br><span class="line"> console.log(<span class="hljs-string">'我是父组件的run'</span>)</span><br><span class="line"> console.log(<span class="hljs-keyword">mes</span>)  <span class="hljs-comment">//我是footer组件的message</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>其实使用@output调用父组件的方法就是创建一个实例化对象，通过这个实例化对象传递参数，然后在子组件中通过 <code>(实例化对象)=&quot;需要调用的父组件方法名(子组件需要传递的参数)&quot;</code>，然后使用父组件的这个方法逻辑处理这个参数就完成了需求。</p>
+</li>
+</ul>
+<h3>非父子组件之间的传值</h3>
+<ul>
+<li>使用localStorage来实现非父子组件之间的通讯</li>
+<li>使用Angular提供的服务功能实现</li>
+</ul>
+<h3>总结：</h3>
+<ul>
+<li>使用<code>@Input()</code>--<code>[属性名]=&quot;要传递的值或方法&quot;</code>-可以通过属性传递的方式给子组件传值，可以传递方法、属性、甚至是整个父组件对象,只需要使用<code>@Input() 属性名:数据类型</code>就可以使用传递过来的值</li>
+<li>使用<code>@VIewchild</code>--<code>#标识</code>-可以让父组件使用子组件的属性和方法，只需使用 <code>@Viewchild('标识名',{static:false}) 标识名:数据类型</code>,就可以使用(注意：第二个标识名相当于传递过来的标识名的赋值，可以任意起名字，以供后面使用)</li>
+<li>使用<code>@Output</code>--<code>[驱动事件实例化对象]=&quot;要使用父组件的方法名(要传递给方法的参数)&quot;</code>可以使用父组件的方法并且传递参数</li>
+</ul>
+<blockquote>
+<p>以上就是Angular中的组件传值的一些知识了。</p>
+</blockquote>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/07/23/ES6的fetch的使用/" class="image is-7by1">
+                <img class="thumbnail" src="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png" alt="ES6的fetch的使用">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-23T14:22:19.000Z">2019-07-23</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/ES6/">ES6</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 193 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/07/23/ES6的fetch的使用/">
+                                    ES6的fetch的使用
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在 React 中，我们经常使用这个方法进行数据的获取，它是基于 Promise 封装的一个 API</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>fetch 的使用</h2>
+<ul>
+<li>在 Vue 中，我们使用 axios 来发起数据请求，但是在 React 中，我们可以使用 ES6 中的 fetch API 来获取数据</li>
+<li>fetch API 是基于 promise 封装的 API</li>
+</ul>
+<h3>使用</h3>
+<ul>
+<li>
+<p>fetch 的使用:
+<figure class="highlight vbscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-built_in">response</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">response</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样获取到的 Response 对象只是一些状态，并没有实际想要的数据</p>
+</li>
+<li>
+<p>但是我们可以调用 response.json()得到一个新的 promise
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  fetch(url)</span><br><span class="line">.<span class="hljs-keyword">then</span>(response=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(response)</span><br><span class="line">    <span class="hljs-keyword">return</span> response.json()</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="hljs-keyword">then</span>(<span class="hljs-keyword">data</span>=&gt;&#123;</span><br><span class="line">    console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">data</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>当使用 response.json()时，把他返回出去就得到一个新的 promise 对象，再.then 就可以获取到数据了</p>
+</li>
+</ul>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/07/23/Angular的服务以及数据的持久化存储/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="Angular的服务以及数据的持久化存储">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-23T13:58:39.000Z">2019-07-23</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 486 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/07/23/Angular的服务以及数据的持久化存储/">
+                                    Angular的服务以及数据的持久化存储
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>为什么使用服务?在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Angular 服务以及数据的持久化存储</h2>
+<ul>
+<li>使用 Angular 的服务可以在应用中使用。</li>
+</ul>
+<h3>创建服务</h3>
+<ul>
+<li>使用命令行创建服务:<code>ng g service services/storag</code></li>
+<li>这个命令表示创建一个 services 文件夹，里面创建 storag 服务</li>
+</ul>
+<h3>引入服务</h3>
+<ul>
+<li>在<code>app.module.ts</code>中引入创建的服务，并且声明
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123;StorageService&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./services/storage.service'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//声明</span></span><br><span class="line"> providers: [StoragService],</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>使用</h3>
+<ul>
+<li>
+<p>引入服务
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123;StorageService&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'../../services/storage.service'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>初始化服务:
+<figure class="highlight delphi hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">constructor</span><span class="hljs-params">(<span class="hljs-keyword">public</span> storage: StoragService)</span> <span class="hljs-comment">&#123;//初始化服务</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">this.storage.getData() //使用服务</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">&#125;</span></span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：服务需要在 services 下的 storage.service.ts 中自己创建，由于我创建了如下方法，才能在使用的服务的时候调用该方法
+<figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">getData</span>() &#123;</span><br><span class="line"><span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'😄'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们一般使用 storage 做本地数据的持久化存储的功能可以封装一下几个方法
+<figure class="highlight q hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">set</span>(<span class="hljs-built_in">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-built_in">value</span>: <span class="hljs-built_in">any</span>) &#123;  <span class="hljs-comment">//定义存储的方法</span></span><br><span class="line">   localStorage.setItem(<span class="hljs-built_in">key</span>, <span class="hljs-built_in">value</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="hljs-built_in">get</span>(<span class="hljs-built_in">key</span>:<span class="hljs-built_in">string</span>) &#123; <span class="hljs-comment">//定义获取数据的方法</span></span><br><span class="line">   return JSON.<span class="hljs-built_in">parse</span>(localStorage.getItem(<span class="hljs-built_in">key</span>))</span><br><span class="line"> &#125;</span><br><span class="line"> remove(<span class="hljs-built_in">key</span>:<span class="hljs-built_in">string</span>) &#123;  <span class="hljs-comment">//定义删除数据的方法</span></span><br><span class="line">   localStorage.removeItem(<span class="hljs-built_in">key</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>调用的时候在任何组件中初始化完毕后直接可以使用<code>this.storage.方法名</code>来使用服务中的方法</p>
+</li>
+<li>
+<p>注意：因为 Angular 使用的是 Typescript 语法，所以我们尽量定义数据类型，以免引起不必要的错误。</p>
+</li>
+<li>
+<p>在 Angular 中，组件与组件之间可以相互传值，不能相互调用，组件可以调用服务，但是服务不能调用组件，但是服务与服务之间是可以相互调用的。</p>
+<blockquote>
+<p>以上就是一些关于 Angular 数据持久化存储的一些相关使用。</p>
+</blockquote>
+</li>
+</ul>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/07/22/初识Angular/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/22/eCHGAf.jpg" alt="初识Angular">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-22T03:01:27.000Z">2019-07-22</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/Angular/">Angular</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 812 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/07/22/初识Angular/">
+                                    初识Angular
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>Angular是web前端三大框架之一，和React、Vue相比，在中大型企业中，更具优势</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>初识Angular</h2>
+<blockquote>
+<p>Angular是一款来自谷歌的开源web框架，诞生于2009年，是一款优秀的JS框架，由Misko Hevery等人创建，后被Google收购</p>
+</blockquote>
+<ul>
+<li>根据项目统计angular是现在网上使用量最大的框架</li>
+</ul>
+<h3>Angular适用的场景</h3>
+<ul>
+<li>Angular基于Typescript和React、Vue相比，更适合中大型企业级项目</li>
+</ul>
+<h3>环境搭建步骤</h3>
+<ul>
+<li>需要安装Nodejs，这个是框架开发必备的环境了，就不多说了-&gt;<a href="http://nodejs.cn/" target="_blank" rel="noopener">Nodejs官网</a></li>
+<li>由于国内网络问题，尽量使用<code>cnpm</code>淘宝镜像</li>
+<li>安装Angular脚手架<code>cnpm i -g @angular/cli</code></li>
+<li>查看是否安装成功<code>ng v</code></li>
+<li>创建angular项目:例如创建以一个名为my-app的项目：<code>ng new my-app</code>,你也可以使用<code>ng new my-app --skip-install</code>跳过npm安装</li>
+<li>安装完之后会问你是否需要路由，可以按需选择，然后选择预处理器<code>LESS</code>和<code>SCSS</code>，也可以不选，直接选择<code>CSS</code>,选择后回车</li>
+<li>这个时候如果使用<code>ng new my-app</code>会自动安装依赖，我们直接Ctrl+C停止，因为npm安装容易被墙安装失败，我们使用<code>cnpm i</code>即可安装，当然，如果你的电脑安装了<code>yarn</code>也可以直接使用<code>yarn</code>命令进行安装，如果使用<code>ng new my-app --skip-install</code>，则直接使用<code>cnpm i</code></li>
+<li>安装完毕之后<code>cd my-app</code>使用<code>ng serve --open</code>即可打开这个项目</li>
+<li>使用cnpm安装：
+<img src="https://s2.ax1x.com/2019/07/22/eCcReJ.jpg" alt="cnpm"></li>
+<li>使用yarn安装:
+<img src="https://s2.ax1x.com/2019/07/22/eCcNLQ.jpg" alt="yarn"></li>
+<li>启动项目
+<img src="https://s2.ax1x.com/2019/07/22/eCctsg.jpg" alt="启动">
+<img src="https://s2.ax1x.com/2019/07/22/eCcSr4.jpg" alt="启动完成"></li>
+<li><strong>注意</strong>：IE版本较低的浏览器不支持，如果默认是IE浏览器可以修改默认浏览器或者黏贴网址到其他浏览器打开</li>
+</ul>
+<h4>补充：</h4>
+<ul>
+<li>有时候我们经常因为依赖包安装出错导致项目不能运行，这个时候需要删除<code>node_modules</code>，如果直接删除因为目录层级太深，需要好久，在这里我们只需要使用如下步骤即可超快删除</li>
+<li>安装<code>cnpm install rimraf -g</code></li>
+<li>使用：cd到你要删除的文件夹运行<code>rimraf 你要删除的文件或者文件夹</code></li>
+<li>当然这个包功能还是很强大的,可以去官网查看其他用途 -&gt; <a href="https://www.npmjs.com/package/rimraf" target="_blank" rel="noopener">rimraf</a></li>
+</ul>
+<h3>创建组件</h3>
+<ul>
+<li>在src下的app创建一个文件夹名为components的news组件<code>ng g componet components/news</code>，如果不指定文件夹，就会创建到app根目录下</li>
+<li>使用命令行创建它自动会关联组件，使用的时候只需要在根组件放置对应的标签即可，标签名在组件种的<code>组件名.component.ts</code>中的<code>selector</code>属性值，内容就是<code>组件名.component.html</code>中的内容</li>
+<li>找到app根目录下的<code>app.component.html</code>，以标签形式放置<code>selector</code>的属性值即可展示对应组件的内容</li>
+</ul>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/07/16/React中绑定this并传参的几种方式/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg" alt="React中绑定this并传参的几种方式">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-16T02:58:17.000Z">2019-07-16</time>
+                            
+                                <div class="level-item">
+                                    <a class="has-link-grey -link" href="/categories/React/">React</a>
+                                </div>
+                                
+                                    
+                                        <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 822 个字)
+                </span>
+                                        
+                                            
+                        </div>
+                    </div>
+                    
+                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                            
+                                <a class="has-link-black-ter" href="/2019/07/16/React中绑定this并传参的几种方式/">
+                                    React中绑定this并传参的几种方式
+                                </a>
+                                
+                        </h1>
+                        <div class="content">
+                            <blockquote>
+<p>在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数</p>
+</blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React中绑定this并传参的几种方式</h2>
+<blockquote>
+<p>在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。</p>
+</blockquote>
+<h3>第一种方式</h3>
+<ul>
+<li>
+<p>在事件函数处理中，直接使用bind绑定this并传参
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// bindThis.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>)&#125;&gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">  <span class="hljs-comment">//这个时候因为this指向问题，所以会报错undefined，所以需要修改this的指向</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><strong>bind</strong>的作用：为前面的函数，修改函数中的this指向，让函数内部的this，指向bind参数列表中的第一个参数</p>
+</li>
+<li>
+<p><strong>bind和call/apply之间的区别</strong>:call/apply修改完this的指向后会立即调用前面的函数，bind方法的返回值是改变了this指向的原函数的拷贝，但是不会对原函数的this进行改变</p>
+</li>
+<li>
+<p>**注意：**bind中的第一个参数，是用来修改this指向的，第一个参数后面所有的参数，都会当作将来调用前面函数时的参数</p>
+</li>
+</ul>
+<h3>第二种方式</h3>
+<ul>
+<li>在constructor中改变函数this
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-comment">/*因为函数执行必然会执行constructor函数，所以我们在这对函数的this进行修改</span></span><br><span class="line"><span class="hljs-comment">    注意：bind方法并不会修改原函数，而是返回一个修改后的原函数拷贝，就是返回一个修改了this的函数，所以我们需要接收一下</span></span><br><span class="line"><span class="hljs-comment">    注意：这个时候我们使用原函数进行接收，这样就覆盖了没有修改this的函数</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.changeMes = <span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定This传参的方式&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &#123;/</span>* 因为在上面我们已经修改过<span class="hljs-keyword">this</span>的指向了，所以在这里并不需要进行修改 *<span class="hljs-regexp">/&#125;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;button onClick=&#123;this.changeMes&#125;&gt;绑定This传参&lt;/</span>button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>第三种方式</h3>
+<ul>
+<li>
+<p>在调用时使用箭头函数
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 因为此时的this就是我们的实例，这个时候去调用函数，那么被调用函数中this就是指向这个调用者，就是实例对象 */</span>&#125;</span><br><span class="line">        &lt;button</span><br><span class="line">          onClick=&#123;() =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.changeMes(<span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>但是需要注意的是； <code>&lt;button onClick={() =&gt; {this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}}&gt;绑定This传参&lt;/button&gt;</code>中我们不能省略<code>()=&gt;</code>写成<code>&lt;button onClick={this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}&gt;绑定This传参&lt;/button&gt;</code>，这样的话React在解析的时候发现这个是一个函数调用，那么就会立即进行调用，如果使用的是箭头函数，它会解析成你点击的时候再来触发这个函数，这样才是我们想要的结果</p>
+</li>
+</ul>
+
+
+                                
+
+                        </div>
+                        
+                                
+                                        
+            </div>
+</div>
+
+
+    
+
+            
+
+                    
+
+                            
+
+    <div class="card">
+    
+        <div class="card-image">
+            <a href="/2019/07/09/TypeScript中的装饰器/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的装饰器">
+                </a>
+        </div>
+        
+            <div class="card-content article ">
+                
+                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                        <div class="level-left">
+                            <time class="level-item has-text-grey" datetime="2019-07-09T15:34:31.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
                                     <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
@@ -219,7 +809,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1102 个字)
+                    9 分钟 读完 (大约 1283 个字)
                 </span>
                                         
                                             
@@ -228,31 +818,119 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/07/08/TypeScript中的接口/">
-                                    TypeScript中的接口
+                                <a class="has-link-black-ter" href="/2019/07/09/TypeScript中的装饰器/">
+                                    TypeScript中的装饰器
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>接口的作用，在面向对象编程中接口是一种规范的定义，它定义了行为和动作规范，在程序设计里面，接口起到了一种限制和规范的作用。接口定义了某一批类所需要遵守的规则，接口不关心这些类的内部状态数据，也不关心这些类里的方法细节，它只规定这批类里必须提供某些方法，提供这些方法的的类就可以满足实际需要，typescript的接口类似于Java，同时还增加了许多更灵活的接口类型，它包括属性、函数，可索引和类定义标准</p>
+<p>装饰器是过去几年中JavaScript最大成就之一，已是ES7的标准特性之一</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>TypeScript中的装饰器</h2>
+<ul>
+<li>装饰器：装饰器是一种特殊类型的声明，它能够被附加到类声明，方法，属性或参数上，可以修改类的行为</li>
+<li><strong>常见的装饰器</strong>
+<ul>
+<li>类装饰器</li>
+<li>属性装饰器</li>
+<li>方法装饰器</li>
+<li>参数装饰器</li>
+</ul>
+</li>
+<li><strong>装饰器的写法</strong>
+<ul>
+<li>普通装饰器（不可传参）</li>
+<li>工厂装饰器（可传参）</li>
+</ul>
+</li>
+</ul>
+<h3>类装饰器</h3>
+<ul>
+<li>类装饰器在类声明之前被声明(紧靠类声明)。类装饰器应用于构造函数，可以用来监视，修改或替换类定义。传入一个参数</li>
+</ul>
+<h4>定义一个普通的装饰器(类装饰器)</h4>
+<ul>
+<li><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>) </span>&#123; <span class="hljs-comment">//普通模式是Http</span></span><br><span class="line">  params.prototype.data = <span class="hljs-string">"hello"</span>;</span><br><span class="line">  params.prototype.run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"我是run"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span> <span class="hljs-comment">//这里不能使用 ; 号</span></span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> http: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(http.data); <span class="hljs-comment">//hello</span></span><br><span class="line">http.run(); <span class="hljs-comment">//我是run</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4>定义一个工厂装饰器</h4>
+<ul>
+<li>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123; <span class="hljs-comment">//工厂装饰器params是传递的参数</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(targe); <span class="hljs-comment">//[Function Http] 这个表示Http</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//hh 传递的参数</span></span><br><span class="line">    targe.prototype.api = params;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span>(<span class="hljs-string">"hh"</span>)</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> http: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(http.api); <span class="hljs-comment">//hh</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function getData(params: any) &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">params</span> </span>&#123;<span class="hljs-comment">//这里的params相当于是Http 继承它</span></span><br><span class="line">    api: any = <span class="hljs-string">"我是修改后的api"</span>;</span><br><span class="line">    getdata() &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.api = <span class="hljs-keyword">this</span>.api + <span class="hljs-string">"--"</span>;</span><br><span class="line">      console.log(<span class="hljs-keyword">this</span>.api);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@getData</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Http</span> </span>&#123;</span><br><span class="line">  public api: string | undefined;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.api = <span class="hljs-string">"我是api"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    console.log(<span class="hljs-keyword">this</span>.api);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> <span class="hljs-type">Http</span>();</span><br><span class="line">h.getdata(); <span class="hljs-comment">//我是修改后的api</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>属性装饰器</h3>
+<ul>
+<li>属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数：
+<ul>
+<li>一是：对于静态成员来说是类的构造函数，对于示例成员是类的原型对象</li>
+<li>二是：成员的名字
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 类装饰器</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logClass</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//params 是传递的参数</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//target是 Htpp</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">// xxx</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(target); <span class="hljs-comment">//[Function: Http]</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//属性装饰器</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logUrl</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">any</span> </span>&#123;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span>, attr: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(target); <span class="hljs-comment">//http&#123;&#125; 第一个参数就是成员(在这里指的是url)实例的原型对象</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(attr); <span class="hljs-comment">//url   第二个参数打印出来的就是装饰属性的名称</span></span><br><span class="line">    target[attr] = params; <span class="hljs-comment">//因为attr是变量所以不能通过 . 的方式访问，而target是实例的原型对象，这里就相当于在实例的原型对象上添加了attr属性并且赋值</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@logClass</span>(<span class="hljs-string">"xxx"</span>)</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-meta">@logUrl</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">  <span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.url);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(h.url); <span class="hljs-comment">//www.baidu.com</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3>方法装饰器</h3>
+<ul>
+<li>
+<p>方法装饰器：他会被应用到方法的属性描述符上，可以用来监视，修改或者替换方法定义</p>
+</li>
+<li>
+<p>方法装饰会在运行时传入三个参数</p>
+<ul>
+<li>1.对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>2.成员的名称</li>
+<li>3.成员的属性描述</li>
+</ul>
+</li>
+<li>
+<p>方法装饰器一：(查看一些属性)
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, desc: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//   console.log(targe); // Http &#123; getdata: [Function] &#125;</span></span><br><span class="line">    <span class="hljs-comment">// console.log(methodName); // getdata</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(desc); <span class="hljs-comment">//&#123; value: [Function], writable: true,enumerable: true,configurable: true&#125;</span></span><br><span class="line">    targe.api = <span class="hljs-string">"www.baidu.com"</span>;</span><br><span class="line">    targe.run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"hello"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">  <span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">  getdata() &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.url);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h: <span class="hljs-built_in">any</span> = <span class="hljs-keyword">new</span> Http();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(h.api); <span class="hljs-comment">//www.baidu.com</span></span><br><span class="line">h.run(); <span class="hljs-comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>方法装饰器二：(修改方法)
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">string</span></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, desc: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(desc.value); <span class="hljs-comment">//这个就是方法的函数</span></span><br><span class="line">    <span class="hljs-keyword">var</span> funDesc = desc.value; <span class="hljs-comment">//保存一下原来的方法</span></span><br><span class="line">    desc.value = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args: <span class="hljs-built_in">any</span>[]</span>) </span>&#123;<span class="hljs-comment">//修改方法</span></span><br><span class="line">    args = args.map(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(value); <span class="hljs-comment">//将传递的参数全部变成String类型</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(args);</span><br><span class="line">    funDesc.apply(<span class="hljs-keyword">this</span>, args); <span class="hljs-comment">//这样可以将保存到的getdata指向这个新的函数，然后传递已经处理好的数据 args</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line"><span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line"><span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"www.baidu.com"</span>)</span><br><span class="line">getdata(...args: <span class="hljs-built_in">any</span>[]) &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(args); <span class="hljs-comment">//[ 'ads', '123' ]</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">//hello</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(<span class="hljs-string">"ads"</span>, <span class="hljs-number">123</span>); <span class="hljs-comment">// [ 'ads', '123' ]</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>方法参数装饰器</h3>
+<ul>
+<li>
+<p>参数装饰器表达式会在运行时当作函数被调用，可与使用参数装饰器为类的原型增加一些元素数据，传入三个参数</p>
+<ul>
+<li>对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>方法的名字</li>
+<li>参数在函数参数列表中的索引</li>
+</ul>
+<p><figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logMethod</span>(<span class="hljs-params">params: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">targe: <span class="hljs-built_in">any</span>, methodName: <span class="hljs-built_in">any</span>, paramsIndex: <span class="hljs-built_in">any</span></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//装饰器传入的值 xxx</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(targe); <span class="hljs-comment">// Http &#123; getdata: [Function] &#125; 类的原型对象</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(methodName); <span class="hljs-comment">//getdata  方法名称</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(paramsIndex); <span class="hljs-comment">// 0 //参数索引</span></span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> Http &#123;</span><br><span class="line"><span class="hljs-keyword">public</span> url: <span class="hljs-built_in">any</span>;</span><br><span class="line"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;&#125;</span><br><span class="line">getdata(<span class="hljs-meta">@logMethod</span>(<span class="hljs-string">"xxx"</span>) params: <span class="hljs-built_in">any</span>) &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(params); <span class="hljs-comment">//123</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> h = <span class="hljs-keyword">new</span> Http();</span><br><span class="line">h.getdata(<span class="hljs-number">123</span>);</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>装饰器的执行顺序</h3>
+<ul>
+<li>执行顺序：
+<ul>
+<li>1.属性装饰器</li>
+<li>2.方法装饰器</li>
+<li>3.方法参数装饰器</li>
+<li>4.类装饰器</li>
+</ul>
+</li>
+<li><strong>注意</strong>：如果有多个同种装饰器，是从后往前执行
+<ul>
+<li>如：有两个参数装饰器限制性后面的参数装饰器，如果有两个属性装饰器，限制性后面定义的属性装饰器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>以上就是关于TypeScript中的装饰器相关的知识。</p>
+</blockquote>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/08/TypeScript中的接口/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -269,8 +947,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/08/TypeScript中的类/" class="image is-7by1">
-                <img class="thumbnail" src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=29439568c711728b24208470a995a8ab/908fa0ec08fa513dded47627376d55fbb3fbd9c9.jpg" alt="TypeScript中的类">
+            <a href="/2019/07/09/TypeScript中的模块以及命名空间/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的模块以及命名空间">
                 </a>
         </div>
         
@@ -278,7 +956,7 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-08T08:19:25.000Z">2019-07-08</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-09T15:33:30.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
                                     <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
@@ -288,7 +966,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1065 个字)
+                    7 分钟 读完 (大约 1012 个字)
                 </span>
                                         
                                             
@@ -297,31 +975,73 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/07/08/TypeScript中的类/">
-                                    TypeScript中的类
+                                <a class="has-link-black-ter" href="/2019/07/09/TypeScript中的模块以及命名空间/">
+                                    TypeScript中的模块以及命名空间
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在 typescript 中，类的定义与 ES6的语法 稍有些差别，但是与 java,C++等更加相像了</p>
+<p>关于TypeScript中的模块化在1.5版本中发生了变化，&quot;内部模块&quot;现在称为&quot;命名空间&quot;，外部模块现在简称为&quot;模块&quot;</p>
 </blockquote>
+<p>&lt;!--more--&gt;</p>
+<h2>前言</h2>
+<blockquote>
+<p>在模块化的概念中，模块(外部模块)在其自身的作用域里执行，而不是在全局作用域里，这也意味着定义一个模块的变量、函数、类等等在模块的外部都是不可见的，除非你明确地使用 export形式导出它们。相反，如果使用其他模块导出的变量、函数、接口时，必须导入，可以使用import形式导入。</p>
+</blockquote>
+<h2>TypeScript中的模块以及命名空间</h2>
+<ul>
+<li>
+<p>使用 <strong>export</strong> 导出模块
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//这是一个 db.ts文件</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>): <span class="hljs-title">any</span>[] </span>&#123; <span class="hljs-comment">//导出方法</span></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"获取数据库"</span>);</span><br><span class="line">  <span class="hljs-keyword">return</span> [&#123; title: <span class="hljs-string">"中国美食"</span> &#125;];</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> data = <span class="hljs-string">"hello"</span>; <span class="hljs-comment">//导出变量</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用 <strong>import</strong> 导入模块
+<figure class="highlight lasso hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//这是index.ts</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; getData, <span class="hljs-built_in">data</span> &#125; from <span class="hljs-string">"./modules/db"</span>;<span class="hljs-comment">//这里的db不需要加 ts后缀</span></span><br><span class="line">getData(); <span class="hljs-comment">//获取数据库</span></span><br><span class="line">console.<span class="hljs-keyword">log</span>(<span class="hljs-built_in">data</span>); <span class="hljs-comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>因为在之前我们已经说过模块化的导入导出问题(<a href="http://www.zhongyuehui.cn/2019/07/09/ES6%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E4%B8%8E%E5%AF%BC%E5%87%BA/#more" target="_blank" rel="noopener"><strong>模块的导入与导出</strong></a>)</p>
+</li>
+</ul>
+<h3>命名空间和模块化的区别</h3>
+<ul>
+<li>
+<p><strong>命名空间</strong>:内部模块，主要用于组织代码，避免命名冲突</p>
+</li>
+<li>
+<p><strong>模块</strong>:ts的外部模块的简称，侧重代码的复用，一个模块可能会有多个命名空间
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">namespace</span> A &#123;</span><br><span class="line">  <span class="hljs-keyword">interface</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    eat(str: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>; <span class="hljs-comment">//必须定义</span></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat() &#123;</span><br><span class="line">      <span class="hljs-comment">//必须定义</span></span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃粮食`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">var</span> d = <span class="hljs-keyword">new</span> Dog(<span class="hljs-string">"小黑"</span>);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(d.eat()); <span class="hljs-comment">//小黑爱吃粮食</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(food: <span class="hljs-built_in">string</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃<span class="hljs-subst">$&#123;food&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">var</span> c = <span class="hljs-keyword">new</span> Cat(<span class="hljs-string">"小花猫"</span>);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(c.eat(<span class="hljs-string">"小老鼠"</span>)); <span class="hljs-comment">//小花猫爱吃小老鼠</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">namespace</span> B &#123;</span><br><span class="line">  <span class="hljs-keyword">interface</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    eat(str: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>; <span class="hljs-comment">//必须定义</span></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat() &#123;</span><br><span class="line">      <span class="hljs-comment">//必须定义</span></span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃粮食`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">var</span> d = <span class="hljs-keyword">new</span> Dog(<span class="hljs-string">"小黑"</span>);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(d.eat()); <span class="hljs-comment">//小黑爱吃粮食</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(food: <span class="hljs-built_in">string</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃<span class="hljs-subst">$&#123;food&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">var</span> c = <span class="hljs-keyword">new</span> Cat(<span class="hljs-string">"小花猫"</span>);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(c.eat(<span class="hljs-string">"小老鼠"</span>)); <span class="hljs-comment">//小花猫爱吃小老鼠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样我们就可以在一个文件中定义相同的名字的数据了，但是这样的数据是私有的，如果我们像使用里面的数据。需要暴露出来</p>
+</li>
+<li>
+<p>使用暴露并使用命名空间中的数据
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">namespace</span> A &#123;</span><br><span class="line">  <span class="hljs-keyword">interface</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    eat(str: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">implements</span> Animal &#123;  <span class="hljs-comment">//向外暴露类</span></span><br><span class="line">    name: <span class="hljs-built_in">string</span>; <span class="hljs-comment">//必须定义</span></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat() &#123;</span><br><span class="line">      <span class="hljs-comment">//必须定义</span></span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃粮食`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">implements</span> Animal &#123; <span class="hljs-comment">//向外暴露类</span></span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(food: <span class="hljs-built_in">string</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃<span class="hljs-subst">$&#123;food&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> c = <span class="hljs-keyword">new</span> A.Cat(<span class="hljs-string">"小狼狗"</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(c.eat(<span class="hljs-string">"狗粮"</span>)); <span class="hljs-comment">//小狼狗爱吃粮食</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们还可以将命名空间封装在一个模块中，我们在使用的时候只需要导入就可以使用了，一个模块中可以有多个命名空间
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//namespace.ts文件</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">namespace</span> A &#123;</span><br><span class="line">  <span class="hljs-keyword">interface</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    eat(str: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Dog <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>; <span class="hljs-comment">//必须定义</span></span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat() &#123;</span><br><span class="line">      <span class="hljs-comment">//必须定义</span></span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃粮食`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">implements</span> Animal &#123;</span><br><span class="line">    name: <span class="hljs-built_in">string</span>;</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    eat(food: <span class="hljs-built_in">string</span>) &#123;</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;this.name&#125;</span>爱吃<span class="hljs-subst">$&#123;food&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//index.ts文件</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; A <span class="hljs-keyword">as</span> namespaceA &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./namespace"</span>; <span class="hljs-comment">//引入模块并重命名</span></span><br><span class="line"><span class="hljs-keyword">let</span> dog = <span class="hljs-keyword">new</span> namespaceA.Cat(<span class="hljs-string">"小黑"</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(dog.eat(<span class="hljs-string">"狗粮"</span>)); <span class="hljs-comment">//小黑爱吃狗粮</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>需要注意的是，模块并不能直接在浏览器中运行，如果需要，则需要使用webpack对文件进行打包生成ES5的代码浏览器才能识别，我们可以使用Nodejs的环境来运行</p>
+</li>
+<li>
+<p>&lt;font color=&quot;red&quot;&gt;<strong>总结:</strong>&lt;/font&gt;</p>
+<ul>
+<li>模块就是封装了一些功能的代码</li>
+<li>命名空间在模块中，且一个模块中可以有多个命名空间</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/08/TypeScript中的类/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -338,8 +1058,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/08/TypeScript中的函数/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的函数">
+            <a href="/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript对类型、接口、类、泛型的综合运用">
                 </a>
         </div>
         
@@ -347,7 +1067,7 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-08T02:40:48.000Z">2019-07-08</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-09T11:01:11.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
                                     <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
@@ -357,7 +1077,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1341 个字)
+                    4 分钟 读完 (大约 607 个字)
                 </span>
                                         
                                             
@@ -366,31 +1086,33 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/07/08/TypeScript中的函数/">
-                                    TypeScript中的函数
+                                <a class="has-link-black-ter" href="/2019/07/09/TypeScript对类型、接口、类、泛型的综合运用/">
+                                    TypeScript对类型、接口、类、泛型的综合运用
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>函数在 Javascript 中是一等一的公民</p>
+<p>定义一个操作数据库的类</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>Typescript对类型、接口、类、泛型的综合使用</h2>
+<ul>
+<li>
+<p>综合使用
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//定义一个操作mysql数据库的类</span></span><br><span class="line"><span class="hljs-comment">//注意：如果需要实现泛型接口时，那么这个实现泛型接口的类也需要是一个泛型类</span></span><br><span class="line"><span class="hljs-keyword">class</span> Mysqldb&lt;T&gt; <span class="hljs-keyword">implements</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-comment">// console.log("这里可以建立和数据库的连接");</span></span><br><span class="line">  &#125;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//添加数据，这里可以进行对数据库的增加操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//根据id更新数据，对数据库进行更新操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123; <span class="hljs-comment">//根据id删除数据，对数据库进行删除操作</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[] &#123; <span class="hljs-comment">//根据id 得到数据，对数据库进行查找操作</span></span><br><span class="line">   <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">let</span> lits:<span class="hljs-built_in">any</span>[]=[]</span><br><span class="line">    <span class="hljs-keyword">return</span> lits</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//定义操作mssql数据库的类</span></span><br><span class="line"><span class="hljs-keyword">class</span> MssqlDB&lt;T&gt; <span class="hljs-keyword">implements</span> DBI&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-comment">// console.log("这里可以建立和数据库的连接");</span></span><br><span class="line">  &#125;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123; </span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info, id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  dalete(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">get</span>(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">any</span>[] &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">let</span> lits:<span class="hljs-built_in">any</span>[]=[]</span><br><span class="line">    <span class="hljs-keyword">return</span> lits</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//定义一个User数据表做数据库的映射</span></span><br><span class="line"><span class="hljs-keyword">class</span> User &#123;</span><br><span class="line">  username: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  password: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">params: &#123;</span></span><br><span class="line"><span class="hljs-params">    <span class="hljs-comment">//使用构造函数传值</span></span></span><br><span class="line"><span class="hljs-params">    username: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    password: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.password = params.password;</span><br><span class="line">    <span class="hljs-keyword">this</span>.username = params.username;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//往数据表添加数据</span></span><br><span class="line"><span class="hljs-keyword">let</span> u = <span class="hljs-keyword">new</span> User(&#123;</span><br><span class="line">  username: <span class="hljs-string">"张三"</span>,</span><br><span class="line">  password: <span class="hljs-string">"123aaa"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//操作mysql</span></span><br><span class="line"><span class="hljs-comment">// let mysql = new Mysqldb(); //如果此时没有使用定义的user作为限制，add()中参数可以是任意值，没有做类型的校验</span></span><br><span class="line"><span class="hljs-comment">// mysql.add('aaa');</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> mysql = <span class="hljs-keyword">new</span> Mysqldb&lt;User&gt;(); <span class="hljs-comment">//此时使用User类作为限制类型，那么在实例化后的add中我们只能传入User类</span></span><br><span class="line">mysql.add(u); <span class="hljs-comment">//User &#123; password: '123aaa', username: '张三' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> m = <span class="hljs-keyword">new</span> User(&#123;</span><br><span class="line">  username: <span class="hljs-string">"李四"</span>,</span><br><span class="line">  password: <span class="hljs-string">"lisi"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-comment">// 操作mssql</span></span><br><span class="line"><span class="hljs-keyword">let</span> mssql = <span class="hljs-keyword">new</span> MssqlDB&lt;User&gt;();</span><br><span class="line">mssql.add(m); <span class="hljs-comment">// User &#123; password: 'lisi', username: '李四' &#125;</span></span><br><span class="line">mssql.updata(m, <span class="hljs-number">12</span>); <span class="hljs-comment">//User &#123; password: 'lisi', username: '李四' &#125; 12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样我们定义一个数据库的，只需要调用对应的数据库进行数据操作，而且对不同的数据库都是兼容的。当然，这些代码还可以封装到模块里面去，每个数据库的类封装一个模块。这样我们调用的时候只需要引入模块即可进行增删改查的相关操作了。</p>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/08/TypeScript中的函数/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -407,8 +1129,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/07/TypeScript中的数据类型/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的数据类型">
+            <a href="/2019/07/09/TypeScript中的泛型/" class="image is-7by1">
+                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/07/ZDnXWj.jpg" alt="TypeScript中的泛型">
                 </a>
         </div>
         
@@ -416,7 +1138,7 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-07T14:03:04.000Z">2019-07-07</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-09T10:57:05.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
                                     <a class="has-link-grey -link" href="/categories/TypeScript/">TypeScript</a>
@@ -426,7 +1148,7 @@
                                         <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1363 个字)
+                    8 分钟 读完 (大约 1211 个字)
                 </span>
                                         
                                             
@@ -435,31 +1157,108 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/07/07/TypeScript中的数据类型/">
-                                    TypeScript中的数据类型
+                                <a class="has-link-black-ter" href="/2019/07/09/TypeScript中的泛型/">
+                                    TypeScript中的泛型
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol。这里主要介绍前五种原始数据类型和一些其他的TypeScript的数据类型</p>
+<p>泛型：软件工程中，我们不仅要创建一致的定义良好的API，同时也要考虑可重用性，组件不仅能够支持当前的数据类型，同时也能支持未来的数据类型，这在创建大型系统时为你提供了十分灵活的功能
+&lt;!-- more --&gt;</p>
 </blockquote>
+<h2>前言</h2>
+<blockquote>
+<p>在像C#和java这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据，这样用户就可以以自己的数据类型来使用组件。</p>
+</blockquote>
+<h2>TypeScript中的泛型</h2>
+<ul>
+<li>
+<p><strong>通俗理解:泛型就是解决类接口方法的复用性、以及对不特定数据类型的支持</strong></p>
+</li>
+<li>
+<p>同时返回 string类型和number类型(但是代码冗余严重)
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData(<span class="hljs-keyword">value</span>: string): string &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData1(<span class="hljs-keyword">value</span>: <span class="hljs-keyword">number</span>): <span class="hljs-keyword">number</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData3(<span class="hljs-keyword">value</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">any</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">if</span> (typeof <span class="hljs-keyword">value</span> === <span class="hljs-string">"string"</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> `我是$&#123;<span class="hljs-keyword">value</span>&#125;`;</span><br><span class="line">  &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> `今年$&#123;<span class="hljs-keyword">value</span>&#125;`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData3(<span class="hljs-string">"张三"</span>)); //我是张三</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData3(<span class="hljs-number">12</span>)); //我今年<span class="hljs-number">12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用any也可以同时返回string和number类型，但是相当于放弃了类型检查
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span></span> getData(<span class="hljs-keyword">value</span>:<span class="hljs-built_in">any</span>):<span class="hljs-built_in">any</span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span></span><br><span class="line">&#125;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData(<span class="hljs-number">12</span>)); //<span class="hljs-number">12</span></span><br><span class="line">console.<span class="hljs-built_in">log</span>(getData(<span class="hljs-string">'张三'</span>));//张三</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>泛型</h3>
+<ul>
+<li>
+<p>一般我们定义泛型的时候，在函数名后面使用<code>&lt;任意字母&gt;</code>表示泛型，但是为了规范我们一般使用 <strong>T</strong>表示，函数定义了泛型后传入的参数也需要定义泛型，但是函数的返回值可以任意类型
+<figure class="highlight qml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">T</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData&lt;number&gt;(<span class="hljs-number">12</span>)); <span class="hljs-comment">//12</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">"张三"</span>)); <span class="hljs-comment">//张三</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>注意：在传入参数的时候定义的类型必须和参数类型一致
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">any</span> </span>&#123; <span class="hljs-comment">//当函数的返回类型是any时，可以定义任意返回值</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-string">"zs"</span>)); <span class="hljs-comment">//hello</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>泛型类</h3>
+<ul>
+<li>
+<p>普通取最小值
+<figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Sort &#123;</span><br><span class="line">  <span class="hljs-keyword">public</span> list: number[] = [];</span><br><span class="line">  <span class="hljs-built_in">add</span>(num: number) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.list.push(num);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-built_in">min</span>(): number &#123;</span><br><span class="line">    let <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[<span class="hljs-number">0</span>];</span><br><span class="line">    <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-keyword">this</span>.list.length; i++) &#123;</span><br><span class="line">      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">min</span> &gt; <span class="hljs-keyword">this</span>.list[i]) &#123;</span><br><span class="line">        <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let m = <span class="hljs-keyword">new</span> Sort();</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">10</span>);</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>);</span><br><span class="line">m.<span class="hljs-built_in">add</span>(<span class="hljs-number">20</span>);</span><br><span class="line">console.<span class="hljs-built_in">log</span>(m.<span class="hljs-built_in">min</span>()); <span class="hljs-comment">//1</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>这样定义的类我们不能往数组里面添加字母，不能实现字母的排序，所以需要使用泛型
+<figure class="highlight processing hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Sort&lt;T&gt; &#123;</span><br><span class="line">   <span class="hljs-keyword">public</span> list: T[] = [];</span><br><span class="line">   <span class="hljs-built_in">add</span>(value: T): <span class="hljs-keyword">void</span> &#123;</span><br><span class="line">     <span class="hljs-keyword">this</span>.list.push(value);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-built_in">min</span>(): T &#123;</span><br><span class="line">     let <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[<span class="hljs-number">0</span>];</span><br><span class="line">     <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-keyword">this</span>.list.length; i++) &#123;</span><br><span class="line">       <span class="hljs-keyword">if</span> (<span class="hljs-built_in">min</span> &gt; <span class="hljs-keyword">this</span>.list[i]) &#123;</span><br><span class="line">         <span class="hljs-built_in">min</span> = <span class="hljs-keyword">this</span>.list[i];</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> let m = <span class="hljs-keyword">new</span> Sort&lt;number&gt;(); <span class="hljs-comment">//实例化 并且指定了T代表number</span></span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">20</span>);</span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>);</span><br><span class="line"> m.<span class="hljs-built_in">add</span>(<span class="hljs-number">10</span>);</span><br><span class="line"> console.<span class="hljs-built_in">log</span>(m.<span class="hljs-built_in">min</span>()); <span class="hljs-comment">// 1</span></span><br><span class="line"> let m2 = <span class="hljs-keyword">new</span> Sort&lt;string&gt;(); <span class="hljs-comment">// 实例化 并且指定了T代表string</span></span><br><span class="line"> m2.<span class="hljs-built_in">add</span>(<span class="hljs-string">"a"</span>);</span><br><span class="line"> m2.<span class="hljs-built_in">add</span>(<span class="hljs-string">"v"</span>);</span><br><span class="line"> console.<span class="hljs-built_in">log</span>(m2.<span class="hljs-built_in">min</span>());</span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>泛型函数</h3>
+<ul>
+<li>
+<p>如果我们在定义一个函数接口时，无法根据传入的参数类型作为返回数据类型，不够灵活
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config &#123;</span><br><span class="line">  (name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> getData: Config = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> name + age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-string">"张三"</span>, <span class="hljs-number">12</span>)); <span class="hljs-comment">//张三 12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>定义泛型函数接口的时候，并不是我们在函数中规定了数据的类型，而是在调用的时候传入类型，那么这个泛型就是传入的数据类型</p>
+</li>
+<li>
+<p>第一种定义方法：
+<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config &#123;</span><br><span class="line">  &lt;T&gt;(<span class="hljs-keyword">value</span>: T): T;</span><br><span class="line">&#125;</span><br><span class="line">let getinfo: Config = <span class="hljs-function"><span class="hljs-keyword">function</span></span>&lt;T&gt;(<span class="hljs-keyword">value</span>: T): T &#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;</span><br><span class="line">&#125;;</span><br><span class="line">console.<span class="hljs-built_in">log</span>(getinfo&lt;<span class="hljs-keyword">number</span>&gt;(<span class="hljs-number">12</span>)); //<span class="hljs-number">12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>此时，在这里我们传入了<strong>number</strong>，那么<strong>T</strong>就是指的<strong>number</strong></p>
+</li>
+<li>
+<p>定义方式二：
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">interface</span> Config&lt;T&gt; &#123;</span><br><span class="line">  <span class="hljs-comment">//定义泛型接口</span></span><br><span class="line">  (value: T): T;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getinfo</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">value: T</span>): <span class="hljs-title">T</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> getData: Config&lt;<span class="hljs-built_in">number</span>&gt; = getinfo; <span class="hljs-comment">//给接口定义类型且getData使用这个接口</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData(<span class="hljs-number">12</span>)); <span class="hljs-comment">//12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>把类作为参数类型的泛型类</h3>
+<ul>
+<li>
+<p>把类作为参数来约束数据传入的类型</p>
+</li>
+<li>
+<p>示例1：定义User类，对数据库进行映射
+<figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &#123;</span><br><span class="line">  username: <span class="hljs-keyword">string</span> | undefined;</span><br><span class="line">  password: <span class="hljs-keyword">string</span> | undefined;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> <span class="hljs-title">Mydb</span> &#123;</span><br><span class="line">  <span class="hljs-keyword">add</span>(user: User): boolean &#123;</span><br><span class="line">    console.log(user);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> u = <span class="hljs-keyword">new</span> User();</span><br><span class="line">u.username = <span class="hljs-string">"张三"</span>;</span><br><span class="line">u.password = <span class="hljs-string">"123aaa"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> Mydb();</span><br><span class="line">db.<span class="hljs-keyword">add</span>(u); User&#123;username:<span class="hljs-string">'张三'</span>,password:<span class="hljs-string">'123aaa'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>示例2：
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> ArticleCate &#123;</span><br><span class="line">  title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">class</span> Mydb &#123;</span><br><span class="line">  add(info: ArticleCate): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">let</span> a = <span class="hljs-keyword">new</span> ArticleCate();</span><br><span class="line">a.title = <span class="hljs-string">"美味中国"</span>;</span><br><span class="line">a.desc = <span class="hljs-string">"江西美食"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> Mydb();</span><br><span class="line">db.add(a); <span class="hljs-comment">//ArticleCate &#123; title: '美味中国', desc: '江西美食' &#125;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>我们可以使用不同的类作为参数进行数据的约束</p>
+</li>
+<li>
+<p>示例3：&lt;font color=&quot;red&quot;&gt;<strong>泛型类</strong>&lt;/font&gt;
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">class</span> Mydb&lt;T&gt; &#123;</span><br><span class="line">  add(info: T): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//经过数据的校验，就可以将info传入数据库了</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  updata(info: T, id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> &#123;</span><br><span class="line">    <span class="hljs-comment">//更新数据，info表示更新数据的内容，id表示更新数据的id</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(info);</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(id);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">class</span> ArticleCate &#123;</span><br><span class="line">  title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">params: &#123;</span></span><br><span class="line"><span class="hljs-params">    <span class="hljs-comment">//可以使用构造函数进行传参</span></span></span><br><span class="line"><span class="hljs-params">    title: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    desc: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">    status?: <span class="hljs-built_in">number</span> | <span class="hljs-literal">undefined</span>;</span></span><br><span class="line"><span class="hljs-params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.title = params.title;</span><br><span class="line">    <span class="hljs-keyword">this</span>.desc = params.desc;</span><br><span class="line">    <span class="hljs-keyword">this</span>.status = params.status;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> ArticleCate(&#123;</span><br><span class="line">  <span class="hljs-comment">//直接传入参数</span></span><br><span class="line">  title: <span class="hljs-string">"分类"</span>,</span><br><span class="line">  desc: <span class="hljs-string">"000"</span>,</span><br><span class="line">  status: <span class="hljs-number">200</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-keyword">var</span> db = <span class="hljs-keyword">new</span> Mydb&lt;ArticleCate&gt;();</span><br><span class="line">db.add(a); <span class="hljs-comment">//ArticleCate &#123; title: '分类', desc: '000', status: 200 &#125;</span></span><br><span class="line">db.updata(a, <span class="hljs-number">12</span>); <span class="hljs-comment">//ArticleCate &#123; title: '分类', desc: '000', status: 200 &#125;  12</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<blockquote>
+<p>以上就是Typescript中的泛型的一些使用方法。</p>
+</blockquote>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/07/TypeScript中的数据类型/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -476,8 +1275,8 @@
     <div class="card">
     
         <div class="card-image">
-            <a href="/2019/07/07/Node中的path路径模块/" class="image is-7by1">
-                <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="Node中的path路径模块">
+            <a href="/2019/07/09/ES6中的模块导入与导出/" class="image is-7by1">
+                <img class="thumbnail" src="http://www.runoob.com/wp-content/uploads/2017/08/20130807-es6-e1420205362328.png" alt="ES6中的模块导入与导出">
                 </a>
         </div>
         
@@ -485,17 +1284,17 @@
                 
                     <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                         <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-07T05:36:24.000Z">2019-07-07</time>
+                            <time class="level-item has-text-grey" datetime="2019-07-09T10:43:40.000Z">2019-07-09</time>
                             
                                 <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                                    <a class="has-link-grey -link" href="/categories/ES6/">ES6</a>
                                 </div>
                                 
                                     
                                         <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 421 个字)
+                    5 分钟 读完 (大约 784 个字)
                 </span>
                                         
                                             
@@ -504,376 +1303,78 @@
                     
                         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                             
-                                <a class="has-link-black-ter" href="/2019/07/07/Node中的path路径模块/">
-                                    Node中的path路径模块
+                                <a class="has-link-black-ter" href="/2019/07/09/ES6中的模块导入与导出/">
+                                    ES6中的模块导入与导出
                                 </a>
                                 
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在Node中，有许多的模块,但是Node.js path 模块提供了一些用于处理文件路径的小工具</p>
+<p>在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。ES6 的模块化分为导出（export） @与导入（import）两个模块</p>
 </blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>导入与导出模块</h2>
+<ul>
+<li>在 Nodejs 中，提供了<code>module.exports</code>和<code>exports</code>向暴露(导出)成员接口，使用<code>require('')</code>使用导入的对象</li>
+</ul>
+<h3>ES6 中的导入</h3>
+<ul>
+<li>在 ES6 中，也规定了<code>导入</code>和<code>导出</code>模块</li>
+<li>ES6 中导入模块使用 <code>import 模块名称 from '模块标识符'</code>的方式导入 或 <code>import '标识路径'</code></li>
+</ul>
+<h3>ES6 中的导出</h3>
+<ul>
+<li>在 ES6 中，使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员</li>
+</ul>
+<h3>两者导出的区别</h3>
+<ul>
+<li>使用<strong>export default:</strong> 来暴露成员时，在全局中，只允许定义一个<strong>export default</strong></li>
+<li>使用<strong>export</strong>来暴露成员时，可以定义多个<strong>export</strong></li>
+</ul>
+<h3>两者导入的区别</h3>
+<ul>
+<li>
+<p>在<code>import 模块名称 from '模块标识符'</code> 导入模块时，我们需要注意以下模块中是否同时使用了使用<strong>export default</strong> 和 <strong>export</strong>来暴露成员，如果只使用了<code>export default</code> 那么我们只需要自定义一个模块名称来接收数据即可
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> &#123; <span class="hljs-comment">//导出</span></span><br><span class="line"> name: <span class="hljs-string">'张三'</span>,</span><br><span class="line"> age: <span class="hljs-number">16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test <span class="hljs-keyword">from</span> <span class="hljs-string">'test'</span> <span class="hljs-comment">//引入</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果使用了<strong>export</strong>来暴露成员时，不管有没有使用<strong>export default</strong> 暴露成员，我们导出模块定义的成员名字和导入模块引入的名字<strong>必须</strong>一致，否则会出错</p>
+</li>
+<li>
+<p>如果仅使用 export 暴露，我们只需要将成员名使用 <strong>{ }</strong> 包括起来即可，且不能省略**{ }**
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> a = <span class="hljs-string">'text中的export'</span> <span class="hljs-comment">//导出</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> &#123; a &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./test'</span> <span class="hljs-comment">//引入 ，不能省略 &#123; &#125;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>如果我们同时使用了两种暴露方式或使用 export 定义了多个成员，只要按需导出即可
+<figure class="highlight arduino hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-built_in">default</span> &#123;</span><br><span class="line">name: <span class="hljs-string">'张三'</span>,</span><br><span class="line">age: <span class="hljs-number">16</span></span><br><span class="line"> &#125;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> test = <span class="hljs-string">'text中的export'</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> test2 = <span class="hljs-string">'text2中的export'</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test,&#123; test&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./text'</span> <span class="hljs-comment">//虽然定义了test2，但是我们可以根据需要不导出，导出在&#123;&#125;中加入即可</span></span><br></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h3>export 导出时修改名称</h3>
+<ul>
+<li>
+<p>我们发现使用<strong>export default</strong> 暴露时没有导入名称的规定，但是使用<strong>export</strong>暴露必须使用定义时的名字，其实我们可以使用 <strong>as</strong> 进行修改
+<figure class="highlight clean hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> test,&#123; test <span class="hljs-keyword">as</span> a,test2 <span class="hljs-keyword">as</span> b&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./text'</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>&lt;font color=&quot;red&quot;&gt;<strong>注意:</strong>&lt;/font&gt;</p>
+<ul>
+<li>ES6 的模块自动开启严格模式，不管你有没有在模块头部加上 <code>use strict</code>。</li>
+<li>模块中可以导入和导出各种类型的变量，如函数，对象，字符串，数字，布尔值，类等</li>
+<li>每个模块都有自己的上下文，每一个模块内声明的变量都是局部变量，不会污染全局作用域</li>
+<li>每一个模块只加载一次（是单例的）， 若再去加载同目录下同文件，直接从内存中读取</li>
+</ul>
+</li>
+</ul>
+
 
                                 
 
                         </div>
                         
                                 
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/07/Node中的path路径模块/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/05/Vuex的使用/" class="image is-7by1">
-                <img class="thumbnail" src="https://vuex.vuejs.org/flow.png" alt="Vuex的使用">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-05T14:02:22.000Z">2019-07-05</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1125 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/05/Vuex的使用/">
-                                    Vuex的使用
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>vuex是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/05/Vuex的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/02/Vs code中Git工具的使用/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGDTfg.jpg" alt="Vs code中Git工具的使用">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-02T02:25:57.000Z">2019-07-02</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/开发工具/">开发工具</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 455 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/02/Vs code中Git工具的使用/">
-                                    Vs code中Git工具的使用
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在一些开发工具中，集成了许多的功能，在我喜欢的vscode中，就集成了git的一些功能，非常方便我们使用</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/02/Vs code中Git工具的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/02/关联多个远程仓库/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/02/ZGtO3t.jpg" alt="关联多个远程仓库">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-02T01:21:36.000Z">2019-07-02</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 466 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/02/关联多个远程仓库/">
-                                    关联多个远程仓库
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>我们在日常的开发中，由于GitHub是外国的服务器，所以上传速度较慢，但是我们国内也有托管的网站，比如码云</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/02/关联多个远程仓库/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/07/01/git的使用/" class="image is-7by1">
-                <img class="thumbnail" src="https://s2.ax1x.com/2019/07/01/ZGibf1.png" alt="git的使用">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-07-01T13:47:23.000Z">2019-07-01</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Git/">Git</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    28 分钟 读完 (大约 4149 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/07/01/git的使用/">
-                                    git的使用
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>git是什么？Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/07/01/git的使用/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        
-            </div>
-</div>
-
-
-    
-
-            
-
-                    
-
-                            
-
-    <div class="card">
-    
-        <div class="card-image">
-            <a href="/2019/06/23/webpack中引入vue/" class="image is-7by1">
-                <img class="thumbnail" src="https://i.loli.net/2019/06/24/5d1050d2dbe4b49680.jpg" alt="webpack中引入vue">
-                </a>
-        </div>
-        
-            <div class="card-content article ">
-                
-                    <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                        <div class="level-left">
-                            <time class="level-item has-text-grey" datetime="2019-06-23T15:04:31.000Z">2019-06-23</time>
-                            
-                                <div class="level-item">
-                                    <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
-                                </div>
-                                
-                                    
-                                        <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 438 个字)
-                </span>
-                                        
-                                            
-                        </div>
-                    </div>
-                    
-                        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                            
-                                <a class="has-link-black-ter" href="/2019/06/23/webpack中引入vue/">
-                                    webpack中引入vue
-                                </a>
-                                
-                        </h1>
-                        <div class="content">
-                            <blockquote>
-<p>在webpack使用vue，我们会遇到一些打包的问题，这个使用我们要使用打包工具来解决这个问题，以下是具体的一些说明和使用</p>
-</blockquote>
-
-                                
-
-                        </div>
-                        
-                                
-                                    <div class="level is-mobile">
-                                        <div class="level-start">
-                                            <div class="level-item">
-                                                <a class="button is-size-7 is-light" href="/2019/06/23/webpack中引入vue/#more">
-                                                    阅读更多
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                         
             </div>
 </div>
@@ -908,6 +1409,8 @@
             <li><a class="pagination-link is-current" href="/page/8/">8</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
             
         </ul>
     </nav>
@@ -959,7 +1462,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -1036,16 +1539,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -1055,18 +1558,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -1074,18 +1577,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -1093,18 +1596,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -1112,18 +1615,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -1150,7 +1653,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1255,7 +1758,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -1317,7 +1820,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -1389,7 +1892,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1518,7 +2021,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1623,7 +2126,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -1685,7 +2188,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -1757,7 +2260,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

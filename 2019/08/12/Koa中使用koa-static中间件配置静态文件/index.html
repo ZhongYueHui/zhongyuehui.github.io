@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入">
+        <meta name="description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入  &amp;lt;!-- more --&amp;gt; Koa中的koa-static中间件的使用  在express中我们如果需要配置静态文件，直接以app.use(express.static(&apos;&apos;))就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置  koa-s">
 <meta name="keywords" content="Koa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Koa中使用koa-static中间件配置静态文件">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/12/Koa中使用koa-static中间件配置静态文件/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入">
+<meta property="og:description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入  &amp;lt;!-- more --&amp;gt; Koa中的koa-static中间件的使用  在express中我们如果需要配置静态文件，直接以app.use(express.static(&apos;&apos;))就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置  koa-s">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
 <meta property="og:updated_time" content="2019-08-12T14:20:37.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa中使用koa-static中间件配置静态文件">
-<meta name="twitter:description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入">
+<meta name="twitter:description" content="由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入  &amp;lt;!-- more --&amp;gt; Koa中的koa-static中间件的使用  在express中我们如果需要配置静态文件，直接以app.use(express.static(&apos;&apos;))就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置  koa-s">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
             
 
@@ -240,18 +240,25 @@
                             <blockquote>
 <p>由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Koa中的koa-static中间件的使用"><a href="#Koa中的koa-static中间件的使用" class="headerlink" title="Koa中的koa-static中间件的使用"></a>Koa中的koa-static中间件的使用</h2><ul>
-<li><p>在express中我们如果需要配置静态文件，直接以<code>app.use(express.static(&#39;&#39;))</code>就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置</p>
-<h3 id="koa-static中间件的使用"><a href="#koa-static中间件的使用" class="headerlink" title="koa-static中间件的使用"></a>koa-static中间件的使用</h3></li>
-<li><p>安装:<code>cnpm i koa-static --save</code></p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Koa中的koa-static中间件的使用</h2>
+<ul>
+<li>在express中我们如果需要配置静态文件，直接以<code>app.use(express.static(''))</code>就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置</li>
+</ul>
+<h3>koa-static中间件的使用</h3>
+<ul>
+<li>
+<p>安装:<code>cnpm i koa-static --save</code></p>
 </li>
-<li><p>配置：<code>app.use(serve(&#39;/test/fixtures&#39;))</code></p>
+<li>
+<p>配置：<code>app.use(serve('/test/fixtures'))</code></p>
 </li>
-<li><p>使用：</p>
-  <figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">static</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-static'</span>)</span><br><span class="line"><span class="hljs-comment">//配置,两种方式，一种带绝对路径的，是被推荐的</span></span><br><span class="line"><span class="hljs-comment">// app.use(static('public'))</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(<span class="hljs-keyword">static</span>(__dirname + <span class="hljs-string">'/public'</span>))</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用：
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">static</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-static'</span>)</span><br><span class="line"><span class="hljs-comment">//配置,两种方式，一种带绝对路径的，是被推荐的</span></span><br><span class="line"><span class="hljs-comment">// app.use(static('public'))</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(<span class="hljs-keyword">static</span>(__dirname + <span class="hljs-string">'/public'</span>))</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>配置完成后我们使用就根目录中的public文件夹下的文件文件就可以直接使用了，如使用<code>public/css/style.css</code>，引用的 时候直接<code>css/style.css</code>即可</p>
+<li>
+<p>配置完成后我们使用就根目录中的public文件夹下的文件文件就可以直接使用了，如使用<code>public/css/style.css</code>，引用的 时候直接<code>css/style.css</code>即可</p>
 </li>
 </ul>
 
@@ -377,11 +384,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Koa中的koa-static中间件的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Koa中的koa-static中间件的使用</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#koa-static中间件的使用">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>koa-static中间件的使用</span>
         </a></li></ul></li></ul>
@@ -425,7 +432,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -502,16 +509,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -521,18 +528,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -540,18 +547,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -559,18 +566,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -578,18 +585,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -616,7 +623,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -721,7 +728,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -783,7 +790,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -855,7 +862,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

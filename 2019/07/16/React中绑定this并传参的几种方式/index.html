@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
+        <meta name="description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数  &amp;lt;!-- more --&amp;gt; React中绑定this并传参的几种方式  在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。  第一种方式   在事件函数处理中，直接使用bind绑定this并传参 1234567891011121314151">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React中绑定this并传参的几种方式">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/07/16/React中绑定this并传参的几种方式/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
+<meta property="og:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数  &amp;lt;!-- more --&amp;gt; React中绑定this并传参的几种方式  在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。  第一种方式   在事件函数处理中，直接使用bind绑定this并传参 1234567891011121314151">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-07-16T03:03:28.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React中绑定this并传参的几种方式">
-<meta name="twitter:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数">
+<meta name="twitter:description" content="在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数  &amp;lt;!-- more --&amp;gt; React中绑定this并传参的几种方式  在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。  第一种方式   在事件函数处理中，直接使用bind绑定this并传参 1234567891011121314151">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,30 +240,40 @@
                             <blockquote>
 <p>在React中，由于函数的this指向问题，我们需要绑定函数内部中的this指向，这样才能成功的调用并传递参数</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="React中绑定this并传参的几种方式"><a href="#React中绑定this并传参的几种方式" class="headerlink" title="React中绑定this并传参的几种方式"></a>React中绑定this并传参的几种方式</h2><blockquote>
+<p>&lt;!-- more --&gt;</p>
+<h2>React中绑定this并传参的几种方式</h2>
+<blockquote>
 <p>在React中的传参方式中，总结了一些解决函数内部的this指向问题和传参的问题。</p>
 </blockquote>
-<h3 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h3><ul>
-<li><p>在事件函数处理中，直接使用bind绑定this并传参</p>
-  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// bindThis.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>)&#125;&gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">  <span class="hljs-comment">//这个时候因为this指向问题，所以会报错undefined，所以需要修改this的指向</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>第一种方式</h3>
+<ul>
+<li>
+<p>在事件函数处理中，直接使用bind绑定this并传参
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// bindThis.jsx</span></span><br><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>)&#125;&gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">  <span class="hljs-comment">//这个时候因为this指向问题，所以会报错undefined，所以需要修改this的指向</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p><strong>bind</strong>的作用：为前面的函数，修改函数中的this指向，让函数内部的this，指向bind参数列表中的第一个参数</p>
+<li>
+<p><strong>bind</strong>的作用：为前面的函数，修改函数中的this指向，让函数内部的this，指向bind参数列表中的第一个参数</p>
 </li>
-<li><p><strong>bind和call/apply之间的区别</strong>:call/apply修改完this的指向后会立即调用前面的函数，bind方法的返回值是改变了this指向的原函数的拷贝，但是不会对原函数的this进行改变</p>
+<li>
+<p><strong>bind和call/apply之间的区别</strong>:call/apply修改完this的指向后会立即调用前面的函数，bind方法的返回值是改变了this指向的原函数的拷贝，但是不会对原函数的this进行改变</p>
 </li>
-<li><p><strong>注意：</strong>bind中的第一个参数，是用来修改this指向的，第一个参数后面所有的参数，都会当作将来调用前面函数时的参数</p>
-<h3 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h3></li>
-<li><p>在constructor中改变函数this</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-comment">/*因为函数执行必然会执行constructor函数，所以我们在这对函数的this进行修改</span></span><br><span class="line"><span class="hljs-comment">    注意：bind方法并不会修改原函数，而是返回一个修改后的原函数拷贝，就是返回一个修改了this的函数，所以我们需要接收一下</span></span><br><span class="line"><span class="hljs-comment">    注意：这个时候我们使用原函数进行接收，这样就覆盖了没有修改this的函数</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.changeMes = <span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定This传参的方式&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &#123;/</span>* 因为在上面我们已经修改过<span class="hljs-keyword">this</span>的指向了，所以在这里并不需要进行修改 *<span class="hljs-regexp">/&#125;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;button onClick=&#123;this.changeMes&#125;&gt;绑定This传参&lt;/</span>button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<li>
+<p>**注意：**bind中的第一个参数，是用来修改this指向的，第一个参数后面所有的参数，都会当作将来调用前面函数时的参数</p>
 </li>
 </ul>
-<h3 id="第三种方式"><a href="#第三种方式" class="headerlink" title="第三种方式"></a>第三种方式</h3><ul>
-<li><p>在调用时使用箭头函数</p>
-  <figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 因为此时的this就是我们的实例，这个时候去调用函数，那么被调用函数中this就是指向这个调用者，就是实例对象 */</span>&#125;</span><br><span class="line">        &lt;button</span><br><span class="line">          onClick=&#123;() =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.changeMes(<span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3>第二种方式</h3>
+<ul>
+<li>在constructor中改变函数this
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;</span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-comment">/*因为函数执行必然会执行constructor函数，所以我们在这对函数的this进行修改</span></span><br><span class="line"><span class="hljs-comment">    注意：bind方法并不会修改原函数，而是返回一个修改后的原函数拷贝，就是返回一个修改了this的函数，所以我们需要接收一下</span></span><br><span class="line"><span class="hljs-comment">    注意：这个时候我们使用原函数进行接收，这样就覆盖了没有修改this的函数</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">    <span class="hljs-keyword">this</span>.changeMes = <span class="hljs-keyword">this</span>.changeMes.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定This传参的方式&lt;<span class="hljs-regexp">/h1&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &#123;/</span>* 因为在上面我们已经修改过<span class="hljs-keyword">this</span>的指向了，所以在这里并不需要进行修改 *<span class="hljs-regexp">/&#125;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;button onClick=&#123;this.changeMes&#125;&gt;绑定This传参&lt;/</span>button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;<span class="hljs-regexp">/h4&gt;</span></span><br><span class="line"><span class="hljs-regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3>第三种方式</h3>
+<ul>
+<li>
+<p>在调用时使用箭头函数
+<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span> from <span class="hljs-string">"react"</span>;</span><br><span class="line">export <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindThist</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="hljs-keyword">super</span>(props);</span><br><span class="line">    <span class="hljs-keyword">this</span>.state = &#123;</span><br><span class="line">      mes: <span class="hljs-string">"绑定this并传参"</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;绑定<span class="hljs-type">This</span>传参的方式&lt;/h1&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 因为此时的this就是我们的实例，这个时候去调用函数，那么被调用函数中this就是指向这个调用者，就是实例对象 */</span>&#125;</span><br><span class="line">        &lt;button</span><br><span class="line">          onClick=&#123;() =&gt; &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.changeMes(<span class="hljs-string">"🐖"</span>, <span class="hljs-string">"🐕"</span>);</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        &gt;</span><br><span class="line">          绑定<span class="hljs-type">This</span>传参</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">        &lt;h4&gt;&#123;<span class="hljs-keyword">this</span>.state.mes&#125;&lt;/h4&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  changeMes(pig, dog) &#123;</span><br><span class="line">    <span class="hljs-keyword">this</span>.setState(&#123;</span><br><span class="line">      mes: <span class="hljs-string">"修改了"</span> + pig + dog</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>但是需要注意的是； <code>&lt;button onClick={() =&gt; {this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}}&gt;绑定This传参&lt;/button&gt;</code>中我们不能省略<code>()=&gt;</code>写成<code>&lt;button onClick={this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}&gt;绑定This传参&lt;/button&gt;</code>，这样的话React在解析的时候发现这个是一个函数调用，那么就会立即进行调用，如果使用的是箭头函数，它会解析成你点击的时候再来触发这个函数，这样才是我们想要的结果</p>
+<li>
+<p>但是需要注意的是； <code>&lt;button onClick={() =&gt; {this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}}&gt;绑定This传参&lt;/button&gt;</code>中我们不能省略<code>()=&gt;</code>写成<code>&lt;button onClick={this.changeMes(&quot;🐖&quot;, &quot;🐕&quot;);}&gt;绑定This传参&lt;/button&gt;</code>，这样的话React在解析的时候发现这个是一个函数调用，那么就会立即进行调用，如果使用的是箭头函数，它会解析成你点击的时候再来触发这个函数，这样才是我们想要的结果</p>
 </li>
 </ul>
 
@@ -389,19 +399,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#React中绑定this并传参的几种方式">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>React中绑定this并传参的几种方式</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#第一种方式">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>第一种方式</span>
         </a></li><li>
-        <a class="is-flex" href="#第二种方式">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>第二种方式</span>
         </a></li><li>
-        <a class="is-flex" href="#第三种方式">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.3</span>
         <span>第三种方式</span>
         </a></li></ul></li></ul>
@@ -445,7 +455,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -522,16 +532,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -541,18 +551,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -560,18 +570,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -579,18 +589,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -598,18 +608,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -636,7 +646,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -741,7 +751,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -803,7 +813,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -875,7 +885,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

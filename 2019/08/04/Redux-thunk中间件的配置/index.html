@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+        <meta name="description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta name="keywords" content="Redux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redux-thunk中间件的配置">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/Redux-thunk中间件的配置/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+<meta property="og:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:52:51.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux-thunk中间件的配置">
-<meta name="twitter:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。">
+<meta name="twitter:description" content="Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。  &amp;lt;!-- more --&amp;gt; Redux-thunk中间件的配置   在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下   配置如下： 1234567891011121314151617// 1. 引入applyMiddleware、composeimpor">
 <meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2490681221,4218715279&fm=26&gp=0.jpg">
             
 
@@ -240,19 +240,25 @@
                             <blockquote>
 <p>Redux-thunk是Redux的一个插件，可以帮助我们更好的使用Redux。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Redux-thunk中间件的配置"><a href="#Redux-thunk中间件的配置" class="headerlink" title="Redux-thunk中间件的配置"></a>Redux-thunk中间件的配置</h2><ul>
-<li><p>在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下</p>
+<p>&lt;!-- more --&gt;</p>
+<h2>Redux-thunk中间件的配置</h2>
+<ul>
+<li>
+<p>在redux中需要使用redux-thunk的话，需要在store/index.js中配置一下</p>
 </li>
-<li><p>配置如下：</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    applyMiddleware(thunk),</span><br><span class="line">    <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__())</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<li>
+<p>配置如下：
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    applyMiddleware(thunk),</span><br><span class="line">    <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__())</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>以上这种方式会导致我们配置的redux失效，因为它只能接收两个参数</p>
+<li>
+<p>以上这种方式会导致我们配置的redux失效，因为它只能接收两个参数</p>
 </li>
-<li><p>使用增强函数配置redux-thunk</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//判断是否有redux调试的配置项</span></span><br><span class="line"><span class="hljs-keyword">const</span> composeEnhancers = <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;) : compose</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    enhancer</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<li>
+<p>使用增强函数配置redux-thunk
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1. 引入applyMiddleware、compose</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, compose &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span></span><br><span class="line"><span class="hljs-comment">//引入reducer</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> reducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducer'</span></span><br><span class="line"><span class="hljs-comment">// 2.引入redux-thunk</span></span><br><span class="line"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//判断是否有redux调试的配置项</span></span><br><span class="line"><span class="hljs-keyword">const</span> composeEnhancers = <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(&#123;&#125;) : compose</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> enhancer = composeEnhancers(applyMiddleware(thunk))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//3.由于createStore中只能接收两个参数，如果将applyMiddleware(thunk)直接放到参数中，那么我们配置的redux调试工具就无法执行</span></span><br><span class="line"><span class="hljs-comment">//所以这个时候我们需要增强函数，redux已经帮助我们提供这个功能了</span></span><br><span class="line"><span class="hljs-keyword">const</span> store = createStore(</span><br><span class="line">    reducer,</span><br><span class="line">    enhancer</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//暴露</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>这样就配置完成了</p>
+<li>
+<p>这样就配置完成了</p>
 </li>
 </ul>
 
@@ -378,7 +384,7 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#Redux-thunk中间件的配置">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>Redux-thunk中间件的配置</span>
         </a></li></ul>
@@ -422,7 +428,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -499,16 +505,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -518,18 +524,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -537,18 +543,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -556,18 +562,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -575,18 +581,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -613,7 +619,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -718,7 +724,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -780,7 +786,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -852,7 +858,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

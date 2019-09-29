@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
+        <meta name="description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
 <meta name="keywords" content="MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB数据库的备份与还原">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/MongoDB数据库的备份与还原/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
+<meta property="og:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
 <meta property="og:updated_time" content="2019-08-04T10:19:25.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB数据库的备份与还原">
-<meta name="twitter:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.">
+<meta name="twitter:description" content="数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.  &amp;lt;!-- more --&amp;gt; MongoDB数据库的备份与还原 备份   备份格式： 12345678mongodump--host 127.0.0.1  //主机名--port 27017  。。端口号--out D:/databack/backup  //备份路径--collection myCollection">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564923415638&di=003cfd10dcc5d0ddf998eaaacfd6ced9&imgtype=0&src=http%3A%2F%2Fimage.bubuko.com%2Finfo%2F201811%2F20181124134558327469.png">
             
 
@@ -240,52 +240,77 @@
                             <blockquote>
 <p>数据库的备份与还原也是在操作数据库中常用的操作,但是它们非常简单.</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="MongoDB数据库的备份与还原"><a href="#MongoDB数据库的备份与还原" class="headerlink" title="MongoDB数据库的备份与还原"></a>MongoDB数据库的备份与还原</h2><h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><ul>
-<li><p>备份格式：</p>
-  <figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure>
+<p>&lt;!-- more --&gt;</p>
+<h2>MongoDB数据库的备份与还原</h2>
+<h3>备份</h3>
+<ul>
+<li>
+<p>备份格式：
+<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongodump</span><br><span class="line"><span class="hljs-params">--host</span> 127.0.0.1  <span class="hljs-string">//</span>主机名</span><br><span class="line"><span class="hljs-params">--port</span> 27017  。。端口号</span><br><span class="line"><span class="hljs-params">--out</span> D:<span class="hljs-string">/databack/backup</span>  <span class="hljs-string">//</span>备份路径</span><br><span class="line"><span class="hljs-params">--collection</span> myCollections  <span class="hljs-string">//</span>备份的数据表</span><br><span class="line"><span class="hljs-params">--db</span> test  <span class="hljs-string">//</span>备份的数据库</span><br><span class="line"><span class="hljs-params">--username</span> username  <span class="hljs-string">//</span>用户名</span><br><span class="line"><span class="hljs-params">--password</span> password  <span class="hljs-string">//</span>密码</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>mongodump命令脚本语法如下</p>
-  <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure>
+<li>
+<p>mongodump命令脚本语法如下
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&gt;</span><span class="hljs-bash">mongodump -h dbhost -d dbname -o dbdirectory</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
+<li>
+<p>-h： MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
 </li>
-<li><p>-d：需要备份的数据库实例，例如：test</p>
+<li>
+<p>-d：需要备份的数据库实例，例如：test</p>
 </li>
-<li><p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4></li>
-<li><p>备份格式中，后面那些参数都是可选的</p>
-</li>
-<li><p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份</p>
-  <figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也可以简写成这样</p>
-  <figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure>
-
+<li>
+<p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
 </li>
 </ul>
-<h3 id="恢复还原"><a href="#恢复还原" class="headerlink" title="恢复还原"></a>恢复还原</h3><ul>
-<li><p>mongodb使用 mongorerstore 命令来恢复备份的数据。</p>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4></li>
-<li><p>mongorestore命令脚本语法如下：</p>
-  <figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure>
+<h4>注意：</h4>
+<ul>
+<li>
+<p>备份格式中，后面那些参数都是可选的</p>
 </li>
-<li><p>-h：MongoDB所在服务器地址</p>
+<li>
+<p>如果我们不指定数据表和数据库，那么默认全部都会备份,但是备份时我们不用进入数据库，直接在命令行进行备份
+<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump --host 127.0.0.1:27017 --out E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\d</span>ata</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
+<li>
+<p>也可以简写成这样
+<figure class="highlight taggerscript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:<span class="hljs-symbol">\P</span>rogram Files<span class="hljs-symbol">\M</span>ongoDB<span class="hljs-symbol">\S</span>erver<span class="hljs-symbol">\4</span>.0<span class="hljs-symbol">\b</span>in&gt; mongodump -h 127.0.0.1:27017 -o E:<span class="hljs-symbol">\d</span>ata<span class="hljs-symbol">\h</span>ome</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>–directoryperdb：<br>备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
+</ul>
+<h3>恢复还原</h3>
+<ul>
+<li>mongodb使用 mongorerstore 命令来恢复备份的数据。</li>
+</ul>
+<h4>语法</h4>
+<ul>
+<li>
+<p>mongorestore命令脚本语法如下：
+<figure class="highlight ada hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;mongorestore -h dbhost -d dbname <span class="hljs-comment">--directoryperdb dbdirectory</span></span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>–drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+<li>
+<p>-h：MongoDB所在服务器地址</p>
 </li>
-<li><p>基本格式</p>
-  <figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure>
+<li>
+<p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
 </li>
-<li><p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合</p>
-  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure>
+<li>
+<p>--directoryperdb：
+备份数据所在位置，例如：c:\data\dump\test，这里为什么要多加一个test，而不是备份时候的dump，读者自己查看提示吧！</p>
 </li>
-<li><p>使用命令进行恢复</p>
-  <figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></li>
+<li>
+<p>--drop:恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+</li>
+<li>
+<p>基本格式
+<figure class="highlight livecodeserver hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mongorestore</span><br><span class="line"><span class="hljs-comment">--host 127.0.0.1</span></span><br><span class="line"><span class="hljs-comment">--port 27017</span></span><br><span class="line"><span class="hljs-comment">--username username</span></span><br><span class="line"><span class="hljs-comment">--password password</span></span><br><span class="line">&lt;path <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> backup&gt;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>比如我们现在不小心删除了一个collections的数据，要进行恢复。现在删除random集合
+<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="hljs-selector-class">.random</span><span class="hljs-selector-class">.drop</span>()</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使用命令进行恢复
+<figure class="highlight jboss-cli hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore <span class="hljs-params">--host</span> 127.0.0.1 <span class="hljs-params">--port</span> 27017 E:<span class="hljs-string">/data/data</span></span><br></pre></td></tr></table></figure></p>
+</li>
 </ul>
 
 
@@ -410,23 +435,23 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#MongoDB数据库的备份与还原">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>MongoDB数据库的备份与还原</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#备份">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>备份</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#注意：">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1.1</span>
         <span>注意：</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#恢复还原">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>恢复还原</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#语法">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2.1</span>
         <span>语法</span>
         </a></li></ul></li></ul></li></ul>
@@ -470,7 +495,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -547,16 +572,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -566,18 +591,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -585,18 +610,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -604,18 +629,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -623,18 +648,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -661,7 +686,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -766,7 +791,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -828,7 +853,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -900,7 +925,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 

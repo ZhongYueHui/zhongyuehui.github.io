@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
+        <meta name="description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。  &amp;lt;!-- more --&amp;gt; 在Koa中使用Nodejs原生的方式获取get、post数据  在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
 <meta name="keywords" content="Koa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Koa中使用Nodejs原生的方式获取post数据和使用koa-bodyparser中间件获取post数据">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/12/在Koa中使用Nodejs原生的方式获取post数据和使用koa-bodyparser中间件获取post数据/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
+<meta property="og:description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。  &amp;lt;!-- more --&amp;gt; 在Koa中使用Nodejs原生的方式获取get、post数据  在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
 <meta property="og:updated_time" content="2019-08-12T14:23:39.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Koa中使用Nodejs原生的方式获取post数据和使用koa-bodyparser中间件获取post数据">
-<meta name="twitter:description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
+<meta name="twitter:description" content="在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。  &amp;lt;!-- more --&amp;gt; 在Koa中使用Nodejs原生的方式获取get、post数据  在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
             
 
@@ -240,25 +240,32 @@
                             <blockquote>
 <p>在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="在Koa中使用Nodejs原生的方式获取get、post数据"><a href="#在Koa中使用Nodejs原生的方式获取get、post数据" class="headerlink" title="在Koa中使用Nodejs原生的方式获取get、post数据"></a>在Koa中使用Nodejs原生的方式获取get、post数据</h2><ul>
-<li><p>在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。</p>
-<h3 id="创建获取post数据模块"><a href="#创建获取post数据模块" class="headerlink" title="创建获取post数据模块"></a>创建获取post数据模块</h3></li>
-<li><p>在根目录下创建common目录，新建<code>postCommon.js</code></p>
-  <figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//暴露模块</span></span><br><span class="line">exports.getPostData = <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> &#123;</span><br><span class="line"><span class="hljs-comment">//返回一个promise对象，这样就可以在调用的时候 awit</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">try</span> &#123; <span class="hljs-comment">//获取成功</span></span><br><span class="line">        <span class="hljs-keyword">let</span> data = <span class="hljs-string">''</span></span><br><span class="line">        ctx.req.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        ctx.req.on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            reslove(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">catch</span> (err) &#123; <span class="hljs-comment">//如果获取失败</span></span><br><span class="line">        reject(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在<code>app.js</code>中使用这个模块</p>
-  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./modules/common'</span>)</span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attr">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//因为在这里是异步的，如果需要使用await，那么调用的函数也需要是异步的，我们使用Promise封装</span></span><br><span class="line">    <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> common.getPostData(ctx)</span><br><span class="line">    ctx.body = data</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>以上已经可以获取到post数据，但是这样过于繁琐，而且数据并没有格式化好，所以我们可以使用第三方的中间件来解决这个问题</p>
-<h3 id="使用koa-bodyparser中间件获取表单提交的数据"><a href="#使用koa-bodyparser中间件获取表单提交的数据" class="headerlink" title="使用koa-bodyparser中间件获取表单提交的数据"></a>使用koa-bodyparser中间件获取表单提交的数据</h3></li>
+<p>&lt;!-- more --&gt;</p>
+<h2>在Koa中使用Nodejs原生的方式获取get、post数据</h2>
+<ul>
+<li>在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。</li>
 </ul>
+<h3>创建获取post数据模块</h3>
+<ul>
+<li>
+<p>在根目录下创建common目录，新建<code>postCommon.js</code>
+<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//暴露模块</span></span><br><span class="line">exports.getPostData = <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> &#123;</span><br><span class="line"><span class="hljs-comment">//返回一个promise对象，这样就可以在调用的时候 awit</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">try</span> &#123; <span class="hljs-comment">//获取成功</span></span><br><span class="line">        <span class="hljs-keyword">let</span> data = <span class="hljs-string">''</span></span><br><span class="line">        ctx.req.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        ctx.req.on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            reslove(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">catch</span> (err) &#123; <span class="hljs-comment">//如果获取失败</span></span><br><span class="line">        reject(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>在<code>app.js</code>中使用这个模块
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./modules/common'</span>)</span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attr">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//因为在这里是异步的，如果需要使用await，那么调用的函数也需要是异步的，我们使用Promise封装</span></span><br><span class="line">    <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> common.getPostData(ctx)</span><br><span class="line">    ctx.body = data</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>以上已经可以获取到post数据，但是这样过于繁琐，而且数据并没有格式化好，所以我们可以使用第三方的中间件来解决这个问题</p>
+</li>
+</ul>
+<h3>使用koa-bodyparser中间件获取表单提交的数据</h3>
 <ol>
 <li>安装：<code>cnpm i koa-bodyparser --save</code></li>
-<li>引入:<code>const bodyParser=require(&#39;koa-bodyparser&#39;)</code></li>
+<li>引入:<code>const bodyParser=require('koa-bodyparser')</code></li>
 <li>配置：<code>app.use(bodyParser())</code></li>
-<li>使用: <code>ctx.body =awit ctx.request.body</code> <figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-comment">//1.引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-bodyparser'</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="hljs-keyword">use</span>(views(<span class="hljs-string">'views'</span>), &#123; extension: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"><span class="hljs-comment">//2.配置</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser())</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, async (ctx, next) =&gt; &#123;</span><br><span class="line">    await ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, async ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//3.使用</span></span><br><span class="line">    ctx.body = await ctx.request.body</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.routes())</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure>
-</li>
+<li>使用: <code>ctx.body =awit ctx.request.body</code>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-comment">//1.引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-bodyparser'</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="hljs-keyword">use</span>(views(<span class="hljs-string">'views'</span>), &#123; extension: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"><span class="hljs-comment">//2.配置</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser())</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, async (ctx, next) =&gt; &#123;</span><br><span class="line">    await ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, async ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//3.使用</span></span><br><span class="line">    ctx.body = await ctx.request.body</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.routes())</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
 <li>这个时候就可以获取post数据了，非常的简单，而且数据已经帮你格式化成了JSON对象，直接使用即可</li>
@@ -386,15 +393,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#在Koa中使用Nodejs原生的方式获取get、post数据">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1</span>
         <span>在Koa中使用Nodejs原生的方式获取get、post数据</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#创建获取post数据模块">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.1</span>
         <span>创建获取post数据模块</span>
         </a></li><li>
-        <a class="is-flex" href="#使用koa-bodyparser中间件获取表单提交的数据">
+        <a class="is-flex" href="#undefined">
         <span class="has-mr-6">1.2</span>
         <span>使用koa-bodyparser中间件获取表单提交的数据</span>
         </a></li></ul></li></ul>
@@ -438,7 +445,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        92
                     </p>
                 </div>
             </div>
@@ -515,16 +522,16 @@
         
         <article class="media">
             
-            <a href="/2019/09/27/React-Hooks介绍和感知/" class="media-left">
+            <a href="/2019/09/29/React-Hooks自定义函数/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks介绍和感知">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="React-Hooks自定义函数">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-27T09:37:22.000Z">2019-09-27</time></div>
-                    <a href="/2019/09/27/React-Hooks介绍和感知/" class="has-link-black-ter is-size-6">React-Hooks介绍和感知</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:28.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/React-Hooks自定义函数/" class="has-link-black-ter is-size-6">React-Hooks自定义函数</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
@@ -534,18 +541,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="media-left">
+            <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&amp;fm=26&amp;gp=0.jpg" alt="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useRef获取DOM元素和保存变量">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:13:05.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/" class="has-link-black-ter is-size-6">使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:17.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useRef获取DOM元素和保存变量/" class="has-link-black-ter is-size-6">useRef获取DOM元素和保存变量</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -553,18 +560,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/Koa中使用session/" class="media-left">
+            <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="Koa中使用session">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useMemo解决子组件重复执行的问题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:54.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/Koa中使用session/" class="has-link-black-ter is-size-6">Koa中使用session</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:40:03.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useMemo解决子组件重复执行的问题/" class="has-link-black-ter is-size-6">useMemo解决子组件重复执行的问题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -572,18 +579,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用Cookie/" class="media-left">
+            <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用Cookie">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer实现redux进行颜色的替换">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:45.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用Cookie/" class="has-link-black-ter is-size-6">在koa中使用Cookie</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:53.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer实现redux进行颜色的替换/" class="has-link-black-ter is-size-6">useReducer实现redux进行颜色的替换</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -591,18 +598,18 @@
         
         <article class="media">
             
-            <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="media-left">
+            <a href="/2019/09/29/useReducer代替redux/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg" alt="在koa中使用art-template模板引擎">
+                    <img class="thumbnail" src="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg" alt="useReducer代替redux">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T14:12:34.000Z">2019-08-12</time></div>
-                    <a href="/2019/08/12/在koa中使用art-template模板引擎/" class="has-link-black-ter is-size-6">在koa中使用art-template模板引擎</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-29T06:39:39.000Z">2019-09-29</time></div>
+                    <a href="/2019/09/29/useReducer代替redux/" class="has-link-black-ter is-size-6">useReducer代替redux</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nodejs/">Nodejs</a>
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
                     </p>
                 </div>
             </div>
@@ -629,7 +636,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -734,7 +741,7 @@
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">14</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/React-native/">
@@ -796,7 +803,7 @@
         <h3 class="menu-label">
             ✍标签云
         </h3>
-        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 10px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
+        <a href="/tags/Angular/" style="font-size: 18.89px;">Angular</a> <a href="/tags/ES6/" style="font-size: 12.22px;">ES6</a> <a href="/tags/ES7/" style="font-size: 10px;">ES7</a> <a href="/tags/Express/" style="font-size: 14.44px;">Express</a> <a href="/tags/Koa/" style="font-size: 17.78px;">Koa</a> <a href="/tags/MongoDB/" style="font-size: 15.56px;">MongoDB</a> <a href="/tags/Nodejs/" style="font-size: 13.33px;">Nodejs</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/React-Hooks/" style="font-size: 18.89px;">React-Hooks</a> <a href="/tags/React-native/" style="font-size: 10px;">React-native</a> <a href="/tags/Redux/" style="font-size: 14.44px;">Redux</a> <a href="/tags/TypeScript/" style="font-size: 16.67px;">TypeScript</a> <a href="/tags/Vue/" style="font-size: 11.11px;">Vue</a> <a href="/tags/git/" style="font-size: 11.11px;">git</a> <a href="/tags/ionic/" style="font-size: 11.11px;">ionic</a> <a href="/tags/vs-code/" style="font-size: 10px;">vs code</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/tags/webpack/" style="font-size: 11.11px;">webpack</a>
     </div>
 </div>
 
@@ -868,7 +875,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React-Hooks/">
                         <span class="tag">React-Hooks</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
