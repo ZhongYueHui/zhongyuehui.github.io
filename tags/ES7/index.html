@@ -247,42 +247,22 @@
                             <blockquote>
 <p>async是现在解决异步的最好方法，通过同步的流程表达和完成了异步的操作。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>async(ES7)</h2>
-<ul>
-<li>
-<p>概念：真正意义上去解决异步回调的问题，同步流程表达异步操作</p>
-</li>
-<li>
-<p>语法：
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">await</span> 异步操作;</span><br><span class="line">    <span class="hljs-keyword">await</span> 异步操作;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>特点：不需要像Generator去调用next方法，遇到await等待，当前的异步操作完成就往下执行</p>
-</li>
-<li>
-<p>返回的总是Promise对象，可以使用then方法进行下一步操作</p>
-</li>
-<li>
-<p>async取代Generator函数的 * 号，await取代yield
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncprint</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.resovle(<span class="hljs-string">'Promise'</span>)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(reslue) <span class="hljs-comment">//Promise  说明成功了可以返回值</span></span><br><span class="line">    resulte = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">"失败了"</span>)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(resulut) <span class="hljs-comment">// 抛出异常错误</span></span><br><span class="line">&#125;</span><br><span class="line">asyncprint()</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>一个获取新闻的demo
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getnews</span>(<span class="hljs-params">url</span>)</span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123; </span><br><span class="line">      $.ajax(&#123;</span><br><span class="line">        method:<span class="hljs-string">'GET'</span>,</span><br><span class="line">        url,</span><br><span class="line">        success:<span class="hljs-function"><span class="hljs-params">data</span>=&gt;</span>resolve(data) <span class="hljs-comment">//将data返回出去，作为函数的返回值</span></span><br><span class="line">        error:<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>reject()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendXml</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> getnews(<span class="hljs-string">'http://localhost:8080/news?id=5'</span>)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(result) <span class="hljs-comment">//可以接收返回值</span></span><br><span class="line">    <span class="hljs-keyword">let</span> comment = <span class="hljs-keyword">await</span> getnews(<span class="hljs-string">'http://localhost:8080/news'</span>+comment.commentUrl) <span class="hljs-comment">//这样我们从返回值中再拿到数据再去发请求拿到评论列表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>如果失败了我们可以使用这样的方法来传递错误信息
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getnews</span>(<span class="hljs-params">url</span>)</span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123; </span><br><span class="line">      $.ajax(&#123;</span><br><span class="line">        method:<span class="hljs-string">'GET'</span>,</span><br><span class="line">        url,</span><br><span class="line">        success:<span class="hljs-function"><span class="hljs-params">data</span>=&gt;</span>resolve(data) </span><br><span class="line">        error:<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>resolve(<span class="hljs-literal">false</span>) <span class="hljs-comment">//我们这里也使用resolve,但是传一个值，因为用户是不会看控制台的</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendXml</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> getnews(<span class="hljs-string">'http://localhost:8080/news?id=5'</span>)<span class="hljs-comment">//那么我们在这里接受到的就是false</span></span><br><span class="line">    <span class="hljs-keyword">if</span>(!result)&#123;<span class="hljs-built_in">window</span>.alert(<span class="hljs-string">'暂无新闻内容'</span>) <span class="hljs-keyword">return</span>;&#125;<span class="hljs-comment">//这样就不会往下执行了</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(result) </span><br><span class="line">    <span class="hljs-keyword">let</span> comment = <span class="hljs-keyword">await</span> getnews(<span class="hljs-string">'http://localhost:8080/news'</span>+comment.commentUrl) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/09/ES7-async的使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>

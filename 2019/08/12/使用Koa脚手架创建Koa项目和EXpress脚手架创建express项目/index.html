@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目  &amp;lt;!-- more --&amp;gt; 使用Koa脚手架创建Koa项目  Koa脚手架和Vue、Angular、React脚手架一样，都是快速生成项目结构和启动代码的一个工具  使用脚手架  全局安装koa脚手架:cnpm i koa-generator -g 创建项目:koa 项目">
+        <meta name="description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目">
 <meta name="keywords" content="Nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/12/使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目  &amp;lt;!-- more --&amp;gt; 使用Koa脚手架创建Koa项目  Koa脚手架和Vue、Angular、React脚手架一样，都是快速生成项目结构和启动代码的一个工具  使用脚手架  全局安装koa脚手架:cnpm i koa-generator -g 创建项目:koa 项目">
+<meta property="og:description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
 <meta property="og:updated_time" content="2019-08-12T14:16:42.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Koa脚手架创建Koa项目和EXpress脚手架创建express项目">
-<meta name="twitter:description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目  &amp;lt;!-- more --&amp;gt; 使用Koa脚手架创建Koa项目  Koa脚手架和Vue、Angular、React脚手架一样，都是快速生成项目结构和启动代码的一个工具  使用脚手架  全局安装koa脚手架:cnpm i koa-generator -g 创建项目:koa 项目">
+<meta name="twitter:description" content="如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目">
 <meta name="twitter:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3642481453,1486938825&fm=26&gp=0.jpg">
             
 
@@ -240,48 +240,38 @@
                             <blockquote>
 <p>如果每次项目都是手动进行创建，一个是浪费时间，二是没有必要，使用EXpress脚手架和Koa脚手架快速生成项目</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>使用Koa脚手架创建Koa项目</h2>
-<ul>
-<li>Koa脚手架和Vue、Angular、React脚手架一样，都是快速生成项目结构和启动代码的一个工具</li>
-</ul>
-<h3>使用脚手架</h3>
-<ul>
-<li>全局安装koa脚手架:<code>cnpm i koa-generator -g</code></li>
-<li>创建项目:<code>koa 项目名</code></li>
-<li>安装依赖：<code>cd</code>项目名-&gt;<code>cnpm i</code></li>
-<li>启动项目:<code>npm start</code>,注意启动项目不再是<code>node app.js</code></li>
-</ul>
-<h3>创建参数</h3>
-<ul>
-<li>
-<p>创建的时候可以选择模板引擎和其他选项
-<figure class="highlight vim hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Mr zhong&gt;koa -h</span><br><span class="line">Usage: koa [<span class="hljs-keyword">options</span>] [dir]</span><br><span class="line"></span><br><span class="line">Option<span class="hljs-variable">s:</span></span><br><span class="line">  -V, --<span class="hljs-keyword">version</span>       output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span></span><br><span class="line">  -<span class="hljs-keyword">e</span>, --ejs           <span class="hljs-built_in">add</span> ejs engine support (defaults <span class="hljs-keyword">to</span> jade)</span><br><span class="line">      --hbs           <span class="hljs-built_in">add</span> handlebars engine support</span><br><span class="line">  -H, --hogan         <span class="hljs-built_in">add</span> hogan.js engine support</span><br><span class="line">  -<span class="hljs-keyword">c</span>, --css <span class="hljs-symbol">&lt;engine&gt;</span>  <span class="hljs-built_in">add</span> stylesheet <span class="hljs-symbol">&lt;engine&gt;</span> support (less|stylus|compass|sass) (defaults <span class="hljs-keyword">to</span> plain css)</span><br><span class="line">      --git           <span class="hljs-built_in">add</span> .gitignore</span><br><span class="line">  -<span class="hljs-keyword">f</span>, --force         force <span class="hljs-keyword">on</span> non-<span class="hljs-built_in">empty</span> directory</span><br><span class="line">  -h, --<span class="hljs-keyword">help</span>          output usage information</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="使用Koa脚手架创建Koa项目"><a href="#使用Koa脚手架创建Koa项目" class="headerlink" title="使用Koa脚手架创建Koa项目"></a>使用Koa脚手架创建Koa项目</h2><ul>
+<li><p>Koa脚手架和Vue、Angular、React脚手架一样，都是快速生成项目结构和启动代码的一个工具</p>
+<h3 id="使用脚手架"><a href="#使用脚手架" class="headerlink" title="使用脚手架"></a>使用脚手架</h3></li>
+<li><p>全局安装koa脚手架:<code>cnpm i koa-generator -g</code></p>
 </li>
-<li>
-<p>我们创建一个名字为<code>myapp</code>的项目使用ejs模板引擎
-<figure class="highlight ebnf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attribute">koa -e myapp</span></span><br></pre></td></tr></table></figure></p>
+<li><p>创建项目:<code>koa 项目名</code></p>
+</li>
+<li><p>安装依赖：<code>cd</code>项目名-&gt;<code>cnpm i</code></p>
+</li>
+<li><p>启动项目:<code>npm start</code>,注意启动项目不再是<code>node app.js</code></p>
+<h3 id="创建参数"><a href="#创建参数" class="headerlink" title="创建参数"></a>创建参数</h3></li>
+<li><p>创建的时候可以选择模板引擎和其他选项</p>
+  <figure class="highlight vim hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Mr zhong&gt;koa -h</span><br><span class="line">Usage: koa [<span class="hljs-keyword">options</span>] [dir]</span><br><span class="line"></span><br><span class="line">Option<span class="hljs-variable">s:</span></span><br><span class="line">  -V, --<span class="hljs-keyword">version</span>       output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span></span><br><span class="line">  -<span class="hljs-keyword">e</span>, --ejs           <span class="hljs-built_in">add</span> ejs engine support (defaults <span class="hljs-keyword">to</span> jade)</span><br><span class="line">      --hbs           <span class="hljs-built_in">add</span> handlebars engine support</span><br><span class="line">  -H, --hogan         <span class="hljs-built_in">add</span> hogan.js engine support</span><br><span class="line">  -<span class="hljs-keyword">c</span>, --css <span class="hljs-symbol">&lt;engine&gt;</span>  <span class="hljs-built_in">add</span> stylesheet <span class="hljs-symbol">&lt;engine&gt;</span> support (less|stylus|compass|sass) (defaults <span class="hljs-keyword">to</span> plain css)</span><br><span class="line">      --git           <span class="hljs-built_in">add</span> .gitignore</span><br><span class="line">  -<span class="hljs-keyword">f</span>, --force         force <span class="hljs-keyword">on</span> non-<span class="hljs-built_in">empty</span> directory</span><br><span class="line">  -h, --<span class="hljs-keyword">help</span>          output usage information</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们创建一个名字为<code>myapp</code>的项目使用ejs模板引擎</p>
+  <figure class="highlight ebnf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attribute">koa -e myapp</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h2>使用Express脚手架创建Express项目</h2>
-<h3>使用脚手架</h3>
-<ul>
-<li>
-<p>全局安装脚手架:<code>npm install express-generator -g</code></p>
+<h2 id="使用Express脚手架创建Express项目"><a href="#使用Express脚手架创建Express项目" class="headerlink" title="使用Express脚手架创建Express项目"></a>使用Express脚手架创建Express项目</h2><h3 id="使用脚手架-1"><a href="#使用脚手架-1" class="headerlink" title="使用脚手架"></a>使用脚手架</h3><ul>
+<li><p>全局安装脚手架:<code>npm install express-generator -g</code></p>
 </li>
-<li>
-<p>创建的参数
-<figure class="highlight haml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  express -h</span><br><span class="line"></span><br><span class="line">Usage: express [options] [dir]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"></span><br><span class="line">  -<span class="hljs-ruby">h, --help          输出使用方法</span></span><br><span class="line"><span class="hljs-ruby">      --version       输出版本号</span></span><br><span class="line"><span class="hljs-ruby">  -e, --ejs           添加对 ejs 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --hbs           添加对 handlebars 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --pug           添加对 pug 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">  -H, --hogan         添加对 hogan.js 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --no-view       创建不带视图引擎的项目</span></span><br><span class="line"><span class="hljs-ruby">  -v, --view &lt;engine&gt; 添加对视图引擎（view） &lt;engine&gt; 的支持 (ejs<span class="hljs-params">|hbs|</span>hjs<span class="hljs-params">|jade|</span>pug<span class="hljs-params">|twig|</span>vash) （默认是 jade 模板引擎）</span></span><br><span class="line"><span class="hljs-ruby">  -c, --css &lt;engine&gt;  添加样式表引擎 &lt;engine&gt; 的支持 (less<span class="hljs-params">|stylus|</span>compass<span class="hljs-params">|sass) （默认是普通的 css 文件）</span></span></span><br><span class="line"><span class="hljs-ruby">      --git           添加 .gitignore</span></span><br><span class="line"><span class="hljs-ruby">  -f, --force         强制在非空目录下创建</span></span><br></pre></td></tr></table></figure></p>
+<li><p>创建的参数</p>
+  <figure class="highlight haml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  express -h</span><br><span class="line"></span><br><span class="line">Usage: express [options] [dir]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"></span><br><span class="line">  -<span class="hljs-ruby">h, --help          输出使用方法</span></span><br><span class="line"><span class="hljs-ruby">      --version       输出版本号</span></span><br><span class="line"><span class="hljs-ruby">  -e, --ejs           添加对 ejs 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --hbs           添加对 handlebars 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --pug           添加对 pug 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">  -H, --hogan         添加对 hogan.js 模板引擎的支持</span></span><br><span class="line"><span class="hljs-ruby">      --no-view       创建不带视图引擎的项目</span></span><br><span class="line"><span class="hljs-ruby">  -v, --view &lt;engine&gt; 添加对视图引擎（view） &lt;engine&gt; 的支持 (ejs<span class="hljs-params">|hbs|</span>hjs<span class="hljs-params">|jade|</span>pug<span class="hljs-params">|twig|</span>vash) （默认是 jade 模板引擎）</span></span><br><span class="line"><span class="hljs-ruby">  -c, --css &lt;engine&gt;  添加样式表引擎 &lt;engine&gt; 的支持 (less<span class="hljs-params">|stylus|</span>compass<span class="hljs-params">|sass) （默认是普通的 css 文件）</span></span></span><br><span class="line"><span class="hljs-ruby">      --git           添加 .gitignore</span></span><br><span class="line"><span class="hljs-ruby">  -f, --force         强制在非空目录下创建</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>比如创建了一个名称为 myapp 的 Express 应用。此应用将在当前目录下的 myapp 目录中创建，并且设置为使用 ejs 模板引擎
-<figure class="highlight maxima hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">express</span> --<span class="hljs-built_in">view</span>=pug myapp</span><br></pre></td></tr></table></figure></p>
+<li><p>比如创建了一个名称为 myapp 的 Express 应用。此应用将在当前目录下的 myapp 目录中创建，并且设置为使用 ejs 模板引擎</p>
+  <figure class="highlight maxima hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">express</span> --<span class="hljs-built_in">view</span>=pug myapp</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>安装项目依赖：<code>cd myapp</code>,然后<code>cnpm i</code></p>
+<li><p>安装项目依赖：<code>cd myapp</code>,然后<code>cnpm i</code></p>
 </li>
-<li>
-<p>启动项目：<code>npm start</code></p>
+<li><p>启动项目：<code>npm start</code></p>
 </li>
 </ul>
 
@@ -407,23 +397,23 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#使用Koa脚手架创建Koa项目">
         <span class="has-mr-6">1</span>
         <span>使用Koa脚手架创建Koa项目</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#使用脚手架">
         <span class="has-mr-6">1.1</span>
         <span>使用脚手架</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#创建参数">
         <span class="has-mr-6">1.2</span>
         <span>创建参数</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#使用Express脚手架创建Express项目">
         <span class="has-mr-6">2</span>
         <span>使用Express脚手架创建Express项目</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#使用脚手架-1">
         <span class="has-mr-6">2.1</span>
         <span>使用脚手架</span>
         </a></li></ul></li></ul>

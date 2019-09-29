@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  &amp;lt;!-- more --&amp;gt; Koa中使用session  同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  使用session   安装:cnpm i koa-">
+        <meta name="description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session">
 <meta name="keywords" content="Koa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Koa中使用session">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/12/Koa中使用session/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  &amp;lt;!-- more --&amp;gt; Koa中使用session  同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  使用session   安装:cnpm i koa-">
+<meta property="og:description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
 <meta property="og:updated_time" content="2019-08-12T14:21:48.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa中使用session">
-<meta name="twitter:description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  &amp;lt;!-- more --&amp;gt; Koa中使用session  同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session  使用session   安装:cnpm i koa-">
+<meta name="twitter:description" content="在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
             
 
@@ -240,31 +240,22 @@
                             <blockquote>
 <p>在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa中使用session</h2>
-<ul>
-<li>同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session</li>
-</ul>
-<h3>使用session</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i koa-session --save</code></p>
+<a id="more"></a>
+<h2 id="Koa中使用session"><a href="#Koa中使用session" class="headerlink" title="Koa中使用session"></a>Koa中使用session</h2><ul>
+<li><p>同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session</p>
+<h3 id="使用session"><a href="#使用session" class="headerlink" title="使用session"></a>使用session</h3></li>
+<li><p>安装:<code>cnpm i koa-session --save</code></p>
 </li>
-<li>
-<p>引入：<code>const session=require('koa-session')</code></p>
+<li><p>引入：<code>const session=require(&#39;koa-session&#39;)</code></p>
 </li>
-<li>
-<p>配置session
-<figure class="highlight zephir hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-session'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> Koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();</span><br><span class="line"> </span><br><span class="line">app.keys = [<span class="hljs-string">'some secret hurr'</span>];</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">const</span> CONFIG = &#123;</span><br><span class="line">  key: <span class="hljs-string">'koa:sess'</span>, <span class="hljs-comment">//cookie的签名</span></span><br><span class="line">  maxAge: <span class="hljs-number">86400000</span>,<span class="hljs-comment">//过期时间，默认是一天</span></span><br><span class="line">  autoCommit: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//自动添加请求头，默认是添加的</span></span><br><span class="line">  overwrite: <span class="hljs-keyword">true</span>,<span class="hljs-comment">//能否覆盖session，默认是可以</span></span><br><span class="line">  httpOnly: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否在服务端才能访问，默认是true</span></span><br><span class="line">  signed: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否签名，默认是true</span></span><br><span class="line">  rolling: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//每次访问页面或对页面进行操作时重置session过期时间，默认是false</span></span><br><span class="line">  renew: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//当session快过期的时候如果还在操作是否重置seesion过期时间，默认是false</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(session(CONFIG, app));<span class="hljs-comment">//使用自定义的session配置，如果你想使用默认的配置可以这样使用app.use(session(app));</span></span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(ctx =&gt; &#123;</span><br><span class="line">  <span class="hljs-comment">// 忽略 favicon</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (ctx.path === <span class="hljs-string">'/favicon.ico'</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="hljs-keyword">let</span> n = ctx.session.views || <span class="hljs-number">0</span>;</span><br><span class="line">  ctx.session.views = ++n;</span><br><span class="line">  ctx.body = n + <span class="hljs-string">' views'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></table></figure></p>
+<li><p>配置session</p>
+  <figure class="highlight zephir hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-session'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> Koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();</span><br><span class="line"> </span><br><span class="line">app.keys = [<span class="hljs-string">'some secret hurr'</span>];</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">const</span> CONFIG = &#123;</span><br><span class="line">  key: <span class="hljs-string">'koa:sess'</span>, <span class="hljs-comment">//cookie的签名</span></span><br><span class="line">  maxAge: <span class="hljs-number">86400000</span>,<span class="hljs-comment">//过期时间，默认是一天</span></span><br><span class="line">  autoCommit: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//自动添加请求头，默认是添加的</span></span><br><span class="line">  overwrite: <span class="hljs-keyword">true</span>,<span class="hljs-comment">//能否覆盖session，默认是可以</span></span><br><span class="line">  httpOnly: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否在服务端才能访问，默认是true</span></span><br><span class="line">  signed: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否签名，默认是true</span></span><br><span class="line">  rolling: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//每次访问页面或对页面进行操作时重置session过期时间，默认是false</span></span><br><span class="line">  renew: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//当session快过期的时候如果还在操作是否重置seesion过期时间，默认是false</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(session(CONFIG, app));<span class="hljs-comment">//使用自定义的session配置，如果你想使用默认的配置可以这样使用app.use(session(app));</span></span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(ctx =&gt; &#123;</span><br><span class="line">  <span class="hljs-comment">// 忽略 favicon</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (ctx.path === <span class="hljs-string">'/favicon.ico'</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="hljs-keyword">let</span> n = ctx.session.views || <span class="hljs-number">0</span>;</span><br><span class="line">  ctx.session.views = ++n;</span><br><span class="line">  ctx.body = n + <span class="hljs-string">' views'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>设置session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span>=<span class="hljs-string">'zs'</span></span><br></pre></td></tr></table></figure></p>
+<li><p>设置session</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span>=<span class="hljs-string">'zs'</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>获取session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span></span><br></pre></td></tr></table></figure></p>
-</li>
+<li><p>获取session</p>
+  <figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
 
@@ -389,11 +380,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#Koa中使用session">
         <span class="has-mr-6">1</span>
         <span>Koa中使用session</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#使用session">
         <span class="has-mr-6">1.1</span>
         <span>使用session</span>
         </a></li></ul></li></ul>

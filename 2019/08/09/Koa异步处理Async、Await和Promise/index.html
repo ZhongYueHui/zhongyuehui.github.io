@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。  &amp;lt;!-- more --&amp;gt; Koa异步处理Async、Await和Promise  因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法  Async  Async是异步的简写，await可以认为是async wait的简写，">
+        <meta name="description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。">
 <meta name="keywords" content="Koa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Koa异步处理Async、Await和Promise">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/09/Koa异步处理Async、Await和Promise/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。  &amp;lt;!-- more --&amp;gt; Koa异步处理Async、Await和Promise  因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法  Async  Async是异步的简写，await可以认为是async wait的简写，">
+<meta property="og:description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
 <meta property="og:updated_time" content="2019-08-09T03:20:59.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa异步处理Async、Await和Promise">
-<meta name="twitter:description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。  &amp;lt;!-- more --&amp;gt; Koa异步处理Async、Await和Promise  因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法  Async  Async是异步的简写，await可以认为是async wait的简写，">
+<meta name="twitter:description" content="koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/09/eHyDW4.jpg">
             
 
@@ -240,13 +240,9 @@
                             <blockquote>
 <p>koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa异步处理Async、Await和Promise</h2>
-<ul>
-<li>因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法</li>
-</ul>
-<h3>Async</h3>
-<ul>
+<a id="more"></a>
+<h2 id="Koa异步处理Async、Await和Promise"><a href="#Koa异步处理Async、Await和Promise" class="headerlink" title="Koa异步处理Async、Await和Promise"></a>Koa异步处理Async、Await和Promise</h2><ul>
+<li>因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法<h3 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h3></li>
 <li>Async是异步的简写，await可以认为是async wait的简写，async用于申明一个function是异步的，而await用域等待一个异步方法执行完成</li>
 <li><strong>简单的理解</strong></li>
 </ul>
@@ -255,20 +251,16 @@
 <li>await：等待异步方法执行完成</li>
 </ol>
 <ul>
-<li>
-<p>普通方法与async方法的区别
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//普通函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Koa</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//async函数</span></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Promise &#123; 'Koa' &#125;</span></span><br></pre></td></tr></table></figure></p>
+<li><p>普通方法与async方法的区别</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//普通函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Koa</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//async函数</span></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Promise &#123; 'Koa' &#125;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>因为async其实就是基于promise封装的，所以它返回的还是一个promise对象，只要是promise对象，我们就可以使用.then()的方式获数据
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line">getData()</span><br><span class="line">    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res))  <span class="hljs-comment">//Koa</span></span><br></pre></td></tr></table></figure></p>
+<li><p>因为async其实就是基于promise封装的，所以它返回的还是一个promise对象，只要是promise对象，我们就可以使用.then()的方式获数据</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line">getData()</span><br><span class="line">    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res))  <span class="hljs-comment">//Koa</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>但是，以上这种方法如果获取下一个数据需要上一个数据的结果时，又会形成回调地狱的情况，所以说Promise并没有正真解决回调地狱的问题，所以ES7的async才又一次对回调地域现象做出了解决的方法，就是使用await，以同步的方式处理异步
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">data</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> d = <span class="hljs-keyword">await</span> data()  <span class="hljs-comment">//等待data函数执行完毕，将结果赋值给变量d</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//打印结果</span></span><br><span class="line">&#125;</span><br><span class="line">getData()  <span class="hljs-comment">//调用函数进行取值</span></span><br></pre></td></tr></table></figure></p>
+<li><p>但是，以上这种方法如果获取下一个数据需要上一个数据的结果时，又会形成回调地狱的情况，所以说Promise并没有正真解决回调地狱的问题，所以ES7的async才又一次对回调地域现象做出了解决的方法，就是使用await，以同步的方式处理异步</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">data</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> d = <span class="hljs-keyword">await</span> data()  <span class="hljs-comment">//等待data函数执行完毕，将结果赋值给变量d</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//打印结果</span></span><br><span class="line">&#125;</span><br><span class="line">getData()  <span class="hljs-comment">//调用函数进行取值</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p><a href="http://www.zhongyuehui.cn/2019/08/09/ES7-async%E7%9A%84%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">点击这里</a>，详细了解<code>async</code></p>
+<li><p><a href="http://www.zhongyuehui.cn/2019/08/09/ES7-async%E7%9A%84%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">点击这里</a>，详细了解<code>async</code></p>
 </li>
 </ul>
 
@@ -394,11 +386,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#Koa异步处理Async、Await和Promise">
         <span class="has-mr-6">1</span>
         <span>Koa异步处理Async、Await和Promise</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#Async">
         <span class="has-mr-6">1.1</span>
         <span>Async</span>
         </a></li></ul></li></ul>

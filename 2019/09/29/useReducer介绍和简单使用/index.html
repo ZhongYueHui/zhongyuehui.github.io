@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React-Hooks的useReducer可以管理状态，容易测试  &amp;lt;!-- more --&amp;gt; useReducer介绍和简单使用  useState 的替代方案。它接收一个形如 (state, action) =&amp;gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。（如果你熟悉 Redux 的话，就已经知道它如何工作了。">
+        <meta name="description" content="React-Hooks的useReducer可以管理状态，容易测试">
 <meta name="keywords" content="React-Hooks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="useReducer介绍和简单使用">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/09/29/useReducer介绍和简单使用/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React-Hooks的useReducer可以管理状态，容易测试  &amp;lt;!-- more --&amp;gt; useReducer介绍和简单使用  useState 的替代方案。它接收一个形如 (state, action) =&amp;gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。（如果你熟悉 Redux 的话，就已经知道它如何工作了。">
+<meta property="og:description" content="React-Hooks的useReducer可以管理状态，容易测试">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
 <meta property="og:updated_time" content="2019-09-29T06:56:01.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="useReducer介绍和简单使用">
-<meta name="twitter:description" content="React-Hooks的useReducer可以管理状态，容易测试  &amp;lt;!-- more --&amp;gt; useReducer介绍和简单使用  useState 的替代方案。它接收一个形如 (state, action) =&amp;gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。（如果你熟悉 Redux 的话，就已经知道它如何工作了。">
+<meta name="twitter:description" content="React-Hooks的useReducer可以管理状态，容易测试">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
             
 
@@ -240,29 +240,19 @@
                             <blockquote>
 <p>React-Hooks的useReducer可以管理状态，容易测试</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>useReducer介绍和简单使用</h2>
-<ul>
-<li>useState 的替代方案。它接收一个形如 (state, action) =&gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。（如果你熟悉 Redux 的话，就已经知道它如何工作了。）</li>
-</ul>
-<h3>reducer是什么</h3>
-<ul>
-<li>
-<p>它的兴起是从Redux广泛使用开始的，但不仅仅存在Redux中，可以使用JavaScript来完成Reducer操作。那reducer其实就是一个函数，这个函数接收两个参数，一个是状态，一个用来控制业务逻辑的判断参数
-<figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function countReducer(<span class="hljs-keyword">state</span>, action) &#123;</span><br><span class="line">    switch(action.type) &#123;</span><br><span class="line">        case 'add':</span><br><span class="line">            return <span class="hljs-keyword">state</span> + <span class="hljs-number">1</span>;</span><br><span class="line">        case 'sub':</span><br><span class="line">            return <span class="hljs-keyword">state</span> - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">default</span>: </span><br><span class="line">            return <span class="hljs-keyword">state</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="useReducer介绍和简单使用"><a href="#useReducer介绍和简单使用" class="headerlink" title="useReducer介绍和简单使用"></a>useReducer介绍和简单使用</h2><ul>
+<li><p>useState 的替代方案。它接收一个形如 (state, action) =&gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。（如果你熟悉 Redux 的话，就已经知道它如何工作了。）</p>
+<h3 id="reducer是什么"><a href="#reducer是什么" class="headerlink" title="reducer是什么"></a>reducer是什么</h3></li>
+<li><p>它的兴起是从Redux广泛使用开始的，但不仅仅存在Redux中，可以使用JavaScript来完成Reducer操作。那reducer其实就是一个函数，这个函数接收两个参数，一个是状态，一个用来控制业务逻辑的判断参数</p>
+  <figure class="highlight pf hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function countReducer(<span class="hljs-keyword">state</span>, action) &#123;</span><br><span class="line">    switch(action.type) &#123;</span><br><span class="line">        case 'add':</span><br><span class="line">            return <span class="hljs-keyword">state</span> + <span class="hljs-number">1</span>;</span><br><span class="line">        case 'sub':</span><br><span class="line">            return <span class="hljs-keyword">state</span> - <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">default</span>: </span><br><span class="line">            return <span class="hljs-keyword">state</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>
-<p>上面的代码就是Reducer，主要理解的就是这种形式和两个参数的作用，一个参数是状态，一个参数是如何控制状态</p>
+<li><p>上面的代码就是Reducer，主要理解的就是这种形式和两个参数的作用，一个参数是状态，一个参数是如何控制状态</p>
+<h3 id="useReducer的使用"><a href="#useReducer的使用" class="headerlink" title="useReducer的使用"></a>useReducer的使用</h3></li>
+<li><p>我们使用useReducer的方式对计数器进行加减的操作</p>
+  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useReducer &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReducerDemo</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> [count , dispatch] = useReducer(<span class="hljs-function">(<span class="hljs-params">state,actions</span>)=&gt;</span>&#123; <span class="hljs-comment">// 对象的结构赋值</span></span><br><span class="line">        <span class="hljs-keyword">switch</span> (actions)&#123;</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">'add'</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state+<span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">'sub'</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state<span class="hljs-number">-1</span></span><br><span class="line">            <span class="hljs-keyword">default</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,<span class="hljs-number">0</span>) <span class="hljs-comment">// 参数二为默认值</span></span><br><span class="line">    <span class="hljs-keyword">return</span> (<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;dispatch('add')&#125;&#125;&gt;加<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;dispatch('sub')&#125;&#125;&gt;减<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h3>useReducer的使用</h3>
-<ul>
-<li>
-<p>我们使用useReducer的方式对计数器进行加减的操作
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useReducer &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReducerDemo</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> [count , dispatch] = useReducer(<span class="hljs-function">(<span class="hljs-params">state,actions</span>)=&gt;</span>&#123; <span class="hljs-comment">// 对象的结构赋值</span></span><br><span class="line">        <span class="hljs-keyword">switch</span> (actions)&#123;</span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">'add'</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state+<span class="hljs-number">1</span></span><br><span class="line">            <span class="hljs-keyword">case</span> <span class="hljs-string">'sub'</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state<span class="hljs-number">-1</span></span><br><span class="line">            <span class="hljs-keyword">default</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> state</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,<span class="hljs-number">0</span>) <span class="hljs-comment">// 参数二为默认值</span></span><br><span class="line">    <span class="hljs-keyword">return</span> (<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;dispatch('add')&#125;&#125;&gt;加<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span>=&gt;</span>&#123;dispatch('sub')&#125;&#125;&gt;减<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这样可以实现加减的操作</p>
+<li><p>这样可以实现加减的操作</p>
 </li>
 </ul>
 
@@ -388,15 +378,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#useReducer介绍和简单使用">
         <span class="has-mr-6">1</span>
         <span>useReducer介绍和简单使用</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#reducer是什么">
         <span class="has-mr-6">1.1</span>
         <span>reducer是什么</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#useReducer的使用">
         <span class="has-mr-6">1.2</span>
         <span>useReducer的使用</span>
         </a></li></ul></li></ul>

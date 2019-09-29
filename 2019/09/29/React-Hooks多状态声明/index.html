@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。  &amp;lt;!-- more --&amp;gt; React-Hooks多状态声明  多个状态的声明 12345678910111213141516import React, &amp;#123; useState &amp;#125; from &apos;react&apos;let flge=trueexport default fu">
+        <meta name="description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。">
 <meta name="keywords" content="React-Hooks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-Hooks多状态声明">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/09/29/React-Hooks多状态声明/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。  &amp;lt;!-- more --&amp;gt; React-Hooks多状态声明  多个状态的声明 12345678910111213141516import React, &amp;#123; useState &amp;#125; from &apos;react&apos;let flge=trueexport default fu">
+<meta property="og:description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
 <meta property="og:updated_time" content="2019-09-29T06:44:35.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-Hooks多状态声明">
-<meta name="twitter:description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。  &amp;lt;!-- more --&amp;gt; React-Hooks多状态声明  多个状态的声明 12345678910111213141516import React, &amp;#123; useState &amp;#125; from &apos;react&apos;let flge=trueexport default fu">
+<meta name="twitter:description" content="React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
             
 
@@ -240,16 +240,14 @@
                             <blockquote>
 <p>React-Hooks如何声明多个状态并进行传递呢？其实很简单，使用多个useState定义即可。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>React-Hooks多状态声明</h2>
-<ul>
-<li>多个状态的声明
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> flge=<span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example2</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> [age , setAge] = useState(<span class="hljs-number">0</span>) <span class="hljs-comment">// 数组的解构赋值,这个是根据位置来赋值的 age=0，setAge没有值</span></span><br><span class="line">    <span class="hljs-keyword">const</span> [height , setHeight] = useState(<span class="hljs-number">170</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> [work , setWork] = useState(<span class="hljs-string">'敲代码'</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;height&#125;&lt;<span class="hljs-regexp">/p&gt;</span></span><br><span class="line"><span class="hljs-regexp">            &lt;p&gt;&#123;age&#125;--&#123;setAge&#125;&lt;/</span>p&gt; </span><br><span class="line">            &lt;p&gt;&#123;work&#125;&lt;<span class="hljs-regexp">/p&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<a id="more"></a>
+<h2 id="React-Hooks多状态声明"><a href="#React-Hooks多状态声明" class="headerlink" title="React-Hooks多状态声明"></a>React-Hooks多状态声明</h2><ul>
+<li>多个状态的声明  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> flge=<span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example2</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> [age , setAge] = useState(<span class="hljs-number">0</span>) <span class="hljs-comment">// 数组的解构赋值,这个是根据位置来赋值的 age=0，setAge没有值</span></span><br><span class="line">    <span class="hljs-keyword">const</span> [height , setHeight] = useState(<span class="hljs-number">170</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> [work , setWork] = useState(<span class="hljs-string">'敲代码'</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;height&#125;&lt;<span class="hljs-regexp">/p&gt;</span></span><br><span class="line"><span class="hljs-regexp">            &lt;p&gt;&#123;age&#125;--&#123;setAge&#125;&lt;/</span>p&gt; </span><br><span class="line">            &lt;p&gt;&#123;work&#125;&lt;<span class="hljs-regexp">/p&gt;</span></span><br><span class="line"><span class="hljs-regexp">        &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h3>注意：</h3>
-<ul>
-<li>1、useState一定要写在函数初始的位置不能在循环或判断语句等里面调用，这样是为了让我们的 Hooks 在每次渲染的时候都会按照 相同的顺序 调用，因为这里有一个关键的问题，那就是useState需要依赖参照第一次渲染的调用顺序来匹配对于的state，否则 useState 会无法正确返回它对于的state
-2、我们可以在一个函数组件中使用多个</li>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ul>
+<li>1、useState一定要写在函数初始的位置不能在循环或判断语句等里面调用，这样是为了让我们的 Hooks 在每次渲染的时候都会按照 相同的顺序 调用，因为这里有一个关键的问题，那就是useState需要依赖参照第一次渲染的调用顺序来匹配对于的state，否则 useState 会无法正确返回它对于的state<br>2、我们可以在一个函数组件中使用多个</li>
 </ul>
 
 
@@ -374,11 +372,11 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#React-Hooks多状态声明">
         <span class="has-mr-6">1</span>
         <span>React-Hooks多状态声明</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#注意：">
         <span class="has-mr-6">1.1</span>
         <span>注意：</span>
         </a></li></ul></li></ul>

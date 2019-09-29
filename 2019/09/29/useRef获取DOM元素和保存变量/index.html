@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改  &amp;lt;!-- more --&amp;gt; useRef获取DOM元素和保存变量 useRef获取DOM元素  我们定义一个input和一个button，点击button的时候获取input的value值 12345678910111213141516import React, &amp;#123; useRef &amp;#125; from &apos;reac">
+        <meta name="description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改">
 <meta name="keywords" content="React-Hooks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="useRef获取DOM元素和保存变量">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/09/29/useRef获取DOM元素和保存变量/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改  &amp;lt;!-- more --&amp;gt; useRef获取DOM元素和保存变量 useRef获取DOM元素  我们定义一个input和一个button，点击button的时候获取input的value值 12345678910111213141516import React, &amp;#123; useRef &amp;#125; from &apos;reac">
+<meta property="og:description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
 <meta property="og:updated_time" content="2019-09-29T06:58:58.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="useRef获取DOM元素和保存变量">
-<meta name="twitter:description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改  &amp;lt;!-- more --&amp;gt; useRef获取DOM元素和保存变量 useRef获取DOM元素  我们定义一个input和一个button，点击button的时候获取input的value值 12345678910111213141516import React, &amp;#123; useRef &amp;#125; from &apos;reac">
+<meta name="twitter:description" content="使用useRef可以很轻松的让我们对DOM进行获取和修改">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/09/27/uKv7xU.jpg">
             
 
@@ -240,21 +240,17 @@
                             <blockquote>
 <p>使用useRef可以很轻松的让我们对DOM进行获取和修改</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>useRef获取DOM元素和保存变量</h2>
-<h3>useRef获取DOM元素</h3>
-<ul>
-<li>我们定义一个input和一个button，点击button的时候获取input的value值
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example8</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> inputE = useRef(<span class="hljs-literal">null</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> changeInput=<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;</span><br><span class="line">        inputE.current.value=<span class="hljs-string">'改变了'</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(inputE)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> (<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">        &lt;input ref=&#123;inputE&#125; type="text" /&gt;</span><br><span class="line">        &lt;button onClick=&#123;changeInput&#125;&gt;按下input改变value&lt;/button&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">      </span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>)</span></span><br><span class="line"><span class="hljs-xml">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>保存变量</h3>
-<ul>
-<li>
-<p>我们定义一个input，输入的时候就将当前输入的valu值显示出来
-<figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useRef ,useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function">export <span class="hljs-keyword">default</span> function <span class="hljs-title">Example8</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> inputE = useRef(<span class="hljs-literal">null</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> changeInput=()=&gt;&#123;</span><br><span class="line">        inputE.current.<span class="hljs-keyword">value</span>=<span class="hljs-string">'改变了'</span></span><br><span class="line">        console.log(inputE)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">const</span> [<span class="hljs-keyword">value</span> ,setValue]=useState(<span class="hljs-string">'嘻嘻'</span>) <span class="hljs-comment">// 设置状态和初始值</span></span><br><span class="line">    <span class="hljs-keyword">return</span> (&lt;div&gt;</span><br><span class="line">        &lt;input <span class="hljs-keyword">ref</span>=&#123;inputE&#125; type=<span class="hljs-string">"text"</span> /&gt;</span><br><span class="line">        &lt;button onClick=&#123;changeInput&#125;&gt;按下input改变<span class="hljs-keyword">value</span>&lt;/button&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 保存value */</span>&#125;</span><br><span class="line">        &lt;input <span class="hljs-keyword">value</span>=&#123;<span class="hljs-keyword">value</span>&#125; onChange=&#123;(e)=&gt;(setValue(e.target.<span class="hljs-keyword">value</span>))&#125;/&gt;</span><br><span class="line">        &lt;p&gt;&#123;<span class="hljs-keyword">value</span>&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="useRef获取DOM元素和保存变量"><a href="#useRef获取DOM元素和保存变量" class="headerlink" title="useRef获取DOM元素和保存变量"></a>useRef获取DOM元素和保存变量</h2><h3 id="useRef获取DOM元素"><a href="#useRef获取DOM元素" class="headerlink" title="useRef获取DOM元素"></a>useRef获取DOM元素</h3><ul>
+<li>我们定义一个input和一个button，点击button的时候获取input的value值  <figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React, &#123; useRef &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Example8</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> inputE = useRef(<span class="hljs-literal">null</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> changeInput=<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;</span><br><span class="line">        inputE.current.value=<span class="hljs-string">'改变了'</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(inputE)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> (<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span></span><br><span class="line">        &lt;input ref=&#123;inputE&#125; type="text" /&gt;</span><br><span class="line">        &lt;button onClick=&#123;changeInput&#125;&gt;按下input改变value&lt;/button&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">      </span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>)</span></span><br><span class="line"><span class="hljs-xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
 </li>
-<li>
-<p>这样当input的值发生变化的时候就更新value的值，保持同步</p>
+</ul>
+<h3 id="保存变量"><a href="#保存变量" class="headerlink" title="保存变量"></a>保存变量</h3><ul>
+<li><p>我们定义一个input，输入的时候就将当前输入的valu值显示出来</p>
+  <figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useRef ,useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function">export <span class="hljs-keyword">default</span> function <span class="hljs-title">Example8</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">const</span> inputE = useRef(<span class="hljs-literal">null</span>)</span><br><span class="line">    <span class="hljs-keyword">const</span> changeInput=()=&gt;&#123;</span><br><span class="line">        inputE.current.<span class="hljs-keyword">value</span>=<span class="hljs-string">'改变了'</span></span><br><span class="line">        console.log(inputE)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">const</span> [<span class="hljs-keyword">value</span> ,setValue]=useState(<span class="hljs-string">'嘻嘻'</span>) <span class="hljs-comment">// 设置状态和初始值</span></span><br><span class="line">    <span class="hljs-keyword">return</span> (&lt;div&gt;</span><br><span class="line">        &lt;input <span class="hljs-keyword">ref</span>=&#123;inputE&#125; type=<span class="hljs-string">"text"</span> /&gt;</span><br><span class="line">        &lt;button onClick=&#123;changeInput&#125;&gt;按下input改变<span class="hljs-keyword">value</span>&lt;/button&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &#123;<span class="hljs-comment">/* 保存value */</span>&#125;</span><br><span class="line">        &lt;input <span class="hljs-keyword">value</span>=&#123;<span class="hljs-keyword">value</span>&#125; onChange=&#123;(e)=&gt;(setValue(e.target.<span class="hljs-keyword">value</span>))&#125;/&gt;</span><br><span class="line">        &lt;p&gt;&#123;<span class="hljs-keyword">value</span>&#125;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样当input的值发生变化的时候就更新value的值，保持同步</p>
 </li>
 </ul>
 
@@ -380,15 +376,15 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#useRef获取DOM元素和保存变量">
         <span class="has-mr-6">1</span>
         <span>useRef获取DOM元素和保存变量</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#useRef获取DOM元素">
         <span class="has-mr-6">1.1</span>
         <span>useRef获取DOM元素</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#保存变量">
         <span class="has-mr-6">1.2</span>
         <span>保存变量</span>
         </a></li></ul></li></ul>

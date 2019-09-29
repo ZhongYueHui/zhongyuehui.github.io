@@ -11,19 +11,19 @@
 
 
     
-        <meta name="description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。  &amp;lt;!-- more --&amp;gt; componentWillMount函数  在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中 虚拟DOM也还没有开始创建 此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素">
+        <meta name="description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React生命周期函数">
 <meta property="og:url" content="https://zhongyuehui.github.io/2019/08/04/React生命周期函数/index.html">
 <meta property="og:site_name" content="Just for fun">
-<meta property="og:description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。  &amp;lt;!-- more --&amp;gt; componentWillMount函数  在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中 虚拟DOM也还没有开始创建 此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素">
+<meta property="og:description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
 <meta property="og:updated_time" content="2019-08-04T09:15:40.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React生命周期函数">
-<meta name="twitter:description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。  &amp;lt;!-- more --&amp;gt; componentWillMount函数  在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中 虚拟DOM也还没有开始创建 此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素">
+<meta name="twitter:description" content="生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/16/Z7cnBj.jpg">
             
 
@@ -240,43 +240,33 @@
                             <blockquote>
 <p>生命周期函数在组件从创建到销毁，在内部做的一系列操作，通过生命周期函数，可以帮助我们更好的了解和使用组件。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>componentWillMount函数</h2>
-<ul>
+<a id="more"></a>
+<h2 id="componentWillMount函数"><a href="#componentWillMount函数" class="headerlink" title="componentWillMount函数"></a>componentWillMount函数</h2><ul>
 <li>在组件即将挂载到页面上的时候执行，此时，组件尚未挂载到页面中</li>
 <li>虚拟DOM也还没有开始创建</li>
 <li>此时无法获取到任何页面上的元素，因为虚拟DOM和页面都还没有开始渲染，在这个阶段中，也不能去操作页面上DOM元素</li>
 <li>但是可以获取到props和state的值，也可以调用函数</li>
-<li>这个函数等同于Vue中的<code>created</code>生命周期函数</li>
-</ul>
-<h2>render函数</h2>
-<ul>
+<li>这个函数等同于Vue中的<code>created</code>生命周期函数<h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2></li>
 <li>当执行到这个生命周期函数时，即将开始渲染内存中的虚拟DOM了，但是页面上尚未真正显示DOM元素</li>
 <li>在render函数中，在return之前，虚拟DOM还没有开始创建，页面上也是空的，拿不到任何的元素</li>
-<li>当render函数中的return执行完毕后，虚拟DOM创建好了，但是还没有真正的挂载到页面中</li>
-</ul>
-<h2>componentDidMount函数</h2>
-<ul>
+<li>当render函数中的return执行完毕后，虚拟DOM创建好了，但是还没有真正的挂载到页面中<h2 id="componentDidMount函数"><a href="#componentDidMount函数" class="headerlink" title="componentDidMount函数"></a>componentDidMount函数</h2></li>
 <li>当组件挂载到页面上之后，会进入这个生命周期函数，只要进入这个生命周期函数了，说明页面上已经有可见DOM元素了</li>
 <li>在这个函数中，可以放心的操作页面上你需要操作的DOM元素了</li>
 <li>如果我们需要操作DOM元素。最早只能在这个生命周期函数中进行</li>
-<li>componentDidMounti相当于vue中的mounted函数</li>
-</ul>
-<h3>组件生命周期函数执行顺序</h3>
-<ul>
+<li>componentDidMounti相当于vue中的mounted函数<h3 id="组件生命周期函数执行顺序"><a href="#组件生命周期函数执行顺序" class="headerlink" title="组件生命周期函数执行顺序"></a>组件生命周期函数执行顺序</h3></li>
 <li>组件生命周期的执行顺序：</li>
 </ul>
 <ul>
-<li><strong>Mounting</strong>：
-<ul>
-<li>constructor()</li>
+<li><strong>Mounting</strong>：<ul>
+<li>constructor()<ul>
 <li>componentWillMount()</li>
 <li>render()</li>
 <li>componentDidMount()</li>
 </ul>
 </li>
-<li><strong>Updating</strong>：
-<ul>
+</ul>
+</li>
+<li><strong>Updating</strong>：<ul>
 <li>componentWillReceiveProps(nextProps)</li>
 <li>shouldComponentUpdate(nextProps, nextState)</li>
 <li>componentWillUpdate(nextProps, nextState)</li>
@@ -284,8 +274,7 @@
 <li>componentDidUpdate(prevProps, prevState)</li>
 </ul>
 </li>
-<li><strong>Unmounting</strong>：
-<ul>
+<li><strong>Unmounting</strong>：<ul>
 <li>componentWillUnmount()</li>
 </ul>
 </li>
@@ -413,19 +402,19 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#componentWillMount函数">
         <span class="has-mr-6">1</span>
         <span>componentWillMount函数</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#render函数">
         <span class="has-mr-6">2</span>
         <span>render函数</span>
         </a></li><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#componentDidMount函数">
         <span class="has-mr-6">3</span>
         <span>componentDidMount函数</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
+        <a class="is-flex" href="#组件生命周期函数执行顺序">
         <span class="has-mr-6">3.1</span>
         <span>组件生命周期函数执行顺序</span>
         </a></li></ul></li></ul>

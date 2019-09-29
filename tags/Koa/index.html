@@ -247,39 +247,22 @@
                             <blockquote>
 <p>在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa中使用session</h2>
-<ul>
-<li>同样的，在express中我们已经说到过了session及其原理，安全性比cookie高，在这里我们直接看在koa中如何使用session</li>
-</ul>
-<h3>使用session</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i koa-session --save</code></p>
-</li>
-<li>
-<p>引入：<code>const session=require('koa-session')</code></p>
-</li>
-<li>
-<p>配置session
-<figure class="highlight zephir hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> session = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-session'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> Koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();</span><br><span class="line"> </span><br><span class="line">app.keys = [<span class="hljs-string">'some secret hurr'</span>];</span><br><span class="line"> </span><br><span class="line"><span class="hljs-keyword">const</span> CONFIG = &#123;</span><br><span class="line">  key: <span class="hljs-string">'koa:sess'</span>, <span class="hljs-comment">//cookie的签名</span></span><br><span class="line">  maxAge: <span class="hljs-number">86400000</span>,<span class="hljs-comment">//过期时间，默认是一天</span></span><br><span class="line">  autoCommit: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//自动添加请求头，默认是添加的</span></span><br><span class="line">  overwrite: <span class="hljs-keyword">true</span>,<span class="hljs-comment">//能否覆盖session，默认是可以</span></span><br><span class="line">  httpOnly: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否在服务端才能访问，默认是true</span></span><br><span class="line">  signed: <span class="hljs-keyword">true</span>, <span class="hljs-comment">//是否签名，默认是true</span></span><br><span class="line">  rolling: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//每次访问页面或对页面进行操作时重置session过期时间，默认是false</span></span><br><span class="line">  renew: <span class="hljs-keyword">false</span>, <span class="hljs-comment">//当session快过期的时候如果还在操作是否重置seesion过期时间，默认是false</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(session(CONFIG, app));<span class="hljs-comment">//使用自定义的session配置，如果你想使用默认的配置可以这样使用app.use(session(app));</span></span><br><span class="line"> </span><br><span class="line">app.<span class="hljs-keyword">use</span>(ctx =&gt; &#123;</span><br><span class="line">  <span class="hljs-comment">// 忽略 favicon</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (ctx.path === <span class="hljs-string">'/favicon.ico'</span>) <span class="hljs-keyword">return</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="hljs-keyword">let</span> n = ctx.session.views || <span class="hljs-number">0</span>;</span><br><span class="line">  ctx.session.views = ++n;</span><br><span class="line">  ctx.body = n + <span class="hljs-string">' views'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">app.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>设置session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span>=<span class="hljs-string">'zs'</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>获取session
-<figure class="highlight stylus hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx<span class="hljs-selector-class">.session</span><span class="hljs-selector-class">.username</span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/12/Koa中使用session/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -331,78 +314,24 @@
                         </h1>
                         <div class="content">
                             <blockquote>
-<p>在Koa中使用Cookie非常简单，因为它不需要安装第三方的插件，自身就有这个功能
-&lt;!-- more --&gt;</p>
+<p>在Koa中使用Cookie非常简单，因为它不需要安装第三方的插件，自身就有这个功能</p>
 </blockquote>
-<h2>Koa中使用Cookie</h2>
-<ul>
-<li>Cookie的作用我们在express中说到过，这里就不再重复，我们直接来看如何使用Cookie</li>
-<li>在Koa中使用Cookie非常简单，因为它不需要安装第三方的插件，自身就有这个功能</li>
-</ul>
-<h3>Cookie的使用说明</h3>
-<ul>
-<li>
-<p>在koa中设置cookie的值
-<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">ctx</span><span class="hljs-selector-class">.cookies</span><span class="hljs-selector-class">.set</span>(<span class="hljs-selector-tag">name</span>,<span class="hljs-selector-tag">value</span>,<span class="hljs-selector-attr">[options]</span>)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>获取cookie的值
-<figure class="highlight xquery hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span><span class="hljs-built_in"> name</span> = ctx.cookies<span class="hljs-built_in">(name</span>)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p><strong>options选项</strong></p>
-</li>
-<li>
-<p><code>domain</code>: 域名</p>
-</li>
-<li>
-<p><code>name=value</code>：键值对，可以设置要保存的 Key/Value，注意这里的 name 不能和其他属性项的名字 一样</p>
-</li>
-<li>
-<p><code>Expires</code>： 过期时间（秒），在设置的某个时间点后该 Cookie 就会失效，如 expires=Wednesday,09-Nov-99 23:12:40 GMT</p>
-</li>
-<li>
-<p><code>maxAge</code>： 最大失效时间（毫秒），设置在多少后失效   -   secure： 当 secure 值为 true 时，cookie 在 HTTP 中是无效，在 HTTPS 中才有效</p>
-</li>
-<li>
-<p><code>Path</code>： 表示 cookie 影响到的路由，如 path=/。如果路径不能匹配时，浏览器则不发送这个 Cookie</p>
-</li>
-<li>
-<p><code>httpOnly</code>：是微软对 COOKIE 做的扩展。如果在 COOKIE 中设置了“httpOnly”属性，则通过程序（JS 脚本、applet 等）将无法读取到COOKIE 信息，防止 XSS 攻击产生 singed：表示是否签名cookie, 设为true 会对这个 cookie 签名，这样就需要用 res.signedCookies 而不是 res.cookies 访问它。被篡改的签名 cookie 会被服务器拒绝，并且 cookie 值会重置为它的原始值</p>
-</li>
-<li>
-<p><code>overwrite</code>:表示是否覆盖住原来同名的cookie，true表示覆盖，false表示不覆盖</p>
-</li>
-</ul>
-<h3>cookie的使用</h3>
-<pre><code><figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = require(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> path = require(<span class="hljs-string">'path'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> Router = require(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> render = require(<span class="hljs-string">'koa-art-template'</span>);</span><br><span class="line">render(app, &#123;</span><br><span class="line">    root: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'views'</span>),</span><br><span class="line">    extname: <span class="hljs-string">'.html'</span>,</span><br><span class="line">    debug: process.env.NODE_ENV !== <span class="hljs-string">'production'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    ctx.cookies.<span class="hljs-keyword">set</span>(<span class="hljs-string">'username'</span>, <span class="hljs-string">'Mr zhong'</span>, &#123;<span class="hljs-comment">//设置cookie</span></span><br><span class="line">        maxAge: <span class="hljs-number">60</span> * <span class="hljs-number">1000</span> * <span class="hljs-number">60</span><span class="hljs-comment">//设置过期时间</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/user'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> name = ctx.cookies.<span class="hljs-keyword">get</span>(<span class="hljs-string">'username'</span>) <span class="hljs-comment">//获取cookie</span></span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'news'</span>, &#123; name &#125;) <span class="hljs-comment">//传递cookie的值</span></span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure>
-</code></pre>
-<ul>
-<li>每次我们进入<code>/</code>的时候都会设置cookie，我们进入<code>/user</code>的时候就可以获取到设置的cookie值，通过<code></code>显示出来</li>
-</ul>
-<h3>cookie的参数使用说明</h3>
-<pre><code><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-selector-tag">ctx</span><span class="hljs-selector-class">.cookies</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'username'</span>, <span class="hljs-string">'Mr zhong'</span>,&#123;<span class="hljs-comment">//设置cookie</span></span><br><span class="line">        <span class="hljs-attribute">maxAge</span>: <span class="hljs-number">60</span> * <span class="hljs-number">1000</span> * <span class="hljs-number">60</span>, <span class="hljs-comment">//设置过期时间</span></span><br><span class="line">        <span class="hljs-attribute">path</span>:<span class="hljs-string">'/user'</span>, <span class="hljs-comment">//设置cookie可以访问的页面</span></span><br><span class="line">        <span class="hljs-attribute">domain</span>:<span class="hljs-string">'.baidu.com'</span>, <span class="hljs-comment">//设置可以访问的二级域名，一般不做修改，默认就是当前的域名</span></span><br><span class="line">        <span class="hljs-attribute">httpOnly</span>:true  <span class="hljs-comment">//表示只有在服务端才能访问</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    domain: 表示 'a.baidu.com','xxx.baidu.com'都可以访问这个cookie</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-<ul>
-<li>httpOnly说明：如果为true，我们只能在服务器端访问，在客户端使用<code>document.cookie</code>是访问不到cookie的，但是如果为false，在客户端使用<code>document.cookie</code>可以访问到cookie，并且服务端也可以访问</li>
-</ul>
-<h3>cookie的value说明</h3>
-<ul>
-<li>
-<p>在koa中，value是不能直接被设置成汉字的，会报错，可能是开发团队有意为之，但是我们在处理用户信息的时候，难免会使用中文，我们可以对中文进入base64编码
-<figure class="highlight cs hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = require(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> path = require(<span class="hljs-string">'path'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> Router = require(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> render = require(<span class="hljs-string">'koa-art-template'</span>);</span><br><span class="line">render(app, &#123;</span><br><span class="line">    root: path.<span class="hljs-keyword">join</span>(__dirname, <span class="hljs-string">'views'</span>),</span><br><span class="line">    extname: <span class="hljs-string">'.html'</span>,</span><br><span class="line">    debug: process.env.NODE_ENV !== <span class="hljs-string">'production'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//将中文转换成base64</span></span><br><span class="line">    <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">new</span> Buffer(<span class="hljs-string">'张三'</span>).toString(<span class="hljs-string">'base64'</span>)</span><br><span class="line">    ctx.cookies.<span class="hljs-keyword">set</span>(<span class="hljs-string">'username'</span>, name, &#123;<span class="hljs-comment">//设置cookie</span></span><br><span class="line">        maxAge: <span class="hljs-number">60</span> * <span class="hljs-number">1000</span> * <span class="hljs-number">60</span>,<span class="hljs-comment">//设置过期时间</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/user'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> name = ctx.cookies.<span class="hljs-keyword">get</span>(<span class="hljs-string">'username'</span>) <span class="hljs-comment">//获取cookie，这个时候usename是base64编码</span></span><br><span class="line">    <span class="hljs-comment">//将base64转换成中文</span></span><br><span class="line">    <span class="hljs-keyword">let</span> username = <span class="hljs-keyword">new</span> Buffer(name, <span class="hljs-string">'base64'</span>).toString()</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'news'</span>, &#123; username &#125;) <span class="hljs-comment">//传递cookie的值</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>我们在设置cookie之前转换成base64编码，获取之后转换成中文，传递到页面，这样就可以设置中文了</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/12/在koa中使用Cookie/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -456,80 +385,22 @@
                             <blockquote>
 <p>art-template模板引擎性能接近极限，相对其他的模板引擎性能高出几倍到几十倍，并且可以在浏览器运行使用，强大而方便</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>在koa中使用<a href="http://aui.github.io/art-template/zh-cn/docs/index.html" target="_blank" rel="noopener">art-template模板引擎</a></h2>
-<ul>
-<li>可能在浏览器端我们已经使用过这个模板引擎，它不仅可以在浏览器端运行，支持koa、express、webpack等</li>
-<li>性能接近极限，是ejs的4倍，pug的2倍，同时支持Nodejs和浏览器端，而且语法上与Angular相似</li>
-</ul>
-<h3>使用art-template模板引擎</h3>
-<ol>
-<li>安装：<code>cnpm i art-template koa-art-template --save</code>这两个模块，如果你需要在浏览器端或者express、webpack中使用这个模板引擎，可以查看<a href="http://aui.github.io/art-template/zh-cn/docs/index.html" target="_blank" rel="noopener">art-template官方文档</a></li>
-<li>配置模板引擎
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-art-template'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();</span><br><span class="line">render(app, &#123;</span><br><span class="line">  root: path.join(__dirname, <span class="hljs-string">'view'</span>),<span class="hljs-comment">//模板文件的路径</span></span><br><span class="line">  extname: <span class="hljs-string">'.art'</span>,<span class="hljs-comment">//文件的后缀名，可以选择使用html</span></span><br><span class="line">  debug: process.env.NODE_ENV !== <span class="hljs-string">'production'</span>  <span class="hljs-comment">//是否开启调试模式</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">ctx</span>) </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//渲染模板</span></span><br><span class="line">  <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'user'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="hljs-number">8080</span>);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3>art-template语法</h3>
-<ul>
-<li>
-<p>在这里有原始语法和标准语法，我们先来说一下原始语法，因为原始语法与ejs几乎一样，绑定数据，循环，判断，解析html都是一样的，就引入子模板(公共的模板)有些差别
-<figure class="highlight mel hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//ejs</span></span><br><span class="line">&lt;%-include public/header.ejs%&gt;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//art-template</span></span><br><span class="line">&lt;% include (<span class="hljs-string">'public/header.html'</span>) %&gt;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>接下来我们看一下标准语法的使用方式</p>
-</li>
-<li>
-<p>首先我们定义好数据如下
-<figure class="highlight zephir hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> path = <span class="hljs-keyword">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> render = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-art-template'</span>);</span><br><span class="line">render(app, &#123;</span><br><span class="line">    root: path.join(__dirname, <span class="hljs-string">'views'</span>),</span><br><span class="line">    extname: <span class="hljs-string">'.html'</span>,</span><br><span class="line">    debug: process.env.NODE_ENV !== <span class="hljs-string">'production'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, async (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> data = &#123;</span><br><span class="line">        name: <span class="hljs-string">'Mr zhong'</span>,</span><br><span class="line">        age: <span class="hljs-number">20</span>,</span><br><span class="line">        html: <span class="hljs-string">'&lt;h2&gt;我的爱好是：&lt;/h2&gt;'</span>,</span><br><span class="line">        <span class="hljs-keyword">list</span>: [<span class="hljs-string">'苹果'</span>, <span class="hljs-string">'香蕉'</span>, <span class="hljs-string">'西瓜'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    await ctx.render(<span class="hljs-string">'index'</span>, &#123; data &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.routes())</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3>数据输出</h3>
-<ul>
-<li>在index.html输出名字
-<figure class="highlight fortran hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我的名字是：&#123;&#123;<span class="hljs-keyword">data</span>.<span class="hljs-keyword">name</span>&#125;&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>判断</h3>
-<ul>
-<li>
-<p>在index.html判断年龄是否小于20
-<figure class="highlight handlebars hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-builtin-name">if</span> data.age&gt;20&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我的年龄大于20<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-builtin-name">else</span> &#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我的年龄小于等于20<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span><span class="hljs-template-tag">&#123;&#123;/<span class="hljs-name"><span class="hljs-builtin-name">if</span></span>&#125;&#125;</span><span class="hljs-xml"></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>在这里需要注意的是需要结束标签</p>
-</li>
-</ul>
-<h3>原文输出</h3>
-<ul>
-<li>在index.html中输出html标签的内容
-<figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;@ data.html&#125;&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>循环</h3>
-<ul>
-<li>在index.html中输出我的爱好
-<figure class="highlight handlebars hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-builtin-name">each</span> data.list&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;$index+1&#125;&#125;</span><span class="hljs-xml">、</span><span class="hljs-template-variable">&#123;&#123;$value&#125;&#125;</span><span class="hljs-xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-tag">&#123;&#123;/<span class="hljs-name"><span class="hljs-builtin-name">each</span></span>&#125;&#125;</span><span class="hljs-xml"></span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>子模版</h3>
-<ul>
-<li>在index.html引入公共的尾部模板
-<figure class="highlight clojure hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; include './public/foot.html' &#125;&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>总结：</h3>
-<ul>
-<li>
-<p>index.html
-<figure class="highlight handlebars hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"css/style.css"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    我的名字是：</span><span class="hljs-template-variable">&#123;&#123;data.name&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-builtin-name">if</span> data.age&gt;20&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我的年龄大于20<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-builtin-name">else</span> &#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我的年龄小于等于20<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-tag">&#123;&#123;/<span class="hljs-name"><span class="hljs-builtin-name">if</span></span>&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-variable">&#123;&#123;@ data.html&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-builtin-name">each</span> data.list&#125;&#125;</span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;$index+1&#125;&#125;</span><span class="hljs-xml">、</span><span class="hljs-template-variable">&#123;&#123;$value&#125;&#125;</span><span class="hljs-xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><span class="hljs-template-tag">&#123;&#123;/<span class="hljs-name"><span class="hljs-builtin-name">each</span></span>&#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml">    </span><span class="hljs-template-variable">&#123;&#123; include './public/foot.html' &#125;&#125;</span><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>打印的页面
-<figure class="highlight lsl hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我的名字是：Mr zhong</span><br><span class="line">我的年龄小于等于<span class="hljs-number">20</span></span><br><span class="line"></span><br><span class="line">我的爱好是：</span><br><span class="line">    <span class="hljs-number">1</span>、苹果</span><br><span class="line">    <span class="hljs-number">2</span>、香蕉</span><br><span class="line">    <span class="hljs-number">3</span>、西瓜</span><br><span class="line">我是尾部</span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/12/在koa中使用art-template模板引擎/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -583,34 +454,22 @@
                             <blockquote>
 <p>由于koa中自身不绑定任何的中间件，所以我们需要手动的将配置静态文件的中间件引入</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa中的koa-static中间件的使用</h2>
-<ul>
-<li>在express中我们如果需要配置静态文件，直接以<code>app.use(express.static(''))</code>就可以配置，但是因为在koa中没有绑定任何的中间件，所以我们如果需要使用中间件，那么我们就需要自己去手动去配置</li>
-</ul>
-<h3>koa-static中间件的使用</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i koa-static --save</code></p>
-</li>
-<li>
-<p>配置：<code>app.use(serve('/test/fixtures'))</code></p>
-</li>
-<li>
-<p>使用：
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">static</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-static'</span>)</span><br><span class="line"><span class="hljs-comment">//配置,两种方式，一种带绝对路径的，是被推荐的</span></span><br><span class="line"><span class="hljs-comment">// app.use(static('public'))</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(<span class="hljs-keyword">static</span>(__dirname + <span class="hljs-string">'/public'</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>配置完成后我们使用就根目录中的public文件夹下的文件文件就可以直接使用了，如使用<code>public/css/style.css</code>，引用的 时候直接<code>css/style.css</code>即可</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/12/Koa中使用koa-static中间件配置静态文件/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -664,43 +523,22 @@
                             <blockquote>
 <p>在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>在Koa中使用Nodejs原生的方式获取get、post数据</h2>
-<ul>
-<li>在Koa中使用原生的Nodejs获取post数据，和在Express中使用原生的Nodejs获取post数据不一样，因为Koa中的方法是异步的。</li>
-</ul>
-<h3>创建获取post数据模块</h3>
-<ul>
-<li>
-<p>在根目录下创建common目录，新建<code>postCommon.js</code>
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//暴露模块</span></span><br><span class="line">exports.getPostData = <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> &#123;</span><br><span class="line"><span class="hljs-comment">//返回一个promise对象，这样就可以在调用的时候 awit</span></span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-keyword">try</span> &#123; <span class="hljs-comment">//获取成功</span></span><br><span class="line">        <span class="hljs-keyword">let</span> data = <span class="hljs-string">''</span></span><br><span class="line">        ctx.req.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            data += chunk</span><br><span class="line">        &#125;)</span><br><span class="line">        ctx.req.on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">            reslove(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">catch</span> (err) &#123; <span class="hljs-comment">//如果获取失败</span></span><br><span class="line">        reject(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>在<code>app.js</code>中使用这个模块
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./modules/common'</span>)</span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attr">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//因为在这里是异步的，如果需要使用await，那么调用的函数也需要是异步的，我们使用Promise封装</span></span><br><span class="line">    <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> common.getPostData(ctx)</span><br><span class="line">    ctx.body = data</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>以上已经可以获取到post数据，但是这样过于繁琐，而且数据并没有格式化好，所以我们可以使用第三方的中间件来解决这个问题</p>
-</li>
-</ul>
-<h3>使用koa-bodyparser中间件获取表单提交的数据</h3>
-<ol>
-<li>安装：<code>cnpm i koa-bodyparser --save</code></li>
-<li>引入:<code>const bodyParser=require('koa-bodyparser')</code></li>
-<li>配置：<code>app.use(bodyParser())</code></li>
-<li>使用: <code>ctx.body =awit ctx.request.body</code>
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"><span class="hljs-comment">//1.引入</span></span><br><span class="line"><span class="hljs-keyword">const</span> bodyParser = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-bodyparser'</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="hljs-keyword">use</span>(views(<span class="hljs-string">'views'</span>), &#123; extension: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"><span class="hljs-comment">//2.配置</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(bodyParser())</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, async (ctx, next) =&gt; &#123;</span><br><span class="line">    await ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.post(<span class="hljs-string">'/doAdd'</span>, async ctx =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//3.使用</span></span><br><span class="line">    ctx.body = await ctx.request.body</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.routes())</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>这个时候就可以获取post数据了，非常的简单，而且数据已经帮你格式化成了JSON对象，直接使用即可</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/12/在Koa中使用Nodejs原生的方式获取post数据和使用koa-bodyparser中间件获取post数据/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -754,88 +592,22 @@
                             <blockquote>
 <p>Koa中使用ejs模板引擎和Express中除了配置不同其他的一摸一样，如果你直接接触过ejs模板引擎，只需要查看如何配置就可以了</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa中ejs模板引擎的使用</h2>
-<ul>
-<li>之前express中，已经说明了ejs模板引擎的语法和使用方式，但是在koa中，配置方式稍微和express有些差别，但是ejs的语法是一样的</li>
-</ul>
-<h3>安装和配置</h3>
-<ul>
-<li>安装koa-views和ejs</li>
-</ul>
-<ol>
-<li>安装：<strong>koa-views:</strong> cnpmi koa-views --save(-S)</li>
-<li>安装:<strong>ejs:</strong> cnpm i ejs --save(-S)</li>
-<li>引入及配置模板引擎中间件
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-comment">//引入koa-views</span></span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-keyword">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    配置模板引擎中间件</span></span><br><span class="line"><span class="hljs-comment">    配置方式一：</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views', &#123; map: &#123; html: 'ejs' &#125; &#125;))</span></span><br><span class="line"><span class="hljs-comment">    配置方式二:</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views'), &#123; extension: 'ejs' &#125;)</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line">app.<span class="hljs-keyword">use</span>(views(<span class="hljs-string">'views'</span>), &#123; extension: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, async (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.body=<span class="hljs-string">'首页'</span></span><br><span class="line">&#125;)</span><br><span class="line">   </span><br><span class="line">app</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.routes())</span><br><span class="line">    .<span class="hljs-keyword">use</span>(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>
-<p>这样最基本的配置就配置完成了，我们接下来看一下渲染页面和页面传值
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-comment">//引入koa-views</span></span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    配置模板引擎中间件</span></span><br><span class="line"><span class="hljs-comment">    配置方式一：</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views', &#123; map: &#123; html: 'ejs' &#125; &#125;))</span></span><br><span class="line"><span class="hljs-comment">    配置方式二:</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views'), &#123; extension: 'ejs' &#125;)</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attr">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//渲染模板</span></span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>) <span class="hljs-comment">//这里如果没有后缀默认是.html格式，哪种都可以</span></span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/news'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">        <span class="hljs-comment">//定义需要传递的数据</span></span><br><span class="line">        <span class="hljs-keyword">let</span> name = <span class="hljs-string">"kobe"</span></span><br><span class="line">        <span class="hljs-comment">//render参数</span></span><br><span class="line">        <span class="hljs-comment">//参数一：需要渲染的模板页面，参数二：需要传递的数据</span></span><br><span class="line">        <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'news.ejs'</span>, &#123; name &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>在路由<code>/news</code>中我们传递到<code>news.ejs</code>的值，这样就可以获取了
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我的名字是:<span class="hljs-tag">&lt;<span class="hljs-name">%=name%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>还有一些其他的语法参见在express中我写的<a href="http://www.zhongyuehui.cn/2019/08/04/Nodejs%E7%9A%84ejs%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">ejs模板引擎的使用</a></p>
-</li>
-</ul>
-<h3>ejs循环数据</h3>
-<ul>
-<li>
-<p>比如我们循环一个数组
-<figure class="highlight qml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-comment">//引入koa-views</span></span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">    配置模板引擎中间件</span></span><br><span class="line"><span class="hljs-comment">    配置方式一：</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views', &#123; map: &#123; html: 'ejs' &#125; &#125;))</span></span><br><span class="line"><span class="hljs-comment">    配置方式二:</span></span><br><span class="line"><span class="hljs-comment">        app.use(views('views'), &#123; extension: 'ejs' &#125;)</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attribute">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-comment">//渲染模板</span></span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>) <span class="hljs-comment">//这里如果没有后缀默认是.html格式，哪种都可以</span></span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/news'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">        <span class="hljs-comment">//定义需要传递的数据</span></span><br><span class="line">        <span class="hljs-keyword">let</span> name = <span class="hljs-string">"kobe"</span></span><br><span class="line">        <span class="hljs-keyword">let</span> <span class="hljs-built_in">list</span> = [<span class="hljs-string">'苹果'</span>, <span class="hljs-string">'香蕉'</span>, <span class="hljs-string">'西瓜'</span>]</span><br><span class="line">        <span class="hljs-comment">//render参数</span></span><br><span class="line">        <span class="hljs-comment">//参数一：需要渲染的模板页面，参数二：需要传递的数据</span></span><br><span class="line">        <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'news.ejs'</span>, &#123; name, <span class="hljs-built_in">list</span> &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>在<code>news.ejs</code>中这样循环
-<figure class="highlight django hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我的名字是:<span class="hljs-tag">&lt;<span class="hljs-name">%=name%</span>&gt;</span>,我喜欢吃:<span class="hljs-tag">&lt;<span class="hljs-name">%</span> <span class="hljs-attr">for</span>(<span class="hljs-attr">let</span> <span class="hljs-attr">i</span>=<span class="hljs-string">0;i</span>&lt;<span class="hljs-attr">list.length</span>;<span class="hljs-attr">i</span>++)&#123; %&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%=list[i]%</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%&#125;%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<h3>引入公共模板</h3>
-<ul>
-<li>
-<p>引入导航栏或者尾部</p>
-</li>
-<li>
-<p>在views目录下新建public目录，新建一个文件<code>header.ejs</code>，然后再<code>news.ejs</code>中添加如下代码
-<figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- 引入公共的头部 --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%-</span></span></span><span class="hljs-ruby"><span class="hljs-keyword">include</span> public/header.ejs</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我的名字是:<span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="hljs-ruby">name</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span>,我喜欢吃:<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> <span class="hljs-keyword">for</span>(let i=<span class="hljs-number">0</span>;i&lt;list.length;i++)&#123; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="hljs-ruby">list[i]</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>使用include就可以引入你需要引入的公共模板了</p>
-</li>
-</ul>
-<h3>判断语句</h3>
-<ul>
-<li>
-<p>在ejs模板中判断数据显示内容
-<figure class="highlight erb hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- 引入公共的头部 --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">%-</span></span></span><span class="hljs-ruby"><span class="hljs-keyword">include</span> public/header.ejs</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-comment">&lt;!-- 判断语句 --&gt;</span></span></span><br><span class="line"><span class="hljs-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我的名字是:<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> <span class="hljs-keyword">if</span>(name==<span class="hljs-string">'kobe'</span>)&#123;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>科比<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125;<span class="hljs-keyword">else</span>&#123;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>詹姆斯<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        ,我喜欢吃:<span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby"> <span class="hljs-keyword">for</span>(let i=<span class="hljs-number">0</span>;i&lt;list.length;i++)&#123; </span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%=</span></span></span><span class="hljs-ruby">list[i]</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span></span></span><br><span class="line"><span class="hljs-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">%</span></span></span><span class="hljs-ruby">&#125;</span><span class="hljs-xml"><span class="hljs-tag">%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这样输出就是<code>我的名字叫科比了</code>，其实这个语法就是和js的一样只不过使用<code>&lt;%%&gt;</code>标签包裹，因为它的底层是使用正则来进行数据的替换的。</p>
-</li>
-</ul>
-<h3>ejs模板引擎的标签</h3>
-<pre><code><figure class="highlight mel hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="hljs-string">'脚本'</span> 标签，用于流程控制，无输出。（当作标签使用）</span><br><span class="line">&lt;%_ 删除其前面的空格符</span><br><span class="line">&lt;%= 输出数据到模板（输出是转义 HTML 标签）（输出你的数据）</span><br><span class="line">&lt;%- 输出非转义的数据到模板(当你的内容是一个html时使用这个)</span><br><span class="line">&lt;%# 注释标签，不执行、不输出内容(写注释的)</span><br><span class="line">&lt;%% 输出字符串 <span class="hljs-string">'&lt;%'</span></span><br><span class="line">%&gt; 一般结束标签</span><br><span class="line">-%&gt; 删除紧随其后的换行符</span><br><span class="line">_%&gt; 将结束标签后面的空格符删除</span><br></pre></td></tr></table></figure>
-</code></pre>
-<h3>配置ejs全局数据</h3>
-<ul>
-<li>
-<p>如果我们在多个ejs页面中需要使用一个同样的数据，比如说用户的session，那么这个时候我们就可以通过配置全局数据，这样就不需要传递到各个页面去我们也可以获取
-<figure class="highlight qml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"><span class="hljs-keyword">const</span> views = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-views'</span>)</span><br><span class="line"></span><br><span class="line">app.use(views(<span class="hljs-string">'views'</span>), &#123; <span class="hljs-attribute">extension</span>: <span class="hljs-string">'ejs'</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//配置公共信息的中间件</span></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.state = &#123;</span><br><span class="line">        <span class="hljs-attribute">username</span>: <span class="hljs-string">'kobe'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">await</span> next() <span class="hljs-comment">//需要继续匹配路由，不然会报错</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'index.ejs'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/news'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">        <span class="hljs-keyword">let</span> name = <span class="hljs-string">"kobe"</span></span><br><span class="line">        <span class="hljs-keyword">let</span> <span class="hljs-built_in">list</span> = [<span class="hljs-string">'苹果'</span>, <span class="hljs-string">'香蕉'</span>, <span class="hljs-string">'西瓜'</span>]</span><br><span class="line">        <span class="hljs-keyword">let</span> info = <span class="hljs-string">'&lt;h3&gt;我喜欢科比&lt;/h3&gt;'</span></span><br><span class="line">        <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">'news.ejs'</span>, &#123; name, <span class="hljs-built_in">list</span>, info &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>在这里我们使用<code>配置公共信息的中间件</code>之后，就可以在任意的ejs页面上使用<code>&lt;%=username%&gt;</code>来获取配置的信息了，当然你也可以添加其他的信息，这里只是做一个简单的示范。</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/10/Koa中ejs模板引擎的使用/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -889,60 +661,22 @@
                             <blockquote>
 <p>Koa的中间件和Express的中间件很相似，但是也有不同的地方，我们来看一下它们的相同之处和不同之处</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa的中间件</h2>
-<ul>
-<li>中间件就是匹配路由之前或者匹配路由完成做的一系列操作，我们可以把它叫做中间件。</li>
-<li>koa的中间件和express的中间件相似，可以参考我之前的<a href="http://www.zhongyuehui.cn/2019/08/04/express%E4%B8%AD%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6/#more" target="_blank" rel="noopener">express中间件</a></li>
-<li>这里我就不再赘述中间件的概念，我们直接使用一下你就明白了。</li>
-</ul>
-<h3>应用级中间件</h3>
-<ul>
-<li>配置应用级中间件
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 匹配路由前打印日期的中间件</span></span><br><span class="line">app.use( <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;  <span class="hljs-comment">//所有的路由都会经过这个中间件，然后输出时间</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()); <span class="hljs-comment">//输出时间</span></span><br><span class="line">    next()  <span class="hljs-comment">//继续匹配，如果没有继续匹配就只输出时间</span></span><br><span class="line">&#125;)</span><br><span class="line">router.get(<span class="hljs-string">'/'</span>,<span class="hljs-keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span></span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>路由级中间件</h3>
-<ul>
-<li>
-<p>配置路由级中间件
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//我们想在这个路由输出1，下一个路由输出2，如果我们直接这样，路由是不会继续往下执行的</span></span><br><span class="line"><span class="hljs-comment">//这个时候我们需要在参数中添加一个参数next并调用</span></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);</span><br><span class="line">    <span class="hljs-keyword">await</span> next()  <span class="hljs-comment">//表示路由继续往下匹配</span></span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123; <span class="hljs-comment">//只有上面的路由next执行后，这个路由才能匹配</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>但是实际的开发中，我们不建议这么写，因为代码多余，但是可以这么写</p>
-</li>
-</ul>
-<h3>配置错误处理中间件</h3>
-<ul>
-<li>
-<p>在koa中，不像express中的中间件流程是自上而下的，在koa中，中间件会优先执行，尽管你放在最下面，还是会先执行
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);<span class="hljs-comment">//2.输出2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>); <span class="hljs-comment">//1.输出1</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>由此可见是先执行了中间件再匹配了路由，所以这个时候我们配置错误处理就需要换一种方式了
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123; <span class="hljs-comment">//4.匹配到路由，如果没有匹配到状态码也为404</span></span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span> <span class="hljs-comment">//5.有响应数据，则状态码为200，没有则404</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);<span class="hljs-comment">//6.输出2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123; <span class="hljs-comment">//1.匹配执行中间件</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>); <span class="hljs-comment">//2.输出 1</span></span><br><span class="line">    next() <span class="hljs-comment">//3.去匹配路由</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (ctx.status == <span class="hljs-number">404</span>) &#123;<span class="hljs-comment">//7.判断状态码，有则输出else</span></span><br><span class="line">        ctx.status = <span class="hljs-number">404</span></span><br><span class="line">        ctx.body = <span class="hljs-string">'这是一个404页面'</span></span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'匹配完成'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>这里的状态码是以有无路由和响应数据来判断的如果没有就是404。因为页面上没有任何数据，如果有就是200，二者缺一不可</p>
-</li>
-</ul>
-<h3>koa中间件执行流程</h3>
-<ul>
-<li>
-<p>先从外到内 再从内到外
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123; <span class="hljs-comment">//1.匹配执行中间件</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>); <span class="hljs-comment">//2.输出 1</span></span><br><span class="line">    <span class="hljs-keyword">await</span> next() <span class="hljs-comment">//3.去匹配路由</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">5</span>); <span class="hljs-comment">//11.输出5</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123; <span class="hljs-comment">//4.匹配执行中间件</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>); <span class="hljs-comment">//5.输出 2</span></span><br><span class="line">    <span class="hljs-keyword">await</span> next() <span class="hljs-comment">//6.去匹配路由</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">4</span>); <span class="hljs-comment">//10.输出4</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123; <span class="hljs-comment">//7.匹配到路由</span></span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span> <span class="hljs-comment">//8.有响应数据，则状态码为200</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">3</span>);<span class="hljs-comment">//9.输出3</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>最终的输出就是1-5，以next为内外分界的话，就像是洋葱，先从外到里，然后从里到外
-<img src="https://s2.ax1x.com/2019/08/09/eqyMFK.png" alt="执行流程"></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/10/Koa的中间件/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -996,39 +730,22 @@
                             <blockquote>
 <p>路由传值是在开发中的家常便饭了，不论是在Nodejs中，还是在PHP等语言上，都是非常常用的，我们来看一下在node中如何使用路由传值</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa中的路由与动态路由和get传值</h2>
-<h3>什么是路由？</h3>
-<ul>
-<li>路由是由一个URL(路径)和一个特定的HTTP方法(GET、POST等)组成，涉及应用如何响应客户端对某个网站节点的访问。</li>
-<li>通俗的讲就是路由根据不同的URL地址，加载不同的页面响应不同的内容实现不同的功能。</li>
-</ul>
-<h3>Koa中的路由</h3>
-<ul>
-<li>Koa的路由和Express有所不同，在Express中直接引入express就可以配置路由，但是koa需要安装路由模块</li>
-<li>安装:<code>cnpm i koa-router --save</code></li>
-<li>基本的路由配置
-<figure class="highlight dart hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = require(<span class="hljs-string">'koa'</span>)</span><br><span class="line"> <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"> <span class="hljs-comment">//引入路由</span></span><br><span class="line"> <span class="hljs-keyword">const</span> Router = require(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"> <span class="hljs-comment">//实例化路由</span></span><br><span class="line"> <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"> </span><br><span class="line"> <span class="hljs-comment">//首页</span></span><br><span class="line"> router.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">     cxt.body = <span class="hljs-string">"Home"</span></span><br><span class="line"> &#125;)</span><br><span class="line">     .<span class="hljs-keyword">get</span>(<span class="hljs-string">'/admin'</span>,<span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">         cxt.body = <span class="hljs-string">"管理页面"</span></span><br><span class="line">     &#125;)</span><br><span class="line"> </span><br><span class="line"> <span class="hljs-comment">//启动路由并配置端口</span></span><br><span class="line"> app</span><br><span class="line">     .use(router.routes())</span><br><span class="line">     .use(router.allowedMethods())</span><br><span class="line">     .listen(<span class="hljs-number">3000</span>, console.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>Koa路由获取GET传值的值</h3>
-<ul>
-<li>在koa中GET传值通过request接收，但是接收的方式有两种:(query,querystring)</li>
-<li>使用query：返回的是格式化好的参数对象，如：{name:zs,age:12}</li>
-<li>使用querystring：返回的是请求字符串
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-comment">//引入路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-comment">//实例化路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//首页</span></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>,<span class="hljs-keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span></span><br><span class="line">    <span class="hljs-comment">//从ctx中读取GET传值 http://localhost:3000/?name=zs</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(ctx.query);<span class="hljs-comment">//输出 [Object: null prototype] &#123; name: 'zs' &#125;</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(ctx.querystring); <span class="hljs-comment">//输出 namne=zs  获取的是一个字符串</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//从ctx的request中获取</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(ctx.request.query);<span class="hljs-comment">//输出 [Object: null prototype] &#123; name: 'zs' &#125;</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(ctx.request.querystring); <span class="hljs-comment">//输出 namne=zs  获取的是一个字符串</span></span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/admin'</span>,<span class="hljs-keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="hljs-string">"管理页面"</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//启动路由并配置端口</span></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3>koa中的动态路由以及获取动态路由的值</h3>
-<ul>
-<li>和express一样使用<code>/:id</code>的方式设置的动态路由，使用params获取传递的值
-<figure class="highlight typescript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> koa()</span><br><span class="line"><span class="hljs-comment">//引入路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> Router = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa-router'</span>)</span><br><span class="line"><span class="hljs-comment">//实例化路由</span></span><br><span class="line"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//首页</span></span><br><span class="line">router.get(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="hljs-string">"Home"</span></span><br><span class="line">&#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/admin/:id'</span>, <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> &#123;  <span class="hljs-comment">//动态路由</span></span><br><span class="line">        ctx.body = <span class="hljs-string">"管理页面"</span></span><br><span class="line">        <span class="hljs-comment">//http://localhost:3000/admin/123</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(ctx.params); <span class="hljs-comment">//获取动态路由的传值 &#123;id:'123&#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .get(<span class="hljs-string">'/news/:id/:title'</span>, <span class="hljs-keyword">async</span> ctx =&gt; &#123;  <span class="hljs-comment">//动态路由传递多个值</span></span><br><span class="line">        ctx.body = <span class="hljs-string">"新闻页面"</span></span><br><span class="line">        <span class="hljs-comment">//http://localhost:3000/news/12/新闻</span></span><br><span class="line">        <span class="hljs-built_in">console</span>.log(ctx.params);<span class="hljs-comment">//&#123; id: '12', title: '新闻' &#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="hljs-comment">//启动路由并配置端口</span></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="hljs-number">3000</span>, <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"http://localhost:3000"</span>))</span><br></pre></td></tr></table></figure></li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/10/Koa中的路由与动态路由和get传值/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1082,44 +799,22 @@
                             <blockquote>
 <p>koa采用ES6、ES7语法进行处理异步问题，增强了错误处理的能力。</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>Koa异步处理Async、Await和Promise</h2>
-<ul>
-<li>因为koa框架是基于ES6、ES7语法的，所以学习之前必须掌握ES6的基本语法，这里不再赘述，我们之前认识koa一些重要的ES6、ES7语法</li>
-</ul>
-<h3>Async</h3>
-<ul>
-<li>Async是异步的简写，await可以认为是async wait的简写，async用于申明一个function是异步的，而await用域等待一个异步方法执行完成</li>
-<li><strong>简单的理解</strong></li>
-</ul>
-<ol>
-<li>async：让方法变成异步</li>
-<li>await：等待异步方法执行完成</li>
-</ol>
-<ul>
-<li>
-<p>普通方法与async方法的区别
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//普通函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Koa</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//async函数</span></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(getData());  <span class="hljs-comment">//Promise &#123; 'Koa' &#125;</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>因为async其实就是基于promise封装的，所以它返回的还是一个promise对象，只要是promise对象，我们就可以使用.then()的方式获数据
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line">getData()</span><br><span class="line">    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(res))  <span class="hljs-comment">//Koa</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>但是，以上这种方法如果获取下一个数据需要上一个数据的结果时，又会形成回调地狱的情况，所以说Promise并没有正真解决回调地狱的问题，所以ES7的async才又一次对回调地域现象做出了解决的方法，就是使用await，以同步的方式处理异步
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">data</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-string">'Koa'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">let</span> d = <span class="hljs-keyword">await</span> data()  <span class="hljs-comment">//等待data函数执行完毕，将结果赋值给变量d</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(d); <span class="hljs-comment">//打印结果</span></span><br><span class="line">&#125;</span><br><span class="line">getData()  <span class="hljs-comment">//调用函数进行取值</span></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p><a href="http://www.zhongyuehui.cn/2019/08/09/ES7-async%E7%9A%84%E4%BD%BF%E7%94%A8/#more" target="_blank" rel="noopener">点击这里</a>，详细了解<code>async</code></p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/09/Koa异步处理Async、Await和Promise/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
@@ -1173,33 +868,22 @@
                             <blockquote>
 <p>官方简介:Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。 Koa 并没有捆绑任何中间件， 而是提供了一套优雅的方法，帮助您快速而愉快地编写服务端应用程</p>
 </blockquote>
-<p>&lt;!-- more --&gt;</p>
-<h2>初始Koa</h2>
-<h3>kao的优点</h3>
-<ul>
-<li>Koa基于最新的Es6Es7语法运行速度相比Express更快，Koa中用了Es7 中的Async 和Await完美的解决了异步开发中的回调问题。，koa2.x开发方式和Express基本相似，开发速度、运行速度比Express更快。</li>
-<li>koa 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套，并极大地提升错误处理的效率。koa不在内核方法中绑定任何中间件，它仅仅提供了一个轻量优雅的函数库，使得编写 Web 应用变得得心应手。</li>
-</ul>
-<h3>koa的简单使用</h3>
-<ul>
-<li>
-<p>安装:<code>cnpm i koa -save</code></p>
-</li>
-<li>
-<p>使用:
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">'koa'</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// response</span></span><br><span class="line">app.use(<span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> &#123;</span><br><span class="line">  ctx.body = <span class="hljs-string">'Hello Koa'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>其实我觉得koa框架就像是express框架的浓缩版本，更轻便简洁，但是学习的时候我觉得应该先学习express，这样的话学习路线不会太陡峭。</p>
-</li>
-</ul>
-
 
                                 
 
                         </div>
                         
                                 
+                                    <div class="level is-mobile">
+                                        <div class="level-start">
+                                            <div class="level-item">
+                                                <a class="button is-size-7 is-light" href="/2019/08/09/初识Koa/#more">
+                                                    阅读更多
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                         
             </div>
 </div>
